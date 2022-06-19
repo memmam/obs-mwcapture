@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ChartCtrl">
+      <UniqueIdentifier>{7769ae8b-13eb-4be5-b4ab-d6a183a15518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="MWMultiDSRender">
+      <UniqueIdentifier>{2a8a2771-9bee-468d-8980-faf8d9c18bd0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\MultiAudioCapture.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\src\ChartCtrl\ChartBalloonLabel.inl">
+      <Filter>ChartCtrl</Filter>
+    </None>
+    <None Include="..\src\ChartCtrl\ChartLabel.inl">
+      <Filter>ChartCtrl</Filter>
+    </None>
+    <None Include="..\src\ChartCtrl\ChartPointsArray.inl">
+      <Filter>ChartCtrl</Filter>
+    </None>
+    <None Include="..\src\ChartCtrl\ChartSerieBase.inl">
+      <Filter>ChartCtrl</Filter>
+    </None>
+    <None Include="..\res\MultiAudioCapture.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\MultiAudioCapture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MultiAudioCaptureDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WaveFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartAxis.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartAxisLabel.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartBalloonLabel.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartBarSerie.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartCandlestickSerie.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartCrossHairCursor.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartCtrl.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartCursor.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartDateTimeAxis.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartDragLineCursor.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartFont.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartGanttSerie.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartGradient.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartGrid.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartLabel.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartLegend.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartLineSerie.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartLogarithmicAxis.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartMouseListener.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartPointsArray.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartPointsSerie.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartScrollBar.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartSerie.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartSerieBase.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartSeriesMouseListener.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartStandardAxis.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartString.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartSurfaceSerie.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartTitle.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\ChartXYSerie.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChartCtrl\PointsOrdering.h">
+      <Filter>ChartCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MWMultiDSRender\MWMMDevice.h">
+      <Filter>MWMultiDSRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MWMultiDSRender\MWMultiDSBuffer.h">
+      <Filter>MWMultiDSRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MWMultiDSRender\MWMultiDSDefine.h">
+      <Filter>MWMultiDSRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MWMultiDSRender\MWMultiDSRender.h">
+      <Filter>MWMultiDSRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FileVer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\MultiAudioCapture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MultiAudioCaptureDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartAxis.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartAxisLabel.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartBarSerie.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartCandlestickSerie.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartCrossHairCursor.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartCtrl.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartCursor.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartDateTimeAxis.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartDragLineCursor.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartFont.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartGanttSerie.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartGradient.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartGrid.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartLegend.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartLineSerie.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartLogarithmicAxis.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartPointsSerie.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartScrollBar.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartSerie.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartStandardAxis.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartSurfaceSerie.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartTitle.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ChartCtrl\ChartXYSerie.cpp">
+      <Filter>ChartCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MWMultiDSRender\MWMMDevice.cpp">
+      <Filter>MWMultiDSRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MWMultiDSRender\MWMultiDSBuffer.cpp">
+      <Filter>MWMultiDSRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MWMultiDSRender\MWMultiDSRender.cpp">
+      <Filter>MWMultiDSRender</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\src\MultiAudioCapture.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{6DC5B571-B3AE-49C0-A285-150A64327C0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CmdTools", "CmdTools", "{F461606A-7337-4E8B-ABC3-9AC2CF59A97D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AVCapture2", "..\..\GUI\AVCapture2\VS2015\AVCapture2.vcxproj", "{38673A19-67EB-47B9-83B7-B26399467014}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "USBDeviceDetect", "..\..\CmdTools\USBDeviceDetect\VS2015\USBDeviceDetect.vcxproj", "{EA2B7634-6556-43A7-A46C-57BA5318BCCA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MWVencEncode", "..\..\GUI\MWVencEncode\VS2015\MWVencEncode.vcxproj", "{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Template|Win32 = Template|Win32
+		Template|x64 = Template|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38673A19-67EB-47B9-83B7-B26399467014}.Debug|Win32.ActiveCfg = Debug|Win32
+		{38673A19-67EB-47B9-83B7-B26399467014}.Debug|Win32.Build.0 = Debug|Win32
+		{38673A19-67EB-47B9-83B7-B26399467014}.Debug|x64.ActiveCfg = Debug|x64
+		{38673A19-67EB-47B9-83B7-B26399467014}.Debug|x64.Build.0 = Debug|x64
+		{38673A19-67EB-47B9-83B7-B26399467014}.Release|Win32.ActiveCfg = Release|Win32
+		{38673A19-67EB-47B9-83B7-B26399467014}.Release|Win32.Build.0 = Release|Win32
+		{38673A19-67EB-47B9-83B7-B26399467014}.Release|x64.ActiveCfg = Release|x64
+		{38673A19-67EB-47B9-83B7-B26399467014}.Release|x64.Build.0 = Release|x64
+		{38673A19-67EB-47B9-83B7-B26399467014}.Template|Win32.ActiveCfg = Release|Win32
+		{38673A19-67EB-47B9-83B7-B26399467014}.Template|Win32.Build.0 = Release|Win32
+		{38673A19-67EB-47B9-83B7-B26399467014}.Template|x64.ActiveCfg = Release|x64
+		{38673A19-67EB-47B9-83B7-B26399467014}.Template|x64.Build.0 = Release|x64
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Debug|Win32.Build.0 = Debug|Win32
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Debug|x64.ActiveCfg = Debug|x64
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Debug|x64.Build.0 = Debug|x64
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Release|Win32.ActiveCfg = Release|Win32
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Release|Win32.Build.0 = Release|Win32
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Release|x64.ActiveCfg = Release|x64
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Release|x64.Build.0 = Release|x64
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Template|Win32.ActiveCfg = Release|Win32
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Template|Win32.Build.0 = Release|Win32
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Template|x64.ActiveCfg = Release|x64
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA}.Template|x64.Build.0 = Release|x64
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Debug|Win32.Build.0 = Debug|Win32
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Debug|x64.ActiveCfg = Debug|x64
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Debug|x64.Build.0 = Debug|x64
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Release|Win32.ActiveCfg = Release|Win32
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Release|Win32.Build.0 = Release|Win32
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Release|x64.ActiveCfg = Release|x64
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Release|x64.Build.0 = Release|x64
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Template|Win32.ActiveCfg = Release|Win32
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Template|Win32.Build.0 = Release|Win32
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Template|x64.ActiveCfg = Release|x64
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B}.Template|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38673A19-67EB-47B9-83B7-B26399467014} = {6DC5B571-B3AE-49C0-A285-150A64327C0E}
+		{EA2B7634-6556-43A7-A46C-57BA5318BCCA} = {F461606A-7337-4E8B-ABC3-9AC2CF59A97D}
+		{6AF49BF6-53AC-4AC3-B685-3A10F14E618B} = {6DC5B571-B3AE-49C0-A285-150A64327C0E}
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+EndGlobal

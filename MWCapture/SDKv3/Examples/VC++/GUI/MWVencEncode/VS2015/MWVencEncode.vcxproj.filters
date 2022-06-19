@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="mw_capture">
+      <UniqueIdentifier>{31ab5765-9970-4627-afac-1345e67ffe74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mw_encoder">
+      <UniqueIdentifier>{1239873d-7fcf-433e-a22b-f8a0acd3f324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mw_imgui_ui">
+      <UniqueIdentifier>{a99127a2-7b5c-4df2-b434-7686c55eaa86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mw_imgui_widget">
+      <UniqueIdentifier>{5ccd5a4d-a607-4d2f-b26c-4a4c7a6f0c01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mw_opengl_render">
+      <UniqueIdentifier>{3f0533ea-ba9e-4f05-8d5d-9c22e7ad046c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gl3w">
+      <UniqueIdentifier>{f2c278a0-d2e3-4132-aa6e-fb345a5703c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{bde683cd-f3d5-4158-acf5-69ff912ef8e6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\mw_venc_encode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_capture\mw_capture.cpp">
+      <Filter>mw_capture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_encoder\mw_encoder.cpp">
+      <Filter>mw_encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_imgui_ui\mw_imgui_ui.cpp">
+      <Filter>mw_imgui_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_imgui_ui\mw_imgui_ui_manager.cpp">
+      <Filter>mw_imgui_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_imgui_widget\mw_imgui_widget.cpp">
+      <Filter>mw_imgui_widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_imgui_widget\mw_imgui_widget_encodeparam.cpp">
+      <Filter>mw_imgui_widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_imgui_widget\mw_imgui_widget_menubar.cpp">
+      <Filter>mw_imgui_widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_imgui_widget\mw_imgui_widget_overlay_text.cpp">
+      <Filter>mw_imgui_widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_imgui_widget\mw_imgui_widget_videoparam.cpp">
+      <Filter>mw_imgui_widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_opengl_render\mw_opengl_render.cpp">
+      <Filter>mw_opengl_render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mw_opengl_render\mw_render_buffer.cpp">
+      <Filter>mw_opengl_render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\OpenGL\gl3w\GL\gl3w.c">
+      <Filter>gl3w</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_glfw\imgui_impl_glfw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_opengl3\imgui_impl_opengl3.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\mw_capture\mw_capture.h">
+      <Filter>mw_capture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_encoder\mw_encoder.h">
+      <Filter>mw_encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_imgui_ui\mw_imgui_ui.h">
+      <Filter>mw_imgui_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_imgui_ui\mw_imgui_ui_manager.h">
+      <Filter>mw_imgui_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_imgui_widget\mw_imgui_widget.h">
+      <Filter>mw_imgui_widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_imgui_widget\mw_imgui_widget_encodeparam.h">
+      <Filter>mw_imgui_widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_imgui_widget\mw_imgui_widget_menubar.h">
+      <Filter>mw_imgui_widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_imgui_widget\mw_imgui_widget_overlay_text.h">
+      <Filter>mw_imgui_widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_imgui_widget\mw_imgui_widget_videoparam.h">
+      <Filter>mw_imgui_widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_opengl_render\mw_opengl_render.h">
+      <Filter>mw_opengl_render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mw_opengl_render\mw_render_buffer.h">
+      <Filter>mw_opengl_render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\OpenGL\gl3w\GL\gl3w.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\OpenGL\gl3w\GL\glcorearb.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_glfw\imgui_impl_glfw.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_opengl3\imgui_impl_opengl3.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FileVer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\res\MWVencEncode.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

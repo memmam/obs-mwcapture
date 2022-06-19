@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DEF2A640-8C98-4950-A46B-89E0DA45A7BF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>HDRCapture</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\..\..\Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\..\Temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\..\..\Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\..\Temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\..\..\Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\..\Temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\..\..\Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\..\Temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\..\..\..\..\..\3rdPart\imgui_1_71;..\..\..\..\..\..\3rdPart\OpenGL\gl3w;..\..\..\..\..\..\3rdPart\OpenGL\glfw\include;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\..\..\..\Lib\$(Platform);..\..\..\..\..\..\3rdPart\OpenGL\glfw\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;mw_venc.lib;opengl32.lib;LibMWCaptured.lib;mw_mp4_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\src</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\..\..\..\..\..\3rdPart\imgui_1_71;..\..\..\..\..\..\3rdPart\OpenGL\gl3w;..\..\..\..\..\..\3rdPart\OpenGL\glfw\include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\..\..\..\Lib\$(Platform);..\..\..\..\..\..\3rdPart\OpenGL\glfw\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;mw_venc.lib;opengl32.lib;LibMWCaptured.lib;mw_mp4_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\src</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\..\..\..\..\..\3rdPart\imgui_1_71;..\..\..\..\..\..\3rdPart\OpenGL\gl3w;..\..\..\..\..\..\3rdPart\OpenGL\glfw\include;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\..\..\Lib\$(Platform);..\..\..\..\..\..\3rdPart\OpenGL\glfw\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;mw_venc.lib;opengl32.lib;LibMWCapture.lib;mw_mp4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\src</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\..\..\..\..\..\3rdPart\imgui_1_71;..\..\..\..\..\..\3rdPart\OpenGL\gl3w;..\..\..\..\..\..\3rdPart\OpenGL\glfw\include;%(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\..\..\Lib\$(Platform);..\..\..\..\..\..\3rdPart\OpenGL\glfw\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;mw_venc.lib;opengl32.lib;LibMWCapture.lib;mw_mp4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\src</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_demo.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_draw.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_glfw\imgui_impl_glfw.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_opengl3\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\3rdPart\OpenGL\gl3w\GL\gl3w.c" />
+    <ClCompile Include="..\src\hevcparse\hevc_bitstream.cpp" />
+    <ClCompile Include="..\src\hevcparse\hevc_nalu.cpp" />
+    <ClCompile Include="..\src\hevcparse\hevc_sei.cpp" />
+    <ClCompile Include="..\src\hevcparse\hevc_sps.cpp" />
+    <ClCompile Include="..\src\mw_capture\mw_capture.cpp" />
+    <ClCompile Include="..\src\mw_encoder\mw_hdr_encoder.cpp" />
+    <ClCompile Include="..\src\mw_hdr_capture.cpp" />
+    <ClCompile Include="..\src\mw_hdr_capture_ui\mw_hdr_capture_ui.cpp" />
+    <ClCompile Include="..\src\mw_hdr_capture_ui\mw_hdr_capture_ui_manager.cpp" />
+    <ClCompile Include="..\src\mw_imgui_widget\mw_encoder_adapter.cpp" />
+    <ClCompile Include="..\src\mw_imgui_widget\mw_hdr_capture_menubar.cpp" />
+    <ClCompile Include="..\src\mw_imgui_widget\mw_hdr_overlay_text.cpp" />
+    <ClCompile Include="..\src\mw_imgui_widget\mw_hdr_value.cpp" />
+    <ClCompile Include="..\src\mw_imgui_widget\mw_imgui_widget.cpp" />
+    <ClCompile Include="..\src\mw_opengl_render\mw_opengl_render.cpp" />
+    <ClCompile Include="..\src\mw_opengl_render\mw_render_buffer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imconfig.h" />
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui.h" />
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_glfw\imgui_impl_glfw.h" />
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_internal.h" />
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imgui_opengl3\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imstb_rectpack.h" />
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imstb_textedit.h" />
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\imgui_1_71\imstb_truetype.h" />
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\OpenGL\gl3w\GL\gl3w.h" />
+    <ClInclude Include="..\..\..\..\..\..\3rdPart\OpenGL\gl3w\GL\glcorearb.h" />
+    <ClInclude Include="..\src\FileVer.h" />
+    <ClInclude Include="..\src\hevcparse\hevc_bitstream.h" />
+    <ClInclude Include="..\src\hevcparse\hevc_nalu.h" />
+    <ClInclude Include="..\src\hevcparse\hevc_sei.h" />
+    <ClInclude Include="..\src\hevcparse\hevc_sps.h" />
+    <ClInclude Include="..\src\mw_capture\mw_capture.h" />
+    <ClInclude Include="..\src\mw_encoder\mw_hdr_encoder.h" />
+    <ClInclude Include="..\src\mw_hdr_capture_ui\mw_hdr_capture_ui.h" />
+    <ClInclude Include="..\src\mw_hdr_capture_ui\mw_hdr_capture_ui_manager.h" />
+    <ClInclude Include="..\src\mw_imgui_widget\mw_encoder_adapter.h" />
+    <ClInclude Include="..\src\mw_imgui_widget\mw_hdr_capture_menubar.h" />
+    <ClInclude Include="..\src\mw_imgui_widget\mw_hdr_overlay_text.h" />
+    <ClInclude Include="..\src\mw_imgui_widget\mw_hdr_value.h" />
+    <ClInclude Include="..\src\mw_imgui_widget\mw_imgui_widget.h" />
+    <ClInclude Include="..\src\mw_opengl_render\mw_opengl_render.h" />
+    <ClInclude Include="..\src\mw_opengl_render\mw_render_buffer.h" />
+    <ClInclude Include="..\src\resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\res\HDRCapture.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

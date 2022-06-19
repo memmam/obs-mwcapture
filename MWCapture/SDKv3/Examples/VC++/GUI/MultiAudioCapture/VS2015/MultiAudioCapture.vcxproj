@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C3537680-FB51-48D2-9AEC-AA15EFA61321}</ProjectGuid>
+    <RootNamespace>XID_MultiAudioCapture</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\..\..\Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\..\Temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\..\..\Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\..\Temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\..\..\Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\..\Temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\..\..\Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\..\Temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\..\..\..\..\..\3rdPart\DX11\Include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\..\..\..\Lib\$(Platform);..\..\..\..\..\..\3rdPart\DX11\Lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LibMWCaptured.lib</AdditionalDependencies>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);..\src;..\..\..\..\..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\..\..\..\Lib\$(Platform);..\..\..\..\..\..\3rdPart\DX11\Lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LibMWCaptured.lib</AdditionalDependencies>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);..\src;..\..\..\..\..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\..\..\Lib\$(Platform);..\..\..\..\..\..\3rdPart\DX11\Lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LibMWCapture.lib</AdditionalDependencies>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);..\src;..\..\..\..\..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\..\..\Lib\$(Platform);..\..\..\..\..\..\3rdPart\DX11\Lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LibMWCapture.lib</AdditionalDependencies>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);..\src;..\..\..\..\..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\res\MultiAudioCapture.ico" />
+    <None Include="..\src\ChartCtrl\ChartBalloonLabel.inl" />
+    <None Include="..\src\ChartCtrl\ChartLabel.inl" />
+    <None Include="..\src\ChartCtrl\ChartPointsArray.inl" />
+    <None Include="..\src\ChartCtrl\ChartSerieBase.inl" />
+    <None Include="res\MultiAudioCapture.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\ChartCtrl\ChartAxis.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartAxisLabel.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartBalloonLabel.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartBarSerie.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartCandlestickSerie.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartCrossHairCursor.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartCtrl.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartCursor.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartDateTimeAxis.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartDragLineCursor.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartFont.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartGanttSerie.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartGradient.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartGrid.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartLabel.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartLegend.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartLineSerie.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartLogarithmicAxis.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartMouseListener.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartPointsArray.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartPointsSerie.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartScrollBar.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartSerie.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartSerieBase.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartSeriesMouseListener.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartStandardAxis.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartString.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartSurfaceSerie.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartTitle.h" />
+    <ClInclude Include="..\src\ChartCtrl\ChartXYSerie.h" />
+    <ClInclude Include="..\src\ChartCtrl\PointsOrdering.h" />
+    <ClInclude Include="..\src\FileVer.h" />
+    <ClInclude Include="..\src\MultiAudioCapture.h" />
+    <ClInclude Include="..\src\MultiAudioCaptureDlg.h" />
+    <ClInclude Include="..\src\MWMultiDSRender\MWMMDevice.h" />
+    <ClInclude Include="..\src\MWMultiDSRender\MWMultiDSBuffer.h" />
+    <ClInclude Include="..\src\MWMultiDSRender\MWMultiDSDefine.h" />
+    <ClInclude Include="..\src\MWMultiDSRender\MWMultiDSRender.h" />
+    <ClInclude Include="..\src\resource.h" />
+    <ClInclude Include="..\src\stdafx.h" />
+    <ClInclude Include="..\src\targetver.h" />
+    <ClInclude Include="..\src\WaveFile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\ChartCtrl\ChartAxis.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartAxisLabel.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartBarSerie.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartCandlestickSerie.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartCrossHairCursor.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartCtrl.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartCursor.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartDateTimeAxis.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartDragLineCursor.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartFont.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartGanttSerie.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartGradient.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartGrid.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartLegend.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartLineSerie.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartLogarithmicAxis.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartPointsSerie.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartScrollBar.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartSerie.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartStandardAxis.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartSurfaceSerie.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartTitle.cpp" />
+    <ClCompile Include="..\src\ChartCtrl\ChartXYSerie.cpp" />
+    <ClCompile Include="..\src\MultiAudioCapture.cpp" />
+    <ClCompile Include="..\src\MultiAudioCaptureDlg.cpp" />
+    <ClCompile Include="..\src\MWMultiDSRender\MWMMDevice.cpp" />
+    <ClCompile Include="..\src\MWMultiDSRender\MWMultiDSBuffer.cpp" />
+    <ClCompile Include="..\src\MWMultiDSRender\MWMultiDSRender.cpp" />
+    <ClCompile Include="..\src\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\src\MultiAudioCapture.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
