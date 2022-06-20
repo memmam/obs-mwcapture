@@ -99,7 +99,7 @@ typedef struct _D3D10_SHADER_DEBUG_SCOPEVAR_INFO {
 	UINT TokenId;
 
 	D3D10_SHADER_DEBUG_VARTYPE
-		VarType; // variable or function (different namespaces)
+	VarType; // variable or function (different namespaces)
 	D3D10_SHADER_VARIABLE_CLASS Class;
 	UINT Rows;    // number of rows (matrices)
 	UINT Columns; // number of columns (vectors and matrices)

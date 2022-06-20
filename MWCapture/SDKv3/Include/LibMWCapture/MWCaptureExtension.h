@@ -912,9 +912,9 @@ typedef struct _MWCAP_INPUT_SPECIFIC_STATUS {
 		MWCAP_SDI_SPECIFIC_STATUS sdiStatus;   ///<SDI signal status
 		MWCAP_HDMI_SPECIFIC_STATUS hdmiStatus; ///<HDMI signal status
 		MWCAP_COMPONENT_SPECIFIC_STATUS
-			vgaComponentStatus; ///<VGA component signal status
+		vgaComponentStatus; ///<VGA component signal status
 		MWCAP_CVBS_YC_SPECIFIC_STATUS
-			cvbsYcStatus; ///<CVBS-YC signal status
+		cvbsYcStatus; ///<CVBS-YC signal status
 	};
 } MWCAP_INPUT_SPECIFIC_STATUS;
 
@@ -939,7 +939,7 @@ typedef enum _MWCAP_VIDEO_SIGNAL_STATE {
  */
 typedef struct _MWCAP_VIDEO_SIGNAL_STATUS {
 	MWCAP_VIDEO_SIGNAL_STATE
-		state;       ///<Defines the accessibility of this video signal
+	state;               ///<Defines the accessibility of this video signal
 	int x;               ///<Horizontal start position
 	int y;               ///<Vertical start position
 	int cx;              ///<Image width
@@ -1557,9 +1557,9 @@ typedef struct _MWCAP_VIDEO_CAPTURE_STATUS {
 	BOOLEAN bPhysicalAddress; ///<Whether to use the physical address to store the capture data
 	union {
 		MWCAP_PTR64
-			pvFrame; ///<The memory address to store the capture data
+		pvFrame; ///<The memory address to store the capture data
 		LARGE_INTEGER
-			liPhysicalAddress; ///<The physical address to store the capture data
+		liPhysicalAddress; ///<The physical address to store the capture data
 	};
 
 	int iFrame;              ///<The index of capturing frame
@@ -1710,7 +1710,7 @@ typedef struct _MWCAP_VIDEO_PROCESS_SETTINGS {
 	MWCAP_VIDEO_SATURATION_RANGE satRange;        ///<Saturation rage
 	MWCAP_VIDEO_DEINTERLACE_MODE deinterlaceMode; ///<Interlaced mode
 	MWCAP_VIDEO_ASPECT_RATIO_CONVERT_MODE
-		aspectRatioConvertMode; ///<Aspect ratio conversion
+	aspectRatioConvertMode; ///<Aspect ratio conversion
 } MWCAP_VIDEO_PROCESS_SETTINGS;
 
 #define MWCAP_VIDEO_MAX_NUM_PREFERRED_TIMINGS 8

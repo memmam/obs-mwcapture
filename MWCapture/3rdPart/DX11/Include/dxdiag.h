@@ -77,7 +77,7 @@ typedef struct _DXDIAG_INIT_PARAMS {
 		// the header and dll are correctly matched.
 	BOOL bAllowWHQLChecks; // If true, allow dxdiag to check if drivers are
 			       // digital signed as logo'd by WHQL which may
-		// connect via internet to update WHQL certificates.
+	// connect via internet to update WHQL certificates.
 	VOID *pReserved; // Reserved. Must be NULL.
 } DXDIAG_INIT_PARAMS;
 

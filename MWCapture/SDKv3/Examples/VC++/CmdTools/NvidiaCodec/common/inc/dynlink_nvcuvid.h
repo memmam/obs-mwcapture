@@ -90,7 +90,7 @@ typedef enum {
  */
 typedef struct {
 	cudaVideoCodec codec; /**< Compression format  */
-			      /**
+	/**
     * frame rate = numerator / denominator (for example: 30000/1001)
     */
 	struct {
@@ -119,7 +119,7 @@ typedef struct {
 	} display_area;
 	cudaVideoChromaFormat chroma_format; /**<  Chroma format */
 	unsigned int bitrate; /**< video bitrate (bps, 0=unknown) */
-			      /**
+	/**
     * Display Aspect Ratio = x:y (4:3, 16:9, etc)
     */
 	struct {
@@ -203,9 +203,9 @@ typedef struct _CUVIDSOURCEPARAMS {
 	unsigned int uReserved1[7]; /**< Reserved for future use - set to zero  */
 	void *pUserData; /**< Parameter passed in to the data handlers  */
 	PFNVIDSOURCECALLBACK
-		pfnVideoDataHandler; /**< Called to deliver audio packets  */
+	pfnVideoDataHandler; /**< Called to deliver audio packets  */
 	PFNVIDSOURCECALLBACK
-		pfnAudioDataHandler; /**< Called to deliver video packets  */
+	pfnAudioDataHandler;  /**< Called to deliver video packets  */
 	void *pvReserved2[8]; /**< Reserved for future use - set to NULL */
 } CUVIDSOURCEPARAMS;
 
@@ -308,11 +308,11 @@ typedef struct _CUVIDPARSERPARAMS {
 	unsigned int uReserved1[5]; /**< Reserved for future use - set to 0 */
 	void *pUserData;            /**< User data for callbacks */
 	PFNVIDSEQUENCECALLBACK
-		pfnSequenceCallback; /**< Called before decoding frames and/or whenever there is a format change */
+	pfnSequenceCallback; /**< Called before decoding frames and/or whenever there is a format change */
 	PFNVIDDECODECALLBACK
-		pfnDecodePicture; /**< Called when a picture is ready to be decoded (decode order) */
+	pfnDecodePicture; /**< Called when a picture is ready to be decoded (decode order) */
 	PFNVIDDISPLAYCALLBACK
-		pfnDisplayPicture; /**< Called whenever a picture is ready to be displayed (display order)  */
+	pfnDisplayPicture; /**< Called whenever a picture is ready to be displayed (display order)  */
 	void *pvReserved2[7]; /**< Reserved for future use - set to NULL */
 	CUVIDEOFORMATEX *
 		pExtVideoInfo; /**< [Optional] sequence header data from system layer */

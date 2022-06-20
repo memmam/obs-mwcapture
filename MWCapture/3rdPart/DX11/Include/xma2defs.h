@@ -189,9 +189,9 @@ typedef struct XMA2WAVEFORMATEX {
 	//    wBitsPerSample;    // Bits per decoded mono sample; always 16 for XMA
 	//    cbSize;            // Size in bytes of the rest of this structure (34)
 
-	WORD NumStreams;      // Number of audio streams (1 or 2 channels each)
-	DWORD ChannelMask;    // Spatial positions of the channels in this file,
-			      // stored as SPEAKER_xxx values (see audiodefs.h)
+	WORD NumStreams;   // Number of audio streams (1 or 2 channels each)
+	DWORD ChannelMask; // Spatial positions of the channels in this file,
+		// stored as SPEAKER_xxx values (see audiodefs.h)
 	DWORD SamplesEncoded; // Total number of PCM samples the file decodes to
 	DWORD BytesPerBlock; // XMA block size (but the last one may be shorter)
 	DWORD PlayBegin;     // First valid sample in the decoded audio
@@ -253,8 +253,8 @@ typedef struct XMAWAVEFORMAT {
 	BYTE Version;       // XMA encoder version that generated the file.
 			    // Always 3 or higher for XMA2 files.
 	XMASTREAMFORMAT
-		XmaStreams[1]; // Per-stream format information; the actual
-			       // array length is in the NumStreams field.
+	XmaStreams[1]; // Per-stream format information; the actual
+		       // array length is in the NumStreams field.
 } XMAWAVEFORMAT;
 
 // Used in XMA2WAVEFORMAT for per-stream data
@@ -278,7 +278,7 @@ typedef struct XMA2WAVEFORMAT {
 	DWORD PsuedoBytesPerSec; // Used internally by the XMA encoder
 	DWORD BlockSizeInBytes; // Size in bytes of this file's XMA blocks (except
 				// possibly the last one).  Always a multiple of
-		// 2Kb, since XMA blocks are arrays of 2Kb packets.
+	// 2Kb, since XMA blocks are arrays of 2Kb packets.
 	DWORD SamplesEncoded; // Total number of PCM samples encoded in this file
 	DWORD SamplesInSource; // Actual number of PCM samples in the source
 			       // material used to generate this file

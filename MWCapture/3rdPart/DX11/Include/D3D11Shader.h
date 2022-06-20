@@ -37,9 +37,9 @@ typedef struct _D3D11_SIGNATURE_PARAMETER_DESC {
 	UINT Register;       // Number of member variables
 	D3D_NAME SystemValueType; // A predefined system value, or D3D_NAME_UNDEFINED if not applicable
 	D3D_REGISTER_COMPONENT_TYPE
-		ComponentType; // Scalar type (e.g. uint, float, etc.)
-	BYTE Mask; // Mask to indicate which components of the register
-		   // are used (combination of D3D10_COMPONENT_MASK values)
+	ComponentType; // Scalar type (e.g. uint, float, etc.)
+	BYTE Mask;     // Mask to indicate which components of the register
+		       // are used (combination of D3D10_COMPONENT_MASK values)
 	BYTE ReadWriteMask; // Mask to indicate whether a given component is
 			    // never written (if this is an output signature) or
 			    // always read (if this is an input signature).
@@ -69,9 +69,9 @@ typedef struct _D3D11_SHADER_VARIABLE_DESC {
 
 typedef struct _D3D11_SHADER_TYPE_DESC {
 	D3D_SHADER_VARIABLE_CLASS
-		Class; // Variable class (e.g. object, matrix, etc.)
+	Class; // Variable class (e.g. object, matrix, etc.)
 	D3D_SHADER_VARIABLE_TYPE
-		Type; // Variable type (e.g. float, sampler, etc.)
+	Type; // Variable type (e.g. float, sampler, etc.)
 	UINT Rows; // Number of rows (for matrices, 1 for other numeric, 0 if not applicable)
 	UINT Columns; // Number of columns (for vectors & matrices, 1 for other numeric, 0 if not applicable)
 	UINT Elements; // Number of elements (0 if not an array)
@@ -116,18 +116,18 @@ typedef struct _D3D11_SHADER_DESC {
 	UINT CutInstructionCount;   // Number of cut instructions used
 	UINT EmitInstructionCount;  // Number of emit instructions used
 	D3D_PRIMITIVE_TOPOLOGY
-		GSOutputTopology;    // Geometry shader output topology
+	GSOutputTopology;            // Geometry shader output topology
 	UINT GSMaxOutputVertexCount; // Geometry shader maximum output vertex count
 	D3D_PRIMITIVE InputPrimitive; // GS/HS input primitive
 	UINT PatchConstantParameters; // Number of parameters in the patch constant signature
 	UINT cGSInstanceCount; // Number of Geometry shader instances
 	UINT cControlPoints;   // Number of control points in the HS->DS stage
 	D3D_TESSELLATOR_OUTPUT_PRIMITIVE
-		HSOutputPrimitive; // Primitive output by the tessellator
+	HSOutputPrimitive; // Primitive output by the tessellator
 	D3D_TESSELLATOR_PARTITIONING
-		HSPartitioning; // Partitioning mode of the tessellator
+	HSPartitioning; // Partitioning mode of the tessellator
 	D3D_TESSELLATOR_DOMAIN
-		TessellatorDomain; // Domain of the tessellator (quad, tri, isoline)
+	TessellatorDomain; // Domain of the tessellator (quad, tri, isoline)
 	// instruction counts
 	UINT cBarrierInstructions; // Number of barrier instructions in a compute shader
 	UINT cInterlockedInstructions;  // Number of interlocked instructions
@@ -137,7 +137,7 @@ typedef struct _D3D11_SHADER_DESC {
 typedef struct _D3D11_SHADER_INPUT_BIND_DESC {
 	LPCSTR Name; // Name of the resource
 	D3D_SHADER_INPUT_TYPE
-		Type;   // Type of resource (e.g. texture, cbuffer, etc.)
+	Type;           // Type of resource (e.g. texture, cbuffer, etc.)
 	UINT BindPoint; // Starting bind point
 	UINT BindCount; // Number of contiguous bind points (for arrays)
 

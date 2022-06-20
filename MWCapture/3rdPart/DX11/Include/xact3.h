@@ -282,7 +282,7 @@ typedef struct XACT_RUNTIME_PARAMETERS {
 	DWORD globalSettingsAllocAttributes; // Global settings buffer allocation attributes (see XMemAlloc)
 	XACT_FILEIO_CALLBACKS fileIOCallbacks; // File I/O callbacks
 	XACT_NOTIFICATION_CALLBACK
-		fnNotificationCallback; // Callback that receives notifications.
+	fnNotificationCallback; // Callback that receives notifications.
 	PWSTR pRendererID; // Ptr to the ID for the audio renderer the engine should connect to.
 	IXAudio2 *pXAudio2; // XAudio2 object to be used by the engine (NULL if one needs to be created)
 	IXAudio2MasteringVoice *
@@ -317,9 +317,9 @@ typedef struct XACT_CUE_PROPERTIES {
 	XACTINDEX iaVariableIndex; // Only valid for IA cues; XACTINDEX_INVALID otherwise
 	XACTINDEX numVariations; // Number of variations in the cue
 	XACTINSTANCELIMIT
-		maxInstances; // Number of maximum instances for this cue
+	maxInstances; // Number of maximum instances for this cue
 	XACTINSTANCELIMIT
-		currentInstances; // Current active instances of this cue
+	currentInstances; // Current active instances of this cue
 
 } XACT_CUE_PROPERTIES, *LPXACT_CUE_PROPERTIES;
 
@@ -328,7 +328,7 @@ typedef struct XACT_TRACK_PROPERTIES {
 	XACTTIME duration;       // Duration of the track in ms
 	XACTINDEX numVariations; // Number of wave variations in the track
 	XACTCHANNEL
-		numChannels; // Number of channels for the active wave variation on this track
+	numChannels; // Number of channels for the active wave variation on this track
 	XACTINDEX waveVariation; // Index of the active wave variation
 	XACTLOOPCOUNT loopCount; // Current loop count on this track
 
@@ -338,7 +338,7 @@ typedef struct XACT_TRACK_PROPERTIES {
 typedef struct XACT_VARIATION_PROPERTIES {
 	XACTINDEX index; // Index of the variation in the cue's variation list
 	XACTVARIATIONWEIGHT
-		weight; // Weight for the active variation. Valid only for complex cues
+	weight; // Weight for the active variation. Valid only for complex cues
 	XACTVARIABLEVALUE iaVariableMin; // Valid only for IA cues
 	XACTVARIABLEVALUE iaVariableMax; // Valid only for IA cues
 	BOOL linger;                     // Valid only for IA cues
@@ -360,9 +360,9 @@ typedef struct XACT_SOUND_PROPERTIES {
 // Structure used to return the properties of the active variation and the sound referenced.
 typedef struct XACT_SOUND_VARIATION_PROPERTIES {
 	XACT_VARIATION_PROPERTIES
-		variationProperties; // Properties for this variation
+	variationProperties; // Properties for this variation
 	XACT_SOUND_PROPERTIES
-		soundProperties; // Proeprties for the sound referenced by this variation
+	soundProperties; // Proeprties for the sound referenced by this variation
 
 } XACT_SOUND_VARIATION_PROPERTIES, *LPXACT_SOUND_VARIATION_PROPERTIES;
 
@@ -370,9 +370,9 @@ typedef struct XACT_SOUND_VARIATION_PROPERTIES {
 typedef struct XACT_CUE_INSTANCE_PROPERTIES {
 	DWORD allocAttributes; // Buffer allocation attributes (see XMemAlloc)
 	XACT_CUE_PROPERTIES
-		cueProperties; // Properties of the cue that are shared by all instances.
+	cueProperties; // Properties of the cue that are shared by all instances.
 	XACT_SOUND_VARIATION_PROPERTIES
-		activeVariationProperties; // Properties if the currently active variation.
+	activeVariationProperties; // Properties if the currently active variation.
 
 } XACT_CUE_INSTANCE_PROPERTIES, *LPXACT_CUE_INSTANCE_PROPERTIES;
 
@@ -391,7 +391,7 @@ typedef const XACT_WAVE_PROPERTIES *LPCXACT_WAVE_PROPERTIES;
 // Structure used to return the properties specific to a wave instance.
 typedef struct XACT_WAVE_INSTANCE_PROPERTIES {
 	XACT_WAVE_PROPERTIES
-		properties; // Static properties common to all the wave instances.
+	properties; // Static properties common to all the wave instances.
 	BOOL backgroundMusic; // Set to TRUE if the wave is tagged as background music; FALSE otherwise.
 
 } XACT_WAVE_INSTANCE_PROPERTIES, *LPXACT_WAVE_INSTANCE_PROPERTIES;
@@ -564,11 +564,11 @@ typedef struct XACT_NOTIFICATION {
 		XACT_NOTIFICATION_CUE cue;       // XACTNOTIFICATIONTYPE_CUE*
 		XACT_NOTIFICATION_MARKER marker; // XACTNOTIFICATIONTYPE_MARKER*
 		XACT_NOTIFICATION_SOUNDBANK
-			soundBank; // XACTNOTIFICATIONTYPE_SOUNDBANK*
+		soundBank; // XACTNOTIFICATIONTYPE_SOUNDBANK*
 		XACT_NOTIFICATION_WAVEBANK
-			waveBank; // XACTNOTIFICATIONTYPE_WAVEBANK*
+		waveBank; // XACTNOTIFICATIONTYPE_WAVEBANK*
 		XACT_NOTIFICATION_VARIABLE
-			variable;            // XACTNOTIFICATIONTYPE_VARIABLE*
+		variable;                    // XACTNOTIFICATIONTYPE_VARIABLE*
 		XACT_NOTIFICATION_GUI gui;   // XACTNOTIFICATIONTYPE_GUI*
 		XACT_NOTIFICATION_WAVE wave; // XACTNOTIFICATIONTYPE_WAVE*
 	};

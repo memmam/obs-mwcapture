@@ -251,7 +251,7 @@ typedef struct XAUDIO2_DEVICE_DETAILS {
 	WCHAR DisplayName[256]; // Friendly name suitable for display to a human.
 	XAUDIO2_DEVICE_ROLE Role; // Roles that the device should be used for.
 	WAVEFORMATEXTENSIBLE
-		OutputFormat; // The device's native PCM audio output format.
+	OutputFormat; // The device's native PCM audio output format.
 } XAUDIO2_DEVICE_DETAILS;
 
 // Returned by IXAudio2Voice::GetVoiceDetails
@@ -284,7 +284,7 @@ typedef struct XAUDIO2_EFFECT_DESCRIPTOR {
 typedef struct XAUDIO2_EFFECT_CHAIN {
 	UINT32 EffectCount; // Number of effects in this voice's effect chain.
 	XAUDIO2_EFFECT_DESCRIPTOR
-		*pEffectDescriptors; // Array of effect descriptors.
+	*pEffectDescriptors; // Array of effect descriptors.
 } XAUDIO2_EFFECT_CHAIN;
 
 // Used in XAUDIO2_FILTER_PARAMETERS below
@@ -331,9 +331,9 @@ typedef struct XAUDIO2_BUFFER {
 typedef struct XAUDIO2_BUFFER_WMA {
 	const UINT32 *
 		pDecodedPacketCumulativeBytes; // Decoded packet's cumulative size array.
-		//  Each element is the number of bytes accumulated
-		//  when the corresponding XWMA packet is decoded in
-		//  order.  The array must have PacketCount elements.
+	//  Each element is the number of bytes accumulated
+	//  when the corresponding XWMA packet is decoded in
+	//  order.  The array must have PacketCount elements.
 	UINT32 PacketCount; // Number of XWMA packets submitted. Must be >= 1 and
 			    //  divide evenly into XAUDIO2_BUFFER.AudioBytes.
 } XAUDIO2_BUFFER_WMA;
@@ -344,7 +344,7 @@ typedef struct XAUDIO2_VOICE_STATE {
 		//  that is currently being processed, or NULL if
 		//  there are no buffers in the queue.
 	UINT32 BuffersQueued; // Number of buffers currently queued on the voice
-			      //  (including the one that is being processed).
+		//  (including the one that is being processed).
 	UINT64 SamplesPlayed; // Total number of samples produced by the voice since
 			      //  it began processing the current audio stream.
 } XAUDIO2_VOICE_STATE;

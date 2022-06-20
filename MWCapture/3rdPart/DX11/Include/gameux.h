@@ -282,9 +282,9 @@ public:
 		/* [in] */ WORD categoryIndex,
 		/* [in] */ WORD statIndex,
 		/* [string][unique][out][in] */
-			__RPC__deref_opt_inout_opt_string LPWSTR * pName,
+		__RPC__deref_opt_inout_opt_string LPWSTR * pName,
 		/* [string][unique][out][in] */
-			__RPC__deref_opt_inout_opt_string LPWSTR * pValue) = 0;
+		__RPC__deref_opt_inout_opt_string LPWSTR * pValue) = 0;
 
 	virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE SetStatistic(
 		/* [in] */ WORD categoryIndex,

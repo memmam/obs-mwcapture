@@ -290,16 +290,16 @@ typedef struct _D3D10_EFFECT_TYPE_DESC {
 
 	D3D10_SHADER_VARIABLE_CLASS Class; // (e.g. scalar, vector, object, etc.)
 	D3D10_SHADER_VARIABLE_TYPE
-		Type; // (e.g. float, texture, vertexshader, etc.)
+	Type; // (e.g. float, texture, vertexshader, etc.)
 
 	UINT Elements; // Number of elements in this type
-		       // (0 if not an array)
-	UINT Members;  // Number of members
-		       // (0 if not a structure)
-	UINT Rows;     // Number of rows in this type
-		       // (0 if not a numeric primitive)
-	UINT Columns;  // Number of columns in this type
-		       // (0 if not a numeric primitive)
+		// (0 if not an array)
+	UINT Members; // Number of members
+		// (0 if not a structure)
+	UINT Rows; // Number of rows in this type
+		// (0 if not a numeric primitive)
+	UINT Columns; // Number of columns in this type
+		// (0 if not a numeric primitive)
 
 	UINT PackedSize;   // Number of bytes required to represent
 			   // this data type, when tightly packed
@@ -1040,10 +1040,10 @@ DECLARE_INTERFACE_(ID3D10EffectConstantBuffer, ID3D10EffectVariable)
 
 typedef struct _D3D10_EFFECT_SHADER_DESC {
 	CONST BYTE *pInputSignature; // Passed into CreateInputLayout,
-				     // valid on VS and GS only
+		// valid on VS and GS only
 
 	BOOL IsInline; // Is this an anonymous shader variable
-		       // resulting from an inline shader assignment?
+		// resulting from an inline shader assignment?
 
 	// -- The following fields are not valid after Optimize() --
 	CONST BYTE *pBytecode; // Shader bytecode
@@ -1519,12 +1519,12 @@ typedef struct _D3D10_EFFECT_DESC {
 			    // FALSE if this is standalone or an effect pool.
 
 	UINT ConstantBuffers; // Number of constant buffers in this effect,
-			      // excluding the effect pool.
+		// excluding the effect pool.
 	UINT SharedConstantBuffers; // Number of constant buffers shared in this
 				    // effect's pool.
 
 	UINT GlobalVariables; // Number of global variables in this effect,
-			      // excluding the effect pool.
+		// excluding the effect pool.
 	UINT SharedGlobalVariables; // Number of global variables shared in this
 				    // effect's pool.
 

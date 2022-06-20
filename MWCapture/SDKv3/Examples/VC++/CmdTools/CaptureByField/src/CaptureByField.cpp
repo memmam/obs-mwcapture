@@ -500,7 +500,7 @@ void CaptureIFrame()
 					if (ullStatusBits &
 					    MWCAP_NOTIFY_VIDEO_FIELD_BUFFERED) {
 						MWCAP_VIDEO_DEINTERLACE_MODE
-							mode;
+						mode;
 						if (videoBufferInfo
 							    .iBufferedFieldIndex ==
 						    0)
@@ -537,7 +537,7 @@ void CaptureIFrame()
 							hChannel, &llCurrent);
 
 						MWCAP_VIDEO_CAPTURE_STATUS
-							t_status;
+						t_status;
 						MWGetVideoCaptureStatus(
 							hChannel, &t_status);
 					}

@@ -452,9 +452,9 @@ typedef struct WAVEBANKENTRY {
 
 	WAVEBANKMINIWAVEFORMAT Format; // Entry format.
 	WAVEBANKREGION
-		PlayRegion; // Region within the wave data segment that contains this entry.
+	PlayRegion; // Region within the wave data segment that contains this entry.
 	WAVEBANKSAMPLEREGION
-		LoopRegion; // Region within the wave data (in samples) that should loop.
+	LoopRegion; // Region within the wave data (in samples) that should loop.
 
 #ifdef __cplusplus
 

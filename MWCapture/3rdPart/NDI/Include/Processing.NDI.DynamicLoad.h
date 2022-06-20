@@ -30,8 +30,8 @@ typedef struct NDIlib_v3 { // V1.5
 	const char *(*NDIlib_version)(void);
 	bool (*NDIlib_is_supported_CPU)(void);
 	PROCESSINGNDILIB_DEPRECATED
-		NDIlib_find_instance_t (*NDIlib_find_create)(
-			const NDIlib_find_create_t *p_create_settings);
+	NDIlib_find_instance_t (*NDIlib_find_create)(
+		const NDIlib_find_create_t *p_create_settings);
 	NDIlib_find_instance_t (*NDIlib_find_create_v2)(
 		const NDIlib_find_create_t *p_create_settings);
 	void (*NDIlib_find_destroy)(NDIlib_find_instance_t p_instance);
@@ -73,11 +73,11 @@ typedef struct NDIlib_v3 { // V1.5
 		NDIlib_send_instance_t p_instance,
 		const NDIlib_source_t *p_failover_source);
 	PROCESSINGNDILIB_DEPRECATED
-		NDIlib_recv_instance_t (*NDIlib_recv_create_v2)(
-			const NDIlib_recv_create_t *p_create_settings);
+	NDIlib_recv_instance_t (*NDIlib_recv_create_v2)(
+		const NDIlib_recv_create_t *p_create_settings);
 	PROCESSINGNDILIB_DEPRECATED
-		NDIlib_recv_instance_t (*NDIlib_recv_create)(
-			const NDIlib_recv_create_t *p_create_settings);
+	NDIlib_recv_instance_t (*NDIlib_recv_create)(
+		const NDIlib_recv_create_t *p_create_settings);
 	void (*NDIlib_recv_destroy)(NDIlib_recv_instance_t p_instance);
 	PROCESSINGNDILIB_DEPRECATED NDIlib_frame_type_e (*NDIlib_recv_capture)(
 		NDIlib_recv_instance_t p_instance,

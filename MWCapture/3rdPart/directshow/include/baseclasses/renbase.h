@@ -271,9 +271,9 @@ protected:
 
 	BOOL m_bSupplierHandlingQuality; // The response to Quality messages says
 					 // our supplier is handling things.
-		// We will allow things to go extra late
-		// before dropping frames.  We will play
-		// very early after he has dropped one.
+	// We will allow things to go extra late
+	// before dropping frames.  We will play
+	// very early after he has dropped one.
 
 	// Control of scheduling, frame dropping etc.
 	// We need to know where the time is being spent so as to tell whether
@@ -354,7 +354,7 @@ protected:
 		// with no earliness fudges etc.
 #ifdef PERF
 	REFERENCE_TIME
-		m_trRememberFrameForPerf; // time when previous frame rendered
+	m_trRememberFrameForPerf; // time when previous frame rendered
 
 	// debug...
 	int m_idFrameAvg;
@@ -367,7 +367,7 @@ protected:
 
 	int m_cFramesDropped; // cumulative frames dropped IN THE RENDERER
 	int m_cFramesDrawn;   // Frames since streaming started seen BY THE
-			      // RENDERER (some may be dropped upstream)
+		// RENDERER (some may be dropped upstream)
 
 	// Next two support average sync offset and standard deviation of sync offset.
 	LONGLONG m_iTotAcc;   // Sum of accuracies in mSec

@@ -823,10 +823,10 @@ FT_BEGIN_HEADER
 #define TT_UCR_BASIC_LATIN (1L << 0) /* U+0020-U+007E */
 /* Bit  1   C1 Controls and Latin-1 Supplement */
 #define TT_UCR_LATIN1_SUPPLEMENT (1L << 1) /* U+0080-U+00FF */
-					   /* Bit  2   Latin Extended-A */
-#define TT_UCR_LATIN_EXTENDED_A (1L << 2)  /* U+0100-U+017F */
-					   /* Bit  3   Latin Extended-B */
-#define TT_UCR_LATIN_EXTENDED_B (1L << 3)  /* U+0180-U+024F */
+/* Bit  2   Latin Extended-A */
+#define TT_UCR_LATIN_EXTENDED_A (1L << 2) /* U+0100-U+017F */
+/* Bit  3   Latin Extended-B */
+#define TT_UCR_LATIN_EXTENDED_B (1L << 3) /* U+0180-U+024F */
 /* Bit  4   IPA Extensions                 */
 /*          Phonetic Extensions            */
 /*          Phonetic Extensions Supplement */
@@ -939,7 +939,7 @@ FT_BEGIN_HEADER
 #define TT_UCR_CONTROL_PICTURES (1L << 8)        /* U+2400-U+243F */
 /* Bit 41   Optical Character Recognition */
 #define TT_UCR_OCR (1L << 9) /* U+2440-U+245F */
-			     /* Bit 42   Enclosed Alphanumerics */
+/* Bit 42   Enclosed Alphanumerics */
 #define TT_UCR_ENCLOSED_ALPHANUMERICS (1L << 10) /* U+2460-U+24FF */
 						 /* Bit 43   Box Drawing */
 #define TT_UCR_BOX_DRAWING (1L << 11)            /* U+2500-U+257F */
@@ -1140,8 +1140,8 @@ FT_BEGIN_HEADER
 /* Bit 110  Cuneiform                         */
 /*          Cuneiform Numbers and Punctuation */
 #define TT_UCR_CUNEIFORM (1L << 14) /*U+12000-U+123FF*/
-				    /*U+12400-U+1247F*/
-				    /* Bit 111  Counting Rod Numerals */
+/*U+12400-U+1247F*/
+/* Bit 111  Counting Rod Numerals */
 #define TT_UCR_COUNTING_ROD_NUMERALS (1L << 15) /*U+1D360-U+1D37F*/
 						/* Bit 112  Sundanese */
 #define TT_UCR_SUNDANESE (1L << 16)             /* U+1B80-U+1BBF */

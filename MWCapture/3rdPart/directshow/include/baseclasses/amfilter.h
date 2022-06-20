@@ -548,8 +548,8 @@ class CEnumPins : public IEnumPins // The interface we support
 	typedef CGenericList<CBasePin> CPinList;
 
 	CPinList m_PinCache; // These pointers have not been AddRef'ed and
-		// so they should not be dereferenced.  They are
-		// merely kept to ID which pins have been enumerated.
+			     // so they should not be dereferenced.  They are
+	// merely kept to ID which pins have been enumerated.
 
 #ifdef DEBUG
 	DWORD m_dwCookie;
@@ -1117,8 +1117,8 @@ protected:
        interface function and then return it when GetMediaType is called. As
        we do no internal processing on it we leave it as a pointer */
 
-	DWORD m_dwFlags;             /* Flags for this sample */
-				     /* Type specific flags are packed
+	DWORD m_dwFlags; /* Flags for this sample */
+	/* Type specific flags are packed
                                            into the top word
                                         */
 	DWORD m_dwTypeSpecificFlags; /* Media type specific flags */
