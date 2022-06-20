@@ -1,13 +1,14 @@
 #include "mw_hdr_overlay_text.h"
 
-CMWHDROverlatText::CMWHDROverlatText(CMWHDRCaptureUIManager *t_p_manager)
-	: CMWIMGUIWidget(t_p_manager)
+CMWHDROverlatText::CMWHDROverlatText(CMWHDRCaptureUIManager* t_p_manager):
+CMWIMGUIWidget(t_p_manager)
 {
-	m_imgui_flags =
-		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration |
-		ImGuiWindowFlags_AlwaysAutoResize |
-		ImGuiWindowFlags_NoSavedSettings |
-		ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav;
+	m_imgui_flags = ImGuiWindowFlags_NoMove|
+		ImGuiWindowFlags_NoDecoration|
+		ImGuiWindowFlags_AlwaysAutoResize|
+		ImGuiWindowFlags_NoSavedSettings|
+		ImGuiWindowFlags_NoFocusOnAppearing|
+		ImGuiWindowFlags_NoNav;
 
 	m_b_open = true;
 	memset(m_cs_name, 0, 128);
@@ -23,11 +24,14 @@ CMWHDROverlatText::CMWHDROverlatText(CMWHDRCaptureUIManager *t_p_manager)
 	sprintf(m_cs_text, "text");
 }
 
-CMWHDROverlatText::~CMWHDROverlatText() {}
+CMWHDROverlatText::~CMWHDROverlatText()
+{
+
+}
 
 void CMWHDROverlatText::update_widget()
 {
-	ImGuiIO &io = ImGui::GetIO();
+	ImGuiIO& io = ImGui::GetIO();
 	ImVec2 t_imvec2_pos;
 	t_imvec2_pos.x = io.DisplaySize.x - m_imvec2_size.x - 10;
 	t_imvec2_pos.y = io.DisplaySize.y - m_imvec2_size.y - 10;
@@ -41,23 +45,23 @@ void CMWHDROverlatText::update_widget()
 	ImGui::End();
 }
 
-char *CMWHDROverlatText::get_name()
+char* CMWHDROverlatText::get_name()
 {
 	return m_cs_name;
 }
 
-void CMWHDROverlatText::set_name(char *t_cs_name)
+void CMWHDROverlatText::set_name(char* t_cs_name)
 {
 	memset(m_cs_name, 0, 128);
 	sprintf(m_cs_name, "%s", t_cs_name);
 }
 
-char *CMWHDROverlatText::get_text()
+char* CMWHDROverlatText::get_text()
 {
 	return m_cs_text;
 }
 
-void CMWHDROverlatText::set_text(char *t_cs_text)
+void CMWHDROverlatText::set_text(char* t_cs_text)
 {
 	memset(m_cs_text, 0, 1024);
 	sprintf(m_cs_text, "%s", t_cs_text);

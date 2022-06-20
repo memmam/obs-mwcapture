@@ -23,17 +23,13 @@
 #include "ChartSerieBase.h"
 
 //! Point structure used as template parameter for candlestick series
-struct SChartCandlestickPoint {
-	SChartCandlestickPoint() {}
-	SChartCandlestickPoint(double XValue, double LowVal, double HighVal,
-			       double OpenVal, double CloseVal)
-		: XVal(XValue),
-		  Low(LowVal),
-		  High(HighVal),
-		  Open(OpenVal),
-		  Close(CloseVal)
-	{
-	}
+struct SChartCandlestickPoint
+{
+	SChartCandlestickPoint() { }
+	SChartCandlestickPoint(double XValue, double LowVal, 
+		double HighVal, double OpenVal, double CloseVal):
+			XVal(XValue), Low(LowVal), High(HighVal),
+				Open(OpenVal), Close(CloseVal) { }
 
 	//! The X value of the point (usually, a time)
 	double XVal;
@@ -49,7 +45,7 @@ struct SChartCandlestickPoint {
 	//! Returns the X value of the point
 	double GetX() const { return XVal; }
 	//! Returns the Y value of the point, which is the average between low and high
-	double GetY() const { return (Low + High) / 2; }
+	double GetY() const { return (Low+High)/2; }
 	//! Returns the minimum X value of the point
 	double GetXMin() const { return XVal; }
 	//! Returns the maximum X value of the point
@@ -67,10 +63,11 @@ struct SChartCandlestickPoint {
 	an open value (the market price at the opening) and a close value 
 	(the market price at the closing).
 **/
-class CChartCandlestickSerie : public CChartSerieBase<SChartCandlestickPoint> {
+class CChartCandlestickSerie : public CChartSerieBase<SChartCandlestickPoint>
+{
 public:
 	//! Constructor
-	CChartCandlestickSerie(CChartCtrl *pParent);
+	CChartCandlestickSerie(CChartCtrl* pParent);
 	//! Destructor
 	~CChartCandlestickSerie();
 
@@ -82,7 +79,7 @@ public:
 			If the point is close to a specific point of the series, its index is stored here.
 		@return true if the point is on the series
 	**/
-	bool IsPointOnSerie(const CPoint &screenPoint, unsigned &uIndex) const;
+	bool IsPointOnSerie(const CPoint& screenPoint, unsigned& uIndex) const;
 
 	//! Adds a new point in the series
 	/**
@@ -97,12 +94,12 @@ public:
 		@param Close
 			The market price at the closing
 	**/
-	void AddPoint(double XVal, double Low, double High, double Open,
-		      double Close);
+	void AddPoint(double XVal, double Low, double High, 
+				  double Open, double Close);
 	//! Sets the width (in pixels) of all candlestick points in the series
 	void SetWidth(int Width);
 	//! Returns the width (in pixels) of a point in the series
-	int GetWidth() { return m_iCandlestickWidth; }
+	int  GetWidth()		{ return m_iCandlestickWidth; }
 
 protected:
 	//! Draws the legend icon for the series.
@@ -112,7 +109,7 @@ protected:
 		@param rectBitmap
 			The rectangle in which to draw the legend icon
 	**/
-	void DrawLegend(CDC *pDC, const CRect &rectBitmap) const;
+    void DrawLegend(CDC* pDC, const CRect& rectBitmap) const;
 
 	//! Draws the most recent points of the series.
 	/**
@@ -121,7 +118,7 @@ protected:
 		@param pDC
 			The device context used to draw
 	**/
-	void Draw(CDC *pDC);
+	void Draw(CDC* pDC);
 	//! Redraws the full series.
 	/**
 		@param pDC

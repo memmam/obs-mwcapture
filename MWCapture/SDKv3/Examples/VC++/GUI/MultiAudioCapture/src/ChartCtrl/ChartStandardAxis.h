@@ -25,8 +25,9 @@
 #include "ChartAxis.h"
 
 //! Specialization of a CChartAxis class to display standard values.
-class CChartStandardAxis : public CChartAxis {
-	friend CChartCtrl;
+class CChartStandardAxis : public CChartAxis
+{
+friend CChartCtrl;
 
 public:
 	//! Sets the tick increment.
@@ -44,7 +45,7 @@ public:
 		The tick increment is the value between two adjacents
 		ticks on the axis.
 	**/
-	double GetTickIncrement() const { return m_dTickIncrement; }
+	double GetTickIncrement() const					{ return m_dTickIncrement; }
 
 private:
 	//! Default constructor
@@ -53,7 +54,7 @@ private:
 	~CChartStandardAxis();
 
 	double GetFirstTickValue() const;
-	bool GetNextTickValue(double dCurrentTick, double &dNextTick) const;
+	bool GetNextTickValue(double dCurrentTick, double& dNextTick) const;
 	TChartString GetTickLabel(double TickValue) const;
 	long ValueToScreenDiscrete(double Value) const;
 	long GetTickPos(double TickVal) const;
@@ -62,14 +63,14 @@ private:
 	void RefreshFirstTick();
 
 	//! Sets the number of decimals points.
-	void SetDecimals(unsigned uDecimals) { m_uDecCount = uDecimals; }
+	void SetDecimals(unsigned uDecimals)  { m_uDecCount = uDecimals; }
 
 	//! Caches the value of the first tick.
 	double m_dFirstTickValue;
 	//! Indicates the space between ticks (in axis value).
-	double m_dTickIncrement;
+	double m_dTickIncrement;		
 	//! Number of decimals to display for tick labels.
-	unsigned int m_uDecCount;
+	unsigned int m_uDecCount;	
 };
 
-#endif // _CHARTSTANDARDAXIS_H_
+#endif  // _CHARTSTANDARDAXIS_H_

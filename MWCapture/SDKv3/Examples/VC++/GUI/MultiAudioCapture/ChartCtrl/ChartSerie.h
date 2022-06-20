@@ -26,7 +26,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#define INVALID_POINT UINT_MAX
+
+#define INVALID_POINT	UINT_MAX
 
 #include "ChartAxis.h"
 #include "ChartSeriesMouseListener.h"
@@ -37,7 +38,7 @@
 class CChartLegend;
 class CChartCtrl;
 
-#define INVALID_POINT UINT_MAX
+#define INVALID_POINT	UINT_MAX
 
 //! Abstract class that provides a common "interface" for all series in the control
 /**
@@ -50,7 +51,8 @@ class CChartCtrl;
 
 	Each series is identified by an Id.
 **/
-class CChartSerie {
+class CChartSerie
+{
 	friend CChartCtrl;
 	friend CChartLegend;
 
@@ -70,7 +72,7 @@ public:
 		@return
 			false if the series doesn't contain data or is invisible
 	**/
-	virtual bool GetSerieYMinMax(double &Min, double &Max) const = 0;
+	virtual bool GetSerieYMinMax(double& Min, double& Max)  const = 0;
 	//! Retrieves the minimum and maxium X values of the series.
 	/**
 		@param Min
@@ -80,7 +82,7 @@ public:
 		@return
 			false if the series doesn't contain data or is invisible
 	**/
-	virtual bool GetSerieXMinMax(double &Min, double &Max) const = 0;
+	virtual bool GetSerieXMinMax(double& Min, double& Max)  const = 0;
 	//! Retrieves the minimum and maxium screen X values of the series.
 	/**
 		@param Min
@@ -90,7 +92,7 @@ public:
 		@return
 			false if the series doesn't contain data or is invisible
 	**/
-	virtual bool GetSerieXScreenMinMax(double &Min, double &Max) const = 0;
+	virtual bool GetSerieXScreenMinMax(double& Min, double& Max)  const = 0;
 	//! Retrieves the minimum and maxium screen Y values of the series.
 	/**
 		@param Min
@@ -100,12 +102,12 @@ public:
 		@return
 			false if the series doesn't contain data or is invisible
 	**/
-	virtual bool GetSerieYScreenMinMax(double &Min, double &Max) const = 0;
+	virtual bool GetSerieYScreenMinMax(double& Min, double& Max)  const = 0;
 
 	//! Sets the name of the series, which is displayed in the legend.
-	void SetName(const TChartString &NewName);
+	void		 SetName(const TChartString& NewName);
 	//! Returns the name of the series.
-	TChartString GetName() const { return m_strSerieName; }
+	TChartString GetName() const              { return m_strSerieName; }
 
 	//! Converts any data point into its relative screen point.
 	/**
@@ -116,15 +118,14 @@ public:
 		@param ScreenPoint
 			The screen point will be stored in the parameter
 	**/
-	void ValueToScreen(double XValue, double YValue,
-			   CPoint &ScreenPoint) const;
+	void ValueToScreen(double XValue, double YValue, CPoint& ScreenPoint)  const;
 	//! Converts an Y screen value into its relative Y data value.
-	double YScreenToValue(long YScreenCoord) const;
+	double YScreenToValue(long YScreenCoord)  const;
 	//! Converts an Xscreen value into its relative X data value.
-	double XScreenToValue(long XScreenCoord) const;
+	double XScreenToValue(long XScreenCoord)  const;
 
 	//! Constructor
-	CChartSerie(CChartCtrl *pParent);
+	CChartSerie(CChartCtrl* pParent);
 	//! Destructor
 	virtual ~CChartSerie();
 
@@ -135,14 +136,14 @@ public:
 	**/
 	void SetVisible(bool bVisible);
 	//! Returns true if the series is visible.
-	bool IsVisible() const { return m_bIsVisible; }
+	bool IsVisible()  const         { return m_bIsVisible; }
 
 	//! Returns the color of the series.
-	COLORREF GetColor() const { return m_SerieColor; }
+	COLORREF GetColor() const			   { return m_SerieColor; }
 	//! Sets the color of the series.
 	void SetColor(COLORREF NewColor);
 	//! Returns the color of the shadow.
-	COLORREF GetShadowColor() const { return m_ShadowColor; }
+	COLORREF GetShadowColor() const		   { return m_ShadowColor; }
 	//! Sets the color of the shadow.
 	void SetShadowColor(COLORREF NewColor);
 	//! Enables or disables the shadow for the series.
@@ -159,11 +160,10 @@ public:
 			If the point is close to a specific point of the series, its index is stored here.
 		@return true if the point is on the series
 	**/
-	virtual bool IsPointOnSerie(const CPoint &screenPoint,
-				    unsigned &uIndex) const = 0;
+	virtual bool IsPointOnSerie(const CPoint& screenPoint, unsigned& uIndex) const = 0;
 
 	//! Returns the series Id.
-	unsigned GetSerieId() const { return m_uSerieId; }
+	unsigned GetSerieId() const  { return m_uSerieId; }
 	//! Enables or disables certain mouse notifications on the series.
 	/**
 		Checking if a point is on the series could degrade performances if 
@@ -189,8 +189,7 @@ protected:
 			The index of the last visible point is stored in this argument
 		@return false if the series has no ordering or no data points.
 	**/
-	virtual bool GetVisiblePoints(unsigned &uFirst,
-				      unsigned &uLast) const = 0;
+	virtual bool GetVisiblePoints(unsigned& uFirst, unsigned& uLast) const = 0;
 
 	//! Draws the legend icon for the series.
 	/**
@@ -200,7 +199,7 @@ protected:
 		@param rectBitmap
 			The rectangle in which to draw the legend icon
 	**/
-	virtual void DrawLegend(CDC *pDC, const CRect &rectBitmap) const = 0;
+    virtual void DrawLegend(CDC* pDC, const CRect& rectBitmap) const =0;
 
 	//! Draws the most recent points of the series.
 	/**
@@ -210,21 +209,21 @@ protected:
 		@param pDC
 			The device context used to draw
 	**/
-	virtual void Draw(CDC *pDC) = 0;
+	virtual void Draw(CDC* pDC) =0;
 	//! Redraws the full series.
 	/**
 		This pure virtual function should be overriden by child classes.
 		@param pDC
 			The device context used to draw
 	**/
-	virtual void DrawAll(CDC *pDC) = 0;
+	virtual void DrawAll(CDC *pDC) =0;
 	//! Draws the labels of the series.
 	/**
 		This pure virtual function should be overriden by child classes.
 		@param pDC
 			The device context used to draw
 	**/
-	virtual void DrawLabels(CDC *pDC) = 0;
+	virtual void DrawLabels(CDC* pDC) =0;
 
 	//! Called when a mouse event is detected on the chart
 	/**
@@ -235,43 +234,40 @@ protected:
 			The screen point on which the event occured
 		@return true if the event occured on the series.
 	**/
-	virtual bool OnMouseEvent(CChartMouseListener::MouseEvent mouseEvent,
-				  const CPoint &screenPoint) = 0;
+	virtual bool OnMouseEvent(CChartMouseListener::MouseEvent mouseEvent, 
+								const CPoint& screenPoint) = 0;
 
 	//! Returns true if the series reacts on mouse moves.
-	bool NotifyMouseMoveEnabled() { return m_bMouseMoveNotifications; }
+	bool NotifyMouseMoveEnabled()  { return m_bMouseMoveNotifications;  }
 	//! Returns true if the series reacts on mouse clicks.
 	bool NotifyMouseClickEnabled() { return m_bMouseClickNotifications; }
 
 	//! The parent charting control.
-	CChartCtrl *m_pParentCtrl;
+	CChartCtrl* m_pParentCtrl;
 	//! The related vertical axis.
-	CChartAxis *m_pVerticalAxis;
+	CChartAxis* m_pVerticalAxis;    
 	//! The related horizontal axis.
-	CChartAxis *m_pHorizontalAxis;
+	CChartAxis* m_pHorizontalAxis;  
 
 	//! The series name displayed in the legend.
-	TChartString m_strSerieName;
+	TChartString m_strSerieName;	
 
 	//! Specifies if the series is visible.
-	bool m_bIsVisible;
+	bool        m_bIsVisible;
 	//! Specifies if the series has shadow enabled.
-	bool m_bShadow;
+	bool		m_bShadow;	
 	//! Color of the series
-	COLORREF m_SerieColor;
+	COLORREF	m_SerieColor;
 	//! Color of the shadow
-	COLORREF m_ShadowColor;
+	COLORREF	m_ShadowColor;
 	//! Depth (in pixels) of the shadow
-	int m_iShadowDepth;
+	int			m_iShadowDepth;
 	//! The rectangle in which the series should be drawn.
-	CRect m_PlottingRect;
+	CRect		m_PlottingRect;
 
 private:
 	//! Sets the plotting rectangle.
-	void SetPlottingRect(const CRect &plottingRect)
-	{
-		m_PlottingRect = plottingRect;
-	}
+	void SetPlottingRect(const CRect& plottingRect)  { m_PlottingRect = plottingRect; }
 
 	//! The next available series Id
 	static unsigned m_uNextFreeId;

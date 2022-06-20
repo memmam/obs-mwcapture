@@ -15,6 +15,7 @@
 /*                                                                         */
 /***************************************************************************/
 
+
 #ifndef FTPFR_H_
 #define FTPFR_H_
 
@@ -27,25 +28,28 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
+
 FT_BEGIN_HEADER
 
-/*************************************************************************/
-/*                                                                       */
-/* <Section>                                                             */
-/*    pfr_fonts                                                          */
-/*                                                                       */
-/* <Title>                                                               */
-/*    PFR Fonts                                                          */
-/*                                                                       */
-/* <Abstract>                                                            */
-/*    PFR/TrueDoc specific API.                                          */
-/*                                                                       */
-/* <Description>                                                         */
-/*    This section contains the declaration of PFR-specific functions.   */
-/*                                                                       */
-/*************************************************************************/
 
-/**********************************************************************
+  /*************************************************************************/
+  /*                                                                       */
+  /* <Section>                                                             */
+  /*    pfr_fonts                                                          */
+  /*                                                                       */
+  /* <Title>                                                               */
+  /*    PFR Fonts                                                          */
+  /*                                                                       */
+  /* <Abstract>                                                            */
+  /*    PFR/TrueDoc specific API.                                          */
+  /*                                                                       */
+  /* <Description>                                                         */
+  /*    This section contains the declaration of PFR-specific functions.   */
+  /*                                                                       */
+  /*************************************************************************/
+
+
+ /**********************************************************************
   *
   * @function:
   *    FT_Get_PFR_Metrics
@@ -82,12 +86,15 @@ FT_BEGIN_HEADER
   *   If the input face is not a PFR, this function will return an error.
   *   However, in all cases, it will return valid values.
   */
-FT_EXPORT(FT_Error)
-FT_Get_PFR_Metrics(FT_Face face, FT_UInt *aoutline_resolution,
-		   FT_UInt *ametrics_resolution, FT_Fixed *ametrics_x_scale,
-		   FT_Fixed *ametrics_y_scale);
+  FT_EXPORT( FT_Error )
+  FT_Get_PFR_Metrics( FT_Face    face,
+                      FT_UInt   *aoutline_resolution,
+                      FT_UInt   *ametrics_resolution,
+                      FT_Fixed  *ametrics_x_scale,
+                      FT_Fixed  *ametrics_y_scale );
 
-/**********************************************************************
+
+ /**********************************************************************
   *
   * @function:
   *    FT_Get_PFR_Kerning
@@ -118,11 +125,14 @@ FT_Get_PFR_Metrics(FT_Face face, FT_UInt *aoutline_resolution,
   *    You can use the value of the `x_scale' and `y_scale' parameters
   *    returned by @FT_Get_PFR_Metrics to scale these to device sub-pixels.
   */
-FT_EXPORT(FT_Error)
-FT_Get_PFR_Kerning(FT_Face face, FT_UInt left, FT_UInt right,
-		   FT_Vector *avector);
+  FT_EXPORT( FT_Error )
+  FT_Get_PFR_Kerning( FT_Face     face,
+                      FT_UInt     left,
+                      FT_UInt     right,
+                      FT_Vector  *avector );
 
-/**********************************************************************
+
+ /**********************************************************************
   *
   * @function:
   *    FT_Get_PFR_Advance
@@ -146,13 +156,17 @@ FT_Get_PFR_Kerning(FT_Face face, FT_UInt left, FT_UInt right,
   *    You can use the `x_scale' or `y_scale' results of @FT_Get_PFR_Metrics
   *    to convert the advance to device sub-pixels (i.e., 1/64th of pixels).
   */
-FT_EXPORT(FT_Error)
-FT_Get_PFR_Advance(FT_Face face, FT_UInt gindex, FT_Pos *aadvance);
+  FT_EXPORT( FT_Error )
+  FT_Get_PFR_Advance( FT_Face   face,
+                      FT_UInt   gindex,
+                      FT_Pos   *aadvance );
 
-/* */
+  /* */
+
 
 FT_END_HEADER
 
 #endif /* FTPFR_H_ */
+
 
 /* END */

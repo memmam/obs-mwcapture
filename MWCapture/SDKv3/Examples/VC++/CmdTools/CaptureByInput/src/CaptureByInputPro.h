@@ -29,35 +29,37 @@ void CapturePFramePro(HCHANNEL t_h_channel)
 {
 	MW_RESULT t_mr = MW_SUCCEEDED;
 	MWCAP_CHANNEL_INFO t_channel_info;
-	t_mr = MWGetChannelInfo(t_h_channel, &t_channel_info);
-	if (t_mr != MW_SUCCEEDED) {
+	t_mr = MWGetChannelInfo(t_h_channel,&t_channel_info);
+	if(t_mr!=MW_SUCCEEDED){
 		printf("error:get channel info failed\n");
 		return;
 	}
-	if (t_channel_info.wFamilyID != MW_FAMILY_ID_PRO_CAPTURE) {
+	if(t_channel_info.wFamilyID!=MW_FAMILY_ID_PRO_CAPTURE){
 		printf("error:unsuitable device type\n");
 		return;
 	}
 
 	MWCAP_VIDEO_SIGNAL_STATUS t_video_signal_status;
-	MWGetVideoSignalStatus(t_h_channel, &t_video_signal_status);
+	MWGetVideoSignalStatus(t_h_channel,&t_video_signal_status);
 
 	HANDLE hNotifyEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
 	HANDLE hCaptureEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
 
 	t_mr = MWStartVideoCapture(t_h_channel, hCaptureEvent);
-	if (t_mr != MW_SUCCEEDED) {
+	if (t_mr != MW_SUCCEEDED) 
+	{
 		printf("ERROR: Open Video Capture error!\n");
-	} else {
+	}
+	else
+	{
 		MWCAP_VIDEO_BUFFER_INFO videoBufferInfo;
 		MWGetVideoBufferInfo(t_h_channel, &videoBufferInfo);
 
 		MWCAP_VIDEO_FRAME_INFO videoFrameInfo;
-		MWGetVideoFrameInfo(t_h_channel,
-				    videoBufferInfo.iNewestBufferedFullFrame,
-				    &videoFrameInfo);
+		MWGetVideoFrameInfo(t_h_channel, videoBufferInfo.iNewestBufferedFullFrame, &videoFrameInfo);
 
-		if (t_video_signal_status.state == MWCAP_VIDEO_SIGNAL_LOCKED) {
+		if (t_video_signal_status.state == MWCAP_VIDEO_SIGNAL_LOCKED)
+		{
 			// Allocate capture buffer
 			int cx = t_video_signal_status.cx;
 			int cy = t_video_signal_status.cy;
@@ -66,118 +68,99 @@ void CapturePFramePro(HCHANNEL t_h_channel)
 			Rect rect(0, 0, cx, cy);
 			BitmapData bitmapData;
 
-			Status status = bitmap.LockBits(&rect,
-							ImageLockModeWrite,
-							PixelFormat24bppRGB,
-							&bitmapData);
+			Status status = bitmap.LockBits(
+				&rect,
+				ImageLockModeWrite,
+				PixelFormat24bppRGB,
+				&bitmapData
+				);
 
 			BOOL bBottomUp = FALSE;
 			if (bitmapData.Stride < 0) {
-				bitmapData.Scan0 = ((LPBYTE)bitmapData.Scan0) +
-						   bitmapData.Stride * (cy - 1);
+				bitmapData.Scan0 = ((LPBYTE)bitmapData.Scan0) + bitmapData.Stride * (cy - 1);
 				bitmapData.Stride = -bitmapData.Stride;
 				bBottomUp = TRUE;
 			}
 
-			HNOTIFY hNotify = MWRegisterNotify(
-				t_h_channel, hNotifyEvent,
-				MWCAP_NOTIFY_VIDEO_FRAME_BUFFERED);
-			if (hNotify == NULL) {
+			HNOTIFY hNotify = MWRegisterNotify(t_h_channel, hNotifyEvent, MWCAP_NOTIFY_VIDEO_FRAME_BUFFERED);
+			if (hNotify == NULL) 
+			{
 				printf("ERROR: Register Notify error.\n");
-			} else {
-				double fps =
-					(double)10000000LL /
-					t_video_signal_status.dwFrameDuration;
-				printf("Begin to capture %d frames by %.2f fps...\n",
-				       NUM_CAPTURE_PRO, fps);
+			}
+			else
+			{
+				double fps =  (double)10000000LL / t_video_signal_status.dwFrameDuration;
+				printf("Begin to capture %d frames by %.2f fps...\n", NUM_CAPTURE_PRO, fps);
 
 				LONGLONG llTotalTime = 0LL;
 
-				MWPinVideoBuffer(t_h_channel,
-						 (LPBYTE)bitmapData.Scan0,
-						 bitmapData.Stride * cy);
-				for (int i = 0; i < NUM_CAPTURE_PRO; i++) {
-					WaitForSingleObject(hNotifyEvent,
-							    INFINITE);
+				MWPinVideoBuffer(t_h_channel,(LPBYTE)bitmapData.Scan0,bitmapData.Stride * cy);
+				for (int i = 0; i < NUM_CAPTURE_PRO; i++)
+				{
+					WaitForSingleObject(hNotifyEvent, INFINITE);
 
 					ULONGLONG ullStatusBits = 0;
-					t_mr = MWGetNotifyStatus(
-						t_h_channel, hNotify,
-						&ullStatusBits);
+					t_mr = MWGetNotifyStatus(t_h_channel, hNotify, &ullStatusBits);
 					if (t_mr != MW_SUCCEEDED)
 						continue;
 
-					t_mr = MWGetVideoBufferInfo(
-						t_h_channel, &videoBufferInfo);
+					t_mr = MWGetVideoBufferInfo(t_h_channel, &videoBufferInfo);
 					if (t_mr != MW_SUCCEEDED)
 						continue;
 
-					t_mr = MWGetVideoFrameInfo(
-						t_h_channel,
-						videoBufferInfo
-							.iNewestBufferedFullFrame,
-						&videoFrameInfo);
+					t_mr = MWGetVideoFrameInfo(t_h_channel, videoBufferInfo.iNewestBufferedFullFrame, &videoFrameInfo);
 					if (t_mr != MW_SUCCEEDED)
 						continue;
 
-					if (ullStatusBits &
-					    MWCAP_NOTIFY_VIDEO_FRAME_BUFFERED) {
-						MWCAP_VIDEO_DEINTERLACE_MODE mode =
-							MWCAP_VIDEO_DEINTERLACE_WEAVE;
+					if (ullStatusBits & MWCAP_NOTIFY_VIDEO_FRAME_BUFFERED) 
+					{
+						MWCAP_VIDEO_DEINTERLACE_MODE mode=MWCAP_VIDEO_DEINTERLACE_WEAVE;
 
 						t_mr = MWCaptureVideoFrameToVirtualAddressEx(
-							t_h_channel,
-							videoBufferInfo
-								.iNewestBufferedFullFrame,
-							(LPBYTE)bitmapData.Scan0,
+							t_h_channel, 
+							videoBufferInfo.iNewestBufferedFullFrame, 
+							(LPBYTE)bitmapData.Scan0, 
 							bitmapData.Stride * cy,
-							bitmapData.Stride,
-							bBottomUp, NULL,
-							MWFOURCC_BGR24, cx, cy,
-							0,
-							0,    //partical notify
-							NULL, //OSD
-							NULL, //OSD rect
-							0, 100, 0, 100, 0,
-							mode, //deinterlace mode
+							bitmapData.Stride, 
+							bBottomUp, 
+							NULL,
+							MWFOURCC_BGR24, 
+							cx,
+							cy,
+							0, 
+							0,									//partical notify
+							NULL,								//OSD
+							NULL,								//OSD rect
+							0, 
+							100, 
+							0, 
+							100, 
+							0, 
+							mode,								//deinterlace mode
 							MWCAP_VIDEO_ASPECT_RATIO_IGNORE,
-							NULL, NULL, 0, 0,
+							NULL,
+							NULL,
+							0,
+							0,
 							MWCAP_VIDEO_COLOR_FORMAT_UNKNOWN,
 							MWCAP_VIDEO_QUANTIZATION_UNKNOWN,
-							MWCAP_VIDEO_SATURATION_UNKNOWN);
-						WaitForSingleObject(
-							hCaptureEvent,
-							INFINITE);
+							MWCAP_VIDEO_SATURATION_UNKNOWN
+							); 
+						WaitForSingleObject(hCaptureEvent, INFINITE);
 
 						LONGLONG llCurrent = 0LL;
-						t_mr = MWGetDeviceTime(
-							t_h_channel,
-							&llCurrent);
+						t_mr = MWGetDeviceTime(t_h_channel, &llCurrent);
 
-						llTotalTime +=
-							(llCurrent -
-							 (t_video_signal_status
-									  .bInterlaced
-								  ? videoFrameInfo
-									    .allFieldBufferedTimes
-										    [1]
-								  : videoFrameInfo
-									    .allFieldBufferedTimes
-										    [0]));
+						llTotalTime += (llCurrent - (t_video_signal_status.bInterlaced ? videoFrameInfo.allFieldBufferedTimes[1] : videoFrameInfo.allFieldBufferedTimes[0]));
 
-						MWCAP_VIDEO_CAPTURE_STATUS
-							t_status;
-						MWGetVideoCaptureStatus(
-							t_h_channel, &t_status);
+						MWCAP_VIDEO_CAPTURE_STATUS t_status;
+						MWGetVideoCaptureStatus(t_h_channel,&t_status);
 					}
 				}
-				MWUnpinVideoBuffer(t_h_channel,
-						   (LPBYTE)bitmapData.Scan0);
+				MWUnpinVideoBuffer(t_h_channel,(LPBYTE)bitmapData.Scan0);
 				printf("End capture.\n");
 
-				printf("Each frame average capture duration is %d ms.\n",
-				       (LONG)(llTotalTime /
-					      (NUM_CAPTURE_PRO * 10000)));
+				printf("Each frame average capture duration is %d ms.\n", (LONG)(llTotalTime / (NUM_CAPTURE_PRO * 10000)));
 
 				t_mr = MWUnregisterNotify(t_h_channel, hNotify);
 
@@ -188,27 +171,24 @@ void CapturePFramePro(HCHANNEL t_h_channel)
 				char path[256];
 				WCHAR *wPath = NULL;
 				BOOL bRet = FALSE;
-				bRet = GetPath(path, 256);
-				if (bRet != TRUE) {
+				bRet = GetPath(path,256);
+				if(bRet!=TRUE){
 					printf("\nCan't get the save path.\n");
 					return;
 				}
 				_mkdir(path);
 
-				sprintf_s(path, "%s\\CaptureByInputPro.bmp",
-					  path);
+				sprintf_s(path, "%s\\CaptureByInputPro.bmp", path);
 				wPath = AnsiToUnicode(path);
 
-				printf("\nThe last frame is saved in %s.\n\n",
-				       path);
+				printf("\nThe last frame is saved in %s.\n\n", path);
 
 				CLSID pngClsid;
-				GetEncoderClsid(
-					(const wchar_t *)_T("image/bmp"),
-					&pngClsid);
+				GetEncoderClsid((const wchar_t*)_T("image/bmp"), &pngClsid);
 				bitmap.Save(wPath, &pngClsid, NULL);
 
-				if (wPath != NULL) {
+				if(wPath != NULL)
+				{
 					delete[] wPath;
 					wPath = NULL;
 				}

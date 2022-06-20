@@ -6,6 +6,7 @@
 // Copyright (c) 1992-2001 Microsoft Corporation.  All rights reserved.
 //------------------------------------------------------------------------------
 
+
 // Base classes implementing IDispatch parsing for the basic control dual
 // interfaces. Derive from these and implement just the custom method and
 // property methods. We also implement CPosPassThru that can be used by
@@ -19,118 +20,164 @@
 #define OATRUE (-1)
 #define OAFALSE (0)
 
+
 // It's possible that we could replace this class with CreateStdDispatch
 
-class CBaseDispatch {
-	ITypeInfo *m_pti;
+class CBaseDispatch
+{
+    ITypeInfo * m_pti;
 
 public:
-	CBaseDispatch() : m_pti(NULL) {}
-	~CBaseDispatch();
 
-	/* IDispatch methods */
-	STDMETHODIMP GetTypeInfoCount(__out UINT *pctinfo);
+    CBaseDispatch() : m_pti(NULL) {}
+    ~CBaseDispatch();
 
-	STDMETHODIMP GetTypeInfo(REFIID riid, UINT itinfo, LCID lcid,
-				 __deref_out ITypeInfo **pptinfo);
+    /* IDispatch methods */
+    STDMETHODIMP GetTypeInfoCount(__out UINT * pctinfo);
 
-	STDMETHODIMP GetIDsOfNames(REFIID riid,
-				   __in_ecount(cNames) LPOLESTR *rgszNames,
-				   UINT cNames, LCID lcid,
-				   __out_ecount(cNames) DISPID *rgdispid);
+    STDMETHODIMP GetTypeInfo(
+      REFIID riid,
+      UINT itinfo,
+      LCID lcid,
+      __deref_out ITypeInfo ** pptinfo);
+
+    STDMETHODIMP GetIDsOfNames(
+      REFIID riid,
+      __in_ecount(cNames) LPOLESTR * rgszNames,
+      UINT cNames,
+      LCID lcid,
+      __out_ecount(cNames) DISPID * rgdispid);
 };
 
-class AM_NOVTABLE CMediaControl : public IMediaControl, public CUnknown {
-	CBaseDispatch m_basedisp;
+
+class AM_NOVTABLE CMediaControl :
+    public IMediaControl,
+    public CUnknown
+{
+    CBaseDispatch m_basedisp;
 
 public:
-	CMediaControl(const TCHAR *, LPUNKNOWN);
 
-	DECLARE_IUNKNOWN
+    CMediaControl(const TCHAR *, LPUNKNOWN);
 
-	// override this to publicise our interfaces
-	STDMETHODIMP NonDelegatingQueryInterface(REFIID riid,
-						 __deref_out void **ppv);
+    DECLARE_IUNKNOWN
 
-	/* IDispatch methods */
-	STDMETHODIMP GetTypeInfoCount(__out UINT *pctinfo);
+    // override this to publicise our interfaces
+    STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, __deref_out void **ppv);
 
-	STDMETHODIMP GetTypeInfo(UINT itinfo, LCID lcid,
-				 __deref_out ITypeInfo **pptinfo);
+    /* IDispatch methods */
+    STDMETHODIMP GetTypeInfoCount(__out UINT * pctinfo);
 
-	STDMETHODIMP GetIDsOfNames(REFIID riid,
-				   __in_ecount(cNames) LPOLESTR *rgszNames,
-				   UINT cNames, LCID lcid,
-				   __out_ecount(cNames) DISPID *rgdispid);
+    STDMETHODIMP GetTypeInfo(
+      UINT itinfo,
+      LCID lcid,
+      __deref_out ITypeInfo ** pptinfo);
 
-	STDMETHODIMP Invoke(DISPID dispidMember, REFIID riid, LCID lcid,
-			    WORD wFlags, __in DISPPARAMS *pdispparams,
-			    __out_opt VARIANT *pvarResult,
-			    __out_opt EXCEPINFO *pexcepinfo,
-			    __out_opt UINT *puArgErr);
+    STDMETHODIMP GetIDsOfNames(
+      REFIID riid,
+      __in_ecount(cNames) LPOLESTR * rgszNames,
+      UINT cNames,
+      LCID lcid,
+      __out_ecount(cNames) DISPID * rgdispid);
+
+    STDMETHODIMP Invoke(
+      DISPID dispidMember,
+      REFIID riid,
+      LCID lcid,
+      WORD wFlags,
+      __in DISPPARAMS * pdispparams,
+      __out_opt VARIANT * pvarResult,
+      __out_opt EXCEPINFO * pexcepinfo,
+      __out_opt UINT * puArgErr);
 };
 
-class AM_NOVTABLE CMediaEvent : public IMediaEventEx, public CUnknown {
-	CBaseDispatch m_basedisp;
+
+class AM_NOVTABLE CMediaEvent :
+    public IMediaEventEx,
+    public CUnknown
+{
+    CBaseDispatch m_basedisp;
 
 public:
-	CMediaEvent(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
 
-	DECLARE_IUNKNOWN
+    CMediaEvent(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
 
-	// override this to publicise our interfaces
-	STDMETHODIMP NonDelegatingQueryInterface(REFIID riid,
-						 __deref_out void **ppv);
+    DECLARE_IUNKNOWN
 
-	/* IDispatch methods */
-	STDMETHODIMP GetTypeInfoCount(__out UINT *pctinfo);
+    // override this to publicise our interfaces
+    STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, __deref_out void **ppv);
 
-	STDMETHODIMP GetTypeInfo(UINT itinfo, LCID lcid,
-				 __deref_out ITypeInfo **pptinfo);
+    /* IDispatch methods */
+    STDMETHODIMP GetTypeInfoCount(__out UINT * pctinfo);
 
-	STDMETHODIMP GetIDsOfNames(REFIID riid,
-				   __in_ecount(cNames) LPOLESTR *rgszNames,
-				   UINT cNames, LCID lcid,
-				   __out_ecount(cNames) DISPID *rgdispid);
+    STDMETHODIMP GetTypeInfo(
+      UINT itinfo,
+      LCID lcid,
+      __deref_out ITypeInfo ** pptinfo);
 
-	STDMETHODIMP Invoke(DISPID dispidMember, REFIID riid, LCID lcid,
-			    WORD wFlags, __in DISPPARAMS *pdispparams,
-			    __out_opt VARIANT *pvarResult,
-			    __out_opt EXCEPINFO *pexcepinfo,
-			    __out_opt UINT *puArgErr);
+    STDMETHODIMP GetIDsOfNames(
+      REFIID riid,
+      __in_ecount(cNames) LPOLESTR * rgszNames,
+      UINT cNames,
+      LCID lcid,
+      __out_ecount(cNames) DISPID * rgdispid);
+
+    STDMETHODIMP Invoke(
+      DISPID dispidMember,
+      REFIID riid,
+      LCID lcid,
+      WORD wFlags,
+      __in DISPPARAMS * pdispparams,
+      __out_opt VARIANT * pvarResult,
+      __out_opt EXCEPINFO * pexcepinfo,
+      __out_opt UINT * puArgErr);
 };
 
-class AM_NOVTABLE CMediaPosition : public IMediaPosition, public CUnknown {
-	CBaseDispatch m_basedisp;
+
+class AM_NOVTABLE CMediaPosition :
+    public IMediaPosition,
+    public CUnknown
+{
+    CBaseDispatch m_basedisp;
+
 
 public:
-	CMediaPosition(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
-	CMediaPosition(__in_opt LPCTSTR, __in_opt LPUNKNOWN,
-		       __inout HRESULT *phr);
 
-	DECLARE_IUNKNOWN
+    CMediaPosition(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
+    CMediaPosition(__in_opt LPCTSTR, __in_opt LPUNKNOWN, __inout HRESULT *phr);
 
-	// override this to publicise our interfaces
-	STDMETHODIMP NonDelegatingQueryInterface(REFIID riid,
-						 __deref_out void **ppv);
+    DECLARE_IUNKNOWN
 
-	/* IDispatch methods */
-	STDMETHODIMP GetTypeInfoCount(__out UINT *pctinfo);
+    // override this to publicise our interfaces
+    STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, __deref_out void **ppv);
 
-	STDMETHODIMP GetTypeInfo(UINT itinfo, LCID lcid,
-				 __deref_out ITypeInfo **pptinfo);
+    /* IDispatch methods */
+    STDMETHODIMP GetTypeInfoCount(__out UINT * pctinfo);
 
-	STDMETHODIMP GetIDsOfNames(REFIID riid,
-				   __in_ecount(cNames) LPOLESTR *rgszNames,
-				   UINT cNames, LCID lcid,
-				   __out_ecount(cNames) DISPID *rgdispid);
+    STDMETHODIMP GetTypeInfo(
+      UINT itinfo,
+      LCID lcid,
+      __deref_out ITypeInfo ** pptinfo);
 
-	STDMETHODIMP Invoke(DISPID dispidMember, REFIID riid, LCID lcid,
-			    WORD wFlags, __in DISPPARAMS *pdispparams,
-			    __out_opt VARIANT *pvarResult,
-			    __out_opt EXCEPINFO *pexcepinfo,
-			    __out_opt UINT *puArgErr);
+    STDMETHODIMP GetIDsOfNames(
+      REFIID riid,
+      __in_ecount(cNames) LPOLESTR * rgszNames,
+      UINT cNames,
+      LCID lcid,
+      __out_ecount(cNames) DISPID * rgdispid);
+
+    STDMETHODIMP Invoke(
+      DISPID dispidMember,
+      REFIID riid,
+      LCID lcid,
+      WORD wFlags,
+      __in DISPPARAMS * pdispparams,
+      __out_opt VARIANT * pvarResult,
+      __out_opt EXCEPINFO * pexcepinfo,
+      __out_opt UINT * puArgErr);
+
 };
+
 
 // OA-compatibility means that we must use double as the RefTime value,
 // and REFERENCE_TIME (essentially a LONGLONG) within filters.
@@ -138,80 +185,99 @@ public:
 
 class COARefTime : public CRefTime {
 public:
-	COARefTime(){};
 
-	COARefTime(CRefTime t) : CRefTime(t){};
+    COARefTime() {
+    };
 
-	COARefTime(REFERENCE_TIME t) : CRefTime(t){};
+    COARefTime(CRefTime t)
+        : CRefTime(t)
+    {
+    };
 
-	COARefTime(double d) { m_time = (LONGLONG)(d * 10000000); };
+    COARefTime(REFERENCE_TIME t)
+        : CRefTime(t)
+    {
+    };
 
-	operator double() { return double(m_time) / 10000000; };
+    COARefTime(double d) {
+        m_time = (LONGLONG) (d * 10000000);
+    };
 
-	operator REFERENCE_TIME() { return m_time; };
+    operator double() {
+        return double(m_time) / 10000000;
+    };
 
-	COARefTime &operator=(const double &rd)
-	{
-		m_time = (LONGLONG)(rd * 10000000);
-		return *this;
-	}
+    operator REFERENCE_TIME() {
+        return m_time;
+    };
 
-	COARefTime &operator=(const REFERENCE_TIME &rt)
-	{
-		m_time = rt;
-		return *this;
-	}
+    COARefTime& operator=(const double& rd)  {
+        m_time = (LONGLONG) (rd * 10000000);
+        return *this;
+    }
 
-	inline BOOL operator==(const COARefTime &rt)
-	{
-		return m_time == rt.m_time;
-	};
+    COARefTime& operator=(const REFERENCE_TIME& rt)  {
+        m_time = rt;
+        return *this;
+    }
 
-	inline BOOL operator!=(const COARefTime &rt)
-	{
-		return m_time != rt.m_time;
-	};
+    inline BOOL operator==(const COARefTime& rt)
+    {
+        return m_time == rt.m_time;
+    };
 
-	inline BOOL operator<(const COARefTime &rt)
-	{
-		return m_time < rt.m_time;
-	};
+    inline BOOL operator!=(const COARefTime& rt)
+    {
+        return m_time != rt.m_time;
+    };
 
-	inline BOOL operator>(const COARefTime &rt)
-	{
-		return m_time > rt.m_time;
-	};
+    inline BOOL operator < (const COARefTime& rt)
+    {
+        return m_time < rt.m_time;
+    };
 
-	inline BOOL operator>=(const COARefTime &rt)
-	{
-		return m_time >= rt.m_time;
-	};
+    inline BOOL operator > (const COARefTime& rt)
+    {
+        return m_time > rt.m_time;
+    };
 
-	inline BOOL operator<=(const COARefTime &rt)
-	{
-		return m_time <= rt.m_time;
-	};
+    inline BOOL operator >= (const COARefTime& rt)
+    {
+        return m_time >= rt.m_time;
+    };
 
-	inline COARefTime operator+(const COARefTime &rt)
-	{
-		return COARefTime(m_time + rt.m_time);
-	};
+    inline BOOL operator <= (const COARefTime& rt)
+    {
+        return m_time <= rt.m_time;
+    };
 
-	inline COARefTime operator-(const COARefTime &rt)
-	{
-		return COARefTime(m_time - rt.m_time);
-	};
+    inline COARefTime operator+(const COARefTime& rt)
+    {
+        return COARefTime(m_time + rt.m_time);
+    };
 
-	inline COARefTime operator*(LONG l) { return COARefTime(m_time * l); };
+    inline COARefTime operator-(const COARefTime& rt)
+    {
+        return COARefTime(m_time - rt.m_time);
+    };
 
-	inline COARefTime operator/(LONG l) { return COARefTime(m_time / l); };
+    inline COARefTime operator*(LONG l)
+    {
+        return COARefTime(m_time * l);
+    };
+
+    inline COARefTime operator/(LONG l)
+    {
+        return COARefTime(m_time / l);
+    };
 
 private:
-	//  Prevent bugs from constructing from LONG (which gets
-	//  converted to double and then multiplied by 10000000
-	COARefTime(LONG);
-	LONG operator=(LONG);
+    //  Prevent bugs from constructing from LONG (which gets
+    //  converted to double and then multiplied by 10000000
+    COARefTime(LONG);
+    LONG operator=(LONG);
 };
+
 
 // A utility class that handles IMediaPosition and IMediaSeeking on behalf
 // of single-input pin renderers, or transform filters.
@@ -230,304 +296,338 @@ private:
 // The method is kept for source compatibility and to minimise the changes
 // if we need to put it back later for performance reasons.
 
-class CPosPassThru : public IMediaSeeking, public CMediaPosition {
-	IPin *m_pPin;
+class CPosPassThru : public IMediaSeeking, public CMediaPosition
+{
+    IPin *m_pPin;
 
-	HRESULT GetPeer(__deref_out IMediaPosition **ppMP);
-	HRESULT GetPeerSeeking(__deref_out IMediaSeeking **ppMS);
+    HRESULT GetPeer(__deref_out IMediaPosition **ppMP);
+    HRESULT GetPeerSeeking(__deref_out IMediaSeeking **ppMS);
 
 public:
-	CPosPassThru(__in_opt LPCTSTR, __in_opt LPUNKNOWN, __inout HRESULT *,
-		     IPin *);
-	DECLARE_IUNKNOWN
 
-	HRESULT ForceRefresh() { return S_OK; };
+    CPosPassThru(__in_opt LPCTSTR, __in_opt LPUNKNOWN, __inout HRESULT*, IPin *);
+    DECLARE_IUNKNOWN
 
-	// override to return an accurate current position
-	virtual HRESULT GetMediaTime(__out LONGLONG *pStartTime,
-				     __out_opt LONGLONG *pEndTime)
-	{
-		return E_FAIL;
-	}
+    HRESULT ForceRefresh() {
+        return S_OK;
+    };
 
-	STDMETHODIMP NonDelegatingQueryInterface(REFIID riid,
-						 __deref_out void **ppv);
+    // override to return an accurate current position
+    virtual HRESULT GetMediaTime(__out LONGLONG *pStartTime, __out_opt LONGLONG *pEndTime) {
+        return E_FAIL;
+    }
 
-	// IMediaSeeking methods
-	STDMETHODIMP GetCapabilities(__out DWORD *pCapabilities);
-	STDMETHODIMP CheckCapabilities(__inout DWORD *pCapabilities);
-	STDMETHODIMP SetTimeFormat(const GUID *pFormat);
-	STDMETHODIMP GetTimeFormat(__out GUID *pFormat);
-	STDMETHODIMP IsUsingTimeFormat(const GUID *pFormat);
-	STDMETHODIMP IsFormatSupported(const GUID *pFormat);
-	STDMETHODIMP QueryPreferredFormat(__out GUID *pFormat);
-	STDMETHODIMP ConvertTimeFormat(__out LONGLONG *pTarget,
-				       __in_opt const GUID *pTargetFormat,
-				       LONGLONG Source,
-				       __in_opt const GUID *pSourceFormat);
-	STDMETHODIMP SetPositions(__inout_opt LONGLONG *pCurrent,
-				  DWORD CurrentFlags,
-				  __inout_opt LONGLONG *pStop, DWORD StopFlags);
+    STDMETHODIMP NonDelegatingQueryInterface(REFIID riid,__deref_out void **ppv);
 
-	STDMETHODIMP GetPositions(__out_opt LONGLONG *pCurrent,
-				  __out_opt LONGLONG *pStop);
-	STDMETHODIMP GetCurrentPosition(__out LONGLONG *pCurrent);
-	STDMETHODIMP GetStopPosition(__out LONGLONG *pStop);
-	STDMETHODIMP SetRate(double dRate);
-	STDMETHODIMP GetRate(__out double *pdRate);
-	STDMETHODIMP GetDuration(__out LONGLONG *pDuration);
-	STDMETHODIMP GetAvailable(__out_opt LONGLONG *pEarliest,
-				  __out_opt LONGLONG *pLatest);
-	STDMETHODIMP GetPreroll(__out LONGLONG *pllPreroll);
+    // IMediaSeeking methods
+    STDMETHODIMP GetCapabilities( __out DWORD * pCapabilities );
+    STDMETHODIMP CheckCapabilities( __inout DWORD * pCapabilities );
+    STDMETHODIMP SetTimeFormat(const GUID * pFormat);
+    STDMETHODIMP GetTimeFormat(__out GUID *pFormat);
+    STDMETHODIMP IsUsingTimeFormat(const GUID * pFormat);
+    STDMETHODIMP IsFormatSupported( const GUID * pFormat);
+    STDMETHODIMP QueryPreferredFormat( __out GUID *pFormat);
+    STDMETHODIMP ConvertTimeFormat(__out LONGLONG * pTarget, 
+                                   __in_opt const GUID * pTargetFormat,
+                                   LONGLONG Source, 
+                                   __in_opt const GUID * pSourceFormat );
+    STDMETHODIMP SetPositions( __inout_opt LONGLONG * pCurrent, DWORD CurrentFlags
+                             , __inout_opt LONGLONG * pStop, DWORD StopFlags );
 
-	// IMediaPosition properties
-	STDMETHODIMP get_Duration(__out REFTIME *plength);
-	STDMETHODIMP put_CurrentPosition(REFTIME llTime);
-	STDMETHODIMP get_StopTime(__out REFTIME *pllTime);
-	STDMETHODIMP put_StopTime(REFTIME llTime);
-	STDMETHODIMP get_PrerollTime(__out REFTIME *pllTime);
-	STDMETHODIMP put_PrerollTime(REFTIME llTime);
-	STDMETHODIMP get_Rate(__out double *pdRate);
-	STDMETHODIMP put_Rate(double dRate);
-	STDMETHODIMP get_CurrentPosition(__out REFTIME *pllTime);
-	STDMETHODIMP CanSeekForward(__out LONG *pCanSeekForward);
-	STDMETHODIMP CanSeekBackward(__out LONG *pCanSeekBackward);
+    STDMETHODIMP GetPositions( __out_opt LONGLONG * pCurrent, __out_opt LONGLONG * pStop );
+    STDMETHODIMP GetCurrentPosition( __out LONGLONG * pCurrent );
+    STDMETHODIMP GetStopPosition( __out LONGLONG * pStop );
+    STDMETHODIMP SetRate( double dRate);
+    STDMETHODIMP GetRate( __out double * pdRate);
+    STDMETHODIMP GetDuration( __out LONGLONG *pDuration);
+    STDMETHODIMP GetAvailable( __out_opt LONGLONG *pEarliest, __out_opt LONGLONG *pLatest );
+    STDMETHODIMP GetPreroll( __out LONGLONG *pllPreroll );
+
+    // IMediaPosition properties
+    STDMETHODIMP get_Duration(__out REFTIME * plength);
+    STDMETHODIMP put_CurrentPosition(REFTIME llTime);
+    STDMETHODIMP get_StopTime(__out REFTIME * pllTime);
+    STDMETHODIMP put_StopTime(REFTIME llTime);
+    STDMETHODIMP get_PrerollTime(__out REFTIME * pllTime);
+    STDMETHODIMP put_PrerollTime(REFTIME llTime);
+    STDMETHODIMP get_Rate(__out double * pdRate);
+    STDMETHODIMP put_Rate(double dRate);
+    STDMETHODIMP get_CurrentPosition(__out REFTIME * pllTime);
+    STDMETHODIMP CanSeekForward(__out LONG *pCanSeekForward);
+    STDMETHODIMP CanSeekBackward(__out LONG *pCanSeekBackward);
 
 private:
-	HRESULT GetSeekingLongLong(
-		HRESULT (__stdcall IMediaSeeking::*pMethod)(LONGLONG *),
-		__out LONGLONG *pll);
+    HRESULT GetSeekingLongLong( HRESULT (__stdcall IMediaSeeking::*pMethod)( LONGLONG * ),
+                                __out LONGLONG * pll );
 };
+
 
 // Adds the ability to return a current position
 
-class CRendererPosPassThru : public CPosPassThru {
-	CCritSec m_PositionLock; // Locks access to our position
-	LONGLONG m_StartMedia;   // Start media time last seen
-	LONGLONG m_EndMedia;     // And likewise the end media
-	BOOL m_bReset;           // Have media times been set
+class CRendererPosPassThru : public CPosPassThru
+{
+    CCritSec m_PositionLock;    // Locks access to our position
+    LONGLONG m_StartMedia;      // Start media time last seen
+    LONGLONG m_EndMedia;        // And likewise the end media
+    BOOL m_bReset;              // Have media times been set
 
 public:
-	// Used to help with passing media times through graph
 
-	CRendererPosPassThru(__in_opt LPCTSTR, __in_opt LPUNKNOWN,
-			     __inout HRESULT *, IPin *);
-	HRESULT RegisterMediaTime(IMediaSample *pMediaSample);
-	HRESULT RegisterMediaTime(LONGLONG StartTime, LONGLONG EndTime);
-	HRESULT GetMediaTime(__out LONGLONG *pStartTime,
-			     __out_opt LONGLONG *pEndTime);
-	HRESULT ResetMediaTime();
-	HRESULT EOS();
+    // Used to help with passing media times through graph
+
+    CRendererPosPassThru(__in_opt LPCTSTR, __in_opt LPUNKNOWN, __inout HRESULT*, IPin *);
+    HRESULT RegisterMediaTime(IMediaSample *pMediaSample);
+    HRESULT RegisterMediaTime(LONGLONG StartTime,LONGLONG EndTime);
+    HRESULT GetMediaTime(__out LONGLONG *pStartTime,__out_opt LONGLONG *pEndTime);
+    HRESULT ResetMediaTime();
+    HRESULT EOS();
 };
 
-STDAPI CreatePosPassThru(__in_opt LPUNKNOWN pAgg, BOOL bRenderer, IPin *pPin,
-			 __deref_out IUnknown **ppPassThru);
+STDAPI CreatePosPassThru(
+    __in_opt LPUNKNOWN pAgg,
+    BOOL bRenderer,
+    IPin *pPin,
+    __deref_out IUnknown **ppPassThru
+);
 
 // A class that handles the IDispatch part of IBasicAudio and leaves the
 // properties and methods themselves pure virtual.
 
-class AM_NOVTABLE CBasicAudio : public IBasicAudio, public CUnknown {
-	CBaseDispatch m_basedisp;
+class AM_NOVTABLE CBasicAudio : public IBasicAudio, public CUnknown
+{
+    CBaseDispatch m_basedisp;
 
 public:
-	CBasicAudio(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
 
-	DECLARE_IUNKNOWN
+    CBasicAudio(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
 
-	// override this to publicise our interfaces
-	STDMETHODIMP NonDelegatingQueryInterface(REFIID riid,
-						 __deref_out void **ppv);
+    DECLARE_IUNKNOWN
 
-	/* IDispatch methods */
-	STDMETHODIMP GetTypeInfoCount(__out UINT *pctinfo);
+    // override this to publicise our interfaces
+    STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, __deref_out void **ppv);
 
-	STDMETHODIMP GetTypeInfo(UINT itinfo, LCID lcid,
-				 __deref_out ITypeInfo **pptinfo);
+    /* IDispatch methods */
+    STDMETHODIMP GetTypeInfoCount(__out UINT * pctinfo);
 
-	STDMETHODIMP GetIDsOfNames(REFIID riid,
-				   __in_ecount(cNames) LPOLESTR *rgszNames,
-				   UINT cNames, LCID lcid,
-				   __out_ecount(cNames) DISPID *rgdispid);
+    STDMETHODIMP GetTypeInfo(
+      UINT itinfo,
+      LCID lcid,
+      __deref_out ITypeInfo ** pptinfo);
 
-	STDMETHODIMP Invoke(DISPID dispidMember, REFIID riid, LCID lcid,
-			    WORD wFlags, __in DISPPARAMS *pdispparams,
-			    __out_opt VARIANT *pvarResult,
-			    __out_opt EXCEPINFO *pexcepinfo,
-			    __out_opt UINT *puArgErr);
+    STDMETHODIMP GetIDsOfNames(
+      REFIID riid,
+      __in_ecount(cNames) LPOLESTR * rgszNames,
+      UINT cNames,
+      LCID lcid,
+      __out_ecount(cNames) DISPID * rgdispid);
+
+    STDMETHODIMP Invoke(
+      DISPID dispidMember,
+      REFIID riid,
+      LCID lcid,
+      WORD wFlags,
+      __in DISPPARAMS * pdispparams,
+      __out_opt VARIANT * pvarResult,
+      __out_opt EXCEPINFO * pexcepinfo,
+      __out_opt UINT * puArgErr);
 };
+
 
 // A class that handles the IDispatch part of IBasicVideo and leaves the
 // properties and methods themselves pure virtual.
 
-class AM_NOVTABLE CBaseBasicVideo : public IBasicVideo2, public CUnknown {
-	CBaseDispatch m_basedisp;
+class AM_NOVTABLE CBaseBasicVideo : public IBasicVideo2, public CUnknown
+{
+    CBaseDispatch m_basedisp;
 
 public:
-	CBaseBasicVideo(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
 
-	DECLARE_IUNKNOWN
+    CBaseBasicVideo(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
 
-	// override this to publicise our interfaces
-	STDMETHODIMP NonDelegatingQueryInterface(REFIID riid,
-						 __deref_out void **ppv);
+    DECLARE_IUNKNOWN
 
-	/* IDispatch methods */
-	STDMETHODIMP GetTypeInfoCount(__out UINT *pctinfo);
+    // override this to publicise our interfaces
+    STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, __deref_out void **ppv);
 
-	STDMETHODIMP GetTypeInfo(UINT itinfo, LCID lcid,
-				 __deref_out ITypeInfo **pptinfo);
+    /* IDispatch methods */
+    STDMETHODIMP GetTypeInfoCount(__out UINT * pctinfo);
 
-	STDMETHODIMP GetIDsOfNames(REFIID riid,
-				   __in_ecount(cNames) LPOLESTR *rgszNames,
-				   UINT cNames, LCID lcid,
-				   __out_ecount(cNames) DISPID *rgdispid);
+    STDMETHODIMP GetTypeInfo(
+      UINT itinfo,
+      LCID lcid,
+      __deref_out ITypeInfo ** pptinfo);
 
-	STDMETHODIMP Invoke(DISPID dispidMember, REFIID riid, LCID lcid,
-			    WORD wFlags, __in DISPPARAMS *pdispparams,
-			    __out_opt VARIANT *pvarResult,
-			    __out_opt EXCEPINFO *pexcepinfo,
-			    __out_opt UINT *puArgErr);
+    STDMETHODIMP GetIDsOfNames(
+      REFIID riid,
+      __in_ecount(cNames) LPOLESTR * rgszNames,
+      UINT cNames,
+      LCID lcid,
+      __out_ecount(cNames) DISPID * rgdispid);
 
-	STDMETHODIMP GetPreferredAspectRatio(__out long *plAspectX,
-					     __out long *plAspectY)
-	{
-		return E_NOTIMPL;
-	}
+    STDMETHODIMP Invoke(
+      DISPID dispidMember,
+      REFIID riid,
+      LCID lcid,
+      WORD wFlags,
+      __in DISPPARAMS * pdispparams,
+      __out_opt VARIANT * pvarResult,
+      __out_opt EXCEPINFO * pexcepinfo,
+      __out_opt UINT * puArgErr);
+
+    STDMETHODIMP GetPreferredAspectRatio(
+      __out long *plAspectX,
+      __out long *plAspectY)
+    {
+        return E_NOTIMPL;
+    }
 };
+
 
 // A class that handles the IDispatch part of IVideoWindow and leaves the
 // properties and methods themselves pure virtual.
 
-class AM_NOVTABLE CBaseVideoWindow : public IVideoWindow, public CUnknown {
-	CBaseDispatch m_basedisp;
+class AM_NOVTABLE CBaseVideoWindow : public IVideoWindow, public CUnknown
+{
+    CBaseDispatch m_basedisp;
 
 public:
-	CBaseVideoWindow(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
 
-	DECLARE_IUNKNOWN
+    CBaseVideoWindow(__in_opt LPCTSTR, __in_opt LPUNKNOWN);
 
-	// override this to publicise our interfaces
-	STDMETHODIMP NonDelegatingQueryInterface(REFIID riid,
-						 __deref_out void **ppv);
+    DECLARE_IUNKNOWN
 
-	/* IDispatch methods */
-	STDMETHODIMP GetTypeInfoCount(__out UINT *pctinfo);
+    // override this to publicise our interfaces
+    STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, __deref_out void **ppv);
 
-	STDMETHODIMP GetTypeInfo(UINT itinfo, LCID lcid,
-				 __deref_out ITypeInfo **pptinfo);
+    /* IDispatch methods */
+    STDMETHODIMP GetTypeInfoCount(__out UINT * pctinfo);
 
-	STDMETHODIMP GetIDsOfNames(REFIID riid,
-				   __in_ecount(cNames) LPOLESTR *rgszNames,
-				   UINT cNames, LCID lcid,
-				   __out_ecount(cNames) DISPID *rgdispid);
+    STDMETHODIMP GetTypeInfo(
+      UINT itinfo,
+      LCID lcid,
+      __deref_out ITypeInfo ** pptinfo);
 
-	STDMETHODIMP Invoke(DISPID dispidMember, REFIID riid, LCID lcid,
-			    WORD wFlags, __in DISPPARAMS *pdispparams,
-			    __out_opt VARIANT *pvarResult,
-			    __out_opt EXCEPINFO *pexcepinfo,
-			    __out_opt UINT *puArgErr);
+    STDMETHODIMP GetIDsOfNames(
+      REFIID riid,
+      __in_ecount(cNames) LPOLESTR * rgszNames,
+      UINT cNames,
+      LCID lcid,
+      __out_ecount(cNames) DISPID * rgdispid);
+
+    STDMETHODIMP Invoke(
+      DISPID dispidMember,
+      REFIID riid,
+      LCID lcid,
+      WORD wFlags,
+      __in DISPPARAMS * pdispparams,
+      __out_opt VARIANT * pvarResult,
+      __out_opt EXCEPINFO * pexcepinfo,
+      __out_opt UINT * puArgErr);
 };
+
 
 // abstract class to help source filters with their implementation
 // of IMediaPosition. Derive from this and set the duration (and stop
 // position). Also override NotifyChange to do something when the properties
 // change.
 
-class AM_NOVTABLE CSourcePosition : public CMediaPosition {
+class AM_NOVTABLE CSourcePosition : public CMediaPosition
+{
 
 public:
-	CSourcePosition(__in_opt LPCTSTR, __in_opt LPUNKNOWN, __inout HRESULT *,
-			__in CCritSec *);
+    CSourcePosition(__in_opt LPCTSTR, __in_opt LPUNKNOWN, __inout HRESULT*, __in CCritSec *);
 
-	// IMediaPosition methods
-	STDMETHODIMP get_Duration(__out REFTIME *plength);
-	STDMETHODIMP put_CurrentPosition(REFTIME llTime);
-	STDMETHODIMP get_StopTime(__out REFTIME *pllTime);
-	STDMETHODIMP put_StopTime(REFTIME llTime);
-	STDMETHODIMP get_PrerollTime(__out REFTIME *pllTime);
-	STDMETHODIMP put_PrerollTime(REFTIME llTime);
-	STDMETHODIMP get_Rate(__out double *pdRate);
-	STDMETHODIMP put_Rate(double dRate);
-	STDMETHODIMP CanSeekForward(__out LONG *pCanSeekForward);
-	STDMETHODIMP CanSeekBackward(__out LONG *pCanSeekBackward);
+    // IMediaPosition methods
+    STDMETHODIMP get_Duration(__out REFTIME * plength);
+    STDMETHODIMP put_CurrentPosition(REFTIME llTime);
+    STDMETHODIMP get_StopTime(__out REFTIME * pllTime);
+    STDMETHODIMP put_StopTime(REFTIME llTime);
+    STDMETHODIMP get_PrerollTime(__out REFTIME * pllTime);
+    STDMETHODIMP put_PrerollTime(REFTIME llTime);
+    STDMETHODIMP get_Rate(__out double * pdRate);
+    STDMETHODIMP put_Rate(double dRate);
+    STDMETHODIMP CanSeekForward(__out LONG *pCanSeekForward);
+    STDMETHODIMP CanSeekBackward(__out LONG *pCanSeekBackward);
 
-	// override if you can return the data you are actually working on
-	STDMETHODIMP get_CurrentPosition(__out REFTIME *pllTime)
-	{
-		return E_NOTIMPL;
-	};
+    // override if you can return the data you are actually working on
+    STDMETHODIMP get_CurrentPosition(__out REFTIME * pllTime) {
+        return E_NOTIMPL;
+    };
 
 protected:
-	// we call this to notify changes. Override to handle them
-	virtual HRESULT ChangeStart() PURE;
-	virtual HRESULT ChangeStop() PURE;
-	virtual HRESULT ChangeRate() PURE;
 
-	COARefTime m_Duration;
-	COARefTime m_Start;
-	COARefTime m_Stop;
-	double m_Rate;
+    // we call this to notify changes. Override to handle them
+    virtual HRESULT ChangeStart() PURE;
+    virtual HRESULT ChangeStop() PURE;
+    virtual HRESULT ChangeRate() PURE;
 
-	CCritSec *m_pLock;
+    COARefTime m_Duration;
+    COARefTime m_Start;
+    COARefTime m_Stop;
+    double m_Rate;
+
+    CCritSec * m_pLock;
 };
 
-class AM_NOVTABLE CSourceSeeking : public IMediaSeeking, public CUnknown {
+class AM_NOVTABLE CSourceSeeking :
+    public IMediaSeeking,
+    public CUnknown
+{
 
 public:
-	DECLARE_IUNKNOWN;
-	STDMETHODIMP NonDelegatingQueryInterface(REFIID riid,
-						 __deref_out void **ppv);
 
-	// IMediaSeeking methods
+    DECLARE_IUNKNOWN;
+    STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, __deref_out void **ppv);
 
-	STDMETHODIMP IsFormatSupported(const GUID *pFormat);
-	STDMETHODIMP QueryPreferredFormat(__out GUID *pFormat);
-	STDMETHODIMP SetTimeFormat(const GUID *pFormat);
-	STDMETHODIMP IsUsingTimeFormat(const GUID *pFormat);
-	STDMETHODIMP GetTimeFormat(__out GUID *pFormat);
-	STDMETHODIMP GetDuration(__out LONGLONG *pDuration);
-	STDMETHODIMP GetStopPosition(__out LONGLONG *pStop);
-	STDMETHODIMP GetCurrentPosition(__out LONGLONG *pCurrent);
-	STDMETHODIMP GetCapabilities(__out DWORD *pCapabilities);
-	STDMETHODIMP CheckCapabilities(__inout DWORD *pCapabilities);
-	STDMETHODIMP ConvertTimeFormat(__out LONGLONG *pTarget,
-				       __in_opt const GUID *pTargetFormat,
-				       LONGLONG Source,
-				       __in_opt const GUID *pSourceFormat);
+    // IMediaSeeking methods
 
-	STDMETHODIMP SetPositions(__inout_opt LONGLONG *pCurrent,
-				  DWORD CurrentFlags,
-				  __inout_opt LONGLONG *pStop, DWORD StopFlags);
+    STDMETHODIMP IsFormatSupported(const GUID * pFormat);
+    STDMETHODIMP QueryPreferredFormat(__out GUID *pFormat);
+    STDMETHODIMP SetTimeFormat(const GUID * pFormat);
+    STDMETHODIMP IsUsingTimeFormat(const GUID * pFormat);
+    STDMETHODIMP GetTimeFormat(__out GUID *pFormat);
+    STDMETHODIMP GetDuration(__out LONGLONG *pDuration);
+    STDMETHODIMP GetStopPosition(__out LONGLONG *pStop);
+    STDMETHODIMP GetCurrentPosition(__out LONGLONG *pCurrent);
+    STDMETHODIMP GetCapabilities( __out DWORD * pCapabilities );
+    STDMETHODIMP CheckCapabilities( __inout DWORD * pCapabilities );
+    STDMETHODIMP ConvertTimeFormat( __out LONGLONG * pTarget, 
+                                    __in_opt const GUID * pTargetFormat,
+                                    LONGLONG Source, 
+                                    __in_opt const GUID * pSourceFormat );
 
-	STDMETHODIMP GetPositions(__out_opt LONGLONG *pCurrent,
-				  __out_opt LONGLONG *pStop);
+    STDMETHODIMP SetPositions( __inout_opt LONGLONG * pCurrent,  DWORD CurrentFlags
+			     , __inout_opt LONGLONG * pStop,  DWORD StopFlags );
 
-	STDMETHODIMP GetAvailable(__out_opt LONGLONG *pEarliest,
-				  __out_opt LONGLONG *pLatest);
-	STDMETHODIMP SetRate(double dRate);
-	STDMETHODIMP GetRate(__out double *pdRate);
-	STDMETHODIMP GetPreroll(__out LONGLONG *pPreroll);
+    STDMETHODIMP GetPositions( __out_opt LONGLONG * pCurrent, __out_opt LONGLONG * pStop );
+
+    STDMETHODIMP GetAvailable( __out_opt LONGLONG * pEarliest, __out_opt LONGLONG * pLatest );
+    STDMETHODIMP SetRate( double dRate);
+    STDMETHODIMP GetRate( __out double * pdRate);
+    STDMETHODIMP GetPreroll(__out LONGLONG *pPreroll);
+
 
 protected:
-	// ctor
-	CSourceSeeking(__in_opt LPCTSTR, __in_opt LPUNKNOWN, __inout HRESULT *,
-		       __in CCritSec *);
 
-	// we call this to notify changes. Override to handle them
-	virtual HRESULT ChangeStart() PURE;
-	virtual HRESULT ChangeStop() PURE;
-	virtual HRESULT ChangeRate() PURE;
+    // ctor
+    CSourceSeeking(__in_opt LPCTSTR, __in_opt LPUNKNOWN, __inout HRESULT*, __in CCritSec *);
 
-	CRefTime m_rtDuration; // length of stream
-	CRefTime m_rtStart;    // source will start here
-	CRefTime m_rtStop;     // source will stop here
-	double m_dRateSeeking;
+    // we call this to notify changes. Override to handle them
+    virtual HRESULT ChangeStart() PURE;
+    virtual HRESULT ChangeStop() PURE;
+    virtual HRESULT ChangeRate() PURE;
 
-	// seeking capabilities
-	DWORD m_dwSeekingCaps;
+    CRefTime m_rtDuration;      // length of stream
+    CRefTime m_rtStart;         // source will start here
+    CRefTime m_rtStop;          // source will stop here
+    double m_dRateSeeking;
 
-	CCritSec *m_pLock;
+    // seeking capabilities
+    DWORD m_dwSeekingCaps;
+
+    CCritSec * m_pLock;
 };
+
 
 // Base classes supporting Deferred commands.
 
@@ -551,12 +651,13 @@ class CCmdQueue;
 // take a copy of the params and store them. Release any allocated
 // memory in destructor
 
-class CDispParams : public DISPPARAMS {
+class CDispParams : public DISPPARAMS
+{
 public:
-	CDispParams(UINT nArgs, __in_ecount(nArgs) VARIANT *pArgs,
-		    __inout_opt HRESULT *phr = NULL);
-	~CDispParams();
+    CDispParams(UINT nArgs, __in_ecount(nArgs) VARIANT* pArgs, __inout_opt HRESULT *phr = NULL);
+    ~CDispParams();
 };
+
 
 // CDeferredCommand lifetime is controlled by refcounts. Caller of
 // InvokeAt.. gets a refcounted interface pointer, and the CCmdQueue
@@ -564,221 +665,259 @@ public:
 // us off the CCmdQueue and thus reduces the refcount by 1. Once taken
 // off the queue we cannot be put back on the queue.
 
-class CDeferredCommand : public CUnknown, public IDeferredCommand {
+class CDeferredCommand
+    : public CUnknown,
+      public IDeferredCommand
+{
 public:
-	CDeferredCommand(
-		__inout CCmdQueue *pQ,
-		__in_opt LPUNKNOWN pUnk, // aggregation outer unk
-		__inout HRESULT *phr,
-		__in LPUNKNOWN pUnkExecutor, // object that will execute this cmd
-		REFTIME time, __in GUID *iid, long dispidMethod, short wFlags,
-		long cArgs, __in_ecount(cArgs) VARIANT *pDispParams,
-		__out VARIANT *pvarResult, __out short *puArgErr, BOOL bStream);
 
-	DECLARE_IUNKNOWN
+    CDeferredCommand(
+        __inout CCmdQueue * pQ,
+        __in_opt LPUNKNOWN   pUnk,               // aggregation outer unk
+        __inout HRESULT *   phr,
+        __in LPUNKNOWN   pUnkExecutor,       // object that will execute this cmd
+        REFTIME     time,
+        __in GUID*       iid,
+        long        dispidMethod,
+        short       wFlags,
+        long        cArgs,
+        __in_ecount(cArgs) VARIANT*    pDispParams,
+        __out VARIANT*    pvarResult,
+        __out short*      puArgErr,
+        BOOL        bStream
+        );
 
-	// override this to publicise our interfaces
-	STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, __out void **ppv);
+    DECLARE_IUNKNOWN
 
-	// IDeferredCommand methods
-	STDMETHODIMP Cancel();
-	STDMETHODIMP Confidence(__out LONG *pConfidence);
-	STDMETHODIMP Postpone(REFTIME newtime);
-	STDMETHODIMP GetHResult(__out HRESULT *phrResult);
+    // override this to publicise our interfaces
+    STDMETHODIMP NonDelegatingQueryInterface(REFIID riid, __out void **ppv);
 
-	// other public methods
+    // IDeferredCommand methods
+    STDMETHODIMP Cancel();
+    STDMETHODIMP Confidence(
+                    __out LONG* pConfidence);
+    STDMETHODIMP Postpone(
+                    REFTIME newtime);
+    STDMETHODIMP GetHResult(
+                    __out HRESULT* phrResult);
 
-	HRESULT Invoke();
+    // other public methods
 
-	// access methods
+    HRESULT Invoke();
 
-	// returns TRUE if streamtime, FALSE if presentation time
-	BOOL IsStreamTime() { return m_bStream; };
+    // access methods
 
-	CRefTime GetTime() { return m_time; };
+    // returns TRUE if streamtime, FALSE if presentation time
+    BOOL IsStreamTime() {
+       return m_bStream;
+    };
 
-	REFIID GetIID() { return *m_iid; };
+    CRefTime GetTime() {
+        return m_time;
+    };
 
-	long GetMethod() { return m_dispidMethod; };
+    REFIID GetIID() {
+        return *m_iid;
+    };
 
-	short GetFlags() { return m_wFlags; };
+    long GetMethod() {
+        return m_dispidMethod;
+    };
 
-	DISPPARAMS *GetParams() { return &m_DispParams; };
+    short GetFlags() {
+        return m_wFlags;
+    };
 
-	VARIANT *GetResult() { return m_pvarResult; };
+    DISPPARAMS* GetParams() {
+        return &m_DispParams;
+    };
+
+    VARIANT* GetResult() {
+        return m_pvarResult;
+    };
 
 protected:
-	CCmdQueue *m_pQueue;
 
-	// pUnk for the interface that we will execute the command on
-	LPUNKNOWN m_pUnk;
+    CCmdQueue* m_pQueue;
 
-	// stored command data
-	REFERENCE_TIME m_time;
-	GUID *m_iid;
-	long m_dispidMethod;
-	short m_wFlags;
-	VARIANT *m_pvarResult;
-	BOOL m_bStream;
-	CDispParams m_DispParams;
-	DISPID m_DispId; //  For get and put
+    // pUnk for the interface that we will execute the command on
+    LPUNKNOWN   m_pUnk;
 
-	// we use this for ITypeInfo access
-	CBaseDispatch m_Dispatch;
+    // stored command data
+    REFERENCE_TIME     m_time;
+    GUID*       m_iid;
+    long        m_dispidMethod;
+    short       m_wFlags;
+    VARIANT*    m_pvarResult;
+    BOOL        m_bStream;
+    CDispParams m_DispParams;
+    DISPID      m_DispId;         //  For get and put
 
-	// save retval here
-	HRESULT m_hrResult;
+    // we use this for ITypeInfo access
+    CBaseDispatch   m_Dispatch;
+
+    // save retval here
+    HRESULT     m_hrResult;
 };
+
 
 // a list of CDeferredCommand objects. this is a base class providing
 // the basics of access to the list. If you want to use CDeferredCommand
 // objects then your queue needs to be derived from this class.
 
-class AM_NOVTABLE CCmdQueue {
+class AM_NOVTABLE CCmdQueue
+{
 public:
-	CCmdQueue(__inout_opt HRESULT *phr = NULL);
-	virtual ~CCmdQueue();
+    CCmdQueue(__inout_opt HRESULT *phr = NULL);
+    virtual ~CCmdQueue();
 
-	// returns a new CDeferredCommand object that will be initialised with
-	// the parameters and will be added to the queue during construction.
-	// returns S_OK if successfully created otherwise an error and
-	// no object has been queued.
-	virtual HRESULT New(__out CDeferredCommand **ppCmd, __in LPUNKNOWN pUnk,
-			    REFTIME time, __in GUID *iid, long dispidMethod,
-			    short wFlags, long cArgs,
-			    __in_ecount(cArgs) VARIANT *pDispParams,
-			    __out VARIANT *pvarResult, __out short *puArgErr,
-			    BOOL bStream);
+    // returns a new CDeferredCommand object that will be initialised with
+    // the parameters and will be added to the queue during construction.
+    // returns S_OK if successfully created otherwise an error and
+    // no object has been queued.
+    virtual HRESULT  New(
+        __out CDeferredCommand **ppCmd,
+        __in LPUNKNOWN   pUnk,
+        REFTIME     time,
+        __in GUID*       iid,
+        long        dispidMethod,
+        short       wFlags,
+        long        cArgs,
+        __in_ecount(cArgs) VARIANT*    pDispParams,
+        __out VARIANT*    pvarResult,
+        __out short*      puArgErr,
+        BOOL        bStream
+    );
 
-	// called by the CDeferredCommand object to add and remove itself
-	// from the queue
-	virtual HRESULT Insert(__in CDeferredCommand *pCmd);
-	virtual HRESULT Remove(__in CDeferredCommand *pCmd);
+    // called by the CDeferredCommand object to add and remove itself
+    // from the queue
+    virtual HRESULT Insert(__in CDeferredCommand* pCmd);
+    virtual HRESULT Remove(__in CDeferredCommand* pCmd);
 
-	// Command-Due Checking
-	//
-	// There are two schemes of synchronisation: coarse and accurate. In
-	// coarse mode, you wait till the time arrives and then execute the cmd.
-	// In accurate mode, you wait until you are processing the sample that
-	// will appear at the time, and then execute the command. It's up to the
-	// filter which one it will implement. The filtergraph will always
-	// implement coarse mode for commands queued at the filtergraph.
-	//
-	// If you want coarse sync, you probably want to wait until there is a
-	// command due, and then execute it. You can do this by calling
-	// GetDueCommand. If you have several things to wait for, get the
-	// event handle from GetDueHandle() and when this is signalled then call
-	// GetDueCommand. Stream time will only advance between calls to Run and
-	// EndRun. Note that to avoid an extra thread there is no guarantee that
-	// if the handle is set there will be a command ready. Each time the
-	// event is signalled, call GetDueCommand (probably with a 0 timeout);
-	// This may return E_ABORT.
-	//
-	// If you want accurate sync, you must call GetCommandDueFor, passing
-	// as a parameter the stream time of the samples you are about to process.
-	// This will return:
-	//   -- a stream-time command due at or before that stream time
-	//   -- a presentation-time command due at or before the
-	//      time that stream time will be presented (only between Run
-	//      and EndRun calls, since outside of this, the mapping from
-	//      stream time to presentation time is not known.
-	//   -- any presentation-time command due now.
-	// This means that if you want accurate synchronisation on samples that
-	// might be processed during Paused mode, you need to use
-	// stream-time commands.
-	//
-	// In all cases, commands remain queued until Invoked or Cancelled. The
-	// setting and resetting of the event handle is managed entirely by this
-	// queue object.
+    // Command-Due Checking
+    //
+    // There are two schemes of synchronisation: coarse and accurate. In
+    // coarse mode, you wait till the time arrives and then execute the cmd.
+    // In accurate mode, you wait until you are processing the sample that
+    // will appear at the time, and then execute the command. It's up to the
+    // filter which one it will implement. The filtergraph will always
+    // implement coarse mode for commands queued at the filtergraph.
+    //
+    // If you want coarse sync, you probably want to wait until there is a
+    // command due, and then execute it. You can do this by calling
+    // GetDueCommand. If you have several things to wait for, get the
+    // event handle from GetDueHandle() and when this is signalled then call
+    // GetDueCommand. Stream time will only advance between calls to Run and
+    // EndRun. Note that to avoid an extra thread there is no guarantee that
+    // if the handle is set there will be a command ready. Each time the
+    // event is signalled, call GetDueCommand (probably with a 0 timeout);
+    // This may return E_ABORT.
+    //
+    // If you want accurate sync, you must call GetCommandDueFor, passing
+    // as a parameter the stream time of the samples you are about to process.
+    // This will return:
+    //   -- a stream-time command due at or before that stream time
+    //   -- a presentation-time command due at or before the
+    //      time that stream time will be presented (only between Run
+    //      and EndRun calls, since outside of this, the mapping from
+    //      stream time to presentation time is not known.
+    //   -- any presentation-time command due now.
+    // This means that if you want accurate synchronisation on samples that
+    // might be processed during Paused mode, you need to use
+    // stream-time commands.
+    //
+    // In all cases, commands remain queued until Invoked or Cancelled. The
+    // setting and resetting of the event handle is managed entirely by this
+    // queue object.
 
-	// set the clock used for timing
-	virtual HRESULT SetSyncSource(__in_opt IReferenceClock *);
+    // set the clock used for timing
+    virtual HRESULT SetSyncSource(__in_opt IReferenceClock*);
 
-	// switch to run mode. Streamtime to Presentation time mapping known.
-	virtual HRESULT Run(REFERENCE_TIME tStreamTimeOffset);
+    // switch to run mode. Streamtime to Presentation time mapping known.
+    virtual HRESULT Run(REFERENCE_TIME tStreamTimeOffset);
 
-	// switch to Stopped or Paused mode. Time mapping not known.
-	virtual HRESULT EndRun();
+    // switch to Stopped or Paused mode. Time mapping not known.
+    virtual HRESULT EndRun();
 
-	// return a pointer to the next due command. Blocks for msTimeout
-	// milliseconds until there is a due command.
-	// Stream-time commands will only become due between Run and Endrun calls.
-	// The command remains queued until invoked or cancelled.
-	// Returns E_ABORT if timeout occurs, otherwise S_OK (or other error).
-	// Returns an AddRef-ed object
-	virtual HRESULT GetDueCommand(__out CDeferredCommand **ppCmd,
-				      long msTimeout);
+    // return a pointer to the next due command. Blocks for msTimeout
+    // milliseconds until there is a due command.
+    // Stream-time commands will only become due between Run and Endrun calls.
+    // The command remains queued until invoked or cancelled.
+    // Returns E_ABORT if timeout occurs, otherwise S_OK (or other error).
+    // Returns an AddRef-ed object
+    virtual HRESULT GetDueCommand(__out CDeferredCommand ** ppCmd, long msTimeout);
 
-	// return the event handle that will be signalled whenever
-	// there are deferred commands due for execution (when GetDueCommand
-	// will not block).
-	HANDLE GetDueHandle() { return HANDLE(m_evDue); };
+    // return the event handle that will be signalled whenever
+    // there are deferred commands due for execution (when GetDueCommand
+    // will not block).
+    HANDLE GetDueHandle() {
+        return HANDLE(m_evDue);
+    };
 
-	// return a pointer to a command that will be due for a given time.
-	// Pass in a stream time here. The stream time offset will be passed
-	// in via the Run method.
-	// Commands remain queued until invoked or cancelled.
-	// This method will not block. It will report VFW_E_NOT_FOUND if there
-	// are no commands due yet.
-	// Returns an AddRef-ed object
-	virtual HRESULT GetCommandDueFor(REFERENCE_TIME tStream,
-					 __out CDeferredCommand **ppCmd);
+    // return a pointer to a command that will be due for a given time.
+    // Pass in a stream time here. The stream time offset will be passed
+    // in via the Run method.
+    // Commands remain queued until invoked or cancelled.
+    // This method will not block. It will report VFW_E_NOT_FOUND if there
+    // are no commands due yet.
+    // Returns an AddRef-ed object
+    virtual HRESULT GetCommandDueFor(REFERENCE_TIME tStream, __out CDeferredCommand**ppCmd);
 
-	// check if a given time is due (TRUE if it is due yet)
-	BOOL CheckTime(CRefTime time, BOOL bStream)
-	{
+    // check if a given time is due (TRUE if it is due yet)
+    BOOL CheckTime(CRefTime time, BOOL bStream) {
 
-		// if no clock, nothing is due!
-		if (!m_pClock) {
-			return FALSE;
-		}
+        // if no clock, nothing is due!
+        if (!m_pClock) {
+            return FALSE;
+        }
 
-		// stream time
-		if (bStream) {
+        // stream time
+        if (bStream) {
 
-			// not valid if not running
-			if (!m_bRunning) {
-				return FALSE;
-			}
-			// add on known stream time offset to get presentation time
-			time += m_StreamTimeOffset;
-		}
+            // not valid if not running
+            if (!m_bRunning) {
+                return FALSE;
+            }
+            // add on known stream time offset to get presentation time
+            time += m_StreamTimeOffset;
+        }
 
-		CRefTime Now;
-		m_pClock->GetTime((REFERENCE_TIME *)&Now);
-		return (time <= Now);
-	};
+        CRefTime Now;
+        m_pClock->GetTime((REFERENCE_TIME*)&Now);
+        return (time <= Now);
+    };
 
 protected:
-	// protect access to lists etc
-	CCritSec m_Lock;
 
-	// commands queued in presentation time are stored here
-	CGenericList<CDeferredCommand> m_listPresentation;
+    // protect access to lists etc
+    CCritSec m_Lock;
 
-	// commands queued in stream time are stored here
-	CGenericList<CDeferredCommand> m_listStream;
+    // commands queued in presentation time are stored here
+    CGenericList<CDeferredCommand> m_listPresentation;
 
-	// set when any commands are due
-	CAMEvent m_evDue;
+    // commands queued in stream time are stored here
+    CGenericList<CDeferredCommand> m_listStream;
 
-	// creates an advise for the earliest time required, if any
-	void SetTimeAdvise(void);
+    // set when any commands are due
+    CAMEvent m_evDue;
 
-	// advise id from reference clock (0 if no outstanding advise)
-	DWORD_PTR m_dwAdvise;
+    // creates an advise for the earliest time required, if any
+    void SetTimeAdvise(void);
 
-	// advise time is for this presentation time
-	CRefTime m_tCurrentAdvise;
+    // advise id from reference clock (0 if no outstanding advise)
+    DWORD_PTR m_dwAdvise;
 
-	// the reference clock we are using (addrefed)
-	IReferenceClock *m_pClock;
+    // advise time is for this presentation time
+    CRefTime m_tCurrentAdvise;
 
-	// true when running
-	BOOL m_bRunning;
+    // the reference clock we are using (addrefed)
+    IReferenceClock* m_pClock;
 
-	// contains stream time offset when m_bRunning is true
-	CRefTime m_StreamTimeOffset;
+    // true when running
+    BOOL m_bRunning;
+
+    // contains stream time offset when m_bRunning is true
+    CRefTime m_StreamTimeOffset;
 };
 
 #endif // __CTLUTIL__

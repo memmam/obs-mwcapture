@@ -77,7 +77,7 @@ void avdevice_register_all(void);
  * if d is non-NULL, returns the next registered input audio/video device after d
  * or NULL if d is the last one.
  */
-AVInputFormat *av_input_audio_device_next(AVInputFormat *d);
+AVInputFormat *av_input_audio_device_next(AVInputFormat  *d);
 
 /**
  * Video input devices iterator.
@@ -86,7 +86,7 @@ AVInputFormat *av_input_audio_device_next(AVInputFormat *d);
  * if d is non-NULL, returns the next registered input audio/video device after d
  * or NULL if d is the last one.
  */
-AVInputFormat *av_input_video_device_next(AVInputFormat *d);
+AVInputFormat *av_input_video_device_next(AVInputFormat  *d);
 
 /**
  * Audio output devices iterator.
@@ -107,22 +107,22 @@ AVOutputFormat *av_output_audio_device_next(AVOutputFormat *d);
 AVOutputFormat *av_output_video_device_next(AVOutputFormat *d);
 
 typedef struct AVDeviceRect {
-	int x;      /**< x coordinate of top left corner */
-	int y;      /**< y coordinate of top left corner */
-	int width;  /**< width */
-	int height; /**< height */
+    int x;      /**< x coordinate of top left corner */
+    int y;      /**< y coordinate of top left corner */
+    int width;  /**< width */
+    int height; /**< height */
 } AVDeviceRect;
 
 /**
  * Message types used by avdevice_app_to_dev_control_message().
  */
 enum AVAppToDevMessageType {
-	/**
+    /**
      * Dummy message.
      */
-	AV_APP_TO_DEV_NONE = MKBETAG('N', 'O', 'N', 'E'),
+    AV_APP_TO_DEV_NONE = MKBETAG('N','O','N','E'),
 
-	/**
+    /**
      * Window size change message.
      *
      * Message is sent to the device every time the application changes the size
@@ -131,9 +131,9 @@ enum AVAppToDevMessageType {
      *
      * data: AVDeviceRect: new window size.
      */
-	AV_APP_TO_DEV_WINDOW_SIZE = MKBETAG('G', 'E', 'O', 'M'),
+    AV_APP_TO_DEV_WINDOW_SIZE = MKBETAG('G','E','O','M'),
 
-	/**
+    /**
      * Repaint request message.
      *
      * Message is sent to the device when window has to be repainted.
@@ -141,9 +141,9 @@ enum AVAppToDevMessageType {
      * data: AVDeviceRect: area required to be repainted.
      *       NULL: whole area is required to be repainted.
      */
-	AV_APP_TO_DEV_WINDOW_REPAINT = MKBETAG('R', 'E', 'P', 'A'),
+    AV_APP_TO_DEV_WINDOW_REPAINT = MKBETAG('R','E','P','A'),
 
-	/**
+    /**
      * Request pause/play.
      *
      * Application requests pause/unpause playback.
@@ -152,11 +152,11 @@ enum AVAppToDevMessageType {
      *
      * data: NULL
      */
-	AV_APP_TO_DEV_PAUSE = MKBETAG('P', 'A', 'U', ' '),
-	AV_APP_TO_DEV_PLAY = MKBETAG('P', 'L', 'A', 'Y'),
-	AV_APP_TO_DEV_TOGGLE_PAUSE = MKBETAG('P', 'A', 'U', 'T'),
+    AV_APP_TO_DEV_PAUSE        = MKBETAG('P', 'A', 'U', ' '),
+    AV_APP_TO_DEV_PLAY         = MKBETAG('P', 'L', 'A', 'Y'),
+    AV_APP_TO_DEV_TOGGLE_PAUSE = MKBETAG('P', 'A', 'U', 'T'),
 
-	/**
+    /**
      * Volume control message.
      *
      * Set volume level. It may be device-dependent if volume
@@ -165,9 +165,9 @@ enum AVAppToDevMessageType {
      *
      * data: double: new volume with range of 0.0 - 1.0.
      */
-	AV_APP_TO_DEV_SET_VOLUME = MKBETAG('S', 'V', 'O', 'L'),
+    AV_APP_TO_DEV_SET_VOLUME = MKBETAG('S', 'V', 'O', 'L'),
 
-	/**
+    /**
      * Mute control messages.
      *
      * Change mute state. It may be device-dependent if mute status
@@ -176,11 +176,11 @@ enum AVAppToDevMessageType {
      *
      * data: NULL.
      */
-	AV_APP_TO_DEV_MUTE = MKBETAG(' ', 'M', 'U', 'T'),
-	AV_APP_TO_DEV_UNMUTE = MKBETAG('U', 'M', 'U', 'T'),
-	AV_APP_TO_DEV_TOGGLE_MUTE = MKBETAG('T', 'M', 'U', 'T'),
+    AV_APP_TO_DEV_MUTE        = MKBETAG(' ', 'M', 'U', 'T'),
+    AV_APP_TO_DEV_UNMUTE      = MKBETAG('U', 'M', 'U', 'T'),
+    AV_APP_TO_DEV_TOGGLE_MUTE = MKBETAG('T', 'M', 'U', 'T'),
 
-	/**
+    /**
      * Get volume/mute messages.
      *
      * Force the device to send AV_DEV_TO_APP_VOLUME_LEVEL_CHANGED or
@@ -188,20 +188,20 @@ enum AVAppToDevMessageType {
      *
      * data: NULL.
      */
-	AV_APP_TO_DEV_GET_VOLUME = MKBETAG('G', 'V', 'O', 'L'),
-	AV_APP_TO_DEV_GET_MUTE = MKBETAG('G', 'M', 'U', 'T'),
+    AV_APP_TO_DEV_GET_VOLUME = MKBETAG('G', 'V', 'O', 'L'),
+    AV_APP_TO_DEV_GET_MUTE   = MKBETAG('G', 'M', 'U', 'T'),
 };
 
 /**
  * Message types used by avdevice_dev_to_app_control_message().
  */
 enum AVDevToAppMessageType {
-	/**
+    /**
      * Dummy message.
      */
-	AV_DEV_TO_APP_NONE = MKBETAG('N', 'O', 'N', 'E'),
+    AV_DEV_TO_APP_NONE = MKBETAG('N','O','N','E'),
 
-	/**
+    /**
      * Create window buffer message.
      *
      * Device requests to create a window buffer. Exact meaning is device-
@@ -215,9 +215,9 @@ enum AVDevToAppMessageType {
      * data: AVDeviceRect: preferred size of the window buffer.
      *       NULL: no preferred size of the window buffer.
      */
-	AV_DEV_TO_APP_CREATE_WINDOW_BUFFER = MKBETAG('B', 'C', 'R', 'E'),
+    AV_DEV_TO_APP_CREATE_WINDOW_BUFFER = MKBETAG('B','C','R','E'),
 
-	/**
+    /**
      * Prepare window buffer message.
      *
      * Device requests to prepare a window buffer for rendering.
@@ -226,9 +226,9 @@ enum AVDevToAppMessageType {
      *
      * data: NULL.
      */
-	AV_DEV_TO_APP_PREPARE_WINDOW_BUFFER = MKBETAG('B', 'P', 'R', 'E'),
+    AV_DEV_TO_APP_PREPARE_WINDOW_BUFFER = MKBETAG('B','P','R','E'),
 
-	/**
+    /**
      * Display window buffer message.
      *
      * Device requests to display a window buffer.
@@ -237,9 +237,9 @@ enum AVDevToAppMessageType {
      *
      * data: NULL.
      */
-	AV_DEV_TO_APP_DISPLAY_WINDOW_BUFFER = MKBETAG('B', 'D', 'I', 'S'),
+    AV_DEV_TO_APP_DISPLAY_WINDOW_BUFFER = MKBETAG('B','D','I','S'),
 
-	/**
+    /**
      * Destroy window buffer message.
      *
      * Device requests to destroy a window buffer.
@@ -248,19 +248,19 @@ enum AVDevToAppMessageType {
      *
      * data: NULL.
      */
-	AV_DEV_TO_APP_DESTROY_WINDOW_BUFFER = MKBETAG('B', 'D', 'E', 'S'),
+    AV_DEV_TO_APP_DESTROY_WINDOW_BUFFER = MKBETAG('B','D','E','S'),
 
-	/**
+    /**
      * Buffer fullness status messages.
      *
      * Device signals buffer overflow/underflow.
      *
      * data: NULL.
      */
-	AV_DEV_TO_APP_BUFFER_OVERFLOW = MKBETAG('B', 'O', 'F', 'L'),
-	AV_DEV_TO_APP_BUFFER_UNDERFLOW = MKBETAG('B', 'U', 'F', 'L'),
+    AV_DEV_TO_APP_BUFFER_OVERFLOW = MKBETAG('B','O','F','L'),
+    AV_DEV_TO_APP_BUFFER_UNDERFLOW = MKBETAG('B','U','F','L'),
 
-	/**
+    /**
      * Buffer readable/writable.
      *
      * Device informs that buffer is readable/writable.
@@ -271,26 +271,26 @@ enum AVDevToAppMessageType {
      * data: int64_t: amount of bytes available to read/write.
      *       NULL: amount of bytes available to read/write is not known.
      */
-	AV_DEV_TO_APP_BUFFER_READABLE = MKBETAG('B', 'R', 'D', ' '),
-	AV_DEV_TO_APP_BUFFER_WRITABLE = MKBETAG('B', 'W', 'R', ' '),
+    AV_DEV_TO_APP_BUFFER_READABLE = MKBETAG('B','R','D',' '),
+    AV_DEV_TO_APP_BUFFER_WRITABLE = MKBETAG('B','W','R',' '),
 
-	/**
+    /**
      * Mute state change message.
      *
      * Device informs that mute state has changed.
      *
      * data: int: 0 for not muted state, non-zero for muted state.
      */
-	AV_DEV_TO_APP_MUTE_STATE_CHANGED = MKBETAG('C', 'M', 'U', 'T'),
+    AV_DEV_TO_APP_MUTE_STATE_CHANGED = MKBETAG('C','M','U','T'),
 
-	/**
+    /**
      * Volume level change message.
      *
      * Device informs that volume level has changed.
      *
      * data: double: new volume with range of 0.0 - 1.0.
      */
-	AV_DEV_TO_APP_VOLUME_LEVEL_CHANGED = MKBETAG('C', 'V', 'O', 'L'),
+    AV_DEV_TO_APP_VOLUME_LEVEL_CHANGED = MKBETAG('C','V','O','L'),
 };
 
 /**
@@ -304,8 +304,8 @@ enum AVDevToAppMessageType {
  *         AVERROR(ENOSYS) when device doesn't implement handler of the message.
  */
 int avdevice_app_to_dev_control_message(struct AVFormatContext *s,
-					enum AVAppToDevMessageType type,
-					void *data, size_t data_size);
+                                        enum AVAppToDevMessageType type,
+                                        void *data, size_t data_size);
 
 /**
  * Send control message from device to application.
@@ -318,8 +318,8 @@ int avdevice_app_to_dev_control_message(struct AVFormatContext *s,
  *         AVERROR(ENOSYS) when application doesn't implement handler of the message.
  */
 int avdevice_dev_to_app_control_message(struct AVFormatContext *s,
-					enum AVDevToAppMessageType type,
-					void *data, size_t data_size);
+                                        enum AVDevToAppMessageType type,
+                                        void *data, size_t data_size);
 
 /**
  * Following API allows user to probe device capabilities (supported codecs,
@@ -398,19 +398,19 @@ int avdevice_dev_to_app_control_message(struct AVFormatContext *s,
  * to implement capabilities probing API based on AVOption API. Should not be used directly.
  */
 typedef struct AVDeviceCapabilitiesQuery {
-	const AVClass *av_class;
-	AVFormatContext *device_context;
-	enum AVCodecID codec;
-	enum AVSampleFormat sample_format;
-	enum AVPixelFormat pixel_format;
-	int sample_rate;
-	int channels;
-	int64_t channel_layout;
-	int window_width;
-	int window_height;
-	int frame_width;
-	int frame_height;
-	AVRational fps;
+    const AVClass *av_class;
+    AVFormatContext *device_context;
+    enum AVCodecID codec;
+    enum AVSampleFormat sample_format;
+    enum AVPixelFormat pixel_format;
+    int sample_rate;
+    int channels;
+    int64_t channel_layout;
+    int window_width;
+    int window_height;
+    int frame_width;
+    int frame_height;
+    AVRational fps;
 } AVDeviceCapabilitiesQuery;
 
 /**
@@ -435,9 +435,8 @@ extern const AVOption av_device_capabilities[];
  *
  * @return >= 0 on success, negative otherwise.
  */
-int avdevice_capabilities_create(AVDeviceCapabilitiesQuery **caps,
-				 AVFormatContext *s,
-				 AVDictionary **device_options);
+int avdevice_capabilities_create(AVDeviceCapabilitiesQuery **caps, AVFormatContext *s,
+                                 AVDictionary **device_options);
 
 /**
  * Free resources created by avdevice_capabilities_create()
@@ -445,24 +444,23 @@ int avdevice_capabilities_create(AVDeviceCapabilitiesQuery **caps,
  * @param caps Device capabilities data to be freed.
  * @param s    Context of the device.
  */
-void avdevice_capabilities_free(AVDeviceCapabilitiesQuery **caps,
-				AVFormatContext *s);
+void avdevice_capabilities_free(AVDeviceCapabilitiesQuery **caps, AVFormatContext *s);
 
 /**
  * Structure describes basic parameters of the device.
  */
 typedef struct AVDeviceInfo {
-	char *device_name;        /**< device name, format depends on device */
-	char *device_description; /**< human friendly name */
+    char *device_name;                   /**< device name, format depends on device */
+    char *device_description;            /**< human friendly name */
 } AVDeviceInfo;
 
 /**
  * List of devices.
  */
 typedef struct AVDeviceInfoList {
-	AVDeviceInfo **devices; /**< list of autodetected devices */
-	int nb_devices;         /**< number of autodetected devices */
-	int default_device; /**< index of default device or -1 if no default */
+    AVDeviceInfo **devices;              /**< list of autodetected devices */
+    int nb_devices;                      /**< number of autodetected devices */
+    int default_device;                  /**< index of default device or -1 if no default */
 } AVDeviceInfoList;
 
 /**
@@ -478,8 +476,7 @@ typedef struct AVDeviceInfoList {
  * @param[out] device_list list of autodetected devices.
  * @return count of autodetected devices, negative on error.
  */
-int avdevice_list_devices(struct AVFormatContext *s,
-			  AVDeviceInfoList **device_list);
+int avdevice_list_devices(struct AVFormatContext *s, AVDeviceInfoList **device_list);
 
 /**
  * Convenient function to free result of avdevice_list_devices().
@@ -505,14 +502,10 @@ void avdevice_free_list_devices(AVDeviceInfoList **device_list);
  * @return count of autodetected devices, negative on error.
  * @note device argument takes precedence over device_name when both are set.
  */
-int avdevice_list_input_sources(struct AVInputFormat *device,
-				const char *device_name,
-				AVDictionary *device_options,
-				AVDeviceInfoList **device_list);
-int avdevice_list_output_sinks(struct AVOutputFormat *device,
-			       const char *device_name,
-			       AVDictionary *device_options,
-			       AVDeviceInfoList **device_list);
+int avdevice_list_input_sources(struct AVInputFormat *device, const char *device_name,
+                                AVDictionary *device_options, AVDeviceInfoList **device_list);
+int avdevice_list_output_sinks(struct AVOutputFormat *device, const char *device_name,
+                               AVDictionary *device_options, AVDeviceInfoList **device_list);
 
 /**
  * @}

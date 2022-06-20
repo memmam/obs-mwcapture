@@ -38,7 +38,8 @@
 
 #ifdef __cplusplus
 
-extern "C" {
+extern "C"
+{
 #endif
 
 /**
@@ -47,7 +48,7 @@ extern "C" {
  *        Creats CC708 decoder
  * @return If the function call succeeds, the CC708 decoder handle is returned; otherwise, the null value is returned.
  */
-LIBMWCCDECODER_API
+LIBMWCCDECODER_API 
 mw_cc708_decoder_t *MWCreateCC708Decoder();
 
 /**
@@ -56,7 +57,7 @@ mw_cc708_decoder_t *MWCreateCC708Decoder();
  *        Unregisters CC708 decoder
  * @param[in] pDecoder  Decoder pointer
  */
-LIBMWCCDECODER_API
+LIBMWCCDECODER_API 
 void MWDestoryCC708Decoder(mw_cc708_decoder_t *pDecoder);
 
 /**
@@ -76,10 +77,8 @@ void MWResetCC708Decoder(mw_cc708_decoder_t *pDecoder);
  * @param[in] pHandle   Callback functions
  * @param[in] pUserdata Callback object
  */
-LIBMWCCDECODER_API
-void MWSetCC708DecoderCallback(mw_cc708_decoder_t *pDecoder,
-			       void (*pHandle)(int service, void *userdata),
-			       void *pUserdata);
+LIBMWCCDECODER_API 
+void MWSetCC708DecoderCallback(mw_cc708_decoder_t *pDecoder, void(*pHandle)(int service, void *userdata), void *pUserdata);
 
 /**
  * @ingroup group_cc_functions_decoder
@@ -101,8 +100,7 @@ void MWSetCC708DecodeType(mw_cc708_decoder_t *pDecoder, bool b608, bool b708);
  * @return Returns #MW_CC_NO_ERROR 
  */
 LIBMWCCDECODER_API
-MW_CC_RESULT MWEnableOutputChannel(mw_cc708_decoder_t *pDecoder,
-				   mw_cc708_channel_t mcc);
+MW_CC_RESULT MWEnableOutputChannel(mw_cc708_decoder_t *pDecoder, mw_cc708_channel_t mcc);
 
 /**
  * @ingroup group_cc_functions_decoder
@@ -114,8 +112,7 @@ MW_CC_RESULT MWEnableOutputChannel(mw_cc708_decoder_t *pDecoder,
  * @return Returns #MW_CC_NO_ERROR 
  */
 LIBMWCCDECODER_API
-MW_CC_RESULT MWEnableOutputChannels(mw_cc708_decoder_t *pDecoder,
-				    mw_cc708_channel_t *mcc, int array_num);
+MW_CC_RESULT MWEnableOutputChannels(mw_cc708_decoder_t *pDecoder, mw_cc708_channel_t *mcc, int array_num);
 
 /**
  * @ingroup group_cc_functions_decoder
@@ -126,8 +123,7 @@ MW_CC_RESULT MWEnableOutputChannels(mw_cc708_decoder_t *pDecoder,
  * @return Returns #MW_CC_NO_ERROR 
  */
 LIBMWCCDECODER_API
-MW_CC_RESULT MWDisableOutputChannel(mw_cc708_decoder_t *pDecoder,
-				    mw_cc708_channel_t mcc);
+MW_CC_RESULT MWDisableOutputChannel(mw_cc708_decoder_t *pDecoder, mw_cc708_channel_t mcc);
 
 /**
  * @ingroup group_cc_functions_decoder
@@ -139,8 +135,7 @@ MW_CC_RESULT MWDisableOutputChannel(mw_cc708_decoder_t *pDecoder,
  * @return Returns #MW_CC_NO_ERROR 
  */
 LIBMWCCDECODER_API
-MW_CC_RESULT MWDisableOutputChannels(mw_cc708_decoder_t *pDecoder,
-				     mw_cc708_channel_t *mcc, int array_num);
+MW_CC_RESULT MWDisableOutputChannels(mw_cc708_decoder_t *pDecoder, mw_cc708_channel_t *mcc,int array_num);
 
 /**
  * @ingroup group_cc_functions_decoder
@@ -152,8 +147,7 @@ MW_CC_RESULT MWDisableOutputChannels(mw_cc708_decoder_t *pDecoder,
  * @return Returns #MW_CC_NO_ERROR 
  */
 LIBMWCCDECODER_API
-MW_CC_RESULT MWDecodeCC608(mw_cc708_decoder_t *pDecoder,
-			   const unsigned char *pData, int nDatalength);
+MW_CC_RESULT MWDecodeCC608(mw_cc708_decoder_t *pDecoder, const unsigned char *pData, int nDatalength);
 
 /**
  * @ingroup group_cc_functions_decoder
@@ -165,8 +159,7 @@ MW_CC_RESULT MWDecodeCC608(mw_cc708_decoder_t *pDecoder,
  * @return Returns #MW_CC_NO_ERROR 
  */
 LIBMWCCDECODER_API
-MW_CC_RESULT MWDecodeCC708(mw_cc708_decoder_t *pDecoder,
-			   const unsigned char *pData, int nDatalength);
+MW_CC_RESULT MWDecodeCC708(mw_cc708_decoder_t *pDecoder, const unsigned char *pData, int nDatalength);
 
 #ifdef __cplusplus
 }

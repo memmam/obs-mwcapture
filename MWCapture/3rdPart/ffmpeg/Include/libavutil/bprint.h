@@ -31,15 +31,12 @@
  * This helps ensuring binary compatibility with future versions.
  */
 
-#define FF_PAD_STRUCTURE(name, size, ...)                                   \
-	struct ff_pad_helper_##name {                                       \
-		__VA_ARGS__                                                 \
-	};                                                                  \
-	typedef struct name {                                               \
-		__VA_ARGS__                                                 \
-		char reserved_padding[size -                                \
-				      sizeof(struct ff_pad_helper_##name)]; \
-	} name;
+#define FF_PAD_STRUCTURE(name, size, ...) \
+struct ff_pad_helper_##name { __VA_ARGS__ }; \
+typedef struct name { \
+    __VA_ARGS__ \
+    char reserved_padding[size - sizeof(struct ff_pad_helper_##name)]; \
+} name;
 
 /**
  * Buffer to print data progressively
@@ -82,18 +79,20 @@
  * such as the current paragraph.
  */
 
-FF_PAD_STRUCTURE(AVBPrint, 1024, char *str; /**< string so far */
-		 unsigned len;              /**< length so far */
-		 unsigned size;             /**< allocated memory */
-		 unsigned size_max;         /**< maximum allocated memory */
-		 char reserved_internal_buffer[1];)
+FF_PAD_STRUCTURE(AVBPrint, 1024,
+    char *str;         /**< string so far */
+    unsigned len;      /**< length so far */
+    unsigned size;     /**< allocated memory */
+    unsigned size_max; /**< maximum allocated memory */
+    char reserved_internal_buffer[1];
+)
 
 /**
  * Convenience macros for special values for av_bprint_init() size_max
  * parameter.
  */
-#define AV_BPRINT_SIZE_UNLIMITED ((unsigned)-1)
-#define AV_BPRINT_SIZE_AUTOMATIC 1
+#define AV_BPRINT_SIZE_UNLIMITED  ((unsigned)-1)
+#define AV_BPRINT_SIZE_AUTOMATIC  1
 #define AV_BPRINT_SIZE_COUNT_ONLY 0
 
 /**
@@ -169,8 +168,8 @@ void av_bprint_strftime(AVBPrint *buf, const char *fmt, const struct tm *tm);
  * @param[out] actual_size  size of the memory area after allocation;
  *                          can be larger or smaller than size
  */
-void av_bprint_get_buffer(AVBPrint *buf, unsigned size, unsigned char **mem,
-			  unsigned *actual_size);
+void av_bprint_get_buffer(AVBPrint *buf, unsigned size,
+                          unsigned char **mem, unsigned *actual_size);
 
 /**
  * Reset the string to "" but keep internal allocated data.
@@ -185,7 +184,7 @@ void av_bprint_clear(AVBPrint *buf);
  */
 static inline int av_bprint_is_complete(const AVBPrint *buf)
 {
-	return buf->len < buf->size;
+    return buf->len < buf->size;
 }
 
 /**
@@ -214,8 +213,7 @@ int av_bprint_finalize(AVBPrint *buf, char **ret_str);
  *                      notice.
  * @param flags         flags which control how to escape, see AV_ESCAPE_FLAG_* macros
  */
-void av_bprint_escape(AVBPrint *dstbuf, const char *src,
-		      const char *special_chars, enum AVEscapeMode mode,
-		      int flags);
+void av_bprint_escape(AVBPrint *dstbuf, const char *src, const char *special_chars,
+                      enum AVEscapeMode mode, int flags);
 
 #endif /* AVUTIL_BPRINT_H */

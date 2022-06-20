@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////
 // Button.h: Button control class.
-//
+// 
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
 // ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
@@ -12,13 +12,13 @@
 
 #pragma once
 
+
 // Simple text or bitmap button
-class Button : public Control {
+class Button : public Control
+{
 public:
-	HRESULT CreateText(HWND hParent, const TCHAR *szCaption, int nID,
-			   const Rect &rcBound);
-	HRESULT CreateBitmap(HWND hParent, int nImgID, int nID,
-			     const Rect &rcBound);
+	HRESULT CreateText(HWND hParent, const TCHAR *szCaption, int nID, const Rect& rcBound);
+	HRESULT CreateBitmap(HWND hParent, int nImgID, int nID, const Rect& rcBound);
 	BOOL SetImage(WORD nImgId);
 
 	void SetCheck(int nCheck)
@@ -28,6 +28,7 @@ public:
 
 	BOOL IsChecked()
 	{
-		return SendMessage(BM_GETCHECK, 0, 0) == BST_CHECKED;
+		return SendMessage(BM_GETCHECK, 0, 0 ) == BST_CHECKED;
 	}
 };
+

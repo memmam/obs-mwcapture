@@ -22,7 +22,7 @@
 #ifndef _CHARTMOUSELISTENER_H_
 #define _CHARTMOUSELISTENER_H_
 
-#pragma warning(disable : 4100)
+#pragma warning( disable : 4100 )
 
 //! Listener for mouse events occuring on the chart control.
 /**
@@ -30,15 +30,17 @@
 	mouse notifications. You can then register your class with the chart
 	control by calling RegisterMouseListener.
 **/
-class CChartMouseListener {
+class CChartMouseListener
+{
 public:
 	//! Constructor
-	CChartMouseListener() {}
+	CChartMouseListener()  { }
 	//! Destructor
-	virtual ~CChartMouseListener() {}
+	virtual ~CChartMouseListener()  { }
 
 	//! Enumeration listing the type of mouse events
-	enum MouseEvent {
+	enum MouseEvent
+	{
 		MouseMove,
 		LButtonUp,
 		LButtonDown,
@@ -55,7 +57,7 @@ public:
 		@param point
 			The screen point on which the event occured
 	**/
-	virtual void OnMouseEventTitle(MouseEvent mouseEvent, CPoint point) {}
+	virtual void OnMouseEventTitle(MouseEvent mouseEvent, CPoint point) { }
 	//! Virtual function to implement in order to be notified when an axis is clicked.
 	/**
 		@param mouseEvent
@@ -65,10 +67,8 @@ public:
 		@param pAxisClicked
 			The axis on which the event occured
 	**/
-	virtual void OnMouseEventAxis(MouseEvent mouseEvent, CPoint point,
-				      CChartAxis *pAxisClicked)
-	{
-	}
+	virtual void OnMouseEventAxis(MouseEvent mouseEvent, CPoint point, 
+									CChartAxis* pAxisClicked) { }
 	//! Virtual function to implement in order to be notified when the legend is clicked.
 	/**
 		@param mouseEvent
@@ -76,7 +76,7 @@ public:
 		@param point
 			The screen point on which the event occured
 	**/
-	virtual void OnMouseEventLegend(MouseEvent mouseEvent, CPoint point) {}
+	virtual void OnMouseEventLegend(MouseEvent mouseEvent, CPoint point) { }
 	//! Virtual function to implement in order to be notified when the plotting area is clicked.
 	/**
 		@param mouseEvent
@@ -84,9 +84,7 @@ public:
 		@param point
 			The screen point on which the event occured
 	**/
-	virtual void OnMouseEventPlotArea(MouseEvent mouseEvent, CPoint point)
-	{
-	}
+	virtual void OnMouseEventPlotArea(MouseEvent mouseEvent, CPoint point) { }
 };
 
-#endif // _CHARTMOUSELISTENER_H_
+#endif  // _CHARTMOUSELISTENER_H_

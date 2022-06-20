@@ -38,15 +38,22 @@ class CChartSerie;
 	object is retrieved	by calling the GetLegend() function on the 
 	CChartCtrl class. 
 **/
-class CChartLegend {
+class CChartLegend  
+{
 	friend CChartCtrl;
 
 public:
 	//! Sets the font used to display the series names.
-	void SetFont(int iPointSize, const TChartString &strFaceName);
+	void SetFont(int iPointSize, const TChartString& strFaceName);
 
 	//! Enumeration specifying on which side of the control the legend is docked.
-	enum DockSide { dsDockRight, dsDockLeft, dsDockTop, dsDockBottom };
+	enum DockSide
+	{
+		dsDockRight,
+		dsDockLeft,
+		dsDockTop,
+		dsDockBottom
+	};
 
 	//! Dock the legend on a specific side of the control. Default is right.
 	void DockLegend(DockSide dsSide);
@@ -63,7 +70,7 @@ public:
 	void UndockLegend(int iLeftPos, int iTopPos);
 
 	//! Sets the background of the legend transparent.
-	void SetTransparent(bool bTransparent);
+	void SetTransparent(bool bTransparent);  
 	//! Sets the legend in horizontal/vertical mode.
 	/**
 		In horizontal mode, the names are drawn next to each other
@@ -74,14 +81,14 @@ public:
 	//! Sets the legend visible/invisible.
 	void SetVisible(bool bVisible);
 	//! Returns true if the legend is visible.
-	bool IsVisible() const { return m_bIsVisible; }
+	bool IsVisible()  const         { return m_bIsVisible; }
 
 	//! Returns the back color of the legend.
-	COLORREF GetBackColor() const { return m_BackColor; }
+	COLORREF GetBackColor() const			   { return m_BackColor; }
 	//! Sets the back color of the legend.
 	void SetBackColor(COLORREF NewColor);
 	//! Returns the shadow color.
-	COLORREF GetShadowColor() const { return m_ShadowColor; }
+	COLORREF GetShadowColor() const		   { return m_ShadowColor; }
 	//! Sets the shadow color.
 	void SetShadowColor(COLORREF NewColor);
 	//! Enables/disables the shadow.
@@ -90,33 +97,33 @@ public:
 	void SetShadowDepth(int Depth);
 
 	//! Returns true if the screen point is on the legend region.
-	BOOL IsPointInside(const CPoint &screenPoint) const;
+	BOOL IsPointInside(const CPoint& screenPoint) const;
 
 private:
 	//! Constructor
-	CChartLegend(CChartCtrl *pParent);
+	CChartLegend(CChartCtrl* pParent);
 	//! Destructor
 	virtual ~CChartLegend();
 
 	//! Draw the legend.
-	void Draw(CDC *pDC);
+	void Draw(CDC* pDC);
 	//! Remove the area needed for the legend from the chart rectangle.
-	void ClipArea(CRect &rcControl, CDC *pDC);
+	void ClipArea(CRect& rcControl, CDC* pDC);
 	//! Recalculate the legend size and position.
-	void UpdatePosition(CDC *pDC, const CRect &rcControl);
+	void UpdatePosition(CDC* pDC, const CRect& rcControl);
 
 	//! The parent charting control.
-	CChartCtrl *m_pParentCtrl;
+	CChartCtrl* m_pParentCtrl;
 	//! The rectangle used to draw the legend.
 	CRect m_LegendRect;
 
 	//! The font face name used to display the series names.
 	TChartString m_strFontName;
 	//! The font point size.
-	int m_iFontSize;
+	int          m_iFontSize;
 
 	//! True if the legend is docked
-	bool m_bDocked;
+	bool m_bDocked;	
 	//! The side of the control on which the legend is docked.
 	DockSide m_DockSide;
 

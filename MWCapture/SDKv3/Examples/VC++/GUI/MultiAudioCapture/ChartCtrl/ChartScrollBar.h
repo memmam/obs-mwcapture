@@ -27,12 +27,13 @@ class CChartAxis;
 /**
 	This class is used internally by the CChartAxis class. 
 **/
-class CChartScrollBar : public CScrollBar {
-	friend CChartAxis;
+class CChartScrollBar : public CScrollBar
+{
+friend CChartAxis;
 
 public:
 	//! Creates the scroll bar within a specified rectangle.
-	void CreateScrollBar(const CRect &PlottingRect);
+	void CreateScrollBar(const CRect& PlottingRect);
 
 	//! Called on horizontal scrolling.
 	void OnHScroll(UINT nSBCode, UINT nPos);
@@ -42,17 +43,17 @@ public:
 	void Refresh();
 
 	//! Enables/disables the scroll bar.
-	void SetEnabled(bool bEnabled) { m_bEnabled = bEnabled; }
+	void SetEnabled(bool bEnabled)  { m_bEnabled = bEnabled; }
 	//! Returns true if the scroll bar is enabled
-	bool GetEnabled() const { return m_bEnabled; }
+	bool GetEnabled() const			{ return m_bEnabled; }
 	//! Enables/disables the auto-hide mode.
 	/**
 		In auto-hide mode, the scroll bar is not visible unless the mouse
 		is over the region of the scroll bar.
 	**/
-	void SetAutoHide(bool bAutoHide) { m_bAutoHide = bAutoHide; }
+	void SetAutoHide(bool bAutoHide)  { m_bAutoHide = bAutoHide; }
 	//! Returns true if the auto-hide mode is activated.
-	bool GetAutoHide() const { return m_bAutoHide; }
+	bool GetAutoHide() const		  { return m_bAutoHide; }
 
 	//! Called when the mouse enters the scroll bar area.
 	void OnMouseEnter();
@@ -61,14 +62,14 @@ public:
 
 private:
 	//! Constructor
-	CChartScrollBar(CChartAxis *pParentAxis);
+	CChartScrollBar(CChartAxis* pParentAxis);
 	//! Destructor
 	~CChartScrollBar();
 
 	bool IsScrollInverted() const;
 	void MoveAxisToPos(int PreviousPos, int CurPos);
 
-	CChartAxis *m_pParentAxis;
+	CChartAxis* m_pParentAxis;
 	bool m_bEnabled;
 	bool m_bAutoHide;
 };

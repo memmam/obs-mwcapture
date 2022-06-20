@@ -26,12 +26,14 @@
 #include "ChartString.h"
 
 //! A specialization of the CChartAxis class for displaying date and time data.
-class CChartDateTimeAxis : public CChartAxis {
+class CChartDateTimeAxis : public CChartAxis
+{
 	friend CChartCtrl;
 
 public:
 	//! Enum listing the different base intervals.
-	enum TimeInterval {
+	enum TimeInterval
+	{
 		tiSecond,
 		tiMinute,
 		tiHour,
@@ -59,8 +61,7 @@ public:
 		@param Multiplier
 			The multiplier applied to the base interval.
 	**/
-	void SetTickIncrement(bool bAuto, TimeInterval Interval,
-			      int Multiplier);
+	void SetTickIncrement(bool bAuto, TimeInterval Interval, int Multiplier);
 	//! Sets the format of the tick labels.
 	/**
 		@param bAutomatic
@@ -70,7 +71,7 @@ public:
 		<br>Check the documentation of the COleDateTime::Format function on 
 		MSDN for more information about the format string. 
 	**/
-	void SetTickLabelFormat(bool bAutomatic, const TChartString &strFormat);
+	void SetTickLabelFormat(bool bAutomatic, const TChartString& strFormat);
 	//! Sets the reference tick.
 	/**
 		The reference tick is a date/time which specifies a tick which should
@@ -94,7 +95,7 @@ private:
 	~CChartDateTimeAxis();
 
 	double GetFirstTickValue() const;
-	bool GetNextTickValue(double dCurrentTick, double &dNextTick) const;
+	bool GetNextTickValue(double dCurrentTick, double& dNextTick) const;
 	TChartString GetTickLabel(double TickValue) const;
 	long ValueToScreenDiscrete(double Value) const;
 	long GetTickPos(double TickVal) const;
@@ -114,13 +115,13 @@ private:
 			The number of months to add to the date.
 		@return the resulting date.
 	**/
-	COleDateTime AddMonthToDate(const COleDateTime &Date,
-				    int iMonthsToAdd) const;
+	COleDateTime AddMonthToDate(const COleDateTime& Date, 
+								int iMonthsToAdd) const;
 
 	double GetTickBeforeVal(double dValue) const;
 
 	//! Format of the date/time tick labels
-	TChartString m_strDTTickFormat;
+	TChartString m_strDTTickFormat;		
 	//! Specifies if the tick labels format is automatic
 	bool m_bAutoTickFormat;
 	//! Specifies the base time interval for ticks
@@ -146,4 +147,4 @@ private:
 	COleDateTime m_ReferenceTick;
 };
 
-#endif // _CHARTDATETIMEAXIS_H_
+#endif  // _CHARTDATETIMEAXIS_H_

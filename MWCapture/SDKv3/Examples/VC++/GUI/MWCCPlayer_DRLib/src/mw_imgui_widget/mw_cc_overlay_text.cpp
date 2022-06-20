@@ -1,13 +1,14 @@
 #include "mw_cc_overlay_text.h"
 
-CMWCCOverlayText::CMWCCOverlayText(CMWCCPlayerUIManager *t_p_manager)
-	: CMWIMGUIWidget(t_p_manager)
+CMWCCOverlayText::CMWCCOverlayText(CMWCCPlayerUIManager* t_p_manager):
+CMWIMGUIWidget(t_p_manager)
 {
-	m_imgui_flags =
-		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration |
-		ImGuiWindowFlags_AlwaysAutoResize |
-		ImGuiWindowFlags_NoSavedSettings |
-		ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav;
+	m_imgui_flags = ImGuiWindowFlags_NoMove|
+		ImGuiWindowFlags_NoDecoration|
+		ImGuiWindowFlags_AlwaysAutoResize|
+		ImGuiWindowFlags_NoSavedSettings|
+		ImGuiWindowFlags_NoFocusOnAppearing|
+		ImGuiWindowFlags_NoNav;
 
 	m_b_open = true;
 	memset(m_cs_name, 0, 128);
@@ -23,11 +24,14 @@ CMWCCOverlayText::CMWCCOverlayText(CMWCCPlayerUIManager *t_p_manager)
 	sprintf(m_cs_text, "text");
 }
 
-CMWCCOverlayText::~CMWCCOverlayText() {}
+CMWCCOverlayText::~CMWCCOverlayText()
+{
+
+}
 
 void CMWCCOverlayText::update_widget()
 {
-	ImGuiIO &io = ImGui::GetIO();
+	ImGuiIO& io = ImGui::GetIO();
 	ImVec2 t_imvec2_pos;
 	t_imvec2_pos.x = io.DisplaySize.x - m_imvec2_size.x - 10;
 	t_imvec2_pos.y = io.DisplaySize.y - m_imvec2_size.y - 10;
@@ -41,23 +45,23 @@ void CMWCCOverlayText::update_widget()
 	ImGui::End();
 }
 
-char *CMWCCOverlayText::get_name()
+char* CMWCCOverlayText::get_name()
 {
 	return m_cs_name;
 }
 
-void CMWCCOverlayText::set_name(char *t_cs_name)
+void CMWCCOverlayText::set_name(char* t_cs_name)
 {
 	memset(m_cs_name, 0, 128);
 	sprintf(m_cs_name, "%s", t_cs_name);
 }
 
-char *CMWCCOverlayText::get_text()
+char* CMWCCOverlayText::get_text()
 {
 	return m_cs_text;
 }
 
-void CMWCCOverlayText::set_text(char *t_cs_text)
+void CMWCCOverlayText::set_text(char* t_cs_text)
 {
 	memset(m_cs_text, 0, 1024);
 	sprintf(m_cs_text, "%s", t_cs_text);
@@ -92,3 +96,4 @@ void CMWCCOverlayText::set_pos(ImVec2 t_pos)
 {
 	m_imvec2_pos = t_pos;
 }
+

@@ -19,7 +19,7 @@
  *
  */
 
-#ifndef _CHARTBALLOONLABEL_H_
+#ifndef _CHARTBALLOONLABEL_H_ 
 #define _CHARTBALLOONLABEL_H_
 
 #include "ChartLabel.h"
@@ -31,28 +31,29 @@
 	text is displayed and which is connected with a line to the point to
 	which it is attached.
 **/
-template<class PointType>
-class CChartBalloonLabel : public CChartLabel<PointType> {
+template <class PointType>
+class CChartBalloonLabel : public CChartLabel<PointType>
+{
 	friend CChartSerieBase<PointType>;
 
 public:
 	//! Sets the background color of the text area.
 	void SetBackgroundColor(COLORREF colBackground);
 	//! Retrieves the background color of the text area.
-	COLORREF GetBackgroundColor() const { return m_colBackground; }
+	COLORREF GetBackgroundColor() const		{ return m_colBackground; }
 	//! Sets the color of the line connecting the point to the text area.
-	void SetLineColor(COLORREF colArrow);
+	void SetLineColor(COLORREF colArrow);	
 	//! Retrieves the color of the line connecting the point to the text area.
-	COLORREF GetLineColor() const { return m_colLine; }
+	COLORREF GetLineColor() const			{ return m_colLine; }
 	//! Sets the color of border's text area.
 	void SetBorderColor(COLORREF colBorder);
 	//! Retrieves the color of border's text area.
-	COLORREF GetBorderColor() const { return m_colBorder; }
+	COLORREF GetBorderColor() const			{ return m_colBorder; }
 
 	//! Specifies if the text area is rounded or not.
 	void SetRoundedRect(bool bRounded);
 	//! Returns true if the text area is rounded.
-	bool GetRoundedRect() const { return m_bRoundedRect; }
+	bool GetRoundedRect() const		{ return m_bRoundedRect; }
 
 	//! Sets the font of the text.
 	/**
@@ -61,7 +62,7 @@ public:
 		@param strFaceName
 			The font face name ("Times New Roman", "Arial", ...)
 	**/
-	void SetFont(int nPointSize, const TChartString &strFaceName);
+	void SetFont(int nPointSize, const TChartString& strFaceName);
 	//! Sets the font of the text.
 	/**
 		This function allows to set extended font style by passing
@@ -69,17 +70,16 @@ public:
 		@param newFont
 			The new font.
 	**/
-	void SetFont(const CChartFont &newFont);
+	void SetFont(const CChartFont& newFont);
 
 	//! Constructor
-	CChartBalloonLabel(CChartCtrl *pParentCtrl,
-			   CChartSerieBase<PointType> *pParentSeries);
+	CChartBalloonLabel(CChartCtrl* pParentCtrl, CChartSerieBase<PointType>* pParentSeries);
 	//! Destructor
 	~CChartBalloonLabel();
 
 protected:
 	//! Draw the label.
-	void Draw(CDC *pDC, unsigned uPointIndex);
+	void Draw(CDC* pDC, unsigned uPointIndex);
 
 private:
 	//! Color of the liune connecting the point to the text area.
@@ -98,4 +98,4 @@ private:
 
 #include "ChartBalloonLabel.inl"
 
-#endif // _CHARTBALLOONLABEL_H_
+#endif  // _CHARTBALLOONLABEL_H_

@@ -129,8 +129,7 @@ size_t av_strlcat(char *dst, const char *src, size_t size);
  * @return the length of the string that would have been generated
  *  if enough space had been available
  */
-size_t av_strlcatf(char *dst, size_t size, const char *fmt, ...)
-	av_printf_format(3, 4);
+size_t av_strlcatf(char *dst, size_t size, const char *fmt, ...) av_printf_format(3, 4);
 
 /**
  * Get the count of continuous non zero chars starting from the beginning.
@@ -140,10 +139,10 @@ size_t av_strlcatf(char *dst, size_t size, const char *fmt, ...)
  */
 static inline size_t av_strnlen(const char *s, size_t len)
 {
-	size_t i;
-	for (i = 0; i < len && s[i]; i++)
-		;
-	return i;
+    size_t i;
+    for (i = 0; i < len && s[i]; i++)
+        ;
+    return i;
 }
 
 /**
@@ -206,7 +205,7 @@ char *av_strtok(char *s, const char *delim, char **saveptr);
  */
 static inline av_const int av_isdigit(int c)
 {
-	return c >= '0' && c <= '9';
+    return c >= '0' && c <= '9';
 }
 
 /**
@@ -214,7 +213,7 @@ static inline av_const int av_isdigit(int c)
  */
 static inline av_const int av_isgraph(int c)
 {
-	return c > 32 && c < 127;
+    return c > 32 && c < 127;
 }
 
 /**
@@ -222,8 +221,8 @@ static inline av_const int av_isgraph(int c)
  */
 static inline av_const int av_isspace(int c)
 {
-	return c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' ||
-	       c == '\v';
+    return c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' ||
+           c == '\v';
 }
 
 /**
@@ -231,9 +230,9 @@ static inline av_const int av_isspace(int c)
  */
 static inline av_const int av_toupper(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		c ^= 0x20;
-	return c;
+    if (c >= 'a' && c <= 'z')
+        c ^= 0x20;
+    return c;
 }
 
 /**
@@ -241,9 +240,9 @@ static inline av_const int av_toupper(int c)
  */
 static inline av_const int av_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		c ^= 0x20;
-	return c;
+    if (c >= 'A' && c <= 'Z')
+        c ^= 0x20;
+    return c;
 }
 
 /**
@@ -251,8 +250,8 @@ static inline av_const int av_tolower(int c)
  */
 static inline av_const int av_isxdigit(int c)
 {
-	c = av_tolower(c);
-	return av_isdigit(c) || (c >= 'a' && c <= 'f');
+    c = av_tolower(c);
+    return av_isdigit(c) || (c >= 'a' && c <= 'f');
 }
 
 /**
@@ -266,6 +265,7 @@ int av_strcasecmp(const char *a, const char *b);
  * @note This means only ASCII-range characters are case-insensitive
  */
 int av_strncasecmp(const char *a, const char *b, size_t n);
+
 
 /**
  * Thread safe basename.
@@ -306,9 +306,9 @@ int av_match_name(const char *name, const char *names);
 char *av_append_path_component(const char *path, const char *component);
 
 enum AVEscapeMode {
-	AV_ESCAPE_MODE_AUTO,      ///< Use auto-selected escaping mode.
-	AV_ESCAPE_MODE_BACKSLASH, ///< Use backslash escaping.
-	AV_ESCAPE_MODE_QUOTE,     ///< Use single-quote escaping.
+    AV_ESCAPE_MODE_AUTO,      ///< Use auto-selected escaping mode.
+    AV_ESCAPE_MODE_BACKSLASH, ///< Use backslash escaping.
+    AV_ESCAPE_MODE_QUOTE,     ///< Use single-quote escaping.
 };
 
 /**
@@ -344,22 +344,17 @@ enum AVEscapeMode {
  * @return the length of the allocated string, or a negative error code in case of error
  * @see av_bprint_escape()
  */
-av_warn_unused_result int av_escape(char **dst, const char *src,
-				    const char *special_chars,
-				    enum AVEscapeMode mode, int flags);
+av_warn_unused_result
+int av_escape(char **dst, const char *src, const char *special_chars,
+              enum AVEscapeMode mode, int flags);
 
-#define AV_UTF8_FLAG_ACCEPT_INVALID_BIG_CODES \
-	1 ///< accept codepoints over 0x10FFFF
-#define AV_UTF8_FLAG_ACCEPT_NON_CHARACTERS \
-	2 ///< accept non-characters - 0xFFFE and 0xFFFF
-#define AV_UTF8_FLAG_ACCEPT_SURROGATES 4 ///< accept UTF-16 surrogates codes
-#define AV_UTF8_FLAG_EXCLUDE_XML_INVALID_CONTROL_CODES \
-	8 ///< exclude control codes not accepted by XML
+#define AV_UTF8_FLAG_ACCEPT_INVALID_BIG_CODES          1 ///< accept codepoints over 0x10FFFF
+#define AV_UTF8_FLAG_ACCEPT_NON_CHARACTERS             2 ///< accept non-characters - 0xFFFE and 0xFFFF
+#define AV_UTF8_FLAG_ACCEPT_SURROGATES                 4 ///< accept UTF-16 surrogates codes
+#define AV_UTF8_FLAG_EXCLUDE_XML_INVALID_CONTROL_CODES 8 ///< exclude control codes not accepted by XML
 
-#define AV_UTF8_FLAG_ACCEPT_ALL                      \
-	AV_UTF8_FLAG_ACCEPT_INVALID_BIG_CODES |      \
-		AV_UTF8_FLAG_ACCEPT_NON_CHARACTERS | \
-		AV_UTF8_FLAG_ACCEPT_SURROGATES
+#define AV_UTF8_FLAG_ACCEPT_ALL \
+    AV_UTF8_FLAG_ACCEPT_INVALID_BIG_CODES|AV_UTF8_FLAG_ACCEPT_NON_CHARACTERS|AV_UTF8_FLAG_ACCEPT_SURROGATES
 
 /**
  * Read and decode a single UTF-8 code point (character) from the
@@ -389,9 +384,9 @@ av_warn_unused_result int av_escape(char **dst, const char *src,
  * @return >= 0 in case a sequence was successfully read, a negative
  * value in case of invalid sequence
  */
-av_warn_unused_result int av_utf8_decode(int32_t *codep, const uint8_t **bufp,
-					 const uint8_t *buf_end,
-					 unsigned int flags);
+av_warn_unused_result
+int av_utf8_decode(int32_t *codep, const uint8_t **bufp, const uint8_t *buf_end,
+                   unsigned int flags);
 
 /**
  * Check if a name is in a list.

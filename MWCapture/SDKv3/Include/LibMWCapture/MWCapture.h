@@ -3,20 +3,20 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell's SDK
-// and not to Magewell's SDK as a whole.
+// The following license only applies to head files and library within Magewell's SDK 
+// and not to Magewell's SDK as a whole. 
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. ("Magewell") All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell's head files and library
+// Magewell grands to any person who obtains the copy of Magewell's head files and library 
 // the rights,including without limitation, to use on the condition that the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or
+// -The following disclaimer shall be included in the software and documentation and/or 
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL "AS IS" AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE
+// IN NO EVENT SHALL MAGEWELL BE LIABLE 
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -33,7 +33,7 @@
 #elif LIBMWCAPTURE_DLL
 #define LIBMWCAPTURE_API __declspec(dllimport)
 #else
-#define LIBMWCAPTURE_API
+#define LIBMWCAPTURE_API 
 #endif
 
 #include <Windows.h>
@@ -51,7 +51,8 @@
 
 #ifdef __cplusplus
 
-extern "C" {
+extern "C"
+{
 #endif
 
 /**
@@ -83,7 +84,11 @@ extern "C" {
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVersion(BYTE *pbyMaj, BYTE *pbyMin, WORD *pwBuild);
+MWGetVersion(
+	BYTE*							pbyMaj,
+	BYTE*							pbyMin,
+	WORD*							pwBuild
+	);
 
 /**
  * @ingroup group_functions_common+
@@ -93,15 +98,22 @@ MWGetVersion(BYTE *pbyMaj, BYTE *pbyMin, WORD *pwBuild);
  * It is recommended to call this api once before using SDK to initialize MWCapture. It works with [MWCaptureExitInstance](@ref MWCaptureExitInstance).
  * You can find it in all of the provided @ref page_examples.
 */
-BOOL LIBMWCAPTURE_API MWCaptureInitInstance();
+BOOL
+LIBMWCAPTURE_API
+MWCaptureInitInstance(
+	);
 
+	
 /**
  * @ingroup group_functions_common
  * @brief Quits instance.
  * @details The API is used to quit the current instance. It always used with [MWCaptureInitInstance](@ref MWCaptureInitInstance).\n
  * Calls the API at the end of your instance. You can find it in all of the provided @ref page_examples.
 */
-void LIBMWCAPTURE_API MWCaptureExitInstance();
+void
+LIBMWCAPTURE_API
+MWCaptureExitInstance(
+	);
 
 /**
  * @ingroup group_functions_common
@@ -127,7 +139,8 @@ void LIBMWCAPTURE_API MWCaptureExitInstance();
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWRefreshDevice();
+MWRefreshDevice(
+	);
 
 /**
  * @ingroup group_functions_common
@@ -140,7 +153,10 @@ MWRefreshDevice();
  * @endcode
  * You can find the API in every example of @ref page_examples.
 */
-int LIBMWCAPTURE_API MWGetChannelCount();
+int 
+LIBMWCAPTURE_API
+MWGetChannelCount(
+	);
 
 /**
  * @ingroup group_functions_common
@@ -171,7 +187,10 @@ int LIBMWCAPTURE_API MWGetChannelCount();
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetChannelInfoByIndex(int nIndex, MWCAP_CHANNEL_INFO *pChannelInfo);
+MWGetChannelInfoByIndex(
+	int								nIndex,
+	MWCAP_CHANNEL_INFO *			pChannelInfo
+	);
 
 /**
  * @ingroup group_functions_common
@@ -215,7 +234,11 @@ MWGetChannelInfoByIndex(int nIndex, MWCAP_CHANNEL_INFO *pChannelInfo);
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetFamilyInfoByIndex(int nIndex, LPVOID pFamilyInfo, DWORD dwSize);
+MWGetFamilyInfoByIndex(
+	int								nIndex,
+	LPVOID							pFamilyInfo,
+	DWORD							dwSize
+	);
 
 /**
  * @ingroup group_functions_common
@@ -247,7 +270,10 @@ MWGetFamilyInfoByIndex(int nIndex, LPVOID pFamilyInfo, DWORD dwSize);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetDevicePath(int nIndex, WCHAR *pDevicePath);
+MWGetDevicePath(
+	int								nIndex,
+	WCHAR*							pDevicePath
+);
 
 /**
  * @ingroup group_functions_common
@@ -265,7 +291,9 @@ MWGetDevicePath(int nIndex, WCHAR *pDevicePath);
 */
 HCHANNEL
 LIBMWCAPTURE_API
-MWOpenChannelByPath(const WCHAR *pszDevicePath);
+MWOpenChannelByPath(
+	const WCHAR*					pszDevicePath
+	);
 
 /**
  * @ingroup group_functions_common
@@ -282,7 +310,11 @@ MWOpenChannelByPath(const WCHAR *pszDevicePath);
  * @endcode
  * You can find the API in every example of @ref page_examples.
 */
-void LIBMWCAPTURE_API MWCloseChannel(HCHANNEL hChannel);
+void
+LIBMWCAPTURE_API
+MWCloseChannel(
+	HCHANNEL						hChannel
+	);
 
 /**
  * @ingroup group_functions_common
@@ -319,7 +351,10 @@ void LIBMWCAPTURE_API MWCloseChannel(HCHANNEL hChannel);
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetChannelInfo(HCHANNEL hChannel, MWCAP_CHANNEL_INFO *pChannelInfo);
+MWGetChannelInfo(
+	HCHANNEL						hChannel,
+	MWCAP_CHANNEL_INFO *			pChannelInfo
+	);
 
 /**
  * @ingroup group_functions_common
@@ -364,7 +399,11 @@ MWGetChannelInfo(HCHANNEL hChannel, MWCAP_CHANNEL_INFO *pChannelInfo);
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetFamilyInfo(HCHANNEL hChannel, LPVOID pFamilyInfo, DWORD dwSize);
+MWGetFamilyInfo(
+	HCHANNEL						hChannel,
+	LPVOID							pFamilyInfo,
+	DWORD							dwSize
+	);
 
 /**
  * @ingroup group_functions_common
@@ -400,8 +439,11 @@ MWGetFamilyInfo(HCHANNEL hChannel, LPVOID pFamilyInfo, DWORD dwSize);
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoCaps(HCHANNEL hChannel, MWCAP_VIDEO_CAPS *pVideoCaps);
-
+MWGetVideoCaps(
+	HCHANNEL						hChannel,
+	MWCAP_VIDEO_CAPS*				pVideoCaps
+	);
+	
 /**
  * @ingroup group_functions_common
  * @brief   Gets audio capture capability of the channel
@@ -436,7 +478,10 @@ MWGetVideoCaps(HCHANNEL hChannel, MWCAP_VIDEO_CAPS *pVideoCaps);
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetAudioCaps(HCHANNEL hChannel, MWCAP_AUDIO_CAPS *pAudioCaps);
+MWGetAudioCaps(
+	HCHANNEL						hChannel,
+	MWCAP_AUDIO_CAPS*				pAudioCaps
+	);
 
 /**
  * @ingroup group_functions_common
@@ -486,8 +531,11 @@ MWGetAudioCaps(HCHANNEL hChannel, MWCAP_AUDIO_CAPS *pAudioCaps);
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoInputSourceArray(HCHANNEL hChannel, DWORD *pdwInputSource,
-			   DWORD *pdwInputCount);
+MWGetVideoInputSourceArray(
+	HCHANNEL						hChannel,
+	DWORD*							pdwInputSource,
+	DWORD*							pdwInputCount
+	);
 
 /**
  * @ingroup group_functions_common
@@ -537,9 +585,13 @@ MWGetVideoInputSourceArray(HCHANNEL hChannel, DWORD *pdwInputSource,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetAudioInputSourceArray(HCHANNEL hChannel, DWORD *pdwInputSource,
-			   DWORD *pdwInputCount);
+MWGetAudioInputSourceArray(
+	HCHANNEL						hChannel,
+	DWORD*							pdwInputSource,
+	DWORD*							pdwInputCount
+	);
 
+	
 /**
  * @ingroup group_functions_common
  * @brief Gets the scan state of input source.
@@ -575,7 +627,10 @@ MWGetAudioInputSourceArray(HCHANNEL hChannel, DWORD *pdwInputSource,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetInputSourceScan(HCHANNEL hChannel, BOOLEAN *pbScan);
+MWGetInputSourceScan(
+	HCHANNEL 						hChannel,
+	BOOLEAN*						pbScan
+	);
 
 /**
  * @ingroup group_functions_common
@@ -612,7 +667,10 @@ MWGetInputSourceScan(HCHANNEL hChannel, BOOLEAN *pbScan);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetInputSourceScan(HCHANNEL hChannel, BOOLEAN bScan);
+MWSetInputSourceScan(
+	HCHANNEL 						hChannel,
+	BOOLEAN							bScan
+	);
 
 /**
  * @ingroup group_functions_common
@@ -653,7 +711,10 @@ MWSetInputSourceScan(HCHANNEL hChannel, BOOLEAN bScan);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetAVInputSourceLink(HCHANNEL hChannel, BOOLEAN *pbLink);
+MWGetAVInputSourceLink(
+	HCHANNEL 						hChannel,
+	BOOLEAN*						pbLink
+	);
 
 /**
  * @ingroup group_functions_common
@@ -690,7 +751,10 @@ MWGetAVInputSourceLink(HCHANNEL hChannel, BOOLEAN *pbLink);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetAVInputSourceLink(HCHANNEL hChannel, BOOLEAN bLink);
+MWSetAVInputSourceLink(
+	HCHANNEL 						hChannel,
+	BOOLEAN							bLink
+	);
 
 /**
  * @ingroup group_functions_common
@@ -729,7 +793,10 @@ MWSetAVInputSourceLink(HCHANNEL hChannel, BOOLEAN bLink);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoInputSource(HCHANNEL hChannel, DWORD *pdwSource);
+MWGetVideoInputSource(
+	HCHANNEL						hChannel,
+	DWORD*							pdwSource
+	);
 
 /**
  * @ingroup group_functions_common
@@ -767,7 +834,10 @@ MWGetVideoInputSource(HCHANNEL hChannel, DWORD *pdwSource);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetVideoInputSource(HCHANNEL hChannel, DWORD dwSource);
+MWSetVideoInputSource(
+	HCHANNEL						hChannel,
+	DWORD							dwSource
+	);
 
 /**
  * @ingroup group_functions_common
@@ -806,7 +876,10 @@ MWSetVideoInputSource(HCHANNEL hChannel, DWORD dwSource);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetAudioInputSource(HCHANNEL hChannel, DWORD *pdwSource);
+MWGetAudioInputSource(
+	HCHANNEL						hChannel,
+	DWORD*							pdwSource
+	);
 
 /**
  * @ingroup group_functions_common
@@ -844,7 +917,10 @@ MWGetAudioInputSource(HCHANNEL hChannel, DWORD *pdwSource);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetAudioInputSource(HCHANNEL hChannel, DWORD dwSource);
+MWSetAudioInputSource(
+	HCHANNEL						hChannel,
+	DWORD							dwSource
+	);
 
 /**
  * @ingroup group_functions_common
@@ -885,7 +961,11 @@ MWSetAudioInputSource(HCHANNEL hChannel, DWORD dwSource);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetEDID(HCHANNEL hChannel, BYTE *pbyData, ULONG *pulSize);
+MWGetEDID(
+	HCHANNEL						hChannel,
+	BYTE*							pbyData,
+	ULONG*							pulSize
+	);
 
 /**
  * @ingroup group_functions_common
@@ -928,7 +1008,11 @@ MWGetEDID(HCHANNEL hChannel, BYTE *pbyData, ULONG *pulSize);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetEDID(HCHANNEL hChannel, BYTE *pbyData, ULONG ulSize);
+MWSetEDID(
+	HCHANNEL						hChannel,
+	BYTE*							pbyData,
+	ULONG							ulSize
+	);
 
 /**
  * @ingroup group_functions_common
@@ -966,8 +1050,10 @@ MWSetEDID(HCHANNEL hChannel, BYTE *pbyData, ULONG ulSize);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetInputSpecificStatus(HCHANNEL hChannel,
-			 MWCAP_INPUT_SPECIFIC_STATUS *pInputStatus);
+MWGetInputSpecificStatus(
+	HCHANNEL						hChannel,
+	MWCAP_INPUT_SPECIFIC_STATUS *	pInputStatus
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1007,8 +1093,10 @@ MWGetInputSpecificStatus(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoSignalStatus(HCHANNEL hChannel,
-		       MWCAP_VIDEO_SIGNAL_STATUS *pSignalStatus);
+MWGetVideoSignalStatus(
+	HCHANNEL						hChannel,
+	MWCAP_VIDEO_SIGNAL_STATUS *		pSignalStatus
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1047,8 +1135,10 @@ MWGetVideoSignalStatus(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetAudioSignalStatus(HCHANNEL hChannel,
-		       MWCAP_AUDIO_SIGNAL_STATUS *pSignalStatus);
+MWGetAudioSignalStatus(
+	HCHANNEL						hChannel,
+	MWCAP_AUDIO_SIGNAL_STATUS *		pSignalStatus
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1089,7 +1179,10 @@ MWGetAudioSignalStatus(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetHDMIInfoFrameValidFlag(HCHANNEL hChannel, DWORD *pdwValidFlag);
+MWGetHDMIInfoFrameValidFlag(
+	HCHANNEL						hChannel,
+	DWORD*							pdwValidFlag
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1137,8 +1230,11 @@ MWGetHDMIInfoFrameValidFlag(HCHANNEL hChannel, DWORD *pdwValidFlag);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetHDMIInfoFramePacket(HCHANNEL hChannel, MWCAP_HDMI_INFOFRAME_ID id,
-			 HDMI_INFOFRAME_PACKET *pPacket);
+MWGetHDMIInfoFramePacket(
+	HCHANNEL						hChannel,
+	MWCAP_HDMI_INFOFRAME_ID			id,
+	HDMI_INFOFRAME_PACKET*			pPacket
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1177,7 +1273,11 @@ MWGetHDMIInfoFramePacket(HCHANNEL hChannel, MWCAP_HDMI_INFOFRAME_ID id,
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetVideoInputAspectRatio(HCHANNEL hChannel, int nAspectX, int nAspectY);
+MWSetVideoInputAspectRatio(
+	HCHANNEL 						hChannel,
+	int								nAspectX,
+	int								nAspectY
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1216,7 +1316,11 @@ MWSetVideoInputAspectRatio(HCHANNEL hChannel, int nAspectX, int nAspectY);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoInputAspectRatio(HCHANNEL hChannel, int *pnAspectX, int *pnAspectY);
+MWGetVideoInputAspectRatio(
+	HCHANNEL 						hChannel,
+	int*							pnAspectX,
+	int*							pnAspectY
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1254,8 +1358,10 @@ MWGetVideoInputAspectRatio(HCHANNEL hChannel, int *pnAspectX, int *pnAspectY);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetVideoInputColorFormat(HCHANNEL hChannel,
-			   MWCAP_VIDEO_COLOR_FORMAT colorFormat);
+MWSetVideoInputColorFormat(
+	HCHANNEL 						hChannel,
+	MWCAP_VIDEO_COLOR_FORMAT		colorFormat
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1292,8 +1398,10 @@ MWSetVideoInputColorFormat(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoInputColorFormat(HCHANNEL hChannel,
-			   MWCAP_VIDEO_COLOR_FORMAT *pColorFormat);
+MWGetVideoInputColorFormat(
+	HCHANNEL 						hChannel,
+	MWCAP_VIDEO_COLOR_FORMAT *		pColorFormat
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1331,8 +1439,10 @@ MWGetVideoInputColorFormat(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetVideoInputQuantizationRange(HCHANNEL hChannel,
-				 MWCAP_VIDEO_QUANTIZATION_RANGE quantRange);
+MWSetVideoInputQuantizationRange(
+	HCHANNEL 						hChannel,
+	MWCAP_VIDEO_QUANTIZATION_RANGE	quantRange
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1369,8 +1479,10 @@ MWSetVideoInputQuantizationRange(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoInputQuantizationRange(HCHANNEL hChannel,
-				 MWCAP_VIDEO_QUANTIZATION_RANGE *pQuantRange);
+MWGetVideoInputQuantizationRange(
+	HCHANNEL 						hChannel,
+	MWCAP_VIDEO_QUANTIZATION_RANGE* pQuantRange
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1408,7 +1520,10 @@ MWGetVideoInputQuantizationRange(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetLEDMode(HCHANNEL hChannel, DWORD dwMode);
+MWSetLEDMode(
+	HCHANNEL 						hChannel,
+	DWORD							dwMode
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1449,7 +1564,10 @@ MWSetLEDMode(HCHANNEL hChannel, DWORD dwMode);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetPostReconfig(HCHANNEL hChannel, DWORD dwDelayMS);
+MWSetPostReconfig(
+	HCHANNEL 						hChannel,
+	DWORD							dwDelayMS
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1486,8 +1604,10 @@ MWSetPostReconfig(HCHANNEL hChannel, DWORD dwDelayMS);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetFirmwareStorageInfo(HCHANNEL hChannel,
-			 MWCAP_FIRMWARE_STORAGE *pFirmwareStorageInfo);
+MWGetFirmwareStorageInfo(
+	HCHANNEL 						hChannel,
+	MWCAP_FIRMWARE_STORAGE *		pFirmwareStorageInfo
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1527,7 +1647,11 @@ MWGetFirmwareStorageInfo(HCHANNEL hChannel,
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWEraseFirmwareData(HCHANNEL hChannel, DWORD cbOffset, DWORD cbErase);
+MWEraseFirmwareData(
+	HCHANNEL 						hChannel,
+	DWORD							cbOffset,
+	DWORD							cbErase
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1569,8 +1693,13 @@ MWEraseFirmwareData(HCHANNEL hChannel, DWORD cbOffset, DWORD cbErase);
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWReadFirmwareData(HCHANNEL hChannel, DWORD cbOffset, BYTE *pbyData,
-		   DWORD cbToRead, DWORD *pcbRead);
+MWReadFirmwareData(
+	HCHANNEL 						hChannel,
+	DWORD							cbOffset,
+	BYTE *							pbyData,
+	DWORD							cbToRead,
+	DWORD *							pcbRead
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1611,8 +1740,12 @@ MWReadFirmwareData(HCHANNEL hChannel, DWORD cbOffset, BYTE *pbyData,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWWriteFirmwareData(HCHANNEL hChannel, DWORD cbOffset, BYTE *pbyData,
-		    DWORD cbData);
+MWWriteFirmwareData(
+	HCHANNEL 						hChannel,
+	DWORD							cbOffset,
+	BYTE *							pbyData,
+	DWORD							cbData
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1638,9 +1771,13 @@ MWWriteFirmwareData(HCHANNEL hChannel, DWORD cbOffset, BYTE *pbyData,
  * MWCloseChannel(t_channel);
  * @endcode
 */
-BOOL LIBMWCAPTURE_API MWGetVideoCaptureSupportFormat(HCHANNEL hChannel,
-						     VIDEO_FORMAT_INFO *pFormat,
-						     int *nCount);
+BOOL
+LIBMWCAPTURE_API
+MWGetVideoCaptureSupportFormat(
+	HCHANNEL					hChannel,
+	VIDEO_FORMAT_INFO*			pFormat,
+	int*						nCount
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1682,8 +1819,11 @@ BOOL LIBMWCAPTURE_API MWGetVideoCaptureSupportFormat(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoCaptureSupportColorFormat(HCHANNEL hChannel, DWORD *pColorFmt,
-				    int *nCount);
+MWGetVideoCaptureSupportColorFormat(
+	HCHANNEL					hChannel,
+	DWORD*						pColorFmt,
+	int*						nCount
+);
 
 /**
  * @ingroup group_functions_common
@@ -1722,9 +1862,11 @@ MWGetVideoCaptureSupportColorFormat(HCHANNEL hChannel, DWORD *pColorFmt,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoCaptureSupportResolutionMode(HCHANNEL hChannel,
-				       MWCAP_VIDEO_RESOLUTION_MODE *pMode,
-				       int *pCount);
+MWGetVideoCaptureSupportResolutionMode(
+	HCHANNEL						hChannel,
+	MWCAP_VIDEO_RESOLUTION_MODE		*pMode,
+	int*							pCount
+);
 
 /**
  * @ingroup group_functions_common
@@ -1766,8 +1908,10 @@ MWGetVideoCaptureSupportResolutionMode(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoCaptureSupportRangeResolution(HCHANNEL hChannel,
-					MWCAP_VIDEO_RESOLUTION_RANGE *pRange);
+MWGetVideoCaptureSupportRangeResolution(
+	HCHANNEL						hChannel,
+	MWCAP_VIDEO_RESOLUTION_RANGE*	pRange
+);
 
 /**
  * @ingroup group_functions_common
@@ -1809,8 +1953,10 @@ MWGetVideoCaptureSupportRangeResolution(HCHANNEL hChannel,
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoCaptureSupportListResolution(HCHANNEL hChannel,
-				       MWCAP_VIDEO_RESOLUTION_LIST *pList);
+MWGetVideoCaptureSupportListResolution(
+	HCHANNEL						hChannel,
+	MWCAP_VIDEO_RESOLUTION_LIST*	pList
+);
 
 /**
  * @ingroup group_functions_common
@@ -1854,9 +2000,15 @@ MWGetVideoCaptureSupportListResolution(HCHANNEL hChannel,
 */
 HANDLE
 LIBMWCAPTURE_API
-MWCreateVideoCapture(HCHANNEL hChannel, int nWidth, int nHeight, int nFourcc,
-		     int nFrameDuration, VIDEO_CAPTURE_CALLBACK callback,
-		     void *pParam);
+MWCreateVideoCapture(
+	HCHANNEL 						hChannel,
+	int								nWidth,
+	int								nHeight,
+	int								nFourcc,
+	int								nFrameDuration,
+	VIDEO_CAPTURE_CALLBACK			callback,
+	void*							pParam
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1900,10 +2052,15 @@ MWCreateVideoCapture(HCHANNEL hChannel, int nWidth, int nHeight, int nFourcc,
  */
 HANDLE
 LIBMWCAPTURE_API
-MWCreateVideoCaptureWithStdCallBack(HCHANNEL hChannel, int nWidth, int nHeight,
-				    int nFourcc, int nFrameDuration,
-				    VIDEO_CAPTURE_STDCALL_CALLBACK callback,
-				    void *pParam);
+MWCreateVideoCaptureWithStdCallBack(
+	HCHANNEL 						hChannel,
+	int								nWidth,
+	int								nHeight,
+	int								nFourcc,
+	int								nFrameDuration,
+	VIDEO_CAPTURE_STDCALL_CALLBACK	callback,
+	void*							pParam
+	);
 
 /**
  * @ingroup group_functions_common
@@ -1969,7 +2126,9 @@ MWCreateVideoCaptureWithStdCallBack(HCHANNEL hChannel, int nWidth, int nHeight,
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWDestoryVideoCapture(HANDLE hVideo);
+MWDestoryVideoCapture(
+	HANDLE							hVideo
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2020,11 +2179,14 @@ MWDestoryVideoCapture(HANDLE hVideo);
  * @endcode
 */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetVideoProcParamRange(HANDLE hVideo,
-			 MWCAP_VIDEO_PROC_PARAM_TYPE videoProcParamType,
-			 long *plParamValueMin, long *plParamValueMax,
-			 long *plParamValueDef);
+	LIBMWCAPTURE_API
+	MWGetVideoProcParamRange(
+	HANDLE hVideo,
+	MWCAP_VIDEO_PROC_PARAM_TYPE videoProcParamType,
+	long * plParamValueMin,
+	long * plParamValueMax,
+	long * plParamValueDef
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2071,10 +2233,12 @@ MWGetVideoProcParamRange(HANDLE hVideo,
  * @endcode
 */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetVideoProcParam(HANDLE hVideo,
-		    MWCAP_VIDEO_PROC_PARAM_TYPE videoProcParamType,
-		    long *plParamValue);
+	LIBMWCAPTURE_API
+	MWGetVideoProcParam(
+	HANDLE hVideo,
+	MWCAP_VIDEO_PROC_PARAM_TYPE videoProcParamType,
+	long * plParamValue
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2127,10 +2291,12 @@ MWGetVideoProcParam(HANDLE hVideo,
  * @endcode
 */
 MW_RESULT
-LIBMWCAPTURE_API
-MWSetVideoProcParam(HANDLE hVideo,
-		    MWCAP_VIDEO_PROC_PARAM_TYPE videoProcParamType,
-		    long lParamValue);
+	LIBMWCAPTURE_API
+	MWSetVideoProcParam(
+	HANDLE hVideo,
+	MWCAP_VIDEO_PROC_PARAM_TYPE videoProcParamType,
+	long lParamValue
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2167,9 +2333,14 @@ MWSetVideoProcParam(HANDLE hVideo,
  * MWCloseChannel(t_channel);
  * @endcode
 */
-BOOL LIBMWCAPTURE_API MWGetAudioCaptureSupportFormat(
-	HCHANNEL hChannel, MWCAP_AUDIO_CAPTURE_NODE captureNode,
-	AUDIO_FORMAT_INFO *pFormat, int *nCount);
+BOOL
+LIBMWCAPTURE_API
+MWGetAudioCaptureSupportFormat(
+	HCHANNEL						hChannel,
+	MWCAP_AUDIO_CAPTURE_NODE        captureNode,
+	AUDIO_FORMAT_INFO*				pFormat,
+	int*							nCount
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2207,8 +2378,11 @@ BOOL LIBMWCAPTURE_API MWGetAudioCaptureSupportFormat(
 **/
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetAudioDeviceInfo(HCHANNEL hChannel, MWCAP_AUDIO_NODE audioNode,
-		     MWCAP_AUDIO_DEVICE_INFO *pdevInfo);
+MWGetAudioDeviceInfo(
+	HCHANNEL						hChannel,
+	MWCAP_AUDIO_NODE				audioNode,
+	MWCAP_AUDIO_DEVICE_INFO			*pdevInfo
+);
 
 /**
  * @ingroup group_functions_common
@@ -2244,8 +2418,11 @@ MWGetAudioDeviceInfo(HCHANNEL hChannel, MWCAP_AUDIO_NODE audioNode,
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetAudioDeviceInfoByIndex(int nIndex, MWCAP_AUDIO_NODE audioNode,
-			    MWCAP_AUDIO_DEVICE_INFO *pdevInfo);
+MWGetAudioDeviceInfoByIndex(
+	int								nIndex,
+	MWCAP_AUDIO_NODE				audioNode,
+	MWCAP_AUDIO_DEVICE_INFO			*pdevInfo
+);
 
 /**
  * @ingroup group_functions_common
@@ -2292,9 +2469,15 @@ MWGetAudioDeviceInfoByIndex(int nIndex, MWCAP_AUDIO_NODE audioNode,
  */
 HANDLE
 LIBMWCAPTURE_API
-MWCreateAudioCapture(HCHANNEL hChannel, MWCAP_AUDIO_CAPTURE_NODE captureNode,
-		     DWORD dwSamplesPerSec, WORD wBitsPerSample, WORD wChannels,
-		     AUDIO_CAPTURE_CALLBACK callback, void *pParam);
+MWCreateAudioCapture(
+	HCHANNEL						hChannel,
+	MWCAP_AUDIO_CAPTURE_NODE        captureNode,
+	DWORD							dwSamplesPerSec,
+	WORD							wBitsPerSample,
+	WORD							wChannels,
+	AUDIO_CAPTURE_CALLBACK			callback,
+	void*							pParam
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2340,12 +2523,15 @@ MWCreateAudioCapture(HCHANNEL hChannel, MWCAP_AUDIO_CAPTURE_NODE captureNode,
 */
 HANDLE
 LIBMWCAPTURE_API
-MWCreateAudioCaptureWithStdCallBack(HCHANNEL hChannel,
-				    MWCAP_AUDIO_CAPTURE_NODE captureNode,
-				    DWORD dwSamplesPerSec, WORD wBitsPerSample,
-				    WORD wChannels,
-				    AUDIO_CAPTURE_STDCALL_CALLBACK callback,
-				    void *pParam);
+MWCreateAudioCaptureWithStdCallBack(
+	HCHANNEL						hChannel,
+	MWCAP_AUDIO_CAPTURE_NODE        captureNode,
+	DWORD							dwSamplesPerSec,
+	WORD							wBitsPerSample,
+	WORD							wChannels,
+	AUDIO_CAPTURE_STDCALL_CALLBACK	callback,
+	void*							pParam
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2388,7 +2574,9 @@ MWCreateAudioCaptureWithStdCallBack(HCHANNEL hChannel,
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWDestoryAudioCapture(HANDLE hAudio);
+MWDestoryAudioCapture(
+	HANDLE							hAudio
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2425,9 +2613,12 @@ MWDestoryAudioCapture(HANDLE hAudio);
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetAudioVolume(HCHANNEL hChannel, MWCAP_AUDIO_NODE audioNode,
-		 MWCAP_AUDIO_VOLUME *pVolume);
+	LIBMWCAPTURE_API
+	MWGetAudioVolume(
+	HCHANNEL						hChannel,
+	MWCAP_AUDIO_NODE				audioNode,
+	MWCAP_AUDIO_VOLUME*				pVolume
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2469,9 +2660,12 @@ MWGetAudioVolume(HCHANNEL hChannel, MWCAP_AUDIO_NODE audioNode,
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWSetAudioVolume(HCHANNEL hChannel, MWCAP_AUDIO_NODE audioNode,
-		 MWCAP_AUDIO_VOLUME *pVolume);
+	LIBMWCAPTURE_API
+	MWSetAudioVolume(
+	HCHANNEL						hChannel,
+	MWCAP_AUDIO_NODE				audioNode,
+	MWCAP_AUDIO_VOLUME*				pVolume
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2507,8 +2701,11 @@ MWSetAudioVolume(HCHANNEL hChannel, MWCAP_AUDIO_NODE audioNode,
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetVideoAutoHAlign(HCHANNEL hChannel, BOOLEAN *pbAutoHAlign);
+	LIBMWCAPTURE_API
+	MWGetVideoAutoHAlign(
+	HCHANNEL						hChannel,
+	BOOLEAN*						pbAutoHAlign
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2544,8 +2741,11 @@ MWGetVideoAutoHAlign(HCHANNEL hChannel, BOOLEAN *pbAutoHAlign);
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWSetVideoAutoHAlign(HCHANNEL hChannel, BOOLEAN pbAutoHAlign);
+	LIBMWCAPTURE_API
+	MWSetVideoAutoHAlign(
+	HCHANNEL						hChannel,
+	BOOLEAN							pbAutoHAlign
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2581,8 +2781,11 @@ MWSetVideoAutoHAlign(HCHANNEL hChannel, BOOLEAN pbAutoHAlign);
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetVideoSamplingPhase(HCHANNEL hChannel, BYTE *puSamplingPhase);
+	LIBMWCAPTURE_API
+	MWGetVideoSamplingPhase(
+	HCHANNEL						hChannel,
+	BYTE *							puSamplingPhase
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2618,8 +2821,11 @@ MWGetVideoSamplingPhase(HCHANNEL hChannel, BYTE *puSamplingPhase);
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWSetVideoSamplingPhase(HCHANNEL hChannel, BYTE puSamplingPhase);
+	LIBMWCAPTURE_API
+	MWSetVideoSamplingPhase(
+	HCHANNEL						hChannel,
+	BYTE							puSamplingPhase
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2655,9 +2861,11 @@ MWSetVideoSamplingPhase(HCHANNEL hChannel, BYTE puSamplingPhase);
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetVideoSamplingPhaseAutoAdjust(HCHANNEL hChannel,
-				  BOOLEAN *pbAutoSamplingPhase);
+	LIBMWCAPTURE_API
+	MWGetVideoSamplingPhaseAutoAdjust(
+	HCHANNEL						hChannel,
+	BOOLEAN *						pbAutoSamplingPhase
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2693,10 +2901,12 @@ MWGetVideoSamplingPhaseAutoAdjust(HCHANNEL hChannel,
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWSetVideoSamplingPhaseAutoAdjust(HCHANNEL hChannel,
-				  BOOLEAN pbAutoSamplingPhase);
-
+	LIBMWCAPTURE_API
+	MWSetVideoSamplingPhaseAutoAdjust(
+	HCHANNEL						hChannel,
+	BOOLEAN							pbAutoSamplingPhase
+	);
+	
 /**
  * @ingroup group_functions_common
  * @brief Sets the vga timing of specified channel.
@@ -2732,8 +2942,11 @@ MWSetVideoSamplingPhaseAutoAdjust(HCHANNEL hChannel,
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWSetVideoTiming(HCHANNEL hChannel, MWCAP_VIDEO_TIMING *pTiming);
+	LIBMWCAPTURE_API
+	MWSetVideoTiming(
+	HCHANNEL						hChannel,
+	MWCAP_VIDEO_TIMING * 			pTiming
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2769,9 +2982,11 @@ MWSetVideoTiming(HCHANNEL hChannel, MWCAP_VIDEO_TIMING *pTiming);
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetPreferredVideoTimings(HCHANNEL hChannel,
-			   MWCAP_VIDEO_TIMING_ARRAY *paTimings);
+	LIBMWCAPTURE_API
+	MWGetPreferredVideoTimings(
+	HCHANNEL						hChannel,
+	MWCAP_VIDEO_TIMING_ARRAY * 		paTimings
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2809,9 +3024,11 @@ MWGetPreferredVideoTimings(HCHANNEL hChannel,
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWSetCustomVideoTiming(HCHANNEL hChannel,
-		       MWCAP_VIDEO_CUSTOM_TIMING *pCustomTiming);
+	LIBMWCAPTURE_API
+	MWSetCustomVideoTiming(
+	HCHANNEL							hChannel,
+	MWCAP_VIDEO_CUSTOM_TIMING *			pCustomTiming
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2847,9 +3064,11 @@ MWSetCustomVideoTiming(HCHANNEL hChannel,
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetCustomVideoTimings(HCHANNEL hChannel,
-			MWCAP_VIDEO_CUSTOM_TIMING_ARRAY *paCustomTimings);
+	LIBMWCAPTURE_API
+	MWGetCustomVideoTimings(
+	HCHANNEL							hChannel,
+	MWCAP_VIDEO_CUSTOM_TIMING_ARRAY *	paCustomTimings
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2890,9 +3109,11 @@ MWGetCustomVideoTimings(HCHANNEL hChannel,
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWSetCustomVideoTimings(HCHANNEL hChannel,
-			MWCAP_VIDEO_CUSTOM_TIMING_ARRAY *paCustomTimings);
+	LIBMWCAPTURE_API
+	MWSetCustomVideoTimings(
+	HCHANNEL							hChannel,
+	MWCAP_VIDEO_CUSTOM_TIMING_ARRAY *	paCustomTimings
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2928,10 +3149,11 @@ MWSetCustomVideoTimings(HCHANNEL hChannel,
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetCustomVideoResolutions(
-	HCHANNEL hChannel,
-	MWCAP_VIDEO_CUSTOM_RESOLUTION_ARRAY *paCustomResolutions);
+	LIBMWCAPTURE_API
+	MWGetCustomVideoResolutions(
+	HCHANNEL										hChannel,
+	MWCAP_VIDEO_CUSTOM_RESOLUTION_ARRAY *			paCustomResolutions
+	);
 
 /**
  * @ingroup group_functions_common
@@ -2972,10 +3194,11 @@ MWGetCustomVideoResolutions(
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWSetCustomVideoResolutions(
-	HCHANNEL hChannel,
-	MWCAP_VIDEO_CUSTOM_RESOLUTION_ARRAY *paCustomResolutions);
+	LIBMWCAPTURE_API
+	MWSetCustomVideoResolutions(
+	HCHANNEL										hChannel,
+	MWCAP_VIDEO_CUSTOM_RESOLUTION_ARRAY *			paCustomResolutions
+	);
 
 /**
  * @ingroup group_functions_common
@@ -3011,8 +3234,11 @@ MWSetCustomVideoResolutions(
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWGetInputSourceScanState(HCHANNEL hChannel, BOOLEAN *pbInputSourceScanning);
+	LIBMWCAPTURE_API
+	MWGetInputSourceScanState(
+	HCHANNEL										hChannel,
+	BOOLEAN *										pbInputSourceScanning
+	);
 
 /**
  * @ingroup group_functions_common
@@ -3047,10 +3273,12 @@ MWGetInputSourceScanState(HCHANNEL hChannel, BOOLEAN *pbInputSourceScanning);
  * MWCloseChannel(t_channel);
  * @endcode
  */
-MW_RESULT
-LIBMWCAPTURE_API
-MWGetVideoCaptureProcessSettings(
-	HCHANNEL hChannel, MWCAP_VIDEO_PROCESS_SETTINGS *paProcessSettings);
+MW_RESULT 
+	LIBMWCAPTURE_API
+	MWGetVideoCaptureProcessSettings(
+	HCHANNEL										hChannel,
+	MWCAP_VIDEO_PROCESS_SETTINGS*					paProcessSettings
+	);
 
 /**
  * @ingroup group_functions_common
@@ -3088,10 +3316,12 @@ MWGetVideoCaptureProcessSettings(
  * MWCloseChannel(t_channel);
  * @endcode
  */
-MW_RESULT
-LIBMWCAPTURE_API
-MWSetVideoCaptureProcessSettings(
-	HCHANNEL hChannel, MWCAP_VIDEO_PROCESS_SETTINGS *paProcessSettings);
+MW_RESULT 
+	LIBMWCAPTURE_API
+	MWSetVideoCaptureProcessSettings(
+	HCHANNEL										hChannel,
+	MWCAP_VIDEO_PROCESS_SETTINGS*					paProcessSettings
+	);
 
 /**
  * @ingroup group_functions_common
@@ -3132,9 +3362,15 @@ MWSetVideoCaptureProcessSettings(
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWCaptureSetSDIANCType(HCHANNEL hChannel, BYTE byIndex, BOOLEAN bHANC,
-		       BOOLEAN bVANC, BYTE byDID, BYTE bySDID);
+	LIBMWCAPTURE_API
+	MWCaptureSetSDIANCType(
+	HCHANNEL										hChannel,
+	BYTE											byIndex,
+	BOOLEAN											bHANC,
+	BOOLEAN											bVANC,
+	BYTE											byDID,
+	BYTE											bySDID
+	);
 
 /**
  * @ingroup group_functions_common
@@ -3173,8 +3409,11 @@ MWCaptureSetSDIANCType(HCHANNEL hChannel, BYTE byIndex, BOOLEAN bHANC,
  * @endcode
  */
 MW_RESULT
-LIBMWCAPTURE_API
-MWCaptureGetSDIANCPacket(HCHANNEL hChannel, MWCAP_SDI_ANC_PACKET *pPacket);
+	LIBMWCAPTURE_API
+	MWCaptureGetSDIANCPacket(
+	HCHANNEL										hChannel,
+	MWCAP_SDI_ANC_PACKET*							pPacket
+	);
 
 /**
  * @ingroup group_functions_common
@@ -3208,10 +3447,12 @@ MWCaptureGetSDIANCPacket(HCHANNEL hChannel, MWCAP_SDI_ANC_PACKET *pPacket);
  * MWCloseChannel(t_channel);
  * @endcode
  */
-MW_RESULT
-LIBMWCAPTURE_API
-MWGetVideoCaptureConnectionFormat(
-	HCHANNEL hChannel, MWCAP_VIDEO_CONNECTION_FORMAT *paConnectionFormat);
+MW_RESULT 
+	LIBMWCAPTURE_API
+	MWGetVideoCaptureConnectionFormat(
+	HCHANNEL										hChannel,
+	MWCAP_VIDEO_CONNECTION_FORMAT*					paConnectionFormat
+	);
 #ifdef __cplusplus
 }
 #endif

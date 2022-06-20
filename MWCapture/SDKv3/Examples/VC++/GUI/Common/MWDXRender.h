@@ -2,9 +2,9 @@
 #define RENDER_H
 
 #include <Windows.h>
-#include "d3d11.h"
+#include "d3d11.h"  
 #include "D3Dcommon.h"
-#include "D3DX11.h"
+#include "D3DX11.h" 
 #include "xnamath.h"
 #include "D3Dcompiler.h"
 #include "MWFOURCC.h"
@@ -15,14 +15,9 @@ using namespace std;
 #define NUM_DATA 5
 
 #ifndef SAFE_RELEASE
-#define SAFE_RELEASE(p)                 \
-	{                               \
-		if (p) {                \
-			(p)->Release(); \
-			(p) = NULL;     \
-		}                       \
-	}
+#define SAFE_RELEASE(p) { if(p) {(p)->Release();(p)=NULL;} }
 #endif
+
 
 typedef enum _color_space {
 	MW_CSP_AUTO = 0,
@@ -30,27 +25,25 @@ typedef enum _color_space {
 	MW_CSP_BT_709,
 	MW_CSP_BT_2020,
 	MW_CSP_COUNT,
-} mw_color_space_e;
+}mw_color_space_e;
 
 typedef enum _color_space_level {
 	MW_CSP_LEVELS_AUTO = 0,
 	MW_CSP_LEVELS_TV,
 	MW_CSP_LEVELS_PC,
 	MW_CSP_LEVELS_COUNT,
-} mw_color_space_level_e;
+}mw_color_space_level_e;
 
-typedef struct yuvlevels {
-	double ymin, ymax, cmax, cmid;
-} yuvlevels;
 
-typedef struct rgblevels {
-	double min, max;
-} rgblevels;
+typedef struct yuvlevels { double ymin, ymax, cmax, cmid; }yuvlevels;
 
-typedef struct _vertex {
+typedef struct rgblevels { double min, max; }rgblevels;
+
+
+typedef struct _vertex{
 	XMFLOAT3 m_pos;
 	XMFLOAT2 m_tex;
-} s_vertex;
+}s_vertex;
 
 typedef struct _rect {
 	int m_cx;
@@ -66,50 +59,39 @@ typedef struct _rect {
 	float m_csp_coeff_2_0;
 	float m_csp_coeff_2_1;
 	float m_csp_coeff_2_2;
-	float m_csp_const_0;
+    float m_csp_const_0;
 	float m_csp_const_1;
 	float m_csp_const_2;
-} s_rect;
+}s_rect;
 
-typedef struct _csvs {
+typedef struct _csvs{
 	unsigned char *m_p_code;
 	int m_n_code_len;
-} s_csvs;
+}s_csvs;
 
-class MWDXRender {
+class MWDXRender{
 public:
 	MWDXRender();
 	~MWDXRender();
 
 public:
-	bool initialize(int t_n_width, int t_n_height, DWORD dwFourcc,
-			bool t_b_reverse, HWND t_hwnd,
-			mw_color_space_e t_color_format,
-			mw_color_space_level_e t_input_range,
-			mw_color_space_level_e t_output_range);
+	bool initialize(int t_n_width,int t_n_height,DWORD dwFourcc,bool t_b_reverse,HWND t_hwnd,
+		mw_color_space_e t_color_format, mw_color_space_level_e t_input_range, mw_color_space_level_e t_output_range);
 	void cleanup_device();
 
-	bool paint(unsigned char *data);
+	bool paint(unsigned char*data);
 
 protected:
-	HRESULT compile_shader_from_file(WCHAR *t_sz_filepath,
-					 LPCSTR t_sz_entrypoint,
-					 LPCSTR t_sz_shader_model,
-					 ID3DBlob **t_pp_blob_out);
-	HRESULT compile_shader_from_cs(unsigned char *t_p_data,
-				       int t_n_data_len, LPCSTR t_sz_entrypoint,
-				       LPCSTR t_sz_shader_model,
-				       ID3DBlob **t_pp_blob_out);
+	HRESULT compile_shader_from_file(WCHAR *t_sz_filepath,LPCSTR t_sz_entrypoint,LPCSTR t_sz_shader_model,ID3DBlob** t_pp_blob_out);
+	HRESULT compile_shader_from_cs(unsigned char*t_p_data,int t_n_data_len, LPCSTR t_sz_entrypoint, LPCSTR t_sz_shader_model, ID3DBlob** t_pp_blob_out);
 
-	bool create_render_with_fourcc(DWORD t_dw_fourcc, bool t_b_reverse,
-				       mw_color_space_e t_color_format,
-				       mw_color_space_level_e t_input_range,
-				       mw_color_space_level_e t_output_range);
+	bool create_render_with_fourcc(DWORD t_dw_fourcc, bool t_b_reverse, 
+		                           mw_color_space_e t_color_format, mw_color_space_level_e t_input_range, mw_color_space_level_e t_output_range);
 	void destory_render_with_fourcc(DWORD t_dw_fourcc);
 
 	bool create_render_nv12();
 
-	bool get_vsfs(s_csvs *t_vs, s_csvs *t_ps, DWORD t_dw_fourcc);
+	bool get_vsfs(s_csvs *t_vs,s_csvs *t_ps,DWORD t_dw_fourcc);
 
 protected:
 	int m_n_width;
@@ -119,14 +101,14 @@ protected:
 	int m_n_stride;
 	int m_n_size;
 
-	IDXGISwapChain *m_p_swap_chain; //directx swap chain
-	DXGI_SWAP_CHAIN_DESC m_sd;      //swap chain description
+	IDXGISwapChain *m_p_swap_chain;		//directx swap chain
+	DXGI_SWAP_CHAIN_DESC m_sd;			//swap chain description
 
-	ID3D11Device *m_p_device;                //d3d11 device
-	ID3D11DeviceContext *m_p_device_context; //device context
-
+	ID3D11Device *m_p_device;			//d3d11 device
+	ID3D11DeviceContext *m_p_device_context;//device context
+	
 	ID3D11Texture2D *m_p_render_buffer;
-	ID3D11RenderTargetView *m_p_render_view; //render view
+	ID3D11RenderTargetView *m_p_render_view;//render view
 
 	D3D_FEATURE_LEVEL m_featurelevels;
 	D3D_FEATURE_LEVEL m_featurelevel;
@@ -156,10 +138,10 @@ protected:
 	ID3D11ShaderResourceView *m_p_shader_resource_view_3;
 
 	int m_n_rc_size;
-	unsigned char *m_array_data[NUM_DATA];
-	queue<unsigned char *> m_queue_data;
+	unsigned char*		  m_array_data[NUM_DATA];
+	queue<unsigned char*> m_queue_data;
 
-	ID3D11Buffer *m_d3db_rect;
+	ID3D11Buffer* m_d3db_rect;
 
 	bool m_b_set;
 

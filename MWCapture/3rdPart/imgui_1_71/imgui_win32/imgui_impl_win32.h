@@ -9,9 +9,9 @@
 
 #pragma once
 
-IMGUI_IMPL_API bool ImGui_ImplWin32_Init(void *hwnd);
-IMGUI_IMPL_API void ImGui_ImplWin32_Shutdown();
-IMGUI_IMPL_API void ImGui_ImplWin32_NewFrame();
+IMGUI_IMPL_API bool     ImGui_ImplWin32_Init(void* hwnd);
+IMGUI_IMPL_API void     ImGui_ImplWin32_Shutdown();
+IMGUI_IMPL_API void     ImGui_ImplWin32_NewFrame();
 
 // Handler for Win32 messages, update mouse/keyboard data.
 // You may or not need this for your implementation, but it can serve as reference for handling inputs.

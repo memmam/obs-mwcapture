@@ -22,12 +22,14 @@
 #include "stdafx.h"
 #include "ChartXYSerie.h"
 
-CChartXYSerie::CChartXYSerie(CChartCtrl *pParent)
-	: CChartSerieBase<SChartXYPoint>(pParent)
+CChartXYSerie::CChartXYSerie(CChartCtrl* pParent) 
+  : CChartSerieBase<SChartXYPoint>(pParent)
 {
 }
 
-CChartXYSerie::~CChartXYSerie() {}
+CChartXYSerie::~CChartXYSerie()
+{
+}
 
 void CChartXYSerie::AddPoint(double X, double Y)
 {
@@ -35,10 +37,11 @@ void CChartXYSerie::AddPoint(double X, double Y)
 	CChartSerieBase<SChartXYPoint>::AddPoint(newPoint);
 }
 
-void CChartXYSerie::AddPoints(double *pX, double *pY, unsigned Count)
+void CChartXYSerie::AddPoints(double* pX, double* pY, unsigned Count)
 {
-	SChartXYPoint *pPoints = new SChartXYPoint[Count];
-	for (unsigned i = 0; i < Count; i++) {
+	SChartXYPoint* pPoints = new SChartXYPoint[Count];
+	for (unsigned i=0; i<Count; i++)
+	{
 		pPoints[i].X = pX[i];
 		pPoints[i].Y = pY[i];
 	}
@@ -46,10 +49,11 @@ void CChartXYSerie::AddPoints(double *pX, double *pY, unsigned Count)
 	delete pPoints;
 }
 
-void CChartXYSerie::SetPoints(double *pX, double *pY, unsigned Count)
+void CChartXYSerie::SetPoints(double* pX, double* pY, unsigned Count)
 {
-	SChartXYPoint *pPoints = new SChartXYPoint[Count];
-	for (unsigned i = 0; i < Count; i++) {
+	SChartXYPoint* pPoints = new SChartXYPoint[Count];
+	for (unsigned i=0; i<Count; i++)
+	{
 		pPoints[i].X = pX[i];
 		pPoints[i].Y = pY[i];
 	}
@@ -84,47 +88,48 @@ void CChartXYSerie::SetYPointValue(unsigned PointIndex, double NewVal)
 }
 
 #ifndef NO_USER_DATA
-void CChartXYSerie::SetUserData(unsigned uPointIndex, void *pData)
+void  CChartXYSerie::SetUserData(unsigned uPointIndex, void* pData)
 {
 	m_vPoints[uPointIndex].pUserData = pData;
 }
 
-void *CChartXYSerie::GetUserData(unsigned uPointIndex)
+void* CChartXYSerie::GetUserData(unsigned uPointIndex)
 {
 	return m_vPoints[uPointIndex].pUserData;
 }
 #endif
 
-void CChartXYSerie::GetBezierControlPoints(
-	unsigned uFirst, unsigned uLast, SChartXYPoint *&pKnots,
-	SChartXYPoint *&pFirstControlPoints,
-	SChartXYPoint *&pSecondControlPoints) const
+void CChartXYSerie::GetBezierControlPoints(unsigned uFirst, 
+											   unsigned uLast,
+											   SChartXYPoint* &pKnots, 
+											   SChartXYPoint* &pFirstControlPoints, 
+											   SChartXYPoint* &pSecondControlPoints) const
 {
 	int Count = uLast - uFirst - 1;
-	if (Count < 1) {
+	if (Count < 1)
+	{
 		pFirstControlPoints = new SChartXYPoint[0];
 		pSecondControlPoints = new SChartXYPoint[0];
 		pKnots = new SChartXYPoint[0];
 		return;
 	}
 
-	pKnots = new SChartXYPoint[uLast - uFirst];
-	SChartXYPoint *pPoints = m_vPoints.GetInternalBuffer();
-	memcpy(pKnots, pPoints + uFirst,
-	       (uLast - uFirst) * sizeof(SChartXYPoint));
+	pKnots = new SChartXYPoint[uLast-uFirst];
+	SChartXYPoint* pPoints = m_vPoints.GetInternalBuffer();
+	memcpy(pKnots, pPoints+uFirst, (uLast-uFirst)*sizeof(SChartXYPoint));
 
 	// Calculate first Bezier control points
 	// Right hand side vector
-	double *rhs = new double[Count];
+	double* rhs = new double[Count];
 
 	// Set right hand side X values
-	int i = 0;
+	int i=0;
 	for (i = 1; i < Count - 1; ++i)
 		rhs[i] = 4 * pKnots[i].X + 2 * pKnots[i + 1].X;
 	rhs[0] = pKnots[0].X + 2 * pKnots[1].X;
 	rhs[Count - 1] = 3 * pKnots[Count - 1].X;
 	// Get first control points X-values
-	double *pFirstX = GetFirstControlPoints(rhs, Count);
+	double* pFirstX = GetFirstControlPoints(rhs, Count);
 
 	// Set right hand side Y values
 	for (i = 1; i < Count - 1; ++i)
@@ -132,26 +137,26 @@ void CChartXYSerie::GetBezierControlPoints(
 	rhs[0] = pKnots[0].Y + 2 * pKnots[1].Y;
 	rhs[Count - 1] = 3 * pKnots[Count - 1].Y;
 	// Get first control points Y-values
-	double *pFirstY = GetFirstControlPoints(rhs, Count);
+	double* pFirstY = GetFirstControlPoints(rhs, Count);
 
 	// Fill output arrays.
 	pFirstControlPoints = new SChartXYPoint[Count];
 	pSecondControlPoints = new SChartXYPoint[Count];
-	for (i = 0; i < Count; ++i) {
+	for (i = 0; i < Count; ++i)
+	{
 		// First control point
 		pFirstControlPoints[i].X = pFirstX[i];
 		pFirstControlPoints[i].Y = pFirstY[i];
 		// Second control point
-		if (i < Count - 1) {
-			pSecondControlPoints[i].X =
-				2 * pKnots[i + 1].X - pFirstX[i + 1];
-			pSecondControlPoints[i].Y =
-				2 * pKnots[i + 1].Y - pFirstY[i + 1];
-		} else {
-			pSecondControlPoints[i].X =
-				(pKnots[Count].X + pFirstX[Count - 1]) / 2;
-			pSecondControlPoints[i].Y =
-				(pKnots[Count].Y + pFirstY[Count - 1]) / 2;
+		if (i < Count - 1)
+		{
+			pSecondControlPoints[i].X =  2 * pKnots[i + 1].X - pFirstX[i + 1];
+			pSecondControlPoints[i].Y =  2 * pKnots[i + 1].Y - pFirstY[i + 1];
+		}
+		else
+		{
+			pSecondControlPoints[i].X =  (pKnots[Count].X + pFirstX[Count - 1]) / 2;
+			pSecondControlPoints[i].Y =  (pKnots[Count].Y + pFirstY[Count - 1]) / 2;
 		}
 	}
 
@@ -160,14 +165,14 @@ void CChartXYSerie::GetBezierControlPoints(
 	delete[] pFirstY;
 }
 
-double *CChartXYSerie::GetFirstControlPoints(double *rhs, int Count) const
+double* CChartXYSerie::GetFirstControlPoints(double* rhs, int Count) const
 {
-	double *pPoints = new double[Count]; // Solution vector.
-	double *pTemp = new double[Count];   // Temp workspace.
+	double* pPoints = new double[Count]; // Solution vector.
+	double* pTemp = new double[Count]; // Temp workspace.
 
 	double b = 2.0;
 	pPoints[0] = rhs[0] / b;
-	int i = 0;
+	int i =0;
 	for (i = 1; i < Count; i++) // Decomposition and forward substitution.
 	{
 		pTemp[i] = 1 / b;
@@ -175,9 +180,7 @@ double *CChartXYSerie::GetFirstControlPoints(double *rhs, int Count) const
 		pPoints[i] = (rhs[i] - pPoints[i - 1]) / b;
 	}
 	for (i = 1; i < Count; i++)
-		pPoints[Count - i - 1] -=
-			pTemp[Count - i] *
-			pPoints[Count - i]; // Backsubstitution.
+		pPoints[Count - i - 1] -= pTemp[Count - i] * pPoints[Count - i]; // Backsubstitution.
 	delete[] pTemp;
 	return pPoints;
 }

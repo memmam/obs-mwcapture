@@ -12,19 +12,17 @@
 #ifndef NVCPUOPSYS_H
 #define NVCPUOPSYS_H
 
+
 #if defined(_WIN32) || defined(_WIN16)
-#define NV_WINDOWS
+#   define NV_WINDOWS
 #endif
 
-#if (defined(__unix__) || defined(__unix)) && !defined(nvmacosx) &&      \
-	!defined(vxworks) && !defined(__DJGPP__) && !defined(NV_UNIX) && \
-	!defined(__QNX__) &&                                             \
-	!defined(__QNXNTO__) /* XXX until removed from Makefiles */
-#define NV_UNIX
+#if (defined(__unix__) || defined(__unix) ) && !defined(nvmacosx) && !defined(vxworks) && !defined(__DJGPP__) && !defined(NV_UNIX) && !defined(__QNX__) && !defined(__QNXNTO__)/* XXX until removed from Makefiles */
+#   define NV_UNIX
 #endif /* defined(__unix__) */
 
 #if defined(__linux__) && !defined(NV_LINUX) && !defined(NV_VMWARE)
-#define NV_LINUX
-#endif /* defined(__linux__) */
+#   define NV_LINUX
+#endif  /* defined(__linux__) */
 
 #endif

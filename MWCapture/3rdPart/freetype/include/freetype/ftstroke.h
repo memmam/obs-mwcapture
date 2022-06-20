@@ -15,6 +15,7 @@
 /*                                                                         */
 /***************************************************************************/
 
+
 #ifndef FTSTROKE_H_
 #define FTSTROKE_H_
 
@@ -22,9 +23,11 @@
 #include FT_OUTLINE_H
 #include FT_GLYPH_H
 
+
 FT_BEGIN_HEADER
 
-/************************************************************************
+
+ /************************************************************************
   *
   * @section:
   *    glyph_stroker
@@ -77,7 +80,8 @@ FT_BEGIN_HEADER
   *
   */
 
-/**************************************************************
+
+ /**************************************************************
   *
   * @type:
   *   FT_Stroker
@@ -85,9 +89,10 @@ FT_BEGIN_HEADER
   * @description:
   *   Opaque handle to a path stroker object.
   */
-typedef struct FT_StrokerRec_ *FT_Stroker;
+  typedef struct FT_StrokerRec_*  FT_Stroker;
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @enum:
    *   FT_Stroker_LineJoin
@@ -133,16 +138,18 @@ typedef struct FT_StrokerRec_ *FT_Stroker;
    *     for FT_STROKER_LINEJOIN_MITER_VARIABLE, retained for
    *     backwards compatibility.
    */
-typedef enum FT_Stroker_LineJoin_ {
-	FT_STROKER_LINEJOIN_ROUND = 0,
-	FT_STROKER_LINEJOIN_BEVEL = 1,
-	FT_STROKER_LINEJOIN_MITER_VARIABLE = 2,
-	FT_STROKER_LINEJOIN_MITER = FT_STROKER_LINEJOIN_MITER_VARIABLE,
-	FT_STROKER_LINEJOIN_MITER_FIXED = 3
+  typedef enum  FT_Stroker_LineJoin_
+  {
+    FT_STROKER_LINEJOIN_ROUND          = 0,
+    FT_STROKER_LINEJOIN_BEVEL          = 1,
+    FT_STROKER_LINEJOIN_MITER_VARIABLE = 2,
+    FT_STROKER_LINEJOIN_MITER          = FT_STROKER_LINEJOIN_MITER_VARIABLE,
+    FT_STROKER_LINEJOIN_MITER_FIXED    = 3
 
-} FT_Stroker_LineJoin;
+  } FT_Stroker_LineJoin;
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @enum:
    *   FT_Stroker_LineCap
@@ -164,14 +171,16 @@ typedef enum FT_Stroker_LineJoin_ {
    *     The end of lines is rendered as a square around the
    *     last point.
    */
-typedef enum FT_Stroker_LineCap_ {
-	FT_STROKER_LINECAP_BUTT = 0,
-	FT_STROKER_LINECAP_ROUND,
-	FT_STROKER_LINECAP_SQUARE
+  typedef enum  FT_Stroker_LineCap_
+  {
+    FT_STROKER_LINECAP_BUTT = 0,
+    FT_STROKER_LINECAP_ROUND,
+    FT_STROKER_LINECAP_SQUARE
 
-} FT_Stroker_LineCap;
+  } FT_Stroker_LineCap;
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @enum:
    *   FT_StrokerBorder
@@ -196,13 +205,15 @@ typedef enum FT_Stroker_LineCap_ {
    *   You can however use @FT_Outline_GetInsideBorder and
    *   @FT_Outline_GetOutsideBorder to get these.
    */
-typedef enum FT_StrokerBorder_ {
-	FT_STROKER_BORDER_LEFT = 0,
-	FT_STROKER_BORDER_RIGHT
+  typedef enum  FT_StrokerBorder_
+  {
+    FT_STROKER_BORDER_LEFT = 0,
+    FT_STROKER_BORDER_RIGHT
 
-} FT_StrokerBorder;
+  } FT_StrokerBorder;
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Outline_GetInsideBorder
@@ -219,10 +230,11 @@ typedef enum FT_StrokerBorder_ {
    *   The border index.  @FT_STROKER_BORDER_RIGHT for empty or invalid
    *   outlines.
    */
-FT_EXPORT(FT_StrokerBorder)
-FT_Outline_GetInsideBorder(FT_Outline *outline);
+  FT_EXPORT( FT_StrokerBorder )
+  FT_Outline_GetInsideBorder( FT_Outline*  outline );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Outline_GetOutsideBorder
@@ -239,10 +251,11 @@ FT_Outline_GetInsideBorder(FT_Outline *outline);
    *   The border index.  @FT_STROKER_BORDER_LEFT for empty or invalid
    *   outlines.
    */
-FT_EXPORT(FT_StrokerBorder)
-FT_Outline_GetOutsideBorder(FT_Outline *outline);
+  FT_EXPORT( FT_StrokerBorder )
+  FT_Outline_GetOutsideBorder( FT_Outline*  outline );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_New
@@ -261,10 +274,12 @@ FT_Outline_GetOutsideBorder(FT_Outline *outline);
    * @return:
    *    FreeType error code.  0~means success.
    */
-FT_EXPORT(FT_Error)
-FT_Stroker_New(FT_Library library, FT_Stroker *astroker);
+  FT_EXPORT( FT_Error )
+  FT_Stroker_New( FT_Library   library,
+                  FT_Stroker  *astroker );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_Set
@@ -296,11 +311,15 @@ FT_Stroker_New(FT_Library library, FT_Stroker *astroker);
    *
    *   This function calls @FT_Stroker_Rewind automatically.
    */
-FT_EXPORT(void)
-FT_Stroker_Set(FT_Stroker stroker, FT_Fixed radius, FT_Stroker_LineCap line_cap,
-	       FT_Stroker_LineJoin line_join, FT_Fixed miter_limit);
+  FT_EXPORT( void )
+  FT_Stroker_Set( FT_Stroker           stroker,
+                  FT_Fixed             radius,
+                  FT_Stroker_LineCap   line_cap,
+                  FT_Stroker_LineJoin  line_join,
+                  FT_Fixed             miter_limit );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_Rewind
@@ -315,10 +334,11 @@ FT_Stroker_Set(FT_Stroker stroker, FT_Fixed radius, FT_Stroker_LineCap line_cap,
    *   stroker ::
    *     The target stroker handle.
    */
-FT_EXPORT(void)
-FT_Stroker_Rewind(FT_Stroker stroker);
+  FT_EXPORT( void )
+  FT_Stroker_Rewind( FT_Stroker  stroker );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_ParseOutline
@@ -351,11 +371,13 @@ FT_Stroker_Rewind(FT_Stroker stroker);
    *
    *   This function calls @FT_Stroker_Rewind automatically.
    */
-FT_EXPORT(FT_Error)
-FT_Stroker_ParseOutline(FT_Stroker stroker, FT_Outline *outline,
-			FT_Bool opened);
+  FT_EXPORT( FT_Error )
+  FT_Stroker_ParseOutline( FT_Stroker   stroker,
+                           FT_Outline*  outline,
+                           FT_Bool      opened );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_BeginSubPath
@@ -380,10 +402,13 @@ FT_Stroker_ParseOutline(FT_Stroker stroker, FT_Outline *outline,
    *   This function is useful when you need to stroke a path that is
    *   not stored as an @FT_Outline object.
    */
-FT_EXPORT(FT_Error)
-FT_Stroker_BeginSubPath(FT_Stroker stroker, FT_Vector *to, FT_Bool open);
+  FT_EXPORT( FT_Error )
+  FT_Stroker_BeginSubPath( FT_Stroker  stroker,
+                           FT_Vector*  to,
+                           FT_Bool     open );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_EndSubPath
@@ -403,10 +428,11 @@ FT_Stroker_BeginSubPath(FT_Stroker stroker, FT_Vector *to, FT_Bool open);
    *   If the subpath was not `opened', this function `draws' a
    *   single line segment to the start position when needed.
    */
-FT_EXPORT(FT_Error)
-FT_Stroker_EndSubPath(FT_Stroker stroker);
+  FT_EXPORT( FT_Error )
+  FT_Stroker_EndSubPath( FT_Stroker  stroker );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_LineTo
@@ -429,10 +455,12 @@ FT_Stroker_EndSubPath(FT_Stroker stroker);
    *   You should call this function between @FT_Stroker_BeginSubPath and
    *   @FT_Stroker_EndSubPath.
    */
-FT_EXPORT(FT_Error)
-FT_Stroker_LineTo(FT_Stroker stroker, FT_Vector *to);
+  FT_EXPORT( FT_Error )
+  FT_Stroker_LineTo( FT_Stroker  stroker,
+                     FT_Vector*  to );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_ConicTo
@@ -458,10 +486,13 @@ FT_Stroker_LineTo(FT_Stroker stroker, FT_Vector *to);
    *   You should call this function between @FT_Stroker_BeginSubPath and
    *   @FT_Stroker_EndSubPath.
    */
-FT_EXPORT(FT_Error)
-FT_Stroker_ConicTo(FT_Stroker stroker, FT_Vector *control, FT_Vector *to);
+  FT_EXPORT( FT_Error )
+  FT_Stroker_ConicTo( FT_Stroker  stroker,
+                      FT_Vector*  control,
+                      FT_Vector*  to );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_CubicTo
@@ -490,11 +521,14 @@ FT_Stroker_ConicTo(FT_Stroker stroker, FT_Vector *control, FT_Vector *to);
    *   You should call this function between @FT_Stroker_BeginSubPath and
    *   @FT_Stroker_EndSubPath.
    */
-FT_EXPORT(FT_Error)
-FT_Stroker_CubicTo(FT_Stroker stroker, FT_Vector *control1, FT_Vector *control2,
-		   FT_Vector *to);
+  FT_EXPORT( FT_Error )
+  FT_Stroker_CubicTo( FT_Stroker  stroker,
+                      FT_Vector*  control1,
+                      FT_Vector*  control2,
+                      FT_Vector*  to );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_GetBorderCounts
@@ -533,11 +567,14 @@ FT_Stroker_CubicTo(FT_Stroker stroker, FT_Vector *control1, FT_Vector *control2,
    *   Use the function @FT_Stroker_GetCounts instead if you want to
    *   retrieve the counts associated to both borders.
    */
-FT_EXPORT(FT_Error)
-FT_Stroker_GetBorderCounts(FT_Stroker stroker, FT_StrokerBorder border,
-			   FT_UInt *anum_points, FT_UInt *anum_contours);
+  FT_EXPORT( FT_Error )
+  FT_Stroker_GetBorderCounts( FT_Stroker        stroker,
+                              FT_StrokerBorder  border,
+                              FT_UInt          *anum_points,
+                              FT_UInt          *anum_contours );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_ExportBorder
@@ -576,11 +613,13 @@ FT_Stroker_GetBorderCounts(FT_Stroker stroker, FT_StrokerBorder border,
    *   Use the function @FT_Stroker_Export instead if you want to
    *   retrieve all borders at once.
    */
-FT_EXPORT(void)
-FT_Stroker_ExportBorder(FT_Stroker stroker, FT_StrokerBorder border,
-			FT_Outline *outline);
+  FT_EXPORT( void )
+  FT_Stroker_ExportBorder( FT_Stroker        stroker,
+                           FT_StrokerBorder  border,
+                           FT_Outline*       outline );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_GetCounts
@@ -605,11 +644,13 @@ FT_Stroker_ExportBorder(FT_Stroker stroker, FT_StrokerBorder border,
    * @return:
    *   FreeType error code.  0~means success.
    */
-FT_EXPORT(FT_Error)
-FT_Stroker_GetCounts(FT_Stroker stroker, FT_UInt *anum_points,
-		     FT_UInt *anum_contours);
+  FT_EXPORT( FT_Error )
+  FT_Stroker_GetCounts( FT_Stroker  stroker,
+                        FT_UInt    *anum_points,
+                        FT_UInt    *anum_contours );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_Export
@@ -629,10 +670,12 @@ FT_Stroker_GetCounts(FT_Stroker stroker, FT_UInt *anum_points,
    *   outline ::
    *     The target outline handle.
    */
-FT_EXPORT(void)
-FT_Stroker_Export(FT_Stroker stroker, FT_Outline *outline);
+  FT_EXPORT( void )
+  FT_Stroker_Export( FT_Stroker   stroker,
+                     FT_Outline*  outline );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Stroker_Done
@@ -644,10 +687,11 @@ FT_Stroker_Export(FT_Stroker stroker, FT_Outline *outline);
    *   stroker ::
    *     A stroker handle.  Can be NULL.
    */
-FT_EXPORT(void)
-FT_Stroker_Done(FT_Stroker stroker);
+  FT_EXPORT( void )
+  FT_Stroker_Done( FT_Stroker  stroker );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Glyph_Stroke
@@ -678,10 +722,13 @@ FT_Stroker_Done(FT_Stroker stroker);
    *   may need to manually adjust horizontal and vertical advance amounts
    *   to account for this added size.
    */
-FT_EXPORT(FT_Error)
-FT_Glyph_Stroke(FT_Glyph *pglyph, FT_Stroker stroker, FT_Bool destroy);
+  FT_EXPORT( FT_Error )
+  FT_Glyph_Stroke( FT_Glyph    *pglyph,
+                   FT_Stroker   stroker,
+                   FT_Bool      destroy );
 
-/**************************************************************
+
+  /**************************************************************
    *
    * @function:
    *   FT_Glyph_StrokeBorder
@@ -717,17 +764,21 @@ FT_Glyph_Stroke(FT_Glyph *pglyph, FT_Stroker stroker, FT_Bool destroy);
    *   may need to manually adjust horizontal and vertical advance amounts
    *   to account for this added size.
    */
-FT_EXPORT(FT_Error)
-FT_Glyph_StrokeBorder(FT_Glyph *pglyph, FT_Stroker stroker, FT_Bool inside,
-		      FT_Bool destroy);
+  FT_EXPORT( FT_Error )
+  FT_Glyph_StrokeBorder( FT_Glyph    *pglyph,
+                         FT_Stroker   stroker,
+                         FT_Bool      inside,
+                         FT_Bool      destroy );
 
-/* */
+  /* */
 
 FT_END_HEADER
 
 #endif /* FTSTROKE_H_ */
 
+
 /* END */
+
 
 /* Local Variables: */
 /* coding: utf-8    */

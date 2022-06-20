@@ -23,28 +23,31 @@
 #include "ChartDragLineCursor.h"
 #include "ChartCtrl.h"
 
-CChartDragLineCursor::CChartDragLineCursor(CChartCtrl *pParent,
-					   CChartAxis *pRelatedAxis)
-	: CChartCursor(pParent),
-	  m_pRelatedAxis(pRelatedAxis),
-	  m_lPosition(0),
-	  m_bDragged(false)
+CChartDragLineCursor::CChartDragLineCursor(CChartCtrl* pParent,
+										   CChartAxis* pRelatedAxis)
+  : CChartCursor(pParent), m_pRelatedAxis(pRelatedAxis), m_lPosition(0),
+	m_bDragged(false)
 {
 }
 
-CChartDragLineCursor::~CChartDragLineCursor() {}
-
-void CChartDragLineCursor::Draw(CDC *pDC)
+CChartDragLineCursor::~CChartDragLineCursor()
 {
-	CPen NewPen(PS_SOLID, 1, m_colCursor);
-	CPen *pOldPen = pDC->SelectObject(&NewPen);
+}
+
+void CChartDragLineCursor::Draw(CDC* pDC)
+{
+	CPen NewPen(PS_SOLID,1,m_colCursor);
+	CPen* pOldPen = pDC->SelectObject(&NewPen);
 
 	CRect plottingRect = m_pParentCtrl->GetPlottingRect();
 
-	if (m_pRelatedAxis->IsHorizontal()) {
+	if (m_pRelatedAxis->IsHorizontal())
+	{
 		pDC->MoveTo(m_lPosition, plottingRect.top);
 		pDC->LineTo(m_lPosition, plottingRect.bottom);
-	} else {
+	}
+	else 
+	{
 		pDC->MoveTo(plottingRect.left, m_lPosition);
 		pDC->LineTo(plottingRect.right, m_lPosition);
 	}
@@ -53,21 +56,23 @@ void CChartDragLineCursor::Draw(CDC *pDC)
 	NewPen.DeleteObject();
 }
 
-void CChartDragLineCursor::OnMouseButtonDown(CPoint mousePoint)
-{
+void CChartDragLineCursor::OnMouseButtonDown(CPoint mousePoint)  
+{ 
 	long position = 0;
 	if (m_pRelatedAxis->IsHorizontal())
 		position = mousePoint.x;
 	else
 		position = mousePoint.y;
 
-	if ((position >= m_lPosition - 3) && (position <= m_lPosition + 3)) {
+	if ( (position >= m_lPosition-3) && 
+		 (position <= m_lPosition+3) )
+	{
 		m_bDragged = true;
 	}
 }
 
-void CChartDragLineCursor::OnMouseButtonUp(CPoint /*mousePoint*/)
-{
+void CChartDragLineCursor::OnMouseButtonUp(CPoint /*mousePoint*/)    
+{ 
 	m_bDragged = false;
 }
 
@@ -78,10 +83,13 @@ void CChartDragLineCursor::OnMouseMove(CPoint mousePoint)
 
 	double XVal = 0;
 	double YVal = 0;
-	if (m_pRelatedAxis->IsHorizontal()) {
+	if (m_pRelatedAxis->IsHorizontal())
+	{
 		m_lPosition = mousePoint.x;
 		XVal = m_pRelatedAxis->ScreenToValue(m_lPosition);
-	} else {
+	}
+	else
+	{
 		m_lPosition = mousePoint.y;
 		YVal = m_pRelatedAxis->ScreenToValue(m_lPosition);
 	}

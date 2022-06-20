@@ -33,8 +33,8 @@
 #define AV_BF_ROUNDS 16
 
 typedef struct AVBlowfish {
-	uint32_t p[AV_BF_ROUNDS + 2];
-	uint32_t s[4][256];
+    uint32_t p[AV_BF_ROUNDS + 2];
+    uint32_t s[4][256];
 } AVBlowfish;
 
 /**
@@ -60,7 +60,7 @@ void av_blowfish_init(struct AVBlowfish *ctx, const uint8_t *key, int key_len);
  * @param decrypt 0 for encryption, 1 for decryption
  */
 void av_blowfish_crypt_ecb(struct AVBlowfish *ctx, uint32_t *xl, uint32_t *xr,
-			   int decrypt);
+                           int decrypt);
 
 /**
  * Encrypt or decrypt a buffer using a previously initialized context.
@@ -73,7 +73,7 @@ void av_blowfish_crypt_ecb(struct AVBlowfish *ctx, uint32_t *xl, uint32_t *xr,
  * @param decrypt 0 for encryption, 1 for decryption
  */
 void av_blowfish_crypt(struct AVBlowfish *ctx, uint8_t *dst, const uint8_t *src,
-		       int count, uint8_t *iv, int decrypt);
+                       int count, uint8_t *iv, int decrypt);
 
 /**
  * @}

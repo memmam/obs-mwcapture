@@ -45,8 +45,8 @@
 
 // extra flags not defined in VDADecoder.h
 enum {
-	kVDADecodeInfo_Asynchronous = 1UL << 0,
-	kVDADecodeInfo_FrameDropped = 1UL << 1
+    kVDADecodeInfo_Asynchronous = 1UL << 0,
+    kVDADecodeInfo_FrameDropped = 1UL << 1
 };
 
 /**
@@ -63,78 +63,78 @@ enum {
  * The application must make it available as AVCodecContext.hwaccel_context.
  */
 struct vda_context {
-	/**
+    /**
      * VDA decoder object.
      *
      * - encoding: unused
      * - decoding: Set/Unset by libavcodec.
      */
-	VDADecoder decoder;
+    VDADecoder          decoder;
 
-	/**
+    /**
      * The Core Video pixel buffer that contains the current image data.
      *
      * encoding: unused
      * decoding: Set by libavcodec. Unset by user.
      */
-	CVPixelBufferRef cv_buffer;
+    CVPixelBufferRef    cv_buffer;
 
-	/**
+    /**
      * Use the hardware decoder in synchronous mode.
      *
      * encoding: unused
      * decoding: Set by user.
      */
-	int use_sync_decoding;
+    int                 use_sync_decoding;
 
-	/**
+    /**
      * The frame width.
      *
      * - encoding: unused
      * - decoding: Set/Unset by user.
      */
-	int width;
+    int                 width;
 
-	/**
+    /**
      * The frame height.
      *
      * - encoding: unused
      * - decoding: Set/Unset by user.
      */
-	int height;
+    int                 height;
 
-	/**
+    /**
      * The frame format.
      *
      * - encoding: unused
      * - decoding: Set/Unset by user.
      */
-	int format;
+    int                 format;
 
-	/**
+    /**
      * The pixel format for output image buffers.
      *
      * - encoding: unused
      * - decoding: Set/Unset by user.
      */
-	OSType cv_pix_fmt_type;
+    OSType              cv_pix_fmt_type;
 
-	/**
+    /**
      * unused
      */
-	uint8_t *priv_bitstream;
+    uint8_t             *priv_bitstream;
 
-	/**
+    /**
      * unused
      */
-	int priv_bitstream_size;
+    int                 priv_bitstream_size;
 
-	/**
+    /**
      * unused
      */
-	int priv_allocated_size;
+    int                 priv_allocated_size;
 
-	/**
+    /**
      * Use av_buffer to manage buffer.
      * When the flag is set, the CVPixelBuffers returned by the decoder will
      * be released automatically, so you have to retain them if necessary.
@@ -143,12 +143,13 @@ struct vda_context {
      * encoding: unused
      * decoding: Set by user.
      */
-	int use_ref_buffer;
+    int                 use_ref_buffer;
 };
 
 /** Create the video decoder. */
-int ff_vda_create_decoder(struct vda_context *vda_ctx, uint8_t *extradata,
-			  int extradata_size);
+int ff_vda_create_decoder(struct vda_context *vda_ctx,
+                          uint8_t *extradata,
+                          int extradata_size);
 
 /** Destroy the video decoder. */
 int ff_vda_destroy_decoder(struct vda_context *vda_ctx);
@@ -160,22 +161,22 @@ int ff_vda_destroy_decoder(struct vda_context *vda_ctx);
  * av_vda_alloc_context() and freed with av_free().
  */
 typedef struct AVVDAContext {
-	/**
+    /**
      * VDA decoder object. Created and freed by the caller.
      */
-	VDADecoder decoder;
+    VDADecoder decoder;
 
-	/**
+    /**
      * The output callback that must be passed to VDADecoderCreate.
      * Set by av_vda_alloc_context().
      */
-	VDADecoderOutputCallback output_callback;
+    VDADecoderOutputCallback output_callback;
 
-	/**
+    /**
      * CVPixelBuffer Format Type that VDA will use for decoded frames; set by
      * the caller.
      */
-	OSType cv_pix_fmt_type;
+    OSType cv_pix_fmt_type;
 } AVVDAContext;
 
 /**

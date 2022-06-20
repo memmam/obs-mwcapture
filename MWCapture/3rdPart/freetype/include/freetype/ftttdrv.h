@@ -16,6 +16,7 @@
 /*                                                                         */
 /***************************************************************************/
 
+
 #ifndef FTTTDRV_H_
 #define FTTTDRV_H_
 
@@ -28,9 +29,11 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
+
 FT_BEGIN_HEADER
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @section:
    *   tt_driver
@@ -128,7 +131,8 @@ FT_BEGIN_HEADER
    *
    */
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @property:
    *   interpreter-version
@@ -181,7 +185,8 @@ FT_BEGIN_HEADER
    *   variable (using values `35', `38', or `40').
    */
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @enum:
    *   TT_INTERPRETER_VERSION_XXX
@@ -308,14 +313,17 @@ FT_BEGIN_HEADER
    *   a fundamentally different library with different internals.
    *
    */
-#define TT_INTERPRETER_VERSION_35 35
-#define TT_INTERPRETER_VERSION_38 38
-#define TT_INTERPRETER_VERSION_40 40
+#define TT_INTERPRETER_VERSION_35  35
+#define TT_INTERPRETER_VERSION_38  38
+#define TT_INTERPRETER_VERSION_40  40
 
-/* */
+ /* */
+
 
 FT_END_HEADER
 
+
 #endif /* FTTTDRV_H_ */
+
 
 /* END */

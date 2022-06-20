@@ -3,21 +3,21 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell’s SDK
-// and not to Magewell’s SDK as a whole.
+// The following license only applies to head files and library within Magewell’s SDK 
+// and not to Magewell’s SDK as a whole. 
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. (“Magewell”) All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell’s head files and library
+// Magewell grands to any person who obtains the copy of Magewell’s head files and library 
 // the rights,including without limitation, to use, modify, publish, sublicense, distribute
 // the Software on the conditions that all the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or
+// -The following disclaimer shall be included in the software and documentation and/or 
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL “AS IS” AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE
+// IN NO EVENT SHALL MAGEWELL BE LIABLE 
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -73,14 +73,14 @@ bool CMWRenderBuffer::allocate_buffer(int t_n_size)
 	EnterCriticalSection(&m_cs_lock);
 
 	// clear queue
-	while (!m_queue_buffer_free.empty())
+	while(!m_queue_buffer_free.empty())
 		m_queue_buffer_free.pop();
 
-	while (!m_queue_buffer_full.empty())
+	while(!m_queue_buffer_full.empty())
 		m_queue_buffer_full.pop();
 
-	for (int i = 0; i < m_n_num_buffer; i++) {
-		if (m_array_buffer[i].m_p_buffer != NULL) {
+	for(int i=0;i<m_n_num_buffer;i++){
+		if(m_array_buffer[i].m_p_buffer!=NULL){
 			delete m_array_buffer[i].m_p_buffer;
 			m_array_buffer[i].m_p_buffer = NULL;
 		}
@@ -88,9 +88,9 @@ bool CMWRenderBuffer::allocate_buffer(int t_n_size)
 		m_array_buffer[i].m_n_data_size = 0;
 	}
 
-	for (int i = 0; i < m_n_num_buffer; i++) {
+	for(int i=0;i<m_n_num_buffer;i++){
 		m_array_buffer[i].m_p_buffer = new unsigned char[t_n_size];
-		if (m_array_buffer[i].m_p_buffer != NULL) {
+		if(m_array_buffer[i].m_p_buffer!=NULL){
 			m_array_buffer[i].m_n_buffer_size = t_n_size;
 			m_array_buffer[i].m_n_data_size = 0;
 
@@ -98,7 +98,7 @@ bool CMWRenderBuffer::allocate_buffer(int t_n_size)
 			t_b_ret = true;
 		}
 	}
-	cmw_buffer_s *t_p_buffer = m_queue_buffer_free.front();
+	cmw_buffer_s* t_p_buffer = m_queue_buffer_free.front();
 	m_queue_buffer_free.pop();
 	m_queue_buffer_full.push(t_p_buffer);
 
@@ -107,17 +107,18 @@ bool CMWRenderBuffer::allocate_buffer(int t_n_size)
 	return t_b_ret;
 }
 
-cmw_buffer_s *CMWRenderBuffer::get_buffer_to_fill()
+cmw_buffer_s* CMWRenderBuffer::get_buffer_to_fill()
 {
-	cmw_buffer_s *t_p_buffer = NULL;
+	cmw_buffer_s* t_p_buffer = NULL;
 
 	EnterCriticalSection(&m_cs_lock);
 
-	if (!m_queue_buffer_free.empty()) {
+	if(!m_queue_buffer_free.empty()){
 		t_p_buffer = m_queue_buffer_free.front();
 		m_queue_buffer_free.pop();
-	} else {
-		if (!m_queue_buffer_full.empty()) {
+	}
+	else{
+		if(!m_queue_buffer_full.empty()){
 			t_p_buffer = m_queue_buffer_full.front();
 			m_queue_buffer_full.pop();
 		}
@@ -128,9 +129,9 @@ cmw_buffer_s *CMWRenderBuffer::get_buffer_to_fill()
 	return t_p_buffer;
 }
 
-void CMWRenderBuffer::put_buffer_filled(cmw_buffer_s *t_p_buffer)
+void CMWRenderBuffer::put_buffer_filled(cmw_buffer_s* t_p_buffer)
 {
-	if (t_p_buffer == NULL)
+	if(t_p_buffer == NULL)
 		return;
 
 	EnterCriticalSection(&m_cs_lock);
@@ -140,17 +141,18 @@ void CMWRenderBuffer::put_buffer_filled(cmw_buffer_s *t_p_buffer)
 	LeaveCriticalSection(&m_cs_lock);
 }
 
-cmw_buffer_s *CMWRenderBuffer::get_buffer_render()
+cmw_buffer_s* CMWRenderBuffer::get_buffer_render()
 {
-	cmw_buffer_s *t_p_buffer = NULL;
+	cmw_buffer_s* t_p_buffer = NULL;
 
 	EnterCriticalSection(&m_cs_lock);
 
-	if (!m_queue_buffer_full.empty()) {
+	if(!m_queue_buffer_full.empty()){
 		t_p_buffer = m_queue_buffer_full.front();
 		m_queue_buffer_full.pop();
-	} else {
-		if (!m_queue_buffer_free.empty()) {
+	}
+	else{
+		if(!m_queue_buffer_free.empty()){
 			t_p_buffer = m_queue_buffer_free.front();
 			m_queue_buffer_free.pop();
 		}
@@ -161,14 +163,14 @@ cmw_buffer_s *CMWRenderBuffer::get_buffer_render()
 	return t_p_buffer;
 }
 
-void CMWRenderBuffer::put_buffer_rended(cmw_buffer_s *t_p_buffer)
+void CMWRenderBuffer::put_buffer_rended(cmw_buffer_s* t_p_buffer)
 {
-	if (t_p_buffer == NULL)
+	if(t_p_buffer==NULL)
 		return;
 
 	EnterCriticalSection(&m_cs_lock);
 
-	if (m_queue_buffer_full.empty())
+	if(m_queue_buffer_full.empty())
 		m_queue_buffer_full.push(t_p_buffer);
 	else
 		m_queue_buffer_free.push(t_p_buffer);
@@ -181,11 +183,11 @@ int CMWRenderBuffer::get_buffer_num()
 	return m_n_num_buffer;
 }
 
-cmw_buffer_s *CMWRenderBuffer::get_buffer_by_index(int t_n_index)
+cmw_buffer_s* CMWRenderBuffer::get_buffer_by_index(int t_n_index)
 {
-	cmw_buffer_s *t_p_buffer = NULL;
+	cmw_buffer_s* t_p_buffer = NULL;
 
-	if (t_n_index >= 0 && t_n_index < m_n_num_buffer)
+	if(t_n_index>=0&&t_n_index<m_n_num_buffer)
 		t_p_buffer = &m_array_buffer[t_n_index];
 
 	return t_p_buffer;
@@ -194,9 +196,8 @@ cmw_buffer_s *CMWRenderBuffer::get_buffer_by_index(int t_n_index)
 void CMWRenderBuffer::clear_data()
 {
 	for (int i = 0; i < 2; i++) {
-		if (m_array_buffer[i].m_p_buffer != NULL)
-			memset(m_array_buffer[i].m_p_buffer, 0,
-			       m_array_buffer[i].m_n_buffer_size);
+		if (m_array_buffer[i].m_p_buffer != NULL) 
+			memset(m_array_buffer[i].m_p_buffer, 0, m_array_buffer[i].m_n_buffer_size);
 	}
 
 	m_b_clear = true;

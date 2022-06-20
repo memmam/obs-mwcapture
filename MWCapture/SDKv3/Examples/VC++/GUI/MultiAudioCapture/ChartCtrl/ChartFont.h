@@ -26,10 +26,11 @@
 #include <afx.h>
 
 //! Wrapper class for fonts with advanced properties (italic, bold or underlined).
-class CChartFont {
+class CChartFont
+{
 public:
 	//! Copy constructor.
-	CChartFont(const CChartFont &copy);
+	CChartFont(const CChartFont& copy);
 	//! Constructor
 	/**
 		@param strFaceName
@@ -37,7 +38,7 @@ public:
 		@param iPointSize
 			The font point size
 	**/
-	CChartFont(const TChartString &strFaceName, int iPointSize);
+	CChartFont(const TChartString& strFaceName, int iPointSize);
 	//! Default constructor
 	/**
 		Construct a font with the "Microsoft Sans Serif" face name and
@@ -60,9 +61,8 @@ public:
 		@param bUnderline
 			Specifies if the text is underlined
 	**/
-	void SetFont(const TChartString &strFaceName, int iPointSize,
-		     bool bItalic = false, bool bBold = false,
-		     bool bUnderline = false);
+	void SetFont(const TChartString& strFaceName, int iPointSize, 
+				 bool bItalic=false, bool bBold=false, bool bUnderline=false);
 
 	//! Select this font in the device context passed in argument.
 	/**
@@ -70,9 +70,9 @@ public:
 		set it back when calling UnselectFont. This function is mainly
 		used internally.
 	**/
-	void SelectFont(CDC *pDC) const;
+	void SelectFont(CDC* pDC) const;
 	//! Reset the font to its original in the device context.
-	void UnselectFont(CDC *pDC) const;
+	void UnselectFont(CDC* pDC) const;
 
 	//! Sets the text in vertical mode.
 	/**
@@ -81,7 +81,7 @@ public:
 	void SetVertical(bool bVertical);
 
 	//! Assignement operator.
-	void operator=(const CChartFont &objectSrc);
+	void operator=(const CChartFont& objectSrc);       
 
 private:
 	//! The font face name
@@ -105,7 +105,7 @@ private:
 	mutable bool m_bDirty;
 
 	//! The old font which is stored when calling SelectFont
-	mutable CFont *m_pOldFont;
+	mutable CFont* m_pOldFont;
 };
 
-#endif // _CHARTFONT_H_
+#endif  // _CHARTFONT_H_

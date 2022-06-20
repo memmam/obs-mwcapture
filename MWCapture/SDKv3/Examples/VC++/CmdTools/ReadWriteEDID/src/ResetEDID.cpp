@@ -7,7 +7,7 @@
 
 #include "LibMWCapture\MWCapture.h"
 
-int _tmain(int argc, _TCHAR *argv[])
+int _tmain(int argc, _TCHAR* argv[])
 {
 	printf("Magewell MWCapture SDK 3.2 - ResetEDID\n");
 
@@ -25,12 +25,11 @@ int _tmain(int argc, _TCHAR *argv[])
 		printf("Find %d channels.\n", nChannelCount);
 
 		// Get board id and channel id
-		MWCAP_CHANNEL_INFO videoInfo = {0};
-		for (int i = 0; i < nChannelCount; i++) {
+		MWCAP_CHANNEL_INFO videoInfo = { 0 };
+		for (int i = 0; i < nChannelCount; i ++) {
 			TCHAR szPath[MAX_PATH];
 			if (MW_SUCCEEDED != MWGetDevicePath(i, szPath)) {
-				printf("ERROR: Can't get channel info - %d!\n",
-				       i);
+				printf("ERROR: Can't get channel info - %d!\n", i);
 				continue;
 			}
 
@@ -43,16 +42,18 @@ int _tmain(int argc, _TCHAR *argv[])
 
 			if (MW_SUCCEEDED != MWSetEDID(hChannel, NULL, 0)) {
 				printf("ERROR: Reset EDID - %d!\n", i);
-			} else {
+			}
+			else {
 				printf("Reset EDID %d ok!\n", i);
 			}
 
 			MWCloseChannel(hChannel);
 		}
-
+		
 	} while (FALSE);
-
+	
 	MWCaptureExitInstance();
 
 	return 0;
 }
+

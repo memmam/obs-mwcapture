@@ -15,6 +15,7 @@
 /*                                                                         */
 /***************************************************************************/
 
+
 #ifndef FTAUTOH_H_
 #define FTAUTOH_H_
 
@@ -27,9 +28,11 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
+
 FT_BEGIN_HEADER
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @section:
    *   auto_hinter
@@ -51,7 +54,8 @@ FT_BEGIN_HEADER
    *
    */
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @property:
    *   glyph-to-script-map
@@ -104,7 +108,8 @@ FT_BEGIN_HEADER
    *
    */
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @enum:
    *   FT_AUTOHINTER_SCRIPT_XXX
@@ -223,12 +228,13 @@ FT_BEGIN_HEADER
    *     zone support.
    *
    */
-#define FT_AUTOHINTER_SCRIPT_NONE 0
-#define FT_AUTOHINTER_SCRIPT_LATIN 1
-#define FT_AUTOHINTER_SCRIPT_CJK 2
-#define FT_AUTOHINTER_SCRIPT_INDIC 3
+#define FT_AUTOHINTER_SCRIPT_NONE   0
+#define FT_AUTOHINTER_SCRIPT_LATIN  1
+#define FT_AUTOHINTER_SCRIPT_CJK    2
+#define FT_AUTOHINTER_SCRIPT_INDIC  3
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @struct:
    *   FT_Prop_GlyphToScriptMap
@@ -239,13 +245,15 @@ FT_BEGIN_HEADER
    *   The data exchange structure for the @glyph-to-script-map property.
    *
    */
-typedef struct FT_Prop_GlyphToScriptMap_ {
-	FT_Face face;
-	FT_UShort *map;
+  typedef struct  FT_Prop_GlyphToScriptMap_
+  {
+    FT_Face     face;
+    FT_UShort*  map;
 
-} FT_Prop_GlyphToScriptMap;
+  } FT_Prop_GlyphToScriptMap;
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @property:
    *   fallback-script
@@ -283,7 +291,8 @@ typedef struct FT_Prop_GlyphToScriptMap_ {
    *
    */
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @property:
    *   default-script
@@ -327,7 +336,8 @@ typedef struct FT_Prop_GlyphToScriptMap_ {
    *
    */
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @property:
    *   increase-x-height
@@ -364,7 +374,8 @@ typedef struct FT_Prop_GlyphToScriptMap_ {
    *
    */
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @struct:
    *   FT_Prop_IncreaseXHeight
@@ -373,13 +384,15 @@ typedef struct FT_Prop_GlyphToScriptMap_ {
    *   The data exchange structure for the @increase-x-height property.
    *
    */
-typedef struct FT_Prop_IncreaseXHeight_ {
-	FT_Face face;
-	FT_UInt limit;
+  typedef struct  FT_Prop_IncreaseXHeight_
+  {
+    FT_Face  face;
+    FT_UInt  limit;
 
-} FT_Prop_IncreaseXHeight;
+  } FT_Prop_IncreaseXHeight;
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @property:
    *   warping
@@ -428,7 +441,8 @@ typedef struct FT_Prop_IncreaseXHeight_ {
    *
    */
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @property:
    *   no-stem-darkening[autofit]
@@ -467,7 +481,8 @@ typedef struct FT_Prop_IncreaseXHeight_ {
    *
    */
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @property:
    *   darkening-parameters[autofit]
@@ -484,10 +499,13 @@ typedef struct FT_Prop_IncreaseXHeight_ {
    *   variable similar to the CFF driver.
    */
 
-/* */
+
+  /* */
+
 
 FT_END_HEADER
 
 #endif /* FTAUTOH_H_ */
+
 
 /* END */

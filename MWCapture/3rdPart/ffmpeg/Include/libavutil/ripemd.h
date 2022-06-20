@@ -57,7 +57,7 @@ struct AVRIPEMD *av_ripemd_alloc(void);
  * @param bits    number of bits in digest (128, 160, 256 or 320 bits)
  * @return        zero if initialization succeeded, -1 otherwise
  */
-int av_ripemd_init(struct AVRIPEMD *context, int bits);
+int av_ripemd_init(struct AVRIPEMD* context, int bits);
 
 /**
  * Update hash value.
@@ -66,8 +66,7 @@ int av_ripemd_init(struct AVRIPEMD *context, int bits);
  * @param data    input data to update hash with
  * @param len     input data length
  */
-void av_ripemd_update(struct AVRIPEMD *context, const uint8_t *data,
-		      unsigned int len);
+void av_ripemd_update(struct AVRIPEMD* context, const uint8_t* data, unsigned int len);
 
 /**
  * Finish hashing and output digest value.
@@ -75,7 +74,7 @@ void av_ripemd_update(struct AVRIPEMD *context, const uint8_t *data,
  * @param context hash function context
  * @param digest  buffer where output digest value is stored
  */
-void av_ripemd_final(struct AVRIPEMD *context, uint8_t *digest);
+void av_ripemd_final(struct AVRIPEMD* context, uint8_t *digest);
 
 /**
  * @}

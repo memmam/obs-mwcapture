@@ -27,11 +27,11 @@
  *       disabled at build time.
  */
 typedef struct AVDCT {
-	const AVClass *av_class;
+    const AVClass *av_class;
 
-	void (*idct)(int16_t *block /* align 16 */);
+    void (*idct)(int16_t *block /* align 16 */);
 
-	/**
+    /**
      * IDCT input permutation.
      * Several optimized IDCTs need a permutated input (relative to the
      * normal order of the reference IDCT).
@@ -45,27 +45,28 @@ typedef struct AVDCT {
      * - (-> decode coeffs -> zigzag reorder -> simple_mmx_perm -> dequant
      *    -> simple_idct_mmx -> ...)
      */
-	uint8_t idct_permutation[64];
+    uint8_t idct_permutation[64];
 
-	void (*fdct)(int16_t *block /* align 16 */);
+    void (*fdct)(int16_t *block /* align 16 */);
 
-	/**
+
+    /**
      * DCT algorithm.
      * must use AVOptions to set this field.
      */
-	int dct_algo;
+    int dct_algo;
 
-	/**
+    /**
      * IDCT algorithm.
      * must use AVOptions to set this field.
      */
-	int idct_algo;
+    int idct_algo;
 
-	void (*get_pixels)(int16_t *block /* align 16 */,
-			   const uint8_t *pixels /* align 8 */,
-			   ptrdiff_t line_size);
+    void (*get_pixels)(int16_t *block /* align 16 */,
+                       const uint8_t *pixels /* align 8 */,
+                       ptrdiff_t line_size);
 
-	int bits_per_sample;
+    int bits_per_sample;
 } AVDCT;
 
 /**

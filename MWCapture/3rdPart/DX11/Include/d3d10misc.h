@@ -28,29 +28,30 @@ extern "C" {
 // Pass one of these values to D3D10CreateDevice
 //
 ///////////////////////////////////////////////////////////////////////////
-typedef enum D3D10_DRIVER_TYPE {
-	D3D10_DRIVER_TYPE_HARDWARE = 0,
-	D3D10_DRIVER_TYPE_REFERENCE = 1,
-	D3D10_DRIVER_TYPE_NULL = 2,
-	D3D10_DRIVER_TYPE_SOFTWARE = 3,
-	D3D10_DRIVER_TYPE_WARP = 5,
+typedef enum D3D10_DRIVER_TYPE
+{
+    D3D10_DRIVER_TYPE_HARDWARE  = 0,
+    D3D10_DRIVER_TYPE_REFERENCE = 1,
+    D3D10_DRIVER_TYPE_NULL      = 2,
+    D3D10_DRIVER_TYPE_SOFTWARE  = 3,
+    D3D10_DRIVER_TYPE_WARP      = 5,
 } D3D10_DRIVER_TYPE;
 
-DEFINE_GUID(GUID_DeviceType, 0xd722fb4d, 0x7a68, 0x437a, 0xb2, 0x0c, 0x58, 0x04,
-	    0xee, 0x24, 0x94, 0xa6);
+DEFINE_GUID(GUID_DeviceType, 
+0xd722fb4d, 0x7a68, 0x437a, 0xb2, 0x0c, 0x58, 0x04, 0xee, 0x24, 0x94, 0xa6);
 
 ///////////////////////////////////////////////////////////////////////////
 // D3D10CreateDevice
 // ------------------
 //
 // pAdapter
-//      If NULL, D3D10CreateDevice will choose the primary adapter and
+//      If NULL, D3D10CreateDevice will choose the primary adapter and 
 //      create a new instance from a temporarily created IDXGIFactory.
-//      If non-NULL, D3D10CreateDevice will register the appropriate
-//      device, if necessary (via IDXGIAdapter::RegisterDrver), before
+//      If non-NULL, D3D10CreateDevice will register the appropriate 
+//      device, if necessary (via IDXGIAdapter::RegisterDrver), before 
 //      creating the device.
 // DriverType
-//      Specifies the driver type to be created: hardware, reference or
+//      Specifies the driver type to be created: hardware, reference or 
 //      null.
 // Software
 //      HMODULE of a DLL implementing a software rasterizer. Must be NULL for
@@ -63,30 +64,33 @@ DEFINE_GUID(GUID_DeviceType, 0xd722fb4d, 0x7a68, 0x437a, 0xb2, 0x0c, 0x58, 0x04,
 //      Pointer to returned interface.
 //
 // Return Values
-//  Any of those documented for
+//  Any of those documented for 
 //          CreateDXGIFactory
 //          IDXGIFactory::EnumAdapters
 //          IDXGIAdapter::RegisterDriver
 //          D3D10CreateDevice
-//
+//      
 ///////////////////////////////////////////////////////////////////////////
-HRESULT WINAPI D3D10CreateDevice(IDXGIAdapter *pAdapter,
-				 D3D10_DRIVER_TYPE DriverType, HMODULE Software,
-				 UINT Flags, UINT SDKVersion,
-				 ID3D10Device **ppDevice);
+HRESULT WINAPI D3D10CreateDevice(
+    IDXGIAdapter *pAdapter,
+    D3D10_DRIVER_TYPE DriverType,
+    HMODULE Software,
+    UINT Flags,
+    UINT SDKVersion,
+    ID3D10Device **ppDevice);
 
 ///////////////////////////////////////////////////////////////////////////
 // D3D10CreateDeviceAndSwapChain
 // ------------------------------
 //
 // ppAdapter
-//      If NULL, D3D10CreateDevice will choose the primary adapter and
+//      If NULL, D3D10CreateDevice will choose the primary adapter and 
 //      create a new instance from a temporarily created IDXGIFactory.
-//      If non-NULL, D3D10CreateDevice will register the appropriate
-//      device, if necessary (via IDXGIAdapter::RegisterDrver), before
+//      If non-NULL, D3D10CreateDevice will register the appropriate 
+//      device, if necessary (via IDXGIAdapter::RegisterDrver), before 
 //      creating the device.
 // DriverType
-//      Specifies the driver type to be created: hardware, reference or
+//      Specifies the driver type to be created: hardware, reference or 
 //      null.
 // Software
 //      HMODULE of a DLL implementing a software rasterizer. Must be NULL for
@@ -103,18 +107,24 @@ HRESULT WINAPI D3D10CreateDevice(IDXGIAdapter *pAdapter,
 //      Pointer to returned interface.
 //
 // Return Values
-//  Any of those documented for
+//  Any of those documented for 
 //          CreateDXGIFactory
 //          IDXGIFactory::EnumAdapters
 //          IDXGIAdapter::RegisterDriver
 //          D3D10CreateDevice
 //          IDXGIFactory::CreateSwapChain
-//
+//      
 ///////////////////////////////////////////////////////////////////////////
 HRESULT WINAPI D3D10CreateDeviceAndSwapChain(
-	IDXGIAdapter *pAdapter, D3D10_DRIVER_TYPE DriverType, HMODULE Software,
-	UINT Flags, UINT SDKVersion, DXGI_SWAP_CHAIN_DESC *pSwapChainDesc,
-	IDXGISwapChain **ppSwapChain, ID3D10Device **ppDevice);
+    IDXGIAdapter *pAdapter,
+    D3D10_DRIVER_TYPE DriverType,
+    HMODULE Software,
+    UINT Flags,
+    UINT SDKVersion,
+    DXGI_SWAP_CHAIN_DESC *pSwapChainDesc,
+    IDXGISwapChain **ppSwapChain,    
+    ID3D10Device **ppDevice);
+
 
 ///////////////////////////////////////////////////////////////////////////
 // D3D10CreateBlob:
@@ -129,3 +139,5 @@ HRESULT WINAPI D3D10CreateBlob(SIZE_T NumBytes, LPD3D10BLOB *ppBuffer);
 #endif //__cplusplus
 
 #endif //__D3D10EFFECT_H__
+
+

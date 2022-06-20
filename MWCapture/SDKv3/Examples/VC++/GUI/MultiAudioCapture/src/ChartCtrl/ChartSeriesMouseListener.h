@@ -26,7 +26,8 @@
 
 //#pragma warning( disable : 4100 )
 
-template<class PointType> class CChartSerieBase;
+template <class PointType>
+class CChartSerieBase;
 
 //! Listener for mouse events occuring on a series.
 /**
@@ -34,12 +35,14 @@ template<class PointType> class CChartSerieBase;
 	mouse notifications. You can then register your class with the chart
 	control by calling RegisterMouseListener.
 **/
-template<class PointType> class CChartSeriesMouseListener {
+template <class PointType>
+class CChartSeriesMouseListener
+{
 public:
 	//! Constructor
-	CChartSeriesMouseListener() {}
+	CChartSeriesMouseListener()  { }
 	//! Destructor
-	virtual ~CChartSeriesMouseListener() {}
+	virtual ~CChartSeriesMouseListener()  { }
 
 	//! Virtual function to implement in order to be notified when a mouse event occurs on a series.
 	/**
@@ -55,12 +58,8 @@ public:
 			between two points on a line series), INVALID_POINT is passed for this
 			parameter.
 	**/
-	virtual void
-	OnMouseEventSeries(CChartMouseListener::MouseEvent mouseEvent,
-			   CPoint point, CChartSerieBase<PointType> *pSerie,
-			   unsigned uPointIndex)
-	{
-	}
+	virtual void OnMouseEventSeries(CChartMouseListener::MouseEvent mouseEvent, CPoint point,
+					CChartSerieBase<PointType>* pSerie, unsigned uPointIndex) { }
 };
 
-#endif // _CHARTSERIESMOUSELISTENER_H_
+#endif  // _CHARTSERIESMOUSELISTENER_H_

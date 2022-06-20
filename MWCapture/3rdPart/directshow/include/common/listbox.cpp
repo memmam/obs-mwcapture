@@ -17,7 +17,12 @@
 // ListBox constructor
 //-----------------------------------------------------------------------------
 
-ListBox::ListBox() : m_bMultiSelect(false) {}
+ListBox::ListBox()
+: m_bMultiSelect(false)
+{
+
+}
+
 
 //-----------------------------------------------------------------------------
 // Name: SetWindow
@@ -26,10 +31,11 @@ ListBox::ListBox() : m_bMultiSelect(false) {}
 
 void ListBox::SetWindow(HWND hwnd)
 {
-	Control::SetWindow(hwnd);
-	LONG style = GetWindowLong(m_hwnd, GWL_STYLE);
-	m_bMultiSelect = HasStyle(LBS_MULTIPLESEL) || HasStyle(LBS_EXTENDEDSEL);
+    Control::SetWindow(hwnd);
+    LONG style = GetWindowLong(m_hwnd, GWL_STYLE);
+    m_bMultiSelect = HasStyle(LBS_MULTIPLESEL) || HasStyle(LBS_EXTENDEDSEL);
 }
+
 
 //-----------------------------------------------------------------------------
 // Name: Count
@@ -38,8 +44,8 @@ void ListBox::SetWindow(HWND hwnd)
 
 UINT ListBox::Count()
 {
-	LRESULT res = SendMessage(LB_GETCOUNT, 0, 0);
-	return (res == LB_ERR ? 0 : (UINT)res);
+    LRESULT res = SendMessage(LB_GETCOUNT, 0, 0);
+    return (res == LB_ERR ? 0 : (UINT)res);
 }
 
 //-----------------------------------------------------------------------------
@@ -51,21 +57,25 @@ UINT ListBox::Count()
 
 BOOL ListBox::AddString(LPCTSTR sz)
 {
-	if (!sz) {
-		return FALSE;
-	}
+    if (!sz)
+    {
+        return FALSE;
+    }
 
-	LRESULT res = SendMessage(LB_ADDSTRING, 0, (LPARAM)sz);
-	if (res == LB_ERR || res == LB_ERRSPACE) {
-		return FALSE;
-	} else {
-		return TRUE;
-	}
+    LRESULT res = SendMessage(LB_ADDSTRING, 0, (LPARAM)sz);
+    if (res == LB_ERR || res == LB_ERRSPACE)
+    {
+        return FALSE;
+    }
+    else
+    {
+        return TRUE;
+    }
 }
 
 //-----------------------------------------------------------------------------
 // Name: GetString
-// Desc: Returns a string at a specified index.
+// Desc: Returns a string at a specified index. 
 //
 // ppStr: Receives a pointer to the string. The method allocates the string.
 //        The caller must free the string using CoTaskMemFree.
@@ -75,31 +85,38 @@ BOOL ListBox::AddString(LPCTSTR sz)
 
 BOOL ListBox::GetString(UINT index, TCHAR **ppStr)
 {
-	if (!ppStr) {
-		return FALSE;
-	}
+    if (!ppStr)
+    {
+        return FALSE;
+    }
 
-	*ppStr = NULL;
+    *ppStr = NULL;
 
-	LRESULT cch = SendMessage(LB_GETTEXTLEN, (WPARAM)index, 0);
-	if (cch == LB_ERR) {
-		return FALSE;
-	}
+    LRESULT cch = SendMessage(LB_GETTEXTLEN, (WPARAM)index, 0);
+    if (cch == LB_ERR)
+    {
+        return FALSE;
+    }
 
-	TCHAR *str = (TCHAR *)CoTaskMemAlloc(sizeof(TCHAR) * (cch + 1));
-	if (str == NULL) {
-		return FALSE;
-	}
+    TCHAR *str = (TCHAR*)CoTaskMemAlloc(sizeof(TCHAR) * (cch + 1));
+    if (str == NULL)
+    {
+        return FALSE;
+    }
 
-	cch = SendMessage(LB_GETTEXT, (WPARAM)index, (LPARAM)str);
-	if (cch == LB_ERR) {
-		CoTaskMemFree(str);
-		return FALSE;
-	}
+    cch = SendMessage(LB_GETTEXT, (WPARAM)index, (LPARAM)str);
+    if (cch == LB_ERR)
+    {
+        CoTaskMemFree(str);
+        return FALSE;
+    }
 
-	*ppStr = str;
-	return TRUE;
+    *ppStr = str;
+    return TRUE;
 }
+
+
+
 
 //-----------------------------------------------------------------------------
 // Name: AddItem
@@ -108,28 +125,31 @@ BOOL ListBox::GetString(UINT index, TCHAR **ppStr)
 // Returns TRUE if successful, or FALSE if an error occurred.
 //-----------------------------------------------------------------------------
 
-BOOL ListBox::AddItem(LPCTSTR szName, void *pItemData)
+BOOL ListBox::AddItem(LPCTSTR szName, void* pItemData)
 {
-	if (!szName) {
-		return FALSE;
-	}
+    if (!szName)
+    {
+        return FALSE;
+    }
 
-	LRESULT result = SendMessage(LB_ADDSTRING, 0, (LPARAM)szName);
-	if (result == LB_ERR || result == LB_ERRSPACE) {
-		return FALSE;
-	}
-	if (pItemData) {
-		UINT index = (UINT)result;
-		result = SendMessage(LB_SETITEMDATA, (WPARAM)index,
-				     (LPARAM)pItemData);
+    LRESULT result = SendMessage(LB_ADDSTRING, 0, (LPARAM)szName);
+    if (result == LB_ERR || result == LB_ERRSPACE)
+    {
+        return FALSE;
+    }
+    if (pItemData)
+    {
+        UINT index = (UINT)result;
+        result = SendMessage(LB_SETITEMDATA, (WPARAM)index, (LPARAM)pItemData);
 
-		if (result == LB_ERR) {
-			// ??
-			SendMessage(LB_DELETESTRING, index, 0);
-			return FALSE;
-		}
-	}
-	return TRUE;
+        if (result == LB_ERR)
+        {
+            // ??
+            SendMessage(LB_DELETESTRING, index, 0);
+            return FALSE;
+        }
+    }
+    return TRUE;
 }
 
 //-----------------------------------------------------------------------------
@@ -139,14 +159,16 @@ BOOL ListBox::AddItem(LPCTSTR szName, void *pItemData)
 // index: Index of the listbox item.
 //-----------------------------------------------------------------------------
 
-void *ListBox::GetItem(UINT index)
+void* ListBox::GetItem(UINT index)
 {
-	LRESULT result = SendMessage(LB_GETITEMDATA, index, 0);
-	if (result == LB_ERR) {
-		return NULL;
-	}
-	return (void *)result;
+    LRESULT result = SendMessage(LB_GETITEMDATA, index, 0);
+    if (result == LB_ERR)
+    {
+        return NULL;
+    }
+    return (void*)result;
 }
+
 
 //-----------------------------------------------------------------------------
 // Name: Select
@@ -158,19 +180,25 @@ void *ListBox::GetItem(UINT index)
 
 BOOL ListBox::Select(UINT index)
 {
-	LRESULT res;
+    LRESULT res;
+    
+    if (IsMultiSelect())
+    {   
+        res = SendMessage(LB_SETSEL, (WPARAM)TRUE, (LPARAM)index);
+    }
+    else
+    {
+        res = SendMessage(LB_SETCURSEL, (WPARAM)index, 0);
+    }
 
-	if (IsMultiSelect()) {
-		res = SendMessage(LB_SETSEL, (WPARAM)TRUE, (LPARAM)index);
-	} else {
-		res = SendMessage(LB_SETCURSEL, (WPARAM)index, 0);
-	}
-
-	if (res == LB_ERR) {
-		return FALSE;
-	} else {
-		return TRUE;
-	}
+    if (res == LB_ERR)
+    {
+        return FALSE;
+    }
+    else
+    {
+        return TRUE;
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -181,23 +209,30 @@ BOOL ListBox::Select(UINT index)
 // Returns TRUE if successful, or FALSE if an error occurred.
 //-----------------------------------------------------------------------------
 
+
 BOOL ListBox::GetCurrentSelection(UINT *pindex)
 {
-	if (!pindex) {
-		return FALSE;
-	}
+    if (!pindex)
+    {
+        return FALSE;
+    }
 
-	if (IsMultiSelect()) {
-		return FALSE;
-	}
+    if (IsMultiSelect())
+    {
+        return FALSE;
+    }
 
-	LRESULT res = SendMessage(LB_GETCURSEL, 0, 0);
-	if (res == LB_ERR) {
-		return FALSE;
-	} else {
-		*pindex = (int)res;
-		return TRUE;
-	}
+
+    LRESULT res = SendMessage(LB_GETCURSEL, 0, 0);
+    if (res == LB_ERR)
+    {
+        return FALSE;
+    }
+    else
+    {
+        *pindex = (int)res;
+        return TRUE;
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -213,36 +248,42 @@ BOOL ListBox::GetCurrentSelection(UINT *pindex)
 
 BOOL ListBox::GetMultiSelection(UINT **ppIndexes, UINT *pCount)
 {
-	if (!ppIndexes || !pCount) {
-		return FALSE;
-	}
+    if (!ppIndexes || !pCount)
+    {
+        return FALSE;
+    }
 
-	*ppIndexes = NULL;
-	*pCount = 0;
+    *ppIndexes = NULL;
+    *pCount = 0;
 
-	if (!IsMultiSelect()) {
-		return FALSE;
-	}
-	UINT selCount = (UINT)SendMessage(LB_GETSELCOUNT, 0, 0);
-	if (selCount == LB_ERR) {
-		return FALSE;
-	}
+    if (!IsMultiSelect())
+    {
+        return FALSE;
+    }
+    UINT selCount = (UINT)SendMessage(LB_GETSELCOUNT, 0, 0);
+    if (selCount == LB_ERR)
+    {
+        return FALSE;
+    }
 
-	UINT *pIndexes = (UINT *)CoTaskMemAlloc(sizeof(UINT) * selCount);
-	if (pIndexes == NULL) {
-		return FALSE;
-	}
+    UINT *pIndexes = (UINT*)CoTaskMemAlloc(sizeof(UINT) * selCount);
+    if (pIndexes == NULL)
+    {
+        return FALSE;
+    }
 
-	if (LB_ERR ==
-	    SendMessage(LB_GETSELITEMS, (WPARAM)selCount, (LPARAM)pIndexes)) {
-		CoTaskMemFree(pIndexes);
-		return FALSE;
-	}
+    if (LB_ERR == SendMessage(LB_GETSELITEMS, (WPARAM)selCount, (LPARAM)pIndexes))
+    {
+        CoTaskMemFree(pIndexes);
+        return FALSE;
+    }
 
-	*pCount = selCount;
-	*ppIndexes = pIndexes;
-	return TRUE;
+    *pCount = selCount;
+    *ppIndexes = pIndexes;
+    return TRUE;
 }
+    
+
 
 //-----------------------------------------------------------------------------
 // Name: ClearSelection
@@ -251,31 +292,36 @@ BOOL ListBox::GetMultiSelection(UINT **ppIndexes, UINT *pCount)
 
 void ListBox::ClearSelection()
 {
-	if (m_bMultiSelect) {
-		UINT c = Count();
-		for (UINT i = 0; i < c; i++) {
-			SendMessage(LB_SETSEL, (WPARAM)FALSE, (LPARAM)i);
-		}
-	} else {
-		SendMessage(LB_SETCURSEL, -1, 0);
+    if (m_bMultiSelect)
+    {
+        UINT c = Count();
+        for (UINT i = 0; i < c; i++)
+        {
+            SendMessage(LB_SETSEL, (WPARAM)FALSE, (LPARAM)i);
+        }
+    }
+    else
+    {
+        SendMessage(LB_SETCURSEL, -1, 0);
 
-		// Per MSDN: In this case, SendMessage returns LB_ERR even though
-		// no error has occurred. Go figure.
-	}
+        // Per MSDN: In this case, SendMessage returns LB_ERR even though 
+        // no error has occurred. Go figure.
+    }
 }
 
 //-----------------------------------------------------------------------------
 // Name: DeleteItem
-// Desc: Deletes a listbox item.
+// Desc: Deletes a listbox item. 
 //
 // Note: Does not release any user data associated with the item.
 //-----------------------------------------------------------------------------
 
 BOOL ListBox::DeleteItem(UINT index)
 {
-	LRESULT res = SendMessage(LB_DELETESTRING, index, 0);
-	return (res == LB_ERR ? FALSE : TRUE);
+    LRESULT res = SendMessage(LB_DELETESTRING, index, 0);
+    return (res == LB_ERR ? FALSE : TRUE);
 }
+
 
 //-----------------------------------------------------------------------------
 // Name: ClearItems
@@ -284,5 +330,5 @@ BOOL ListBox::DeleteItem(UINT index)
 
 void ListBox::ClearItems()
 {
-	SendMessage(LB_RESETCONTENT, 0, 0);
+    SendMessage(LB_RESETCONTENT, 0, 0);
 }

@@ -25,25 +25,25 @@
 
 unsigned CChartCursor::m_uNextFreeId = 0;
 
-CChartCursor::CChartCursor(CChartCtrl *pParent)
-	: m_colCursor(RGB(0, 0, 0)),
-	  m_pParentCtrl(pParent),
-	  m_uCursorId(0),
-	  m_lstListeners()
+CChartCursor::CChartCursor(CChartCtrl* pParent)
+ : m_colCursor(RGB(0,0,0)), m_pParentCtrl(pParent), m_uCursorId(0),
+   m_lstListeners()
 {
 	m_uCursorId = m_uNextFreeId;
 	m_uNextFreeId++;
 }
 
-CChartCursor::~CChartCursor() {}
-
-void CChartCursor::SetColor(COLORREF cursorColor)
+CChartCursor::~CChartCursor()
 {
-	m_colCursor = cursorColor;
+}
+
+void CChartCursor::SetColor(COLORREF cursorColor)  
+{ 
+	m_colCursor = cursorColor; 
 	m_pParentCtrl->RefreshCtrl();
 }
 
-void CChartCursor::RegisterListener(CChartCursorListener *pListener)
+void CChartCursor::RegisterListener(CChartCursorListener* pListener)
 {
 	m_lstListeners.push_back(pListener);
 }
@@ -51,6 +51,6 @@ void CChartCursor::RegisterListener(CChartCursorListener *pListener)
 void CChartCursor::CursorMoved(double newXValue, double newYValue)
 {
 	TListenerList::iterator iter = m_lstListeners.begin();
-	for (iter; iter != m_lstListeners.end(); iter++)
+	for (iter; iter!=m_lstListeners.end(); iter++)
 		(*iter)->OnCursorMoved(this, newXValue, newYValue);
 }

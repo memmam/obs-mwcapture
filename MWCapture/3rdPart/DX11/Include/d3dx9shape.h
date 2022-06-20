@@ -20,8 +20,9 @@
 extern "C" {
 #endif //__cplusplus
 
+
 //-------------------------------------------------------------------------
-// D3DXCreatePolygon:
+// D3DXCreatePolygon: 
 // ------------------
 // Creates a mesh containing an n-sided polygon.  The polygon is centered
 // at the origin.
@@ -34,12 +35,17 @@ extern "C" {
 //  ppMesh      The mesh object which will be created
 //  ppAdjacency Returns a buffer containing adjacency info.  Can be NULL.
 //-------------------------------------------------------------------------
-HRESULT WINAPI D3DXCreatePolygon(LPDIRECT3DDEVICE9 pDevice, FLOAT Length,
-				 UINT Sides, LPD3DXMESH *ppMesh,
-				 LPD3DXBUFFER *ppAdjacency);
+HRESULT WINAPI 
+    D3DXCreatePolygon(
+        LPDIRECT3DDEVICE9   pDevice,
+        FLOAT               Length, 
+        UINT                Sides, 
+        LPD3DXMESH*         ppMesh,
+        LPD3DXBUFFER*       ppAdjacency);
+
 
 //-------------------------------------------------------------------------
-// D3DXCreateBox:
+// D3DXCreateBox: 
 // --------------
 // Creates a mesh containing an axis-aligned box.  The box is centered at
 // the origin.
@@ -53,9 +59,15 @@ HRESULT WINAPI D3DXCreatePolygon(LPDIRECT3DDEVICE9 pDevice, FLOAT Length,
 //  ppMesh      The mesh object which will be created
 //  ppAdjacency Returns a buffer containing adjacency info.  Can be NULL.
 //-------------------------------------------------------------------------
-HRESULT WINAPI D3DXCreateBox(LPDIRECT3DDEVICE9 pDevice, FLOAT Width,
-			     FLOAT Height, FLOAT Depth, LPD3DXMESH *ppMesh,
-			     LPD3DXBUFFER *ppAdjacency);
+HRESULT WINAPI 
+    D3DXCreateBox(
+        LPDIRECT3DDEVICE9   pDevice, 
+        FLOAT               Width,
+        FLOAT               Height,
+        FLOAT               Depth,
+        LPD3DXMESH*         ppMesh,
+        LPD3DXBUFFER*       ppAdjacency);
+
 
 //-------------------------------------------------------------------------
 // D3DXCreateCylinder:
@@ -74,10 +86,17 @@ HRESULT WINAPI D3DXCreateBox(LPDIRECT3DDEVICE9 pDevice, FLOAT Width,
 //  ppMesh      The mesh object which will be created
 //  ppAdjacency Returns a buffer containing adjacency info.  Can be NULL.
 //-------------------------------------------------------------------------
-HRESULT WINAPI D3DXCreateCylinder(LPDIRECT3DDEVICE9 pDevice, FLOAT Radius1,
-				  FLOAT Radius2, FLOAT Length, UINT Slices,
-				  UINT Stacks, LPD3DXMESH *ppMesh,
-				  LPD3DXBUFFER *ppAdjacency);
+HRESULT WINAPI 
+    D3DXCreateCylinder(
+        LPDIRECT3DDEVICE9   pDevice,
+        FLOAT               Radius1, 
+        FLOAT               Radius2, 
+        FLOAT               Length, 
+        UINT                Slices, 
+        UINT                Stacks,   
+        LPD3DXMESH*         ppMesh,
+        LPD3DXBUFFER*       ppAdjacency);
+
 
 //-------------------------------------------------------------------------
 // D3DXCreateSphere:
@@ -94,9 +113,15 @@ HRESULT WINAPI D3DXCreateCylinder(LPDIRECT3DDEVICE9 pDevice, FLOAT Radius1,
 //  ppMesh      The mesh object which will be created
 //  ppAdjacency Returns a buffer containing adjacency info.  Can be NULL.
 //-------------------------------------------------------------------------
-HRESULT WINAPI D3DXCreateSphere(LPDIRECT3DDEVICE9 pDevice, FLOAT Radius,
-				UINT Slices, UINT Stacks, LPD3DXMESH *ppMesh,
-				LPD3DXBUFFER *ppAdjacency);
+HRESULT WINAPI
+    D3DXCreateSphere(
+        LPDIRECT3DDEVICE9  pDevice, 
+        FLOAT              Radius, 
+        UINT               Slices, 
+        UINT               Stacks,
+        LPD3DXMESH*        ppMesh,
+        LPD3DXBUFFER*      ppAdjacency);
+
 
 //-------------------------------------------------------------------------
 // D3DXCreateTorus:
@@ -104,7 +129,7 @@ HRESULT WINAPI D3DXCreateSphere(LPDIRECT3DDEVICE9 pDevice, FLOAT Radius,
 // Creates a mesh containing a torus.  The generated torus is centered at
 // the origin, and its axis is aligned with the Z-axis.
 //
-// Parameters:
+// Parameters: 
 //
 //  pDevice     The D3D device with which the mesh is going to be used.
 //  InnerRadius Inner radius of the torus (should be >= 0.0f)
@@ -114,27 +139,38 @@ HRESULT WINAPI D3DXCreateSphere(LPDIRECT3DDEVICE9 pDevice, FLOAT Radius,
 //  ppMesh      The mesh object which will be created
 //  ppAdjacency Returns a buffer containing adjacency info.  Can be NULL.
 //-------------------------------------------------------------------------
-HRESULT WINAPI D3DXCreateTorus(LPDIRECT3DDEVICE9 pDevice, FLOAT InnerRadius,
-			       FLOAT OuterRadius, UINT Sides, UINT Rings,
-			       LPD3DXMESH *ppMesh, LPD3DXBUFFER *ppAdjacency);
+HRESULT WINAPI
+    D3DXCreateTorus(
+        LPDIRECT3DDEVICE9   pDevice,
+        FLOAT               InnerRadius,
+        FLOAT               OuterRadius, 
+        UINT                Sides,
+        UINT                Rings, 
+        LPD3DXMESH*         ppMesh,
+        LPD3DXBUFFER*       ppAdjacency);
+
 
 //-------------------------------------------------------------------------
-// D3DXCreateTeapot:
+// D3DXCreateTeapot: 
 // -----------------
 // Creates a mesh containing a teapot.
 //
-// Parameters:
+// Parameters: 
 //
 //  pDevice     The D3D device with which the mesh is going to be used.
 //  ppMesh      The mesh object which will be created
 //  ppAdjacency Returns a buffer containing adjacency info.  Can be NULL.
 //-------------------------------------------------------------------------
-HRESULT WINAPI D3DXCreateTeapot(LPDIRECT3DDEVICE9 pDevice, LPD3DXMESH *ppMesh,
-				LPD3DXBUFFER *ppAdjacency);
+HRESULT WINAPI
+    D3DXCreateTeapot(
+        LPDIRECT3DDEVICE9   pDevice,
+        LPD3DXMESH*         ppMesh,
+        LPD3DXBUFFER*       ppAdjacency);
+
 
 //-------------------------------------------------------------------------
-// D3DXCreateText:
-// ---------------
+// D3DXCreateText: 
+// --------------- 
 // Creates a mesh containing the specified text using the font associated
 // with the device context.
 //
@@ -148,15 +184,27 @@ HRESULT WINAPI D3DXCreateTeapot(LPDIRECT3DDEVICE9 pDevice, LPD3DXMESH *ppMesh,
 //  ppMesh        The mesh object which will be created
 //  pGlyphMetrics Address of buffer to receive glyph metric data (or NULL)
 //-------------------------------------------------------------------------
-HRESULT WINAPI D3DXCreateTextA(LPDIRECT3DDEVICE9 pDevice, HDC hDC, LPCSTR pText,
-			       FLOAT Deviation, FLOAT Extrusion,
-			       LPD3DXMESH *ppMesh, LPD3DXBUFFER *ppAdjacency,
-			       LPGLYPHMETRICSFLOAT pGlyphMetrics);
+HRESULT WINAPI
+    D3DXCreateTextA(
+        LPDIRECT3DDEVICE9   pDevice,
+        HDC                 hDC,
+        LPCSTR              pText,
+        FLOAT               Deviation,
+        FLOAT               Extrusion,
+        LPD3DXMESH*         ppMesh,
+        LPD3DXBUFFER*       ppAdjacency,
+        LPGLYPHMETRICSFLOAT pGlyphMetrics);
 
-HRESULT WINAPI D3DXCreateTextW(LPDIRECT3DDEVICE9 pDevice, HDC hDC,
-			       LPCWSTR pText, FLOAT Deviation, FLOAT Extrusion,
-			       LPD3DXMESH *ppMesh, LPD3DXBUFFER *ppAdjacency,
-			       LPGLYPHMETRICSFLOAT pGlyphMetrics);
+HRESULT WINAPI
+    D3DXCreateTextW(
+        LPDIRECT3DDEVICE9   pDevice,
+        HDC                 hDC,
+        LPCWSTR             pText,
+        FLOAT               Deviation,
+        FLOAT               Extrusion,
+        LPD3DXMESH*         ppMesh,
+        LPD3DXBUFFER*       ppAdjacency,
+        LPGLYPHMETRICSFLOAT pGlyphMetrics);
 
 #ifdef UNICODE
 #define D3DXCreateText D3DXCreateTextW
@@ -164,8 +212,10 @@ HRESULT WINAPI D3DXCreateTextW(LPDIRECT3DDEVICE9 pDevice, HDC hDC,
 #define D3DXCreateText D3DXCreateTextA
 #endif
 
+
 #ifdef __cplusplus
 }
-#endif //__cplusplus
+#endif //__cplusplus    
 
 #endif //__D3DX9SHAPES_H__
+

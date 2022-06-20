@@ -17,7 +17,7 @@
  * We do not support run-time selection of data precision, sorry.
  */
 
-#define BITS_IN_JSAMPLE 8 /* use 8 or 12 */
+#define BITS_IN_JSAMPLE  8      /* use 8 or 12 */
 
 #define HAVE_UNSIGNED_CHAR
 #define HAVE_UNSIGNED_SHORT
@@ -28,22 +28,21 @@
 #define HAVE_STDLIB_H
 #undef NEED_BSD_STRINGS
 #undef NEED_SYS_TYPES_H
-#undef NEED_FAR_POINTERS /* we presume a 32-bit flat memory model */
+#undef NEED_FAR_POINTERS	/* we presume a 32-bit flat memory model */
 #undef INCOMPLETE_TYPES_BROKEN
 
 /* Define "boolean" as unsigned char, not int, per Windows custom */
-#ifndef __RPCNDR_H__ /* don't conflict if rpcndr.h already read */
+#ifndef __RPCNDR_H__		/* don't conflict if rpcndr.h already read */
 typedef unsigned char boolean;
 #endif
-#define HAVE_BOOLEAN /* prevent jmorecfg.h from redefining it */
+#define HAVE_BOOLEAN		/* prevent jmorecfg.h from redefining it */
 
 /* Define "INT32" as int, not long, per Windows custom */
-#if !(defined(_BASETSD_H_) || \
-      defined(_BASETSD_H)) /* don't conflict if basetsd.h already read */
+#if !(defined(_BASETSD_H_) || defined(_BASETSD_H))   /* don't conflict if basetsd.h already read */
 typedef short INT16;
 typedef signed int INT32;
 #endif
-#define XMD_H /* prevent jmorecfg.h from redefining it */
+#define XMD_H                   /* prevent jmorecfg.h from redefining it */
 
 #ifdef JPEG_INTERNALS
 

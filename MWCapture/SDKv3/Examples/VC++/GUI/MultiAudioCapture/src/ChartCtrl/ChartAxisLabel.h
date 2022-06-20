@@ -19,8 +19,7 @@
  *
  */
 
-#if !defined( \
-	AFX_CHARTAXISLABEL_H__0E5519C8_A2F4_4CED_9681_32A56B25D0C5__INCLUDED_)
+#if !defined(AFX_CHARTAXISLABEL_H__0E5519C8_A2F4_4CED_9681_32A56B25D0C5__INCLUDED_)
 #define AFX_CHARTAXISLABEL_H__0E5519C8_A2F4_4CED_9681_32A56B25D0C5__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -38,14 +37,15 @@ class CChartAxis;
 	The label axis is displayed under or next to the tick values.
 	The label is retrieved by calling CChartAxis::GetAxisLabel.
 **/
-class CChartAxisLabel {
+class CChartAxisLabel 
+{
 	friend CChartAxis;
 
 public:
 	//! Sets the text of the axis label.
-	void SetText(const TChartString &NewText);
+	void SetText(const TChartString& NewText);
 	//! Retrieves the text of the axis label.
-	TChartString GetText() const { return m_strLabelText; }
+	TChartString GetText() const        { return m_strLabelText;    }
 
 	//! Sets the font of the text.
 	/**
@@ -54,7 +54,7 @@ public:
 		@param strFaceName
 			The font face name ("Times New Roman", "Arial", ...)
 	**/
-	void SetFont(int nPointSize, const TChartString &strFaceName);
+	void SetFont(int nPointSize, const TChartString& strFaceName);
 	//! Sets the font of the text.
 	/**
 		This function allows to set extended font style by passing
@@ -62,15 +62,15 @@ public:
 		@param newFont
 			The new font.
 	**/
-	void SetFont(const CChartFont &newFont);
+	void SetFont(const CChartFont& newFont);
 
 	//! Shows/hides the title.
 	void SetVisible(bool bVisible);
 	//! Returns true if the title is visible.
-	bool IsVisible() const { return m_bIsVisible; }
+	bool IsVisible()  const         { return m_bIsVisible; }
 
 	//! Retrieves the text color.
-	COLORREF GetColor() const { return m_TextColor; }
+	COLORREF GetColor() const			   { return m_TextColor; }
 	//! Sets the text color.
 	void SetColor(COLORREF NewColor);
 
@@ -85,22 +85,23 @@ private:
 	//! Sets the position of the label.
 	void SetPosition(int LeftBorder, int TopBorder, CDC *pDC);
 	//! Draws the label.
-	void Draw(CDC *pDC);
+	void Draw(CDC* pDC);
 	//! Retrieves the size of the label.
-	CSize GetSize(CDC *pDC) const;
+	CSize GetSize(CDC* pDC) const;
+
 
 	//! The parent charting control.
-	CChartCtrl *m_pParentCtrl;
+	CChartCtrl*	m_pParentCtrl;		
 	//! Specifies if the label is visible or not.
-	bool m_bIsVisible;
+	bool        m_bIsVisible;
 
 	//! The rectangle in which the label is displayed.
-	CRect m_TextRect;
+	CRect		m_TextRect;		
 	//! The text color.
-	COLORREF m_TextColor;
+	COLORREF	m_TextColor;		
 
 	//! Specifies if the axis is horizontal or not.
-	bool m_bIsHorizontal;
+	bool m_bIsHorizontal;     
 	//! The font used for the text label.
 	CChartFont m_Font;
 

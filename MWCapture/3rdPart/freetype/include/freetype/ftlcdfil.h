@@ -16,6 +16,7 @@
 /*                                                                         */
 /***************************************************************************/
 
+
 #ifndef FTLCDFIL_H_
 #define FTLCDFIL_H_
 
@@ -28,9 +29,10 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
+
 FT_BEGIN_HEADER
 
-/***************************************************************************
+  /***************************************************************************
    *
    * @section:
    *   lcd_filtering
@@ -126,7 +128,8 @@ FT_BEGIN_HEADER
    *   cancel out.
    */
 
-/****************************************************************************
+
+  /****************************************************************************
    *
    * @enum:
    *   FT_LcdFilter
@@ -182,18 +185,20 @@ FT_BEGIN_HEADER
    * @since:
    *   2.3.0 (`FT_LCD_FILTER_LEGACY1' since 2.6.2)
    */
-typedef enum FT_LcdFilter_ {
-	FT_LCD_FILTER_NONE = 0,
-	FT_LCD_FILTER_DEFAULT = 1,
-	FT_LCD_FILTER_LIGHT = 2,
-	FT_LCD_FILTER_LEGACY1 = 3,
-	FT_LCD_FILTER_LEGACY = 16,
+  typedef enum  FT_LcdFilter_
+  {
+    FT_LCD_FILTER_NONE    = 0,
+    FT_LCD_FILTER_DEFAULT = 1,
+    FT_LCD_FILTER_LIGHT   = 2,
+    FT_LCD_FILTER_LEGACY1 = 3,
+    FT_LCD_FILTER_LEGACY  = 16,
 
-	FT_LCD_FILTER_MAX /* do not remove */
+    FT_LCD_FILTER_MAX   /* do not remove */
 
-} FT_LcdFilter;
+  } FT_LcdFilter;
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @func:
    *   FT_Library_SetLcdFilter
@@ -231,10 +236,12 @@ typedef enum FT_LcdFilter_ {
    * @since:
    *   2.3.0
    */
-FT_EXPORT(FT_Error)
-FT_Library_SetLcdFilter(FT_Library library, FT_LcdFilter filter);
+  FT_EXPORT( FT_Error )
+  FT_Library_SetLcdFilter( FT_Library    library,
+                           FT_LcdFilter  filter );
 
-/**************************************************************************
+
+  /**************************************************************************
    *
    * @func:
    *   FT_Library_SetLcdFilterWeights
@@ -264,13 +271,16 @@ FT_Library_SetLcdFilter(FT_Library library, FT_LcdFilter filter);
    * @since:
    *   2.4.0
    */
-FT_EXPORT(FT_Error)
-FT_Library_SetLcdFilterWeights(FT_Library library, unsigned char *weights);
+  FT_EXPORT( FT_Error )
+  FT_Library_SetLcdFilterWeights( FT_Library      library,
+                                  unsigned char  *weights );
 
-/* */
+  /* */
+
 
 FT_END_HEADER
 
 #endif /* FTLCDFIL_H_ */
+
 
 /* END */

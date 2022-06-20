@@ -22,7 +22,8 @@
 #pragma once
 
 //! Types of gradients that can be used
-enum EGradientType {
+enum EGradientType
+{
 	//! A simple horizontal gradient (from the first color to the second)
 	gtHorizontal,
 	//! A simple Vertical gradient (from the first color to the second)
@@ -38,7 +39,8 @@ enum EGradientType {
 	It only contains a static function to draw the gradient. This is
 	mainly used internally.
 **/
-class CChartGradient {
+class CChartGradient
+{
 public:
 	//! Constructor
 	CChartGradient();
@@ -58,7 +60,6 @@ public:
 		@param GradientType
 			The type of gradient to use in the rectangle
 	**/
-	static void DrawGradient(CDC *pDC, const CRect &GradientRect,
-				 COLORREF Color1, COLORREF Color2,
-				 EGradientType GradientType);
+	static void DrawGradient(CDC* pDC, const CRect& GradientRect, COLORREF Color1, 
+							 COLORREF Color2, EGradientType GradientType);
 };

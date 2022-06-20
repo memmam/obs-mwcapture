@@ -32,7 +32,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -40,10 +40,10 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CChartLegend::CChartLegend(CChartCtrl *pParent)
+CChartLegend::CChartLegend(CChartCtrl* pParent)
 {
 	m_pParentCtrl = pParent;
-	m_BackColor = RGB(255, 255, 255);
+	m_BackColor = RGB(255,255,255);
 	m_iFontSize = 100;
 	m_strFontName = _T("Times New Roman");
 
@@ -61,23 +61,25 @@ CChartLegend::CChartLegend(CChartCtrl *pParent)
 	m_BitmapSize.cy = 16;
 }
 
-CChartLegend::~CChartLegend() {}
+CChartLegend::~CChartLegend()
+{
+}
 
 void CChartLegend::SetVisible(bool bVisible)
-{
-	m_bIsVisible = bVisible;
+{ 
+	m_bIsVisible = bVisible; 
 	m_pParentCtrl->RefreshCtrl();
 }
 
-void CChartLegend::SetBackColor(COLORREF NewColor)
-{
-	m_BackColor = NewColor;
+void CChartLegend::SetBackColor(COLORREF NewColor)	   
+{ 
+	m_BackColor = NewColor; 
 	m_pParentCtrl->RefreshCtrl();
 }
 
-void CChartLegend::SetShadowColor(COLORREF NewColor)
-{
-	m_ShadowColor = NewColor;
+void CChartLegend::SetShadowColor(COLORREF NewColor) 
+{ 
+	m_ShadowColor = NewColor; 
 	m_pParentCtrl->RefreshCtrl();
 }
 
@@ -88,17 +90,17 @@ void CChartLegend::EnableShadow(bool bEnable)
 }
 
 void CChartLegend::SetShadowDepth(int Depth)
-{
-	m_iShadowDepth = Depth;
+{ 
+	m_iShadowDepth = Depth; 
 	m_pParentCtrl->RefreshCtrl();
 }
 
-BOOL CChartLegend::IsPointInside(const CPoint &screenPoint) const
+BOOL CChartLegend::IsPointInside(const CPoint& screenPoint) const
 {
 	return m_LegendRect.PtInRect(screenPoint);
 }
 
-void CChartLegend::SetFont(int iPointSize, const TChartString &strFaceName)
+void CChartLegend::SetFont(int iPointSize, const TChartString& strFaceName)
 {
 	m_iFontSize = iPointSize;
 	m_strFontName = strFaceName;
@@ -106,8 +108,8 @@ void CChartLegend::SetFont(int iPointSize, const TChartString &strFaceName)
 }
 
 void CChartLegend::SetTransparent(bool bTransparent)
-{
-	m_bIsTransparent = bTransparent;
+{ 
+	m_bIsTransparent = bTransparent; 
 	m_pParentCtrl->RefreshCtrl();
 }
 
@@ -132,14 +134,16 @@ void CChartLegend::UndockLegend(int iLeftPos, int iTopPos)
 	m_pParentCtrl->RefreshCtrl();
 }
 
-void CChartLegend::ClipArea(CRect &rcControl, CDC *pDC)
+void CChartLegend::ClipArea(CRect& rcControl, CDC* pDC)
 {
-	UpdatePosition(pDC, rcControl);
+	UpdatePosition(pDC,rcControl);
 	if (m_LegendRect.IsRectEmpty())
 		return;
 
-	if (m_bDocked) {
-		switch (m_DockSide) {
+	if (m_bDocked)
+	{
+		switch (m_DockSide)
+		{
 		case dsDockRight:
 			rcControl.right = m_LegendRect.left + 2;
 			break;
@@ -156,43 +160,48 @@ void CChartLegend::ClipArea(CRect &rcControl, CDC *pDC)
 	}
 }
 
-void CChartLegend::UpdatePosition(CDC *pDC, const CRect &rcControl)
+void CChartLegend::UpdatePosition(CDC* pDC, const CRect& rcControl)
 {
 	CRect NewPosition;
 	NewPosition.SetRectEmpty();
-	if (!m_bIsVisible) {
+	if (!m_bIsVisible)
+	{
 		m_LegendRect = NewPosition;
 		return;
 	}
 
-	CFont *pOldFont;
+	CFont* pOldFont;
 	CFont NewFont;
-	NewFont.CreatePointFont(m_iFontSize, m_strFontName.c_str(), pDC);
+	NewFont.CreatePointFont(m_iFontSize,m_strFontName.c_str(),pDC);
 	pOldFont = pDC->SelectObject(&NewFont);
 
-	int Height = 0;
-	int Width = 0;
+	int Height = 0;		
+	int Width = 0;		
 	int MaxText = 0;
 	CSize TextSize;
 
 	m_pParentCtrl->GoToFirstSerie();
 	int Drawn = 0;
-	while (CChartSerie *pSerie = m_pParentCtrl->GetNextSerie()) {
-		if ((pSerie->GetName() == _T("")) || !pSerie->IsVisible())
+	while (CChartSerie* pSerie=m_pParentCtrl->GetNextSerie())
+	{
+		if ( (pSerie->GetName() == _T("")) || !pSerie->IsVisible() )
 			continue;
 
 		Drawn++;
 		TextSize = pDC->GetTextExtent(pSerie->GetName().c_str());
 
-		if (!m_bIsHorizontal) {
-			if (TextSize.cy > m_BitmapSize.cy)
+		if (!m_bIsHorizontal)
+		{
+			if (TextSize.cy>m_BitmapSize.cy)
 				Height += TextSize.cy + 2;
 			else
 				Height += m_BitmapSize.cy + 2;
 
 			if (TextSize.cx > MaxText)
 				MaxText = TextSize.cx;
-		} else {
+		}
+		else
+		{
 			Width += TextSize.cx + 4 + m_BitmapSize.cx + 10;
 			if (TextSize.cy > MaxText)
 				MaxText = TextSize.cy;
@@ -201,62 +210,55 @@ void CChartLegend::UpdatePosition(CDC *pDC, const CRect &rcControl)
 	pDC->SelectObject(pOldFont);
 	DeleteObject(NewFont);
 
-	if (!Drawn) {
+	if (!Drawn)
+	{
 		m_LegendRect = NewPosition;
 		return;
 	}
 
-	if (!m_bIsHorizontal) {
+	if (!m_bIsHorizontal)
+	{
 		Width += MaxText + m_BitmapSize.cx + 12;
-		Height +=
-			4 + 4 -
-			2; // Top and bottom margins. -2 because space counted once too much
-	} else {
-		Width += 2 + 2 - 10;
-		Height = 4 + max(m_BitmapSize.cy, MaxText) + 4;
+		Height += 4 + 4 - 2;	// Top and bottom margins. -2 because space counted once too much
 	}
-
-	if (!m_bDocked) {
+	else
+	{
+		Width += 2 + 2 - 10;
+		Height = 4 + max(m_BitmapSize.cy,MaxText) + 4;
+	}
+	
+	if (!m_bDocked)
+	{
 		NewPosition.top = m_iTopPos;
 		NewPosition.left = m_iLeftPos;
 		NewPosition.bottom = m_iTopPos + Height + 2;
 		NewPosition.right = m_iLeftPos + Width;
-	} else {
-		switch (m_DockSide) {
+	}
+	else
+	{
+		switch (m_DockSide)
+		{
 		case dsDockRight:
-			NewPosition.top =
-				((rcControl.bottom - rcControl.top) / 2) -
-				((Height + 2) / 2);
+			NewPosition.top = ((rcControl.bottom-rcControl.top)/2) - ((Height + 2)/2);
 			NewPosition.left = rcControl.right - (Width + 6);
 			NewPosition.bottom = NewPosition.top + Height;
 			NewPosition.right = NewPosition.left + Width;
 			break;
 		case dsDockLeft:
-			NewPosition.top =
-				((rcControl.bottom - rcControl.top) / 2) -
-				((Height + 2) / 2);
-			NewPosition.left = rcControl.left + 3;
+			NewPosition.top = ((rcControl.bottom-rcControl.top)/2) - ((Height + 2)/2);
+			NewPosition.left = rcControl.left + 3; 
 			NewPosition.bottom = NewPosition.top + Height;
 			NewPosition.right = NewPosition.left + Width;
 			break;
 		case dsDockTop:
-			NewPosition.top =
-				rcControl.top +
-				3; //((rcControl.bottom-rcControl.top)/2) - ((Height + 2)/2);
-			NewPosition.left =
-				((rcControl.right - rcControl.left) / 2) -
-				(Width / 2); // rcControl.left + 3;
+			NewPosition.top = rcControl.top + 3;  //((rcControl.bottom-rcControl.top)/2) - ((Height + 2)/2);
+			NewPosition.left = ((rcControl.right-rcControl.left)/2) - (Width/2);  // rcControl.left + 3; 
 			NewPosition.bottom = NewPosition.top + Height;
 			NewPosition.right = NewPosition.left + Width;
 			break;
 		case dsDockBottom:
-			NewPosition.top =
-				rcControl.bottom -
-				(Height +
-				 2); //((rcControl.bottom-rcControl.top)/2) - ((Height + 2)/2);
-			NewPosition.left =
-				((rcControl.right - rcControl.left) / 2) -
-				(Width / 2); // rcControl.left + 3;
+			NewPosition.top = rcControl.bottom - (Height + 2);  //((rcControl.bottom-rcControl.top)/2) - ((Height + 2)/2);
+			NewPosition.left = ((rcControl.right-rcControl.left)/2) - (Width/2);  // rcControl.left + 3; 
 			NewPosition.bottom = NewPosition.top + Height;
 			NewPosition.right = NewPosition.left + Width;
 			break;
@@ -274,73 +276,74 @@ void CChartLegend::Draw(CDC *pDC)
 	if (m_LegendRect.IsRectEmpty())
 		return;
 
-	CPen SolidPen(PS_SOLID, 0, RGB(0, 0, 0));
-	CPen *pOldPen;
-	CFont *pOldFont;
+	CPen SolidPen(PS_SOLID,0,RGB(0,0,0));
+	CPen* pOldPen;
+	CFont* pOldFont;
 	CFont NewFont;
-	NewFont.CreatePointFont(m_iFontSize, m_strFontName.c_str(), pDC);
+	NewFont.CreatePointFont(m_iFontSize,m_strFontName.c_str(),pDC);
 
 	// Draw the shadow
-	if (m_bShadow) {
+	if (m_bShadow)
+	{
 		CRect ShadowRect = m_LegendRect;
-		ShadowRect.OffsetRect(m_iShadowDepth, m_iShadowDepth);
+		ShadowRect.OffsetRect(m_iShadowDepth,m_iShadowDepth);
 		CBrush BrushShadow;
-		BrushShadow.CreateSolidBrush(m_ShadowColor);
-		pDC->FillRect(ShadowRect, &BrushShadow);
+		BrushShadow.CreateSolidBrush(m_ShadowColor) ;
+		pDC->FillRect(ShadowRect,&BrushShadow);
 	}
 
-	if (!m_bIsTransparent) {
+	if (!m_bIsTransparent)
+	{
 		//Fill back color
 		CBrush BrushBack;
-		BrushBack.CreateSolidBrush(m_BackColor);
-		pDC->FillRect(m_LegendRect, &BrushBack);
+		BrushBack.CreateSolidBrush(m_BackColor) ;
+		pDC->FillRect(m_LegendRect,&BrushBack);
 	}
 
 	pOldFont = pDC->SelectObject(&NewFont);
 	pOldPen = pDC->SelectObject(&SolidPen);
 
 	//Draw rectangle:
-	pDC->MoveTo(m_LegendRect.left, m_LegendRect.top);
-	pDC->LineTo(m_LegendRect.right, m_LegendRect.top);
-	pDC->LineTo(m_LegendRect.right, m_LegendRect.bottom);
-	pDC->LineTo(m_LegendRect.left, m_LegendRect.bottom);
-	pDC->LineTo(m_LegendRect.left, m_LegendRect.top);
+	pDC->MoveTo(m_LegendRect.left,m_LegendRect.top);
+	pDC->LineTo(m_LegendRect.right,m_LegendRect.top);
+	pDC->LineTo(m_LegendRect.right,m_LegendRect.bottom);
+	pDC->LineTo(m_LegendRect.left,m_LegendRect.bottom);
+	pDC->LineTo(m_LegendRect.left,m_LegendRect.top);
 
 	int iPrevMode = pDC->SetBkMode(TRANSPARENT);
-	CRect rectBitmap(m_LegendRect.left + 2, m_LegendRect.top + 5,
-			 m_LegendRect.left + 2 + m_BitmapSize.cx,
-			 m_LegendRect.top + 6 + m_BitmapSize.cy);
+	CRect rectBitmap(m_LegendRect.left+2,m_LegendRect.top+5,
+					 m_LegendRect.left+2+m_BitmapSize.cx,
+					 m_LegendRect.top+6+m_BitmapSize.cy);
 	m_pParentCtrl->GoToFirstSerie();
-	while (CChartSerie *pSerie = m_pParentCtrl->GetNextSerie()) {
-		if ((pSerie->GetName() == _T("")) || !pSerie->IsVisible())
+	while (CChartSerie* pSerie=m_pParentCtrl->GetNextSerie())
+	{
+		if ( (pSerie->GetName() == _T("")) || !pSerie->IsVisible() )
 			continue;
 
 		int MaxHeight = 0;
 		CSize TextSize = pDC->GetTextExtent(pSerie->GetName().c_str());
-		if (TextSize.cy > m_BitmapSize.cy) {
-			pDC->ExtTextOut(rectBitmap.right + 4, rectBitmap.top,
-					ETO_CLIPPED, NULL,
-					pSerie->GetName().c_str(), NULL);
+		if (TextSize.cy > m_BitmapSize.cy)
+		{
+			pDC->ExtTextOut(rectBitmap.right+4,rectBitmap.top,ETO_CLIPPED,NULL,pSerie->GetName().c_str(),NULL);
 			CRect rectTemp(rectBitmap);
-			int YOffset = TextSize.cy / 2 - rectBitmap.Height() / 2;
-			rectTemp.OffsetRect(0, YOffset);
-			pSerie->DrawLegend(pDC, rectTemp);
+			int YOffset = TextSize.cy/2 - rectBitmap.Height()/2;
+			rectTemp.OffsetRect(0,YOffset);
+			pSerie->DrawLegend(pDC,rectTemp);
 			MaxHeight = TextSize.cy;
-		} else {
-			int YOffset =
-				rectBitmap.CenterPoint().y - TextSize.cy / 2;
-			pDC->ExtTextOut(rectBitmap.right + 4, YOffset,
-					ETO_CLIPPED, NULL,
-					pSerie->GetName().c_str(), NULL);
-			MaxHeight = m_BitmapSize.cy;
-			pSerie->DrawLegend(pDC, rectBitmap);
 		}
+		else
+		{
+			int YOffset = rectBitmap.CenterPoint().y - TextSize.cy/2;
+			pDC->ExtTextOut(rectBitmap.right+4,YOffset,ETO_CLIPPED,NULL,pSerie->GetName().c_str(),NULL);
+			MaxHeight = m_BitmapSize.cy;
+			pSerie->DrawLegend(pDC,rectBitmap);
+		}
+		
 
 		if (!m_bIsHorizontal)
-			rectBitmap.OffsetRect(0, MaxHeight + 2);
+			rectBitmap.OffsetRect(0,MaxHeight+2);
 		else
-			rectBitmap.OffsetRect(
-				m_BitmapSize.cx + 4 + TextSize.cx + 10, 0);
+			rectBitmap.OffsetRect(m_BitmapSize.cx+4+TextSize.cx+10,0);
 	}
 
 	pDC->SetBkMode(iPrevMode);
@@ -349,3 +352,6 @@ void CChartLegend::Draw(CDC *pDC)
 	pDC->SelectObject(pOldPen);
 	DeleteObject(SolidPen);
 }
+
+
+

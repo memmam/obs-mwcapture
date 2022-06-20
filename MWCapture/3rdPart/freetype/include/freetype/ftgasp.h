@@ -15,6 +15,7 @@
 /*                                                                         */
 /***************************************************************************/
 
+
 #ifndef FTGASP_H_
 #define FTGASP_H_
 
@@ -27,7 +28,8 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
-/***************************************************************************
+
+  /***************************************************************************
    *
    * @section:
    *   gasp_table
@@ -45,7 +47,7 @@
    *   bytecode interpreter to duplicate the Windows text rendering results.
    */
 
-/*************************************************************************
+  /*************************************************************************
    *
    * @enum:
    *   FT_GASP_XXX
@@ -87,13 +89,14 @@
    * @since:
    *   2.3.0
    */
-#define FT_GASP_NO_TABLE -1
-#define FT_GASP_DO_GRIDFIT 0x01
-#define FT_GASP_DO_GRAY 0x02
-#define FT_GASP_SYMMETRIC_SMOOTHING 0x08
-#define FT_GASP_SYMMETRIC_GRIDFIT 0x10
+#define FT_GASP_NO_TABLE               -1
+#define FT_GASP_DO_GRIDFIT           0x01
+#define FT_GASP_DO_GRAY              0x02
+#define FT_GASP_SYMMETRIC_SMOOTHING  0x08
+#define FT_GASP_SYMMETRIC_GRIDFIT    0x10
 
-/*************************************************************************
+
+  /*************************************************************************
    *
    * @func:
    *   FT_Get_Gasp
@@ -113,11 +116,14 @@
    * @since:
    *   2.3.0
    */
-FT_EXPORT(FT_Int)
-FT_Get_Gasp(FT_Face face, FT_UInt ppem);
+  FT_EXPORT( FT_Int )
+  FT_Get_Gasp( FT_Face  face,
+               FT_UInt  ppem );
 
-/* */
+  /* */
+
 
 #endif /* FTGASP_H_ */
+
 
 /* END */

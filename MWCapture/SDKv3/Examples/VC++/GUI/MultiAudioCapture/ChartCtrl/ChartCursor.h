@@ -32,12 +32,13 @@ class CChartCursor;
 	This class must be overriden and registered with a CChartCursor by
 	calling RegisterListener.
 **/
-class CChartCursorListener {
+class CChartCursorListener
+{
 public:
 	//! Default constructor
-	CChartCursorListener() {}
+	CChartCursorListener()  { }
 	//! Destructor
-	virtual ~CChartCursorListener() {}
+	virtual ~CChartCursorListener()  { }
 
 	//! Pure virtual function to implement in order to be notified about a cursor movement.
 	/**
@@ -50,8 +51,7 @@ public:
 		@param yValue
 			The cursor yValue
 	**/
-	virtual void OnCursorMoved(CChartCursor *pCursor, double xValue,
-				   double yValue) = 0;
+	virtual void OnCursorMoved(CChartCursor* pCursor, double xValue, double yValue) = 0;
 };
 
 //! Base class for cursors which can be added to the chart control.
@@ -60,21 +60,22 @@ public:
 	for a cross-hair cursor and a dragline cursor. Each cursor is assigned an Id
 	when it is added to the control.
 **/
-class CChartCursor {
+class CChartCursor
+{
 	friend CChartCtrl;
 
 public:
 	//! Sets the cursor color.
 	void SetColor(COLORREF cursorColor);
 	//! Retrieves the cursor Id.
-	unsigned GetCursorId() const { return m_uCursorId; }
+	unsigned GetCursorId() const  { return m_uCursorId; }
 
 	//! Registers a cursor listener with this cursor.
-	void RegisterListener(CChartCursorListener *pListener);
+	void RegisterListener(CChartCursorListener* pListener);
 
 protected:
 	//! Default constructor
-	CChartCursor(CChartCtrl *pParent);
+	CChartCursor(CChartCtrl* pParent); 
 	//! Default destructor
 	virtual ~CChartCursor();
 
@@ -89,35 +90,36 @@ protected:
 		This function can be overriden by child classes to take appropriate
 		actions on the mouse click event.
 	**/
-	virtual void OnMouseButtonDown(CPoint /*mousePoint*/) {}
+	virtual void OnMouseButtonDown(CPoint /*mousePoint*/)  { }
 	//! Virtual function that is called when the left mouse button is released.
 	/**
 		This function can be overriden by child classes to take appropriate
 		actions on the mouse click event.
 	**/
-	virtual void OnMouseButtonUp(CPoint /*mousePoint*/) {}
+	virtual void OnMouseButtonUp(CPoint /*mousePoint*/)    { }
 
 	//! Pure virtual function that draws the cursor.
-	virtual void Draw(CDC *pDC) = 0;
+	virtual void Draw(CDC* pDC) = 0;
 	//! Function that is called by the child classes when the cursor has been moved.
 	/**
 		This will notify all the listeners registered with the cursor.
 	**/
 	void CursorMoved(double newXValue, double newYValue);
 
+
 	//! The color of the cursor.
 	COLORREF m_colCursor;
 	//! The parent charting control.
-	CChartCtrl *m_pParentCtrl;
+	CChartCtrl* m_pParentCtrl;
 
 	//! Static variable holding the next free cursor Id.
 	static unsigned m_uNextFreeId;
 	//! The Id of this curosr.
 	unsigned m_uCursorId;
 
-	typedef std::list<CChartCursorListener *> TListenerList;
+	typedef std::list<CChartCursorListener*> TListenerList;
 	//! List of all listeners registered with this cursor.
 	TListenerList m_lstListeners;
 };
 
-#endif // _CHARTCURSOR_H_
+#endif  // _CHARTCURSOR_H_

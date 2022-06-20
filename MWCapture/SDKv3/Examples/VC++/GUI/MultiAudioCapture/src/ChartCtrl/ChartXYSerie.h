@@ -23,18 +23,19 @@
 #include "ChartSerieBase.h"
 
 //! Structure containing a point data with X and Y values
-struct SChartXYPoint {
-	SChartXYPoint() : X(0.0), Y(0.0)
-	{
-#ifndef NO_USER_DATA
+struct SChartXYPoint
+{
+	SChartXYPoint() : X(0.0), Y(0.0)  
+	{ 
+		#ifndef NO_USER_DATA
 		pUserData = NULL;
-#endif
+		#endif
 	}
-	SChartXYPoint(double XVal, double YVal) : X(XVal), Y(YVal)
-	{
-#ifndef NO_USER_DATA
+	SChartXYPoint(double XVal, double YVal) : X(XVal), Y(YVal)  
+	{ 
+		#ifndef NO_USER_DATA
 		pUserData = NULL;
-#endif
+		#endif
 	}
 
 	double GetX() const { return X; }
@@ -48,10 +49,10 @@ struct SChartXYPoint {
 	double X;
 	//! The point Y value.
 	double Y;
-#ifndef NO_USER_DATA
+	#ifndef NO_USER_DATA
 	//! Optional user data.
 	void *pUserData;
-#endif
+	#endif
 };
 
 //! Specialization of a CChartSerieBase for series having data with an X and an Y value.
@@ -61,10 +62,11 @@ struct SChartXYPoint {
 	an X and an Y value. Examples of such series are: point series, line series,
 	surface series and bar series.
 **/
-class CChartXYSerie : public CChartSerieBase<SChartXYPoint> {
+class CChartXYSerie : public CChartSerieBase<SChartXYPoint>
+{
 public:
 	//! Constructor
-	CChartXYSerie(CChartCtrl *pParent);
+	CChartXYSerie(CChartCtrl* pParent);
 	//! Destructor
 	virtual ~CChartXYSerie();
 
@@ -80,7 +82,7 @@ public:
 		@param Count
 			Size of each of both arrays (number of points to add)
 	**/
-	void AddPoints(double *pX, double *pY, unsigned Count);
+	void AddPoints(double* pX, double* pY, unsigned Count);
 	//! Sets an array of points to the series.
 	/**
 		Points which were already present in the series are discarded.
@@ -91,7 +93,7 @@ public:
 		@param Count
 			Size of each of both arrays (number of points to add)
 	**/
-	void SetPoints(double *pX, double *pY, unsigned Count);
+	void SetPoints(double* pX, double* pY, unsigned Count);
 
 	//! Returns the Y value of a specific point in the series.
 	double GetYPointValue(unsigned PointIndex) const;
@@ -105,7 +107,7 @@ public:
 		@param NewVal 
 			The new Y value of the point
 	**/
-	void SetYPointValue(unsigned PointIndex, double NewVal);
+	void   SetYPointValue(unsigned PointIndex, double NewVal);
 	//! Sets the X value of a specific point in the series.
 	/**
 		The control is refreshed to display the change.
@@ -114,23 +116,23 @@ public:
 		@param NewVal 
 			The new X value of the point
 	**/
-	void SetXPointValue(unsigned PointIndex, double NewVal);
-
+	void   SetXPointValue(unsigned PointIndex, double NewVal);	
+	
 #ifndef NO_USER_DATA
-	//! Sets user data for a specific point.
+	//! Sets user data for a specific point. 
 	/**
 		User data can be disabled by adding the flag NO_USER_DATA in the preprocessor
 		definitions. This is usefull when you don't want to have an additional pointer
 		stored for each points in your series.
 	**/
-	void SetUserData(unsigned uPointIndex, void *pData);
-	//! Retrieves user data for a specific point.
+	void  SetUserData(unsigned uPointIndex, void* pData);
+	//! Retrieves user data for a specific point. 
 	/**
 		User data can be disabled by adding the flag NO_USER_DATA in the preprocessor
 		definitions. This is usefull when you don't want to have an additional pointer
 		stored for each points in your series.
 	**/
-	void *GetUserData(unsigned uPointIndex);
+	void* GetUserData(unsigned uPointIndex);
 #endif
 
 protected:
@@ -147,11 +149,9 @@ protected:
 		@param pSecondControlPoints
 			This parameter will store the secondary control points of the bezier curve
 	**/
-	void GetBezierControlPoints(unsigned uFirst, unsigned uLast,
-				    SChartXYPoint *&pKnots,
-				    SChartXYPoint *&pFirstControlPoints,
-				    SChartXYPoint *&pSecondControlPoints) const;
+	void GetBezierControlPoints(unsigned uFirst, unsigned uLast, SChartXYPoint* &pKnots,
+				SChartXYPoint* &pFirstControlPoints, SChartXYPoint* &pSecondControlPoints) const;
 
 private:
-	double *GetFirstControlPoints(double *rhs, int Count) const;
+	double* GetFirstControlPoints(double* rhs, int Count) const;
 };
