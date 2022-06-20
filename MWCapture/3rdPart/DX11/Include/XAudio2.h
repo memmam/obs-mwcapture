@@ -344,7 +344,7 @@ typedef struct XAUDIO2_VOICE_STATE {
 		//  that is currently being processed, or NULL if
 		//  there are no buffers in the queue.
 	UINT32 BuffersQueued; // Number of buffers currently queued on the voice
-			      //  (including the one that is being processed).
+		//  (including the one that is being processed).
 	UINT64 SamplesPlayed; // Total number of samples produced by the voice since
 			      //  it began processing the current audio stream.
 } XAUDIO2_VOICE_STATE;
