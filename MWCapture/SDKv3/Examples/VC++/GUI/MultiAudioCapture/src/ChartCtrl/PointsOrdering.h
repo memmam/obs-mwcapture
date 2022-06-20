@@ -22,8 +22,7 @@
 #pragma once
 
 //! Enumeration listing the types of ordering.
-enum PointsOrdering
-{
+enum PointsOrdering {
 	//! The points are not ordered
 	poNoOrdering,
 	//! The points are ordered by their X values

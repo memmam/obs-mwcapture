@@ -19,7 +19,7 @@
 // handle a particular URL, as this cannot be known until the URL is opened.
 //
 
-HRESULT STDMETHODCALLTYPE WMCheckURLExtension( /* [in] */ LPCWSTR pwszURL );
+HRESULT STDMETHODCALLTYPE WMCheckURLExtension(/* [in] */ LPCWSTR pwszURL);
 
 //
 // This routine examines the URL scheme that is passed in as an argument.  The routine
@@ -31,7 +31,7 @@ HRESULT STDMETHODCALLTYPE WMCheckURLExtension( /* [in] */ LPCWSTR pwszURL );
 // handle a particular URL, as this cannot be known until the URL is opened.
 //
 
-HRESULT STDMETHODCALLTYPE WMCheckURLScheme( /* [in] */ LPCWSTR pwszURLScheme );
+HRESULT STDMETHODCALLTYPE WMCheckURLScheme(/* [in] */ LPCWSTR pwszURLScheme);
 
 //
 // This routine returns S_OK if the data buffer looks like a file type that is supported
@@ -40,9 +40,8 @@ HRESULT STDMETHODCALLTYPE WMCheckURLScheme( /* [in] */ LPCWSTR pwszURLScheme );
 //
 
 HRESULT STDMETHODCALLTYPE WMValidateData(
-    /* [in] */ BYTE *pbData,
-    /* [in, out] */ DWORD *pdwDataSize
-    );
+	/* [in] */ BYTE *pbData,
+	/* [in, out] */ DWORD *pdwDataSize);
 
 //
 // This routine validates that a URL can be played in Offline mode.
@@ -53,9 +52,8 @@ HRESULT STDMETHODCALLTYPE WMValidateData(
 //
 
 HRESULT STDMETHODCALLTYPE WMIsAvailableOffline(
-    /* [in] */ LPCWSTR pwszURL,
-    /* [in] */ LPCWSTR pwszLanguage,
-    /* [out] */ BOOL *pfIsAvailableOffline
-    );
+	/* [in] */ LPCWSTR pwszURL,
+	/* [in] */ LPCWSTR pwszLanguage,
+	/* [out] */ BOOL *pfIsAvailableOffline);
 
 #endif /* _WMSDK_VALIDATE_H */

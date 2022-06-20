@@ -15,45 +15,39 @@
 /*                                                                         */
 /***************************************************************************/
 
-
 #ifndef FTSYSTEM_H_
 #define FTSYSTEM_H_
 
-
 #include <ft2build.h>
-
 
 FT_BEGIN_HEADER
 
+/*************************************************************************/
+/*                                                                       */
+/* <Section>                                                             */
+/*   system_interface                                                    */
+/*                                                                       */
+/* <Title>                                                               */
+/*   System Interface                                                    */
+/*                                                                       */
+/* <Abstract>                                                            */
+/*   How FreeType manages memory and i/o.                                */
+/*                                                                       */
+/* <Description>                                                         */
+/*   This section contains various definitions related to memory         */
+/*   management and i/o access.  You need to understand this             */
+/*   information if you want to use a custom memory manager or you own   */
+/*   i/o streams.                                                        */
+/*                                                                       */
+/*************************************************************************/
 
-  /*************************************************************************/
-  /*                                                                       */
-  /* <Section>                                                             */
-  /*   system_interface                                                    */
-  /*                                                                       */
-  /* <Title>                                                               */
-  /*   System Interface                                                    */
-  /*                                                                       */
-  /* <Abstract>                                                            */
-  /*   How FreeType manages memory and i/o.                                */
-  /*                                                                       */
-  /* <Description>                                                         */
-  /*   This section contains various definitions related to memory         */
-  /*   management and i/o access.  You need to understand this             */
-  /*   information if you want to use a custom memory manager or you own   */
-  /*   i/o streams.                                                        */
-  /*                                                                       */
-  /*************************************************************************/
+/*************************************************************************/
+/*                                                                       */
+/*                  M E M O R Y   M A N A G E M E N T                    */
+/*                                                                       */
+/*************************************************************************/
 
-
-  /*************************************************************************/
-  /*                                                                       */
-  /*                  M E M O R Y   M A N A G E M E N T                    */
-  /*                                                                       */
-  /*************************************************************************/
-
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @type:
    *   FT_Memory
@@ -63,10 +57,9 @@ FT_BEGIN_HEADER
    *   @FT_MemoryRec structure.
    *
    */
-  typedef struct FT_MemoryRec_*  FT_Memory;
+typedef struct FT_MemoryRec_ *FT_Memory;
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @functype:
    *   FT_Alloc_Func
@@ -85,12 +78,9 @@ FT_BEGIN_HEADER
    *   Address of new memory block.  0~in case of failure.
    *
    */
-  typedef void*
-  (*FT_Alloc_Func)( FT_Memory  memory,
-                    long       size );
+typedef void *(*FT_Alloc_Func)(FT_Memory memory, long size);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @functype:
    *   FT_Free_Func
@@ -106,12 +96,9 @@ FT_BEGIN_HEADER
    *     The address of the target memory block.
    *
    */
-  typedef void
-  (*FT_Free_Func)( FT_Memory  memory,
-                   void*      block );
+typedef void (*FT_Free_Func)(FT_Memory memory, void *block);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @functype:
    *   FT_Realloc_Func
@@ -139,14 +126,10 @@ FT_BEGIN_HEADER
    *   In case of error, the old block must still be available.
    *
    */
-  typedef void*
-  (*FT_Realloc_Func)( FT_Memory  memory,
-                      long       cur_size,
-                      long       new_size,
-                      void*      block );
+typedef void *(*FT_Realloc_Func)(FT_Memory memory, long cur_size, long new_size,
+				 void *block);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @struct:
    *   FT_MemoryRec
@@ -168,23 +151,20 @@ FT_BEGIN_HEADER
    *     A pointer type to a reallocation function.
    *
    */
-  struct  FT_MemoryRec_
-  {
-    void*            user;
-    FT_Alloc_Func    alloc;
-    FT_Free_Func     free;
-    FT_Realloc_Func  realloc;
-  };
+struct FT_MemoryRec_ {
+	void *user;
+	FT_Alloc_Func alloc;
+	FT_Free_Func free;
+	FT_Realloc_Func realloc;
+};
 
+/*************************************************************************/
+/*                                                                       */
+/*                       I / O   M A N A G E M E N T                     */
+/*                                                                       */
+/*************************************************************************/
 
-  /*************************************************************************/
-  /*                                                                       */
-  /*                       I / O   M A N A G E M E N T                     */
-  /*                                                                       */
-  /*************************************************************************/
-
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @type:
    *   FT_Stream
@@ -197,10 +177,9 @@ FT_BEGIN_HEADER
    *   stream object.
    *
    */
-  typedef struct FT_StreamRec_*  FT_Stream;
+typedef struct FT_StreamRec_ *FT_Stream;
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @struct:
    *   FT_StreamDesc
@@ -210,15 +189,13 @@ FT_BEGIN_HEADER
    *   to store a file descriptor or a `FILE*' in an input stream.
    *
    */
-  typedef union  FT_StreamDesc_
-  {
-    long   value;
-    void*  pointer;
+typedef union FT_StreamDesc_ {
+	long value;
+	void *pointer;
 
-  } FT_StreamDesc;
+} FT_StreamDesc;
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @functype:
    *   FT_Stream_IoFunc
@@ -248,14 +225,12 @@ FT_BEGIN_HEADER
    *   error.
    *
    */
-  typedef unsigned long
-  (*FT_Stream_IoFunc)( FT_Stream       stream,
-                       unsigned long   offset,
-                       unsigned char*  buffer,
-                       unsigned long   count );
+typedef unsigned long (*FT_Stream_IoFunc)(FT_Stream stream,
+					  unsigned long offset,
+					  unsigned char *buffer,
+					  unsigned long count);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @functype:
    *   FT_Stream_CloseFunc
@@ -268,11 +243,9 @@ FT_BEGIN_HEADER
    *     A handle to the target stream.
    *
    */
-  typedef void
-  (*FT_Stream_CloseFunc)( FT_Stream  stream );
+typedef void (*FT_Stream_CloseFunc)(FT_Stream stream);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @struct:
    *   FT_StreamRec
@@ -327,29 +300,26 @@ FT_BEGIN_HEADER
    *     frames.
    *
    */
-  typedef struct  FT_StreamRec_
-  {
-    unsigned char*       base;
-    unsigned long        size;
-    unsigned long        pos;
+typedef struct FT_StreamRec_ {
+	unsigned char *base;
+	unsigned long size;
+	unsigned long pos;
 
-    FT_StreamDesc        descriptor;
-    FT_StreamDesc        pathname;
-    FT_Stream_IoFunc     read;
-    FT_Stream_CloseFunc  close;
+	FT_StreamDesc descriptor;
+	FT_StreamDesc pathname;
+	FT_Stream_IoFunc read;
+	FT_Stream_CloseFunc close;
 
-    FT_Memory            memory;
-    unsigned char*       cursor;
-    unsigned char*       limit;
+	FT_Memory memory;
+	unsigned char *cursor;
+	unsigned char *limit;
 
-  } FT_StreamRec;
+} FT_StreamRec;
 
-  /* */
-
+/* */
 
 FT_END_HEADER
 
 #endif /* FTSYSTEM_H_ */
-
 
 /* END */

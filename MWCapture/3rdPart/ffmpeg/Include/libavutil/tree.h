@@ -41,7 +41,6 @@
  * @{
  */
 
-
 struct AVTreeNode;
 extern const int av_tree_node_size;
 
@@ -65,7 +64,7 @@ struct AVTreeNode *av_tree_node_alloc(void);
  *         exists in the tree.
  */
 void *av_tree_find(const struct AVTreeNode *root, void *key,
-                   int (*cmp)(const void *key, const void *b), void *next[2]);
+		   int (*cmp)(const void *key, const void *b), void *next[2]);
 
 /**
  * Insert or remove an element.
@@ -112,8 +111,8 @@ void *av_tree_find(const struct AVTreeNode *root, void *key,
  *         should make no assumptions that it's one or the other in the code.
  */
 void *av_tree_insert(struct AVTreeNode **rootp, void *key,
-                     int (*cmp)(const void *key, const void *b),
-                     struct AVTreeNode **next);
+		     int (*cmp)(const void *key, const void *b),
+		     struct AVTreeNode **next);
 
 void av_tree_destroy(struct AVTreeNode *t);
 
@@ -128,8 +127,8 @@ void av_tree_destroy(struct AVTreeNode *t);
  *       tree.
  */
 void av_tree_enumerate(struct AVTreeNode *t, void *opaque,
-                       int (*cmp)(void *opaque, void *elem),
-                       int (*enu)(void *opaque, void *elem));
+		       int (*cmp)(void *opaque, void *elem),
+		       int (*enu)(void *opaque, void *elem));
 
 /**
  * @}

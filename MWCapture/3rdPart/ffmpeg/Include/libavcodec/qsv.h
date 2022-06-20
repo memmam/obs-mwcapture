@@ -34,24 +34,24 @@
  * - encoding: hwaccel_context must be set before avcodec_open2()
  */
 typedef struct AVQSVContext {
-    /**
+	/**
      * If non-NULL, the session to use for encoding or decoding.
      * Otherwise, libavcodec will try to create an internal session.
      */
-    mfxSession session;
+	mfxSession session;
 
-    /**
+	/**
      * The IO pattern to use.
      */
-    int iopattern;
+	int iopattern;
 
-    /**
+	/**
      * Extra buffers to pass to encoder or decoder initialization.
      */
-    mfxExtBuffer **ext_buffers;
-    int         nb_ext_buffers;
+	mfxExtBuffer **ext_buffers;
+	int nb_ext_buffers;
 
-    /**
+	/**
      * Encoding only. If this field is set to non-zero by the caller, libavcodec
      * will create an mfxExtOpaqueSurfaceAlloc extended buffer and pass it to
      * the encoder initialization. This only makes sense if iopattern is also
@@ -62,9 +62,9 @@ typedef struct AVQSVContext {
      * The array of the opaque surfaces will be exported to the caller through
      * the opaque_surfaces field.
      */
-    int opaque_alloc;
+	int opaque_alloc;
 
-    /**
+	/**
      * Encoding only, and only if opaque_alloc is set to non-zero. Before
      * calling avcodec_open2(), the caller should set this field to the number
      * of extra opaque surfaces to allocate beyond what is required by the
@@ -73,9 +73,9 @@ typedef struct AVQSVContext {
      * On return from avcodec_open2(), this field will be set by libavcodec to
      * the total number of allocated opaque surfaces.
      */
-    int nb_opaque_surfaces;
+	int nb_opaque_surfaces;
 
-    /**
+	/**
      * Encoding only, and only if opaque_alloc is set to non-zero. On return
      * from avcodec_open2(), this field will be used by libavcodec to export the
      * array of the allocated opaque surfaces to the caller, so they can be
@@ -87,14 +87,14 @@ typedef struct AVQSVContext {
      *
      * The buffer data is an nb_opaque_surfaces-sized array of mfxFrameSurface1.
      */
-    AVBufferRef *opaque_surfaces;
+	AVBufferRef *opaque_surfaces;
 
-    /**
+	/**
      * Encoding only, and only if opaque_alloc is set to non-zero. On return
      * from avcodec_open2(), this field will be set to the surface type used in
      * the opaque allocation request.
      */
-    int opaque_alloc_type;
+	int opaque_alloc_type;
 } AVQSVContext;
 
 /**

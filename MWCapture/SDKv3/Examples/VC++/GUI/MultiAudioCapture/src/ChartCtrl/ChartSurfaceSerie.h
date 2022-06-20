@@ -19,7 +19,8 @@
  *
  */
 
-#if !defined(AFX_CHARTSURFACESERIE_H__28A77823_43BD_4502_9AA7_A2B227454035__INCLUDED_)
+#if !defined( \
+	AFX_CHARTSURFACESERIE_H__28A77823_43BD_4502_9AA7_A2B227454035__INCLUDED_)
 #define AFX_CHARTSURFACESERIE_H__28A77823_43BD_4502_9AA7_A2B227454035__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -39,17 +40,15 @@
 	the surface series is horizontal and is associated with the top axis 
 	(secondary axis), the filling is done between the top axis and the points.
 **/
-class CChartSurfaceSerie : public CChartXYSerie  
-{
+class CChartSurfaceSerie : public CChartXYSerie {
 public:
 	//! Constructor
-	CChartSurfaceSerie(CChartCtrl* pParent);
+	CChartSurfaceSerie(CChartCtrl *pParent);
 	//! Destructor
 	virtual ~CChartSurfaceSerie();
 
 	//! The different fill styles
-	enum FillStyle
-	{
+	enum FillStyle {
 		fsSolid = 0,
 		fsHatchDownDiag,
 		fsHatchUpDiag,
@@ -62,7 +61,7 @@ public:
 	//! Sets the fill style
 	void SetFillStyle(FillStyle NewStyle);
 	//! Returns the fill style
-	FillStyle GetFillStyle() const		   { return m_FillStyle; }
+	FillStyle GetFillStyle() const { return m_FillStyle; }
 
 	//! Sets the series in horizontal or vertical mode
 	/**
@@ -71,7 +70,7 @@ public:
 	**/
 	void SetHorizontal(bool bHoriz);
 	//! Returns true if the series is in horizontal mode
-	bool GetHorizontal() const		{ return m_bHorizontal;   }
+	bool GetHorizontal() const { return m_bHorizontal; }
 
 	//! Check whether a screen point is on the series.
 	/**
@@ -85,12 +84,13 @@ public:
 			If the point is close to a specific point of the series, its index is stored here.
 		@return true if the point is on the series
 	**/
-	bool IsPointOnSerie(const CPoint& screenPoint, unsigned& uIndex) const; 
+	bool IsPointOnSerie(const CPoint &screenPoint, unsigned &uIndex) const;
 
-	void CChartSurfaceSerie::SetSeriesOrdering(PointsOrdering );
+	void CChartSurfaceSerie::SetSeriesOrdering(PointsOrdering);
+
 private:
 	//! Override in order to avoid changing series ordering.
-//	void SetSeriesOrdering(CChartPointsArray::PointsOrdering);
+	//	void SetSeriesOrdering(CChartPointsArray::PointsOrdering);
 
 	//! Draws the legend icon for the series.
 	/**
@@ -100,7 +100,7 @@ private:
 		@param rectBitmap
 			The rectangle in which to draw the legend icon
 	**/
-    void DrawLegend(CDC* pDC, const CRect& rectBitmap) const;
+	void DrawLegend(CDC *pDC, const CRect &rectBitmap) const;
 
 	//! Draws the most recent points of the series.
 	/**
@@ -110,7 +110,7 @@ private:
 		@param pDC
 			The device context used to draw
 	**/
-	void Draw(CDC* pDC);
+	void Draw(CDC *pDC);
 	//! Redraws the full series.
 	/**
 		This pure virtual function should be overriden by child classes.

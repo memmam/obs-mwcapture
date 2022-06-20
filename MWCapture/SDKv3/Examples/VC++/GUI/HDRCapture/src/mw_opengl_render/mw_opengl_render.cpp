@@ -3,59 +3,36 @@
 
 // rgb range
 typedef struct mw_rgb_rng_s {
-	double			m_d_min;
-	double			m_d_max;
-}mw_rgb_rng_t;
+	double m_d_min;
+	double m_d_max;
+} mw_rgb_rng_t;
 
 typedef struct mw_yuv_rng_s {
-	double			m_d_ymin;
-	double			m_d_ymax;
-	double			m_d_cmax;
-	double			m_d_cmid;
-}mw_yuv_rng_t;
+	double m_d_ymin;
+	double m_d_ymax;
+	double m_d_cmax;
+	double m_d_cmid;
+} mw_yuv_rng_t;
 
-static const mw_rgb_rng_t g_rgb_rng_limited = {
-	16.0/255.0,
-	235.0/255.0
-};
-static const mw_rgb_rng_t g_rgb_rng_full = {
-	0.0/255.0,
-	255.0/255.0
-};
+static const mw_rgb_rng_t g_rgb_rng_limited = {16.0 / 255.0, 235.0 / 255.0};
+static const mw_rgb_rng_t g_rgb_rng_full = {0.0 / 255.0, 255.0 / 255.0};
 
-static const mw_yuv_rng_t g_yuv_rng_limited = { 
-	16.0 / 255.0, 
-	235.0 / 255.0, 
-	240.0 / 255.0, 
-	128.0 / 255.0 
-};
+static const mw_yuv_rng_t g_yuv_rng_limited = {16.0 / 255.0, 235.0 / 255.0,
+					       240.0 / 255.0, 128.0 / 255.0};
 
-static const mw_yuv_rng_t g_yuv_rng_full = {
-	0.0 , 
-	255.0 / 255.0, 
-	255.0 / 255.0, 
-	128.0 / 255.0 
-};
+static const mw_yuv_rng_t g_yuv_rng_full = {0.0, 255.0 / 255.0, 255.0 / 255.0,
+					    128.0 / 255.0};
 
 static const GLfloat g_af_ver[] = {
-	-1.0f, -1.0f,
-	1.0f, -1.0f,
-	-1.0f,  1.0f,
-	1.0f,  1.0f,
+	-1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f,
 };
 
 static const GLfloat g_af_tex[] = {
-	0.0f,  0.0f,
-	1.0f,  0.0f,
-	0.0f,  1.0f,
-	1.0f,  1.0f,
+	0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
 };
 
 static const GLfloat g_af_tex_rev[] = {
-	0.0f,  1.0f,
-	1.0f,  1.0f,
-	0.0f,  0.0f,
-	1.0f,  0.0f,
+	0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
 };
 
 CMWOpenGLRender::CMWOpenGLRender()
@@ -82,11 +59,9 @@ CMWOpenGLRender::CMWOpenGLRender()
 	memset(m_csp_mat, 0, sizeof(float) * 9);
 	memset(m_csp_const, 0, sizeof(float) * 3);
 
-
 	m_p_render_buffer = NULL;
 	m_p_render_buffer = new CMWRenderBuffer();
 	m_p_render_buffer->allocate_buffer(4096 * 2160 * 4);
-
 }
 
 CMWOpenGLRender::~CMWOpenGLRender()
@@ -102,52 +77,45 @@ CMWOpenGLRender::~CMWOpenGLRender()
 void CMWOpenGLRender::clean_up()
 {
 
-	if (m_gli_pbo)
-	{
+	if (m_gli_pbo) {
 		glDeleteBuffers(1, &m_gli_pbo);
 		m_gli_pbo = 0;
 	}
 
 	// sdr
-	if (m_glui_sdr_sh_ver)
-	{
+	if (m_glui_sdr_sh_ver) {
 		glDeleteShader(m_glui_sdr_sh_ver);
 		m_glui_sdr_sh_ver = 0;
 	}
 
-	if (m_glui_sdr_sh_fra)
-	{
+	if (m_glui_sdr_sh_fra) {
 		glDeleteShader(m_glui_sdr_sh_fra);
 		m_glui_sdr_sh_fra = 0;
 	}
 
-	if (m_glui_sdr_pgm)
-	{
+	if (m_glui_sdr_pgm) {
 		glDeleteProgram(m_glui_sdr_pgm);
 		m_glui_sdr_pgm = 0;
 	}
 
 	// hdr
-	if (m_glui_hdr_sh_ver)
-	{
+	if (m_glui_hdr_sh_ver) {
 		glDeleteShader(m_glui_hdr_sh_ver);
 		m_glui_hdr_sh_ver = 0;
 	}
 
-	if (m_glui_hdr_sh_fra)
-	{
+	if (m_glui_hdr_sh_fra) {
 		glDeleteShader(m_glui_hdr_sh_fra);
 		m_glui_hdr_sh_fra = 0;
 	}
 
-	if (m_glui_hdr_pgm)
-	{
+	if (m_glui_hdr_pgm) {
 		glDeleteProgram(m_glui_hdr_pgm);
 		m_glui_hdr_pgm = 0;
 	}
 
 	m_i32_tex_num = 0;
-	for (int i = 0;i < 3;i++) {
+	for (int i = 0; i < 3; i++) {
 		if (m_a_tex[i].m_glui_tex != 0) {
 			glDeleteTextures(1, &m_a_tex[i].m_glui_tex);
 			memset(&m_a_tex[i], 0, sizeof(mw_render_tex_t));
@@ -155,31 +123,26 @@ void CMWOpenGLRender::clean_up()
 	}
 }
 
-
 void CMWOpenGLRender::close()
 {
 	clean_up();
 }
 
-
-mw_render_stat_t 
-CMWOpenGLRender::open_sdr(mw_render_init_t *rinit)
+mw_render_stat_t CMWOpenGLRender::open_sdr(mw_render_init_t *rinit)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
-	
+
 	t_stat = open_render(rinit, false);
 
 	return t_stat;
 }
 
-int CMWOpenGLRender::render_sdr(
-	mw_render_ctrl_t *rctrl, 
-	bool black)
+int CMWOpenGLRender::render_sdr(mw_render_ctrl_t *rctrl, bool black)
 {
 	void *data = NULL;
 	// get render data from render buffer
 
-	cmw_buffer_s* t_p_buffer = NULL;
+	cmw_buffer_s *t_p_buffer = NULL;
 	if (m_p_render_buffer != NULL) {
 		t_p_buffer = m_p_render_buffer->get_buffer_render();
 		if (t_p_buffer != NULL)
@@ -189,8 +152,7 @@ int CMWOpenGLRender::render_sdr(
 	if (data == NULL)
 		black = true;
 
-	switch (m_render_init.m_mode)
-	{
+	switch (m_render_init.m_mode) {
 	case MW_RENDER_FOURCC_GREY:
 		break;
 	case MW_RENDER_FOURCC_Y800:
@@ -294,8 +256,7 @@ int CMWOpenGLRender::render_sdr(
 	return 0;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::open_hdr(mw_render_init_t* rinit)
+mw_render_stat_t CMWOpenGLRender::open_hdr(mw_render_init_t *rinit)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
@@ -304,15 +265,12 @@ CMWOpenGLRender::open_hdr(mw_render_init_t* rinit)
 	return t_stat;
 }
 
-int32_t 
-CMWOpenGLRender::render_hdr(
-	mw_render_ctrl_ex_t *rctrl, 
-	bool black)
+int32_t CMWOpenGLRender::render_hdr(mw_render_ctrl_ex_t *rctrl, bool black)
 {
 	void *data = NULL;
 	// get render data from render buffer
 
-	cmw_buffer_s* t_p_buffer = NULL;
+	cmw_buffer_s *t_p_buffer = NULL;
 	if (m_p_render_buffer != NULL) {
 		t_p_buffer = m_p_render_buffer->get_buffer_render();
 		if (t_p_buffer != NULL)
@@ -322,8 +280,7 @@ CMWOpenGLRender::render_hdr(
 	if (data == NULL)
 		black = true;
 
-	switch (m_render_init.m_mode)
-	{
+	switch (m_render_init.m_mode) {
 	case MW_RENDER_FOURCC_GREY:
 		break;
 	case MW_RENDER_FOURCC_Y800:
@@ -418,23 +375,20 @@ CMWOpenGLRender::render_hdr(
 	return 0;
 }
 
-CMWRenderBuffer* CMWOpenGLRender::get_render_buffer()
+CMWRenderBuffer *CMWOpenGLRender::get_render_buffer()
 {
 	return m_p_render_buffer;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::open_render(
-	mw_render_init_t* t_p_rinit, 
-	bool t_b_hdr)
+mw_render_stat_t CMWOpenGLRender::open_render(mw_render_init_t *t_p_rinit,
+					      bool t_b_hdr)
 {
 	m_render_init = *t_p_rinit;
 	if (m_render_init.m_mode >= MW_RENDER_FOURCC_CNT)
 		return MW_RENDER_STAT_MODE;
 
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
-	switch (m_render_init.m_mode)
-	{
+	switch (m_render_init.m_mode) {
 	case MW_RENDER_FOURCC_GREY:
 		break;
 	case MW_RENDER_FOURCC_Y800:
@@ -551,16 +505,17 @@ mw_render_stat_t CMWOpenGLRender::open_rgba(bool t_b_hdr)
 	if (t_stat != mw_render_stat_t::MW_RENDER_STAT_OK)
 		return t_stat;
 
-	t_stat = init_render_sdr(
-		(char*)g_cs_ver_nm,
-		(char*)g_cs_fra_rgba,
-		(void*)g_af_ver,
-		m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
+	t_stat = init_render_sdr((char *)g_cs_ver_nm, (char *)g_cs_fra_rgba,
+				 (void *)g_af_ver,
+				 m_render_init.m_u8_need_rev
+					 ? (void *)g_af_tex_rev
+					 : (void *)g_af_tex);
 
 	return t_stat;
 }
 
-mw_render_stat_t CMWOpenGLRender::render_rgba(void *data, mw_render_ctrl_t *rctrl, bool black)
+mw_render_stat_t
+CMWOpenGLRender::render_rgba(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
@@ -586,16 +541,17 @@ mw_render_stat_t CMWOpenGLRender::open_argb(bool t_b_hdr)
 	if (t_stat != mw_render_stat_t::MW_RENDER_STAT_OK)
 		return t_stat;
 
-	t_stat = init_render_sdr(
-		(char*)g_cs_ver_nm,
-		(char*)g_cs_fra_argb,
-		(void*)g_af_ver,
-		m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
+	t_stat = init_render_sdr((char *)g_cs_ver_nm, (char *)g_cs_fra_argb,
+				 (void *)g_af_ver,
+				 m_render_init.m_u8_need_rev
+					 ? (void *)g_af_tex_rev
+					 : (void *)g_af_tex);
 
 	return t_stat;
 }
 
-mw_render_stat_t CMWOpenGLRender::render_argb(void *data, mw_render_ctrl_t *rctrl, bool black)
+mw_render_stat_t
+CMWOpenGLRender::render_argb(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
@@ -605,8 +561,7 @@ mw_render_stat_t CMWOpenGLRender::render_argb(void *data, mw_render_ctrl_t *rctr
 	return t_stat;
 }
 
-mw_render_stat_t
-CMWOpenGLRender::open_bgra(bool t_b_hdr)
+mw_render_stat_t CMWOpenGLRender::open_bgra(bool t_b_hdr)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
@@ -622,20 +577,17 @@ CMWOpenGLRender::open_bgra(bool t_b_hdr)
 	if (t_stat != mw_render_stat_t::MW_RENDER_STAT_OK)
 		return t_stat;
 
-	t_stat = init_render_sdr(
-		(char*)g_cs_ver_nm,
-		(char*)g_cs_fra_bgra,
-		(void*)g_af_ver,
-		m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
+	t_stat = init_render_sdr((char *)g_cs_ver_nm, (char *)g_cs_fra_bgra,
+				 (void *)g_af_ver,
+				 m_render_init.m_u8_need_rev
+					 ? (void *)g_af_tex_rev
+					 : (void *)g_af_tex);
 
 	return t_stat;
 }
 
 mw_render_stat_t
-CMWOpenGLRender::render_bgra(
-	void *data,
-	mw_render_ctrl_t *rctrl,
-	bool black)
+CMWOpenGLRender::render_bgra(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
@@ -665,20 +617,20 @@ mw_render_stat_t CMWOpenGLRender::open_abgr(bool t_b_hdr)
 		clean_up();
 		t_stat = MW_RENDER_STAT_NOT_SUPPORT;
 		return t_stat;
+	} else {
+		t_stat = init_render_sdr((char *)g_cs_ver_nm,
+					 (char *)g_cs_fra_abgr,
+					 (void *)g_af_ver,
+					 m_render_init.m_u8_need_rev
+						 ? (void *)g_af_tex_rev
+						 : (void *)g_af_tex);
 	}
-	else {
-		t_stat = init_render_sdr(
-			(char*)g_cs_ver_nm,
-			(char*)g_cs_fra_abgr,
-			(void*)g_af_ver,
-			m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
-	}
-	
 
 	return t_stat;
 }
 
-mw_render_stat_t CMWOpenGLRender::render_abgr(void *data, mw_render_ctrl_t *rctrl, bool black)
+mw_render_stat_t
+CMWOpenGLRender::render_abgr(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
@@ -714,27 +666,29 @@ mw_render_stat_t CMWOpenGLRender::open_yuy2(bool t_b_hdr)
 		clean_up();
 		t_stat = MW_RENDER_STAT_NOT_SUPPORT;
 		return t_stat;
-	}
-	else {
-		t_stat = init_render_sdr(
-			g_cs_ver_nm,
-			g_cs_fra_yuyv,
-			(void*)g_af_ver,
-			m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
+	} else {
+		t_stat = init_render_sdr(g_cs_ver_nm, g_cs_fra_yuyv,
+					 (void *)g_af_ver,
+					 m_render_init.m_u8_need_rev
+						 ? (void *)g_af_tex_rev
+						 : (void *)g_af_tex);
 		if (t_stat != mw_render_stat_t::MW_RENDER_STAT_OK)
 			return t_stat;
 	}
 
-	t_stat = init_pbo(m_render_init.m_u32_width*m_render_init.m_u32_height * 2);
+	t_stat = init_pbo(m_render_init.m_u32_width *
+			  m_render_init.m_u32_height * 2);
 
 	return t_stat;
 }
 
-mw_render_stat_t CMWOpenGLRender::render_yuy2(void *data, mw_render_ctrl_t *rctrl, bool black)
+mw_render_stat_t
+CMWOpenGLRender::render_yuy2(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
-	uint32_t t_u32_size = m_render_init.m_u32_width*m_render_init.m_u32_height * 2;
+	uint32_t t_u32_size =
+		m_render_init.m_u32_width * m_render_init.m_u32_height * 2;
 	t_stat = render_uv_yuv_pbo(2, rctrl, black, data, t_u32_size);
 
 	return t_stat;
@@ -752,14 +706,14 @@ mw_render_stat_t CMWOpenGLRender::open_i420(bool t_b_hdr)
 	m_a_tex[0].m_u32_inter_fmt = GL_RED;
 	m_a_tex[0].m_u32_type = GL_UNSIGNED_BYTE;
 
-	m_a_tex[1].m_u32_wid = m_render_init.m_u32_width/2;
-	m_a_tex[1].m_u32_hei = m_render_init.m_u32_height/2;
+	m_a_tex[1].m_u32_wid = m_render_init.m_u32_width / 2;
+	m_a_tex[1].m_u32_hei = m_render_init.m_u32_height / 2;
 	m_a_tex[1].m_u32_fmt = GL_RED;
 	m_a_tex[1].m_u32_inter_fmt = GL_RED;
 	m_a_tex[1].m_u32_type = GL_UNSIGNED_BYTE;
 
-	m_a_tex[2].m_u32_wid = m_render_init.m_u32_width/2;
-	m_a_tex[2].m_u32_hei = m_render_init.m_u32_height/2;
+	m_a_tex[2].m_u32_wid = m_render_init.m_u32_width / 2;
+	m_a_tex[2].m_u32_hei = m_render_init.m_u32_height / 2;
 	m_a_tex[2].m_u32_fmt = GL_RED;
 	m_a_tex[2].m_u32_inter_fmt = GL_RED;
 	m_a_tex[2].m_u32_type = GL_UNSIGNED_BYTE;
@@ -772,36 +726,39 @@ mw_render_stat_t CMWOpenGLRender::open_i420(bool t_b_hdr)
 		clean_up();
 		t_stat = MW_RENDER_STAT_NOT_SUPPORT;
 		return t_stat;
-	}
-	else {
-		t_stat = init_render_sdr(
-			g_cs_ver_nm,
-			g_cs_fra_i420,
-			(void*)g_af_ver,
-			m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
+	} else {
+		t_stat = init_render_sdr(g_cs_ver_nm, g_cs_fra_i420,
+					 (void *)g_af_ver,
+					 m_render_init.m_u8_need_rev
+						 ? (void *)g_af_tex_rev
+						 : (void *)g_af_tex);
 		if (t_stat != mw_render_stat_t::MW_RENDER_STAT_OK)
 			return t_stat;
 	}
 
-	t_stat = init_pbo(m_render_init.m_u32_width*m_render_init.m_u32_height * 2);
+	t_stat = init_pbo(m_render_init.m_u32_width *
+			  m_render_init.m_u32_height * 2);
 
 	return t_stat;
 }
 
-mw_render_stat_t CMWOpenGLRender::render_i420(void *data, mw_render_ctrl_t *rctrl, bool black)
+mw_render_stat_t
+CMWOpenGLRender::render_i420(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
 	m_a_tex[0].m_p_data = data;
-	m_a_tex[1].m_p_data = (char*)data + m_render_init.m_u32_width*m_render_init.m_u32_height;
-	m_a_tex[2].m_p_data = (char*)data + m_render_init.m_u32_width*m_render_init.m_u32_height*5/4;
+	m_a_tex[1].m_p_data = (char *)data + m_render_init.m_u32_width *
+						     m_render_init.m_u32_height;
+	m_a_tex[2].m_p_data =
+		(char *)data +
+		m_render_init.m_u32_width * m_render_init.m_u32_height * 5 / 4;
 	t_stat = render_uv_yuv(3, rctrl, black);
 
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::open_nv12(bool t_b_hdr)
+mw_render_stat_t CMWOpenGLRender::open_nv12(bool t_b_hdr)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
@@ -814,7 +771,7 @@ CMWOpenGLRender::open_nv12(bool t_b_hdr)
 	m_a_tex[0].m_u32_type = GL_UNSIGNED_BYTE;
 
 	m_a_tex[1].m_u32_wid = m_render_init.m_u32_width / 2;
-	m_a_tex[1].m_u32_hei = m_render_init.m_u32_height/ 2;
+	m_a_tex[1].m_u32_hei = m_render_init.m_u32_height / 2;
 	m_a_tex[1].m_u32_fmt = GL_RG;
 	m_a_tex[1].m_u32_inter_fmt = GL_RG;
 	m_a_tex[1].m_u32_type = GL_UNSIGNED_BYTE;
@@ -827,30 +784,29 @@ CMWOpenGLRender::open_nv12(bool t_b_hdr)
 		clean_up();
 		t_stat = MW_RENDER_STAT_NOT_SUPPORT;
 		return t_stat;
-	}
-	else {
-		t_stat = init_render_sdr(
-			g_cs_ver_nm,
-			g_cs_fra_nv12,
-			(void*)g_af_ver,
-			m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
+	} else {
+		t_stat = init_render_sdr(g_cs_ver_nm, g_cs_fra_nv12,
+					 (void *)g_af_ver,
+					 m_render_init.m_u8_need_rev
+						 ? (void *)g_af_tex_rev
+						 : (void *)g_af_tex);
 	}
 
 	return t_stat;
 }
 
-mw_render_stat_t CMWOpenGLRender::render_nv12(void *data, mw_render_ctrl_t *rctrl, bool black)
+mw_render_stat_t
+CMWOpenGLRender::render_nv12(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
-
 	m_a_tex[0].m_p_data = data;
-	m_a_tex[1].m_p_data = (char*)data + m_render_init.m_u32_width*m_render_init.m_u32_height;
+	m_a_tex[1].m_p_data = (char *)data + m_render_init.m_u32_width *
+						     m_render_init.m_u32_height;
 	t_stat = render_uv_yuv(2, rctrl, black);
 
 	return t_stat;
 }
-
 
 mw_render_stat_t CMWOpenGLRender::open_yv12(bool t_b_hdr)
 {
@@ -884,39 +840,42 @@ mw_render_stat_t CMWOpenGLRender::open_yv12(bool t_b_hdr)
 		clean_up();
 		t_stat = MW_RENDER_STAT_NOT_SUPPORT;
 		return t_stat;
-	}
-	else {
-		t_stat = init_render_sdr(
-			g_cs_ver_nm,
-			g_cs_fra_yv12,
-			(void*)g_af_ver,
-			m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
+	} else {
+		t_stat = init_render_sdr(g_cs_ver_nm, g_cs_fra_yv12,
+					 (void *)g_af_ver,
+					 m_render_init.m_u8_need_rev
+						 ? (void *)g_af_tex_rev
+						 : (void *)g_af_tex);
 		if (t_stat != mw_render_stat_t::MW_RENDER_STAT_OK)
 			return t_stat;
 	}
 
-	t_stat = init_pbo(m_render_init.m_u32_width*m_render_init.m_u32_height * 2);
+	t_stat = init_pbo(m_render_init.m_u32_width *
+			  m_render_init.m_u32_height * 2);
 
 	return t_stat;
 }
 
-mw_render_stat_t CMWOpenGLRender::render_yv12(void *data, mw_render_ctrl_t *rctrl, bool black)
+mw_render_stat_t
+CMWOpenGLRender::render_yv12(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
 	m_a_tex[0].m_p_data = data;
-	m_a_tex[1].m_p_data = (char*)data + m_render_init.m_u32_width*m_render_init.m_u32_height;
-	m_a_tex[2].m_p_data = (char*)data + m_render_init.m_u32_width*m_render_init.m_u32_height * 5 / 4;
+	m_a_tex[1].m_p_data = (char *)data + m_render_init.m_u32_width *
+						     m_render_init.m_u32_height;
+	m_a_tex[2].m_p_data =
+		(char *)data +
+		m_render_init.m_u32_width * m_render_init.m_u32_height * 5 / 4;
 	t_stat = render_uv_yuv(3, rctrl, black);
 
 	return t_stat;
 }
 
-
 mw_render_stat_t CMWOpenGLRender::open_nv21(bool t_b_hdr)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
-	
+
 	calc_yuv_trans();
 
 	m_a_tex[0].m_u32_wid = m_render_init.m_u32_width;
@@ -939,24 +898,25 @@ mw_render_stat_t CMWOpenGLRender::open_nv21(bool t_b_hdr)
 		clean_up();
 		t_stat = MW_RENDER_STAT_NOT_SUPPORT;
 		return t_stat;
-	}
-	else {
-		t_stat = init_render_sdr(
-			g_cs_ver_nm,
-			g_cs_fra_nv21,
-			(void*)g_af_ver,
-			m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
+	} else {
+		t_stat = init_render_sdr(g_cs_ver_nm, g_cs_fra_nv21,
+					 (void *)g_af_ver,
+					 m_render_init.m_u8_need_rev
+						 ? (void *)g_af_tex_rev
+						 : (void *)g_af_tex);
 	}
 
 	return t_stat;
 }
 
-mw_render_stat_t CMWOpenGLRender::render_nv21(void *data, mw_render_ctrl_t *rctrl, bool black)
+mw_render_stat_t
+CMWOpenGLRender::render_nv21(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
-	
+
 	m_a_tex[0].m_p_data = data;
-	m_a_tex[1].m_p_data = (char*)data + m_render_init.m_u32_width*m_render_init.m_u32_height;
+	m_a_tex[1].m_p_data = (char *)data + m_render_init.m_u32_width *
+						     m_render_init.m_u32_height;
 	t_stat = render_uv_yuv(2, rctrl, black);
 
 	return t_stat;
@@ -984,48 +944,48 @@ mw_render_stat_t CMWOpenGLRender::open_p010(bool t_b_hdr)
 	if (t_stat != mw_render_stat_t::MW_RENDER_STAT_OK)
 		return t_stat;
 
-
-	t_stat = init_render_sdr(
-		g_cs_ver_nm,
-		g_cs_fra_nv12,
-		(void*)g_af_ver,
-		m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex);
+	t_stat = init_render_sdr(g_cs_ver_nm, g_cs_fra_nv12, (void *)g_af_ver,
+				 m_render_init.m_u8_need_rev
+					 ? (void *)g_af_tex_rev
+					 : (void *)g_af_tex);
 	if (t_stat != MW_RENDER_STAT_OK)
 		return t_stat;
 
 	if (t_b_hdr) {
-		t_stat = init_render_hdr(
-			g_cs_ver_nm,
-			g_cs_fra_p010,
-			(void*)g_af_ver,
-			m_render_init.m_u8_need_rev ? (void*)g_af_tex_rev : (void*)g_af_tex
-		);
+		t_stat = init_render_hdr(g_cs_ver_nm, g_cs_fra_p010,
+					 (void *)g_af_ver,
+					 m_render_init.m_u8_need_rev
+						 ? (void *)g_af_tex_rev
+						 : (void *)g_af_tex);
 	}
 
 	return t_stat;
 }
 
-mw_render_stat_t CMWOpenGLRender::render_p010(void *data, mw_render_ctrl_t *rctrl, bool black)
+mw_render_stat_t
+CMWOpenGLRender::render_p010(void *data, mw_render_ctrl_t *rctrl, bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
 	m_a_tex[0].m_p_data = data;
-	m_a_tex[1].m_p_data = (char*)data + m_render_init.m_u32_width*m_render_init.m_u32_height*2;
+	m_a_tex[1].m_p_data =
+		(char *)data +
+		m_render_init.m_u32_width * m_render_init.m_u32_height * 2;
 	t_stat = render_uv_yuv(2, rctrl, black);
 
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::render_p010_hdr(
-	void* data, 
-	mw_render_ctrl_ex_t* rctrl, 
-	bool black)
+mw_render_stat_t CMWOpenGLRender::render_p010_hdr(void *data,
+						  mw_render_ctrl_ex_t *rctrl,
+						  bool black)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
 	m_a_tex[0].m_p_data = data;
-	m_a_tex[1].m_p_data = (char*)data + m_render_init.m_u32_width*m_render_init.m_u32_height * 2;
+	m_a_tex[1].m_p_data =
+		(char *)data +
+		m_render_init.m_u32_width * m_render_init.m_u32_height * 2;
 	if (rctrl->m_u8_hdr_on)
 		t_stat = render_uv_yuv_hdr(2, rctrl, black);
 	else
@@ -1034,17 +994,13 @@ CMWOpenGLRender::render_p010_hdr(
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::init_render_sdr(
-	const char*   t_cs_ver,
-	const char*	t_cs_frag,
-	void*	t_p_ver,
-	void*	t_p_tex)
+mw_render_stat_t CMWOpenGLRender::init_render_sdr(const char *t_cs_ver,
+						  const char *t_cs_frag,
+						  void *t_p_ver, void *t_p_tex)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
-	do 
-	{
+	do {
 		m_glui_sdr_sh_ver = glCreateShader(GL_VERTEX_SHADER);
 		if (!m_glui_sdr_sh_ver) {
 			clean_up();
@@ -1059,8 +1015,10 @@ CMWOpenGLRender::init_render_sdr(
 			break;
 		}
 
-		glShaderSource(m_glui_sdr_sh_ver, 1, (const GLchar**)&t_cs_ver, NULL);
-		glShaderSource(m_glui_sdr_sh_fra, 1, (const GLchar**)&t_cs_frag, NULL);
+		glShaderSource(m_glui_sdr_sh_ver, 1, (const GLchar **)&t_cs_ver,
+			       NULL);
+		glShaderSource(m_glui_sdr_sh_fra, 1,
+			       (const GLchar **)&t_cs_frag, NULL);
 
 		GLint t_gli_tmp = 0;
 		glCompileShader(m_glui_sdr_sh_ver);
@@ -1073,9 +1031,10 @@ CMWOpenGLRender::init_render_sdr(
 		glCompileShader(m_glui_sdr_sh_fra);
 		glGetShaderiv(m_glui_sdr_sh_fra, GL_COMPILE_STATUS, &t_gli_tmp);
 		if (!t_gli_tmp) {
-			GLchar	t_cs_info[512] = {0};
+			GLchar t_cs_info[512] = {0};
 			GLsizei t_n_size = 0;
-			glGetShaderInfoLog(m_glui_sdr_sh_fra, 512, &t_n_size, t_cs_info);
+			glGetShaderInfoLog(m_glui_sdr_sh_fra, 512, &t_n_size,
+					   t_cs_info);
 			printf("%s\n", t_cs_info);
 			clean_up();
 			t_stat = mw_render_stat_t::MW_RENDER_STAT_SHF;
@@ -1098,11 +1057,15 @@ CMWOpenGLRender::init_render_sdr(
 			break;
 		}
 
-		m_gli_sdr_loc_ver = glGetAttribLocation(m_glui_sdr_pgm, "vertexIn");
-		m_gli_sdr_loc_fra = glGetAttribLocation(m_glui_sdr_pgm, "textureIn");
-		glVertexAttribPointer(m_gli_sdr_loc_ver, 2, GL_FLOAT, 0, 0, t_p_ver);
+		m_gli_sdr_loc_ver =
+			glGetAttribLocation(m_glui_sdr_pgm, "vertexIn");
+		m_gli_sdr_loc_fra =
+			glGetAttribLocation(m_glui_sdr_pgm, "textureIn");
+		glVertexAttribPointer(m_gli_sdr_loc_ver, 2, GL_FLOAT, 0, 0,
+				      t_p_ver);
 		glEnableVertexAttribArray(m_gli_sdr_loc_ver);
-		glVertexAttribPointer(m_gli_sdr_loc_fra, 2, GL_FLOAT, 0, 0, t_p_tex);
+		glVertexAttribPointer(m_gli_sdr_loc_fra, 2, GL_FLOAT, 0, 0,
+				      t_p_tex);
 		glEnableVertexAttribArray(m_gli_sdr_loc_fra);
 
 	} while (false);
@@ -1110,17 +1073,13 @@ CMWOpenGLRender::init_render_sdr(
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::init_render_hdr(
-	const char* t_cs_ver, 
-	const char* t_cs_frag, 
-	void* t_p_ver, 
-	void* t_p_tex)
+mw_render_stat_t CMWOpenGLRender::init_render_hdr(const char *t_cs_ver,
+						  const char *t_cs_frag,
+						  void *t_p_ver, void *t_p_tex)
 {
 	mw_render_stat_t t_stat = MW_RENDER_STAT_OK;
 
-	do
-	{
+	do {
 		m_glui_hdr_sh_ver = glCreateShader(GL_VERTEX_SHADER);
 		if (!m_glui_hdr_sh_ver) {
 			clean_up();
@@ -1135,8 +1094,10 @@ CMWOpenGLRender::init_render_hdr(
 			break;
 		}
 
-		glShaderSource(m_glui_hdr_sh_ver, 1, (const GLchar**)&t_cs_ver, NULL);
-		glShaderSource(m_glui_hdr_sh_fra, 1, (const GLchar**)&t_cs_frag, NULL);
+		glShaderSource(m_glui_hdr_sh_ver, 1, (const GLchar **)&t_cs_ver,
+			       NULL);
+		glShaderSource(m_glui_hdr_sh_fra, 1,
+			       (const GLchar **)&t_cs_frag, NULL);
 
 		GLint t_gli_tmp = 0;
 		glCompileShader(m_glui_hdr_sh_ver);
@@ -1149,9 +1110,10 @@ CMWOpenGLRender::init_render_hdr(
 		glCompileShader(m_glui_hdr_sh_fra);
 		glGetShaderiv(m_glui_hdr_sh_fra, GL_COMPILE_STATUS, &t_gli_tmp);
 		if (!t_gli_tmp) {
-			GLchar	t_cs_info[512] = { 0 };
+			GLchar t_cs_info[512] = {0};
 			GLsizei t_n_size = 0;
-			glGetShaderInfoLog(m_glui_hdr_sh_fra, 512, &t_n_size, t_cs_info);
+			glGetShaderInfoLog(m_glui_hdr_sh_fra, 512, &t_n_size,
+					   t_cs_info);
 			printf("%s\n", t_cs_info);
 			clean_up();
 			t_stat = mw_render_stat_t::MW_RENDER_STAT_SHF;
@@ -1174,11 +1136,15 @@ CMWOpenGLRender::init_render_hdr(
 			break;
 		}
 
-		m_gli_hdr_loc_ver = glGetAttribLocation(m_glui_hdr_pgm, "vertexIn");
-		m_gli_hdr_loc_fra = glGetAttribLocation(m_glui_hdr_pgm, "textureIn");
-		glVertexAttribPointer(m_gli_hdr_loc_ver, 2, GL_FLOAT, 0, 0, t_p_ver);
+		m_gli_hdr_loc_ver =
+			glGetAttribLocation(m_glui_hdr_pgm, "vertexIn");
+		m_gli_hdr_loc_fra =
+			glGetAttribLocation(m_glui_hdr_pgm, "textureIn");
+		glVertexAttribPointer(m_gli_hdr_loc_ver, 2, GL_FLOAT, 0, 0,
+				      t_p_ver);
 		glEnableVertexAttribArray(m_gli_hdr_loc_ver);
-		glVertexAttribPointer(m_gli_hdr_loc_fra, 2, GL_FLOAT, 0, 0, t_p_tex);
+		glVertexAttribPointer(m_gli_hdr_loc_fra, 2, GL_FLOAT, 0, 0,
+				      t_p_tex);
 		glEnableVertexAttribArray(m_gli_hdr_loc_fra);
 
 	} while (false);
@@ -1186,8 +1152,7 @@ CMWOpenGLRender::init_render_hdr(
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::init_pbo(uint32_t t_u32_size)
+mw_render_stat_t CMWOpenGLRender::init_pbo(uint32_t t_u32_size)
 {
 	mw_render_stat_t t_stat = mw_render_stat_t::MW_RENDER_STAT_OK;
 
@@ -1203,12 +1168,11 @@ CMWOpenGLRender::init_pbo(uint32_t t_u32_size)
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::gen_tex(int32_t t_i32_tex_num)
+mw_render_stat_t CMWOpenGLRender::gen_tex(int32_t t_i32_tex_num)
 {
 	mw_render_stat_t t_stat = mw_render_stat_t::MW_RENDER_STAT_OK;
 
-	for (int i = 0;i < t_i32_tex_num;i++) {
+	for (int i = 0; i < t_i32_tex_num; i++) {
 		glGenTextures(1, &m_a_tex[i].m_glui_tex);
 		if (!m_a_tex[i].m_glui_tex) {
 			clean_up();
@@ -1216,31 +1180,26 @@ CMWOpenGLRender::gen_tex(int32_t t_i32_tex_num)
 			break;
 		}
 		glBindTexture(GL_TEXTURE_2D, m_a_tex[i].m_glui_tex);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexImage2D(
-			GL_TEXTURE_2D,
-			0,
-			m_a_tex[i].m_u32_inter_fmt,
-			m_a_tex[i].m_u32_wid,
-			m_a_tex[i].m_u32_hei,
-			0,
-			m_a_tex[i].m_u32_fmt,
-			m_a_tex[i].m_u32_type,
-			NULL);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+				GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+				GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
+				GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
+				GL_CLAMP_TO_EDGE);
+		glTexImage2D(GL_TEXTURE_2D, 0, m_a_tex[i].m_u32_inter_fmt,
+			     m_a_tex[i].m_u32_wid, m_a_tex[i].m_u32_hei, 0,
+			     m_a_tex[i].m_u32_fmt, m_a_tex[i].m_u32_type, NULL);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::render_uv_rgb(
-	int32_t				t_i32_tex_num,
-	mw_render_ctrl_t*	t_p_ctrl,
-	bool				t_b_black)
+mw_render_stat_t CMWOpenGLRender::render_uv_rgb(int32_t t_i32_tex_num,
+						mw_render_ctrl_t *t_p_ctrl,
+						bool t_b_black)
 {
 	mw_render_stat_t t_stat = mw_render_stat_t::MW_RENDER_STAT_OK;
 
@@ -1256,38 +1215,29 @@ CMWOpenGLRender::render_uv_rgb(
 	glViewport(0, 0, display_w, display_h);
 	glUseProgram(m_glui_sdr_pgm);
 
-	for (int i = 0;i < t_i32_tex_num;i++) {
-		glActiveTexture(GL_TEXTURE0+i);
+	for (int i = 0; i < t_i32_tex_num; i++) {
+		glActiveTexture(GL_TEXTURE0 + i);
 		glBindTexture(GL_TEXTURE_2D, m_a_tex[i].m_glui_tex);
 		if (m_a_tex[i].m_p_data) {
 			glTexSubImage2D(
-				GL_TEXTURE_2D, 
-				0, 
-				0, 
-				0, 
-				m_a_tex[i].m_u32_wid,
-				m_a_tex[i].m_u32_hei,
-				m_a_tex[i].m_u32_fmt, 
-				m_a_tex[i].m_u32_type, 
-				m_a_tex[i].m_p_data);
+				GL_TEXTURE_2D, 0, 0, 0, m_a_tex[i].m_u32_wid,
+				m_a_tex[i].m_u32_hei, m_a_tex[i].m_u32_fmt,
+				m_a_tex[i].m_u32_type, m_a_tex[i].m_p_data);
 		}
 	}
 
 	glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_rgb"), 0);
 	glUniform3f(glGetUniformLocation(m_glui_sdr_pgm, "rgb_rng"),
-		m_aglf_rgb_trans[0],
-		m_aglf_rgb_trans[1],
-		m_aglf_rgb_trans[2]);
+		    m_aglf_rgb_trans[0], m_aglf_rgb_trans[1],
+		    m_aglf_rgb_trans[2]);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::render_uv_yuv(
-	int32_t t_i32_tex_num, 
-	mw_render_ctrl_t* t_p_ctrl, 
-	bool t_b_black)
+mw_render_stat_t CMWOpenGLRender::render_uv_yuv(int32_t t_i32_tex_num,
+						mw_render_ctrl_t *t_p_ctrl,
+						bool t_b_black)
 {
 	mw_render_stat_t t_stat = mw_render_stat_t::MW_RENDER_STAT_OK;
 
@@ -1303,51 +1253,50 @@ CMWOpenGLRender::render_uv_yuv(
 	glViewport(0, 0, display_w, display_h);
 	glUseProgram(m_glui_sdr_pgm);
 
-	for (int i = 0;i < t_i32_tex_num;i++) {
+	for (int i = 0; i < t_i32_tex_num; i++) {
 		glActiveTexture(GL_TEXTURE0 + i);
 		glBindTexture(GL_TEXTURE_2D, m_a_tex[i].m_glui_tex);
 		if (m_a_tex[i].m_p_data) {
 			glTexSubImage2D(
-				GL_TEXTURE_2D,
-				0,
-				0,
-				0,
-				m_a_tex[i].m_u32_wid,
-				m_a_tex[i].m_u32_hei,
-				m_a_tex[i].m_u32_fmt,
-				m_a_tex[i].m_u32_type,
-				m_a_tex[i].m_p_data);
+				GL_TEXTURE_2D, 0, 0, 0, m_a_tex[i].m_u32_wid,
+				m_a_tex[i].m_u32_hei, m_a_tex[i].m_u32_fmt,
+				m_a_tex[i].m_u32_type, m_a_tex[i].m_p_data);
 		}
 	}
 
 	if (t_i32_tex_num == 1)
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"), 0);
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"),
+			    0);
 	else if (t_i32_tex_num == 2) {
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"), 0);
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_01"), 1);
-	}
-	else {
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"), 0);
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_01"), 1);
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_02"), 2);
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"),
+			    0);
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_01"),
+			    1);
+	} else {
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"),
+			    0);
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_01"),
+			    1);
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_02"),
+			    2);
 	}
 
 	// set uniform
-	glUniformMatrix3fv(glGetUniformLocation(m_glui_sdr_pgm, "cspmat"), 1, GL_FALSE, &m_csp_mat[0][0]);
-	glUniform3f(glGetUniformLocation(m_glui_sdr_pgm, "cspconst"), m_csp_const[0], m_csp_const[1], m_csp_const[2]);
+	glUniformMatrix3fv(glGetUniformLocation(m_glui_sdr_pgm, "cspmat"), 1,
+			   GL_FALSE, &m_csp_mat[0][0]);
+	glUniform3f(glGetUniformLocation(m_glui_sdr_pgm, "cspconst"),
+		    m_csp_const[0], m_csp_const[1], m_csp_const[2]);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::render_uv_yuv_pbo(
-	int32_t t_i32_tex_num, 
-	mw_render_ctrl_t* t_p_ctrl, 
-	bool t_b_black, 
-	void* t_p_data,
-	uint32_t t_u32_size)
+mw_render_stat_t CMWOpenGLRender::render_uv_yuv_pbo(int32_t t_i32_tex_num,
+						    mw_render_ctrl_t *t_p_ctrl,
+						    bool t_b_black,
+						    void *t_p_data,
+						    uint32_t t_u32_size)
 {
 	mw_render_stat_t t_stat = mw_render_stat_t::MW_RENDER_STAT_OK;
 
@@ -1364,54 +1313,51 @@ CMWOpenGLRender::render_uv_yuv_pbo(
 	glUseProgram(m_glui_sdr_pgm);
 
 	glBindBuffer(GL_PIXEL_UNPACK_BUFFER, m_gli_pbo);
-	GLubyte* t_p_ptr = (GLubyte*)glMapBuffer(GL_PIXEL_UNPACK_BUFFER, GL_WRITE_ONLY);
+	GLubyte *t_p_ptr =
+		(GLubyte *)glMapBuffer(GL_PIXEL_UNPACK_BUFFER, GL_WRITE_ONLY);
 	if (t_p_ptr) {
 		memcpy(t_p_ptr, t_p_data, t_u32_size);
 		glUnmapBuffer(GL_PIXEL_UNPACK_BUFFER);
 	}
 
-	for (int i = 0;i < t_i32_tex_num;i++) {
+	for (int i = 0; i < t_i32_tex_num; i++) {
 		glActiveTexture(GL_TEXTURE0 + i);
 		glBindTexture(GL_TEXTURE_2D, m_a_tex[i].m_glui_tex);
-		glTexSubImage2D(
-			GL_TEXTURE_2D,
-			0,
-			0,
-			0,
-			m_a_tex[i].m_u32_wid,
-			m_a_tex[i].m_u32_hei,
-			m_a_tex[i].m_u32_fmt,
-			m_a_tex[i].m_u32_type,
-			NULL);
-
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_a_tex[i].m_u32_wid,
+				m_a_tex[i].m_u32_hei, m_a_tex[i].m_u32_fmt,
+				m_a_tex[i].m_u32_type, NULL);
 	}
 
-	if(t_i32_tex_num == 1)
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"), 0);
+	if (t_i32_tex_num == 1)
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"),
+			    0);
 	else if (t_i32_tex_num == 2) {
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"), 0);
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_01"), 1);
-	}
-	else {
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"), 0);
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_01"), 1);
-		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_02"), 2);
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"),
+			    0);
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_01"),
+			    1);
+	} else {
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_00"),
+			    0);
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_01"),
+			    1);
+		glUniform1i(glGetUniformLocation(m_glui_sdr_pgm, "tex_yuv_02"),
+			    2);
 	}
 
 	// set uniform
-	glUniformMatrix3fv(glGetUniformLocation(m_glui_sdr_pgm, "cspmat"), 1, GL_FALSE, &m_csp_mat[0][0]);
-	glUniform3f(glGetUniformLocation(m_glui_sdr_pgm, "cspconst"), m_csp_const[0], m_csp_const[1], m_csp_const[2]);
+	glUniformMatrix3fv(glGetUniformLocation(m_glui_sdr_pgm, "cspmat"), 1,
+			   GL_FALSE, &m_csp_mat[0][0]);
+	glUniform3f(glGetUniformLocation(m_glui_sdr_pgm, "cspconst"),
+		    m_csp_const[0], m_csp_const[1], m_csp_const[2]);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 	return t_stat;
 }
 
-mw_render_stat_t 
-CMWOpenGLRender::render_uv_yuv_hdr(
-	int32_t t_i32_tex_num, 
-	mw_render_ctrl_ex_t* t_p_ctrl, 
-	bool t_b_black)
+mw_render_stat_t CMWOpenGLRender::render_uv_yuv_hdr(
+	int32_t t_i32_tex_num, mw_render_ctrl_ex_t *t_p_ctrl, bool t_b_black)
 {
 	mw_render_stat_t t_stat = mw_render_stat_t::MW_RENDER_STAT_OK;
 
@@ -1427,47 +1373,48 @@ CMWOpenGLRender::render_uv_yuv_hdr(
 	glViewport(0, 0, display_w, display_h);
 	glUseProgram(m_glui_hdr_pgm);
 
-	for (int i = 0;i < t_i32_tex_num;i++) {
+	for (int i = 0; i < t_i32_tex_num; i++) {
 		glActiveTexture(GL_TEXTURE0 + i);
 		glBindTexture(GL_TEXTURE_2D, m_a_tex[i].m_glui_tex);
 		if (m_a_tex[i].m_p_data) {
 			glTexSubImage2D(
-				GL_TEXTURE_2D,
-				0,
-				0,
-				0,
-				m_a_tex[i].m_u32_wid,
-				m_a_tex[i].m_u32_hei,
-				m_a_tex[i].m_u32_fmt,
-				m_a_tex[i].m_u32_type,
-				m_a_tex[i].m_p_data);
+				GL_TEXTURE_2D, 0, 0, 0, m_a_tex[i].m_u32_wid,
+				m_a_tex[i].m_u32_hei, m_a_tex[i].m_u32_fmt,
+				m_a_tex[i].m_u32_type, m_a_tex[i].m_p_data);
 		}
 	}
 
 	if (t_i32_tex_num == 1)
-		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_00"), 0);
+		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_00"),
+			    0);
 	else if (t_i32_tex_num == 2) {
-		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_00"), 0);
-		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_01"), 1);
-	}
-	else {
-		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_00"), 0);
-		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_01"), 1);
-		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_02"), 2);
+		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_00"),
+			    0);
+		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_01"),
+			    1);
+	} else {
+		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_00"),
+			    0);
+		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_01"),
+			    1);
+		glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "tex_yuv_02"),
+			    2);
 	}
 
 	// set uniform
-	glUniformMatrix3fv(glGetUniformLocation(m_glui_hdr_pgm, "cspmat"), 1, GL_FALSE, &m_csp_mat[0][0]);
-	glUniform3f(glGetUniformLocation(m_glui_hdr_pgm, "cspconst"), m_csp_const[0], m_csp_const[1], m_csp_const[2]);
-	glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "val_ctrl"), t_p_ctrl->m_u8_val_ctrl);
+	glUniformMatrix3fv(glGetUniformLocation(m_glui_hdr_pgm, "cspmat"), 1,
+			   GL_FALSE, &m_csp_mat[0][0]);
+	glUniform3f(glGetUniformLocation(m_glui_hdr_pgm, "cspconst"),
+		    m_csp_const[0], m_csp_const[1], m_csp_const[2]);
+	glUniform1i(glGetUniformLocation(m_glui_hdr_pgm, "val_ctrl"),
+		    t_p_ctrl->m_u8_val_ctrl);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 	return t_stat;
 }
 
-void 
-CMWOpenGLRender::calc_rgb_trans()
+void CMWOpenGLRender::calc_rgb_trans()
 {
 	int t_n_in_min = 0;
 	int t_n_in_max = 255;
@@ -1481,13 +1428,13 @@ CMWOpenGLRender::calc_rgb_trans()
 		t_n_out_min = 16;
 		t_n_out_max = 255;
 	}
-	m_aglf_rgb_trans[0] = t_n_in_min*1.0 / (t_n_in_max - t_n_in_min);
-	m_aglf_rgb_trans[1] = (t_n_out_max - t_n_out_min)*1.0 / (t_n_in_max - t_n_in_min);
-	m_aglf_rgb_trans[2] = t_n_out_min*1.0 / 255;
+	m_aglf_rgb_trans[0] = t_n_in_min * 1.0 / (t_n_in_max - t_n_in_min);
+	m_aglf_rgb_trans[1] =
+		(t_n_out_max - t_n_out_min) * 1.0 / (t_n_in_max - t_n_in_min);
+	m_aglf_rgb_trans[2] = t_n_out_min * 1.0 / 255;
 }
 
-void 
-CMWOpenGLRender::calc_yuv_trans()
+void CMWOpenGLRender::calc_yuv_trans()
 {
 	memset(m_csp_mat, 0, sizeof(float) * 9);
 	memset(m_csp_const, 0, sizeof(float) * 3);
@@ -1496,8 +1443,7 @@ CMWOpenGLRender::calc_yuv_trans()
 	float t_f_g = 0.0;
 	float t_f_b = 0.0;
 
-	switch (m_render_init.m_csp_in)
-	{
+	switch (m_render_init.m_csp_in) {
 	case MW_CSP_BT_601:
 		t_f_r = 0.299;
 		t_f_g = 0.587;
@@ -1523,16 +1469,16 @@ CMWOpenGLRender::calc_yuv_trans()
 
 	m_csp_mat[0][0] = 1;
 	m_csp_mat[0][1] = 0;
-	m_csp_mat[0][2] = 2*(1-t_f_r);
+	m_csp_mat[0][2] = 2 * (1 - t_f_r);
 	m_csp_mat[1][0] = 1;
-	m_csp_mat[1][1] = -2 * (1 - t_f_b)*t_f_b / t_f_g;
-	m_csp_mat[1][2] = -2 * (1 - t_f_r)*t_f_r / t_f_g;
+	m_csp_mat[1][1] = -2 * (1 - t_f_b) * t_f_b / t_f_g;
+	m_csp_mat[1][2] = -2 * (1 - t_f_r) * t_f_r / t_f_g;
 	m_csp_mat[2][0] = 1;
 	m_csp_mat[2][1] = 2 * (1 - t_f_b);
 	m_csp_mat[2][2] = 0;
 
-	mw_yuv_rng_t	t_yuv_rng = { 0.0 };
-	mw_rgb_rng_t	t_rgb_rng = { 0.0 };
+	mw_yuv_rng_t t_yuv_rng = {0.0};
+	mw_rgb_rng_t t_rgb_rng = {0.0};
 
 	if (m_render_init.m_clr_rng_in == MW_CLR_RNG_LIMITED)
 		t_yuv_rng = g_yuv_rng_limited;
@@ -1546,16 +1492,18 @@ CMWOpenGLRender::calc_yuv_trans()
 
 	double t_d_ymul = 0.0;
 	double t_d_cmul = 0.0;
-	t_d_ymul = (t_rgb_rng.m_d_max - t_rgb_rng.m_d_min) / (t_yuv_rng.m_d_ymax - t_yuv_rng.m_d_ymin);
-	t_d_cmul = (t_rgb_rng.m_d_max - t_rgb_rng.m_d_min) / (t_yuv_rng.m_d_cmax - t_yuv_rng.m_d_cmid) / 2.0;
+	t_d_ymul = (t_rgb_rng.m_d_max - t_rgb_rng.m_d_min) /
+		   (t_yuv_rng.m_d_ymax - t_yuv_rng.m_d_ymin);
+	t_d_cmul = (t_rgb_rng.m_d_max - t_rgb_rng.m_d_min) /
+		   (t_yuv_rng.m_d_cmax - t_yuv_rng.m_d_cmid) / 2.0;
 
-	for (int i = 0;i < 3;i++) {
+	for (int i = 0; i < 3; i++) {
 		m_csp_mat[i][0] *= t_d_ymul;
 		m_csp_mat[i][1] *= t_d_cmul;
 		m_csp_mat[i][2] *= t_d_cmul;
-		m_csp_const[i] = t_rgb_rng.m_d_min - m_csp_mat[i][0] * t_yuv_rng.m_d_ymin
-			- (m_csp_mat[i][1] + m_csp_mat[i][2])*t_yuv_rng.m_d_cmid;
+		m_csp_const[i] = t_rgb_rng.m_d_min -
+				 m_csp_mat[i][0] * t_yuv_rng.m_d_ymin -
+				 (m_csp_mat[i][1] + m_csp_mat[i][2]) *
+					 t_yuv_rng.m_d_cmid;
 	}
 }
-
-

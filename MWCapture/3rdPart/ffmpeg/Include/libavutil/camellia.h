@@ -24,7 +24,6 @@
 
 #include <stdint.h>
 
-
 /**
   * @file
   * @brief Public header for libavutil CAMELLIA algorithm
@@ -62,7 +61,8 @@ int av_camellia_init(struct AVCAMELLIA *ctx, const uint8_t *key, int key_bits);
   * @paran iv initialization vector for CBC mode, NULL for ECB mode
   * @param decrypt 0 for encryption, 1 for decryption
  */
-void av_camellia_crypt(struct AVCAMELLIA *ctx, uint8_t *dst, const uint8_t *src, int count, uint8_t* iv, int decrypt);
+void av_camellia_crypt(struct AVCAMELLIA *ctx, uint8_t *dst, const uint8_t *src,
+		       int count, uint8_t *iv, int decrypt);
 
 /**
  * @}

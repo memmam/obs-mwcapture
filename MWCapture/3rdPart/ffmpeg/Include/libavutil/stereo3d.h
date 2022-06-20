@@ -29,12 +29,12 @@
  * List of possible 3D Types
  */
 enum AVStereo3DType {
-    /**
+	/**
      * Video is not stereoscopic (and metadata has to be there).
      */
-    AV_STEREO3D_2D,
+	AV_STEREO3D_2D,
 
-    /**
+	/**
      * Views are next to each other.
      *
      *    LLLLRRRR
@@ -42,9 +42,9 @@ enum AVStereo3DType {
      *    LLLLRRRR
      *    ...
      */
-    AV_STEREO3D_SIDEBYSIDE,
+	AV_STEREO3D_SIDEBYSIDE,
 
-    /**
+	/**
      * Views are on top of each other.
      *
      *    LLLLLLLL
@@ -52,9 +52,9 @@ enum AVStereo3DType {
      *    RRRRRRRR
      *    RRRRRRRR
      */
-    AV_STEREO3D_TOPBOTTOM,
+	AV_STEREO3D_TOPBOTTOM,
 
-    /**
+	/**
      * Views are alternated temporally.
      *
      *     frame0   frame1   frame2   ...
@@ -63,9 +63,9 @@ enum AVStereo3DType {
      *    LLLLLLLL RRRRRRRR LLLLLLLL
      *    ...      ...      ...
      */
-    AV_STEREO3D_FRAMESEQUENCE,
+	AV_STEREO3D_FRAMESEQUENCE,
 
-    /**
+	/**
      * Views are packed in a checkerboard-like structure per pixel.
      *
      *    LRLRLRLR
@@ -73,9 +73,9 @@ enum AVStereo3DType {
      *    LRLRLRLR
      *    ...
      */
-    AV_STEREO3D_CHECKERBOARD,
+	AV_STEREO3D_CHECKERBOARD,
 
-    /**
+	/**
      * Views are next to each other, but when upscaling
      * apply a checkerboard pattern.
      *
@@ -84,9 +84,9 @@ enum AVStereo3DType {
      *     LLLLRRRR          L L L L    R R R R
      *     LLLLRRRR           L L L L  R R R R
      */
-    AV_STEREO3D_SIDEBYSIDE_QUINCUNX,
+	AV_STEREO3D_SIDEBYSIDE_QUINCUNX,
 
-    /**
+	/**
      * Views are packed per line, as if interlaced.
      *
      *    LLLLLLLL
@@ -94,9 +94,9 @@ enum AVStereo3DType {
      *    LLLLLLLL
      *    ...
      */
-    AV_STEREO3D_LINES,
+	AV_STEREO3D_LINES,
 
-    /**
+	/**
      * Views are packed per column.
      *
      *    LRLRLRLR
@@ -104,14 +104,13 @@ enum AVStereo3DType {
      *    LRLRLRLR
      *    ...
      */
-    AV_STEREO3D_COLUMNS,
+	AV_STEREO3D_COLUMNS,
 };
-
 
 /**
  * Inverted views, Right/Bottom represents the left view.
  */
-#define AV_STEREO3D_FLAG_INVERT     (1 << 0)
+#define AV_STEREO3D_FLAG_INVERT (1 << 0)
 
 /**
  * Stereo 3D type: this structure describes how two videos are packed
@@ -121,15 +120,15 @@ enum AVStereo3DType {
  *       its size is not a part of the public ABI.
  */
 typedef struct AVStereo3D {
-    /**
+	/**
      * How views are packed within the video.
      */
-    enum AVStereo3DType type;
+	enum AVStereo3DType type;
 
-    /**
+	/**
      * Additional information about the frame packing.
      */
-    int flags;
+	int flags;
 } AVStereo3D;
 
 /**

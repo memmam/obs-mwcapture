@@ -25,9 +25,9 @@
 #include <sstream>
 
 #if defined _UNICODE || defined UNICODE
-	typedef std::wstring TChartString;
-	typedef std::wstringstream TChartStringStream;
+typedef std::wstring TChartString;
+typedef std::wstringstream TChartStringStream;
 #else
-	typedef std::string TChartString;
-	typedef std::stringstream TChartStringStream;
+typedef std::string TChartString;
+typedef std::stringstream TChartStringStream;
 #endif

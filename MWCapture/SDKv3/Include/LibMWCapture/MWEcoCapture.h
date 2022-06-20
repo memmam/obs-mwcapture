@@ -3,20 +3,20 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell's SDK 
-// and not to Magewell's SDK as a whole. 
+// The following license only applies to head files and library within Magewell's SDK
+// and not to Magewell's SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. ("Magewell") All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell's head files and library 
+// Magewell grands to any person who obtains the copy of Magewell's head files and library
 // the rights,including without limitation, to use on the condition that the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL "AS IS" AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -33,15 +33,14 @@
 #elif LIBMWCAPTURE_DLL
 #define LIBMWCAPTURE_API __declspec(dllimport)
 #else
-#define LIBMWCAPTURE_API 
+#define LIBMWCAPTURE_API
 #endif
 
 #include <Windows.h>
 #include "MWCaptureDef.h"
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /**
@@ -105,10 +104,8 @@ extern "C"
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWStartVideoEcoCapture(
-	HCHANNEL 						hChannel,
-	MWCAP_VIDEO_ECO_CAPTURE_OPEN	*pEcoCaptureOpen
-	);
+MWStartVideoEcoCapture(HCHANNEL hChannel,
+		       MWCAP_VIDEO_ECO_CAPTURE_OPEN *pEcoCaptureOpen);
 
 /**
  * @ingroup group_functions_ecocapture
@@ -146,11 +143,9 @@ MWStartVideoEcoCapture(
 @endcode
 */
 MW_RESULT
-	LIBMWCAPTURE_API
-	MWSetVideoEcoCaptureSettings(
-	HCHANNEL 							hChannel,
-	MWCAP_VIDEO_ECO_CAPTURE_SETTINGS	*pSettings
-	);
+LIBMWCAPTURE_API
+MWSetVideoEcoCaptureSettings(HCHANNEL hChannel,
+			     MWCAP_VIDEO_ECO_CAPTURE_SETTINGS *pSettings);
 
 /**
  * @ingroup group_functions_ecocapture
@@ -177,10 +172,8 @@ MW_RESULT
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWCaptureSetVideoEcoFrame(
-	HCHANNEL 						hChannel,
-	MWCAP_VIDEO_ECO_CAPTURE_FRAME   *pFrame
-	);
+MWCaptureSetVideoEcoFrame(HCHANNEL hChannel,
+			  MWCAP_VIDEO_ECO_CAPTURE_FRAME *pFrame);
 
 /**
  * @ingroup group_functions_ecocapture
@@ -206,11 +199,9 @@ MWCaptureSetVideoEcoFrame(
  * It always works with [MWStartVideoEcoCapture](@ref MWStartVideoEcoCapture) \n
  */
 MW_RESULT
-	LIBMWCAPTURE_API
-	MWGetVideoEcoCaptureStatus(
-	HCHANNEL 						hChannel,
-	MWCAP_VIDEO_ECO_CAPTURE_STATUS  *pStatus
-	);
+LIBMWCAPTURE_API
+MWGetVideoEcoCaptureStatus(HCHANNEL hChannel,
+			   MWCAP_VIDEO_ECO_CAPTURE_STATUS *pStatus);
 
 /**
  * @ingroup group_functions_ecocapture
@@ -235,10 +226,8 @@ MW_RESULT
  * It always works with [MWStartVideoEcoCapture](@ref MWStartVideoEcoCapture) \n
  */
 MW_RESULT
-	LIBMWCAPTURE_API
-	MWStopVideoEcoCapture(
-	HCHANNEL 						hChannel
-	);
+LIBMWCAPTURE_API
+MWStopVideoEcoCapture(HCHANNEL hChannel);
 
 #ifdef __cplusplus
 }

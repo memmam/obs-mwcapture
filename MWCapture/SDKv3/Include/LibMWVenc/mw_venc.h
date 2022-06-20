@@ -61,7 +61,7 @@ mw_venc_status_t mw_venc_init();
  * @return Returns #mw_venc_status_t, by default it is #MW_VENC_STATUS_SUCCESS.
  * @details Usage: 
  * Refers to [mw_venc_init](@ref mw_venc_init)
- */ 
+ */
 #ifdef _WIN32
 MWVENC_API
 #endif
@@ -74,7 +74,7 @@ mw_venc_status_t mw_venc_deinit();
  * @details Usage: 
  * Refers to [mw_venc_init](@ref mw_venc_init)  
  * Note: Call the function after [mw_venc_init](@ref mw_venc_init) 
- */ 
+ */
 #ifdef _WIN32
 MWVENC_API
 #endif
@@ -115,11 +115,12 @@ int32_t mw_venc_get_gpu_num();
  * mw_venc_deinit();
  * @endcode  
  * Call the function after [mw_venc_init](@ref mw_venc_init) 
- */ 
+ */
 #ifdef _WIN32
 MWVENC_API
 #endif
-mw_venc_status_t mw_venc_get_gpu_info_by_index(int32_t index, mw_venc_gpu_info_t *info);
+mw_venc_status_t mw_venc_get_gpu_info_by_index(int32_t index,
+					       mw_venc_gpu_info_t *info);
 
 typedef struct venc_handle *mw_venc_handle_t;
 
@@ -161,7 +162,7 @@ typedef struct venc_handle *mw_venc_handle_t;
  * @endcode
  */
 #ifdef _WIN32
-MWVENC_API 
+MWVENC_API
 #endif
 mw_venc_status_t mw_venc_get_default_param(mw_venc_param_t *p_param);
 
@@ -271,15 +272,12 @@ uint32_t mw_venc_get_support_platfrom();
  * @endcode
  */
 #ifdef _WIN32
-MWVENC_API 
+MWVENC_API
 #endif
-mw_venc_handle_t 
-mw_venc_create(
-    mw_venc_platform_t platform, 
-    mw_venc_param_t *p_param,
-    MW_ENCODER_CALLBACK frame_callback, 
-    void *user_ptr);
-
+mw_venc_handle_t mw_venc_create(mw_venc_platform_t platform,
+				mw_venc_param_t *p_param,
+				MW_ENCODER_CALLBACK frame_callback,
+				void *user_ptr);
 
 /**
  * @ingroup group_hwe_functions
@@ -350,12 +348,10 @@ mw_venc_create(
 #ifdef _WIN32
 MWVENC_API
 #endif
-mw_venc_handle_t
-mw_venc_create_by_index(
-    int32_t index,
-    mw_venc_param_t *p_param,
-    MW_ENCODER_CALLBACK frame_callback,
-    void *user_ptr);
+mw_venc_handle_t mw_venc_create_by_index(int32_t index,
+					 mw_venc_param_t *p_param,
+					 MW_ENCODER_CALLBACK frame_callback,
+					 void *user_ptr);
 
 /**
  * @ingroup group_hwe_functions
@@ -386,12 +382,9 @@ mw_venc_create_by_index(
  *         [mw_venc_create_by_index](@ref mw_venc_create_by_index)
  */
 #ifdef _WIN32
-MWVENC_API 
+MWVENC_API
 #endif
-mw_venc_status_t 
-mw_venc_put_frame(
-    mw_venc_handle_t handle, 
-    uint8_t *p_frame);
+mw_venc_status_t mw_venc_put_frame(mw_venc_handle_t handle, uint8_t *p_frame);
 
 /**
  * @ingroup group_hwe_functions
@@ -425,11 +418,8 @@ mw_venc_put_frame(
 #ifdef _WIN32
 MWVENC_API
 #endif
-mw_venc_status_t
-mw_venc_put_frame_ex(
-    mw_venc_handle_t handle,
-    uint8_t *p_frame,
-    int64_t pts);
+mw_venc_status_t mw_venc_put_frame_ex(mw_venc_handle_t handle, uint8_t *p_frame,
+				      int64_t pts);
 
 /**
  * @ingroup group_hwe_functions
@@ -451,10 +441,9 @@ mw_venc_put_frame_ex(
  *         [mw_venc_create_by_index](@ref mw_venc_create_by_index)
  */
 #ifdef _WIN32
-MWVENC_API 
+MWVENC_API
 #endif
-mw_venc_status_t 
-mw_venc_destory(mw_venc_handle_t handle);
+mw_venc_status_t mw_venc_destory(mw_venc_handle_t handle);
 
 /**
  * @ingroup group_hwe_functions
@@ -490,13 +479,10 @@ mw_venc_destory(mw_venc_handle_t handle);
  *         [mw_venc_create_by_index](@ref mw_venc_create_by_index)
  */
 #ifdef _WIN32
-MWVENC_API 
+MWVENC_API
 #endif
-mw_venc_status_t 
-mw_venc_get_property(
-    mw_venc_handle_t handle,
-    mw_venc_property_t param, 
-    void *args);
+mw_venc_status_t mw_venc_get_property(mw_venc_handle_t handle,
+				      mw_venc_property_t param, void *args);
 
 /**
  * @ingroup group_hwe_functions
@@ -528,12 +514,9 @@ mw_venc_get_property(
  *         [mw_venc_create_by_index](@ref mw_venc_create_by_index)
  */
 #ifdef _WIN32
-MWVENC_API 
+MWVENC_API
 #endif
-mw_venc_status_t
-mw_venc_set_property(
-    mw_venc_handle_t handle,
-    mw_venc_property_t param,
-    void *args);
+mw_venc_status_t mw_venc_set_property(mw_venc_handle_t handle,
+				      mw_venc_property_t param, void *args);
 
 #endif

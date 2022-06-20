@@ -34,15 +34,14 @@ class CChartAxis;
 	To create a cross-hair cursor, call the CreateCrossHairCursor from the
 	CChartCtrl class.
 **/
-class CChartCrossHairCursor : public CChartCursor
-{
+class CChartCrossHairCursor : public CChartCursor {
 	friend CChartCtrl;
 
 protected:
 	//! Called when the mouse is moved over the plot area.
 	void OnMouseMove(CPoint mousePoint);
 	//! Draws the cursor.
-	void Draw(CDC* pDC);
+	void Draw(CDC *pDC);
 
 private:
 	//! Constructor
@@ -54,14 +53,15 @@ private:
 		@param pVertAxis
 			The associated vertical axis
 	**/
-	CChartCrossHairCursor(CChartCtrl* pParent, CChartAxis* pHorizAxis, CChartAxis* pVertAxis);
+	CChartCrossHairCursor(CChartCtrl *pParent, CChartAxis *pHorizAxis,
+			      CChartAxis *pVertAxis);
 	//! Destructor
 	~CChartCrossHairCursor();
 
 	//! The associated horizontal axis
-	CChartAxis* m_pHorizontalAxis;
+	CChartAxis *m_pHorizontalAxis;
 	//! The associated vertical axis
-	CChartAxis* m_pVerticalAxis;
+	CChartAxis *m_pVerticalAxis;
 
 	//! The current X screen position
 	long m_lXPos;
@@ -69,4 +69,4 @@ private:
 	long m_lYPos;
 };
 
-#endif  // _CHARTCROSSHAIRCURSOR_H_
+#endif // _CHARTCROSSHAIRCURSOR_H_

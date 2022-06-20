@@ -22,7 +22,6 @@
 // THE SOFTWARE.
 ////////////////////////////////////////////////////////////////////////////////
 
-
 #include "mw_cc708_render_base_types.h"
 #include "mw_cc708_base_types.h"
 #include "mw_error_code.h"
@@ -106,11 +105,10 @@ void MWDestoryCCScreen(mw_cc_screen_t *t_pScreen);
  * @return Returns #MW_CC_NO_ERROR if succeeded.
  */
 LIBCCRENDER_FREETYPE_API
-MW_CC_RESULT MWRenderCC608Screen(
-        mw_cc_screen_t *t_pScreen,
-        mw_cc608_buffer_t *t_pCC608Buffer,
-        mw_cc_font_t *t_pmcfFont,
-        mw_cc_render_t *pRender);
+MW_CC_RESULT MWRenderCC608Screen(mw_cc_screen_t *t_pScreen,
+				 mw_cc608_buffer_t *t_pCC608Buffer,
+				 mw_cc_font_t *t_pmcfFont,
+				 mw_cc_render_t *pRender);
 
 /**
  * @ingroup group_cc_functions_render
@@ -126,14 +124,11 @@ MW_CC_RESULT MWRenderCC608Screen(
  * @return If succeeded, it returns #MW_CC_NO_ERROR.
  */
 LIBCCRENDER_FREETYPE_API
-MW_CC_RESULT MWRenderCC608Buffer(
-        unsigned char *t_pScreen,
-        int t_nWidth,
-        int t_nHeight,
-        int t_nSize,
-        mw_cc608_buffer_t *t_pCC608Buffer,
-        mw_cc_font_t *t_pmcfFont,
-        mw_cc_render_t *pRender);
+MW_CC_RESULT MWRenderCC608Buffer(unsigned char *t_pScreen, int t_nWidth,
+				 int t_nHeight, int t_nSize,
+				 mw_cc608_buffer_t *t_pCC608Buffer,
+				 mw_cc_font_t *t_pmcfFont,
+				 mw_cc_render_t *pRender);
 
 /**
  * @ingroup group_cc_functions_render
@@ -153,19 +148,12 @@ MW_CC_RESULT MWRenderCC608Buffer(
  * @return If succeeded, it returns #MW_CC_NO_ERROR
  */
 LIBCCRENDER_FREETYPE_API
-MW_CC_RESULT MWRenderCC608BufferArea(
-		unsigned char *t_pScreen,
-		int t_nWidth,
-		int t_nHeight,
-		int t_nSize,
-		int t_nX,
-		int t_nY,
-		int t_nAWidth,
-		int t_nAHeight,
-		mw_cc608_buffer_t *t_pCC608Buffer,
-		mw_cc_font_t *t_pmcfFont,
-		mw_cc_render_t *pRender
-);
+MW_CC_RESULT MWRenderCC608BufferArea(unsigned char *t_pScreen, int t_nWidth,
+				     int t_nHeight, int t_nSize, int t_nX,
+				     int t_nY, int t_nAWidth, int t_nAHeight,
+				     mw_cc608_buffer_t *t_pCC608Buffer,
+				     mw_cc_font_t *t_pmcfFont,
+				     mw_cc_render_t *pRender);
 
 /**
  * @ingroup group_cc_functions_render
@@ -178,7 +166,10 @@ MW_CC_RESULT MWRenderCC608BufferArea(
  * @return If succeeded, it returns #MW_CC_NO_ERROR.
  */
 LIBCCRENDER_FREETYPE_API
-MW_CC_RESULT MWRenderCC708Screen(mw_cc_screen_t *t_pScreen, mw_cc708_tv_window_screen_t *t_pWindowScreen, mw_cc_font_t *t_pmcfFont, mw_cc_render_t *pRender);
+MW_CC_RESULT MWRenderCC708Screen(mw_cc_screen_t *t_pScreen,
+				 mw_cc708_tv_window_screen_t *t_pWindowScreen,
+				 mw_cc_font_t *t_pmcfFont,
+				 mw_cc_render_t *pRender);
 
 /**
  * @ingroup group_cc_functions_render
@@ -194,14 +185,11 @@ MW_CC_RESULT MWRenderCC708Screen(mw_cc_screen_t *t_pScreen, mw_cc708_tv_window_s
  * @return If succeeded, it returns #MW_CC_NO_ERROR
  */
 LIBCCRENDER_FREETYPE_API
-MW_CC_RESULT MWRenderCC708Buffer(
-        unsigned char *t_pScreen,
-        int t_nWidth,
-        int t_nHeight,
-        int t_nSize,
-        mw_cc708_tv_window_screen_t *t_pWindowScreen,
-        mw_cc_font_t *t_pmcfFont,
-        mw_cc_render_t *pRender);
+MW_CC_RESULT MWRenderCC708Buffer(unsigned char *t_pScreen, int t_nWidth,
+				 int t_nHeight, int t_nSize,
+				 mw_cc708_tv_window_screen_t *t_pWindowScreen,
+				 mw_cc_font_t *t_pmcfFont,
+				 mw_cc_render_t *pRender);
 
 /**
  * @ingroup group_cc_functions_render
@@ -221,18 +209,12 @@ MW_CC_RESULT MWRenderCC708Buffer(
  * @return If succeeded, it returns #MW_CC_NO_ERROR
  */
 LIBCCRENDER_FREETYPE_API
-MW_CC_RESULT MWRenderCC708BufferArea(
-		unsigned char *t_pScreen,
-		int t_nWidth,
-		int t_nHeight,
-		int t_nSize,
-		int t_nX,
-		int t_nY,
-		int t_nAWidth,
-		int t_nAHeight,
-		mw_cc708_tv_window_screen_t *t_pWindowScreen,
-		mw_cc_font_t *t_pmcfFont,
-		mw_cc_render_t *pRender);
+MW_CC_RESULT
+MWRenderCC708BufferArea(unsigned char *t_pScreen, int t_nWidth, int t_nHeight,
+			int t_nSize, int t_nX, int t_nY, int t_nAWidth,
+			int t_nAHeight,
+			mw_cc708_tv_window_screen_t *t_pWindowScreen,
+			mw_cc_font_t *t_pmcfFont, mw_cc_render_t *pRender);
 /**
  * @ingroup group_cc_functions_render
  * @brief MWRenderCCSetBackgroundColor
@@ -242,7 +224,8 @@ MW_CC_RESULT MWRenderCC708BufferArea(
  * @param[in] t_mccColor        Color
  */
 LIBCCRENDER_FREETYPE_API
-void MWRenderCCSetBackgroundColor(mw_cc_font_t *t_pFont, bool t_bSet, mw_cc_color_t t_mccColor);
+void MWRenderCCSetBackgroundColor(mw_cc_font_t *t_pFont, bool t_bSet,
+				  mw_cc_color_t t_mccColor);
 
 /**
  * @ingroup group_cc_functions_render
@@ -253,6 +236,7 @@ void MWRenderCCSetBackgroundColor(mw_cc_font_t *t_pFont, bool t_bSet, mw_cc_colo
  * @param[in] t_mccColor         Font color
  */
 LIBCCRENDER_FREETYPE_API
-void MWRenderCCSetFontColor(mw_cc_font_t *t_pFont, bool t_bSet, mw_cc_color_t t_mccColor);
+void MWRenderCCSetFontColor(mw_cc_font_t *t_pFont, bool t_bSet,
+			    mw_cc_color_t t_mccColor);
 
 #endif

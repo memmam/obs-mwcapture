@@ -1,21 +1,21 @@
 ﻿/************************************************************************************************/
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell’s SDK 
-// and not to Magewell’s SDK as a whole. 
+// The following license only applies to head files and library within Magewell’s SDK
+// and not to Magewell’s SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. (“Magewell”) All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell’s head files and library 
+// Magewell grands to any person who obtains the copy of Magewell’s head files and library
 // the rights,including without limitation, to use, modify, publish, sublicense, distribute
 // the Software on the conditions that all the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL “AS IS” AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -29,7 +29,7 @@
 #include "stdafx.h"
 #include "PreviewThread.h"
 
-CPreviewThread::CPreviewThread() 
+CPreviewThread::CPreviewThread()
 {
 	m_hThread = NULL;
 	m_hEvent = NULL;
@@ -38,16 +38,16 @@ CPreviewThread::CPreviewThread()
 	m_pCallback = NULL;
 }
 
-CPreviewThread::~CPreviewThread() 
-{
-}
+CPreviewThread::~CPreviewThread() {}
 
-BOOL CPreviewThread::Create(int nIndex, int cx, int cy, DWORD dwFrameDuration, DWORD dwFOURCC, IPreviewCallback* pCallback)
+BOOL CPreviewThread::Create(int nIndex, int cx, int cy, DWORD dwFrameDuration,
+			    DWORD dwFOURCC, IPreviewCallback *pCallback)
 {
 	BOOL bRet = FALSE;
 	do {
 		MWCAP_CHANNEL_INFO videoInfo = {0};
-		if (MW_SUCCEEDED != MWGetChannelInfoByIndex(nIndex, &videoInfo)) {
+		if (MW_SUCCEEDED !=
+		    MWGetChannelInfoByIndex(nIndex, &videoInfo)) {
 			break;
 		}
 
@@ -71,7 +71,8 @@ BOOL CPreviewThread::Create(int nIndex, int cx, int cy, DWORD dwFrameDuration, D
 
 		m_hEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
 
-		m_hThread = CreateThread(NULL, 0, ThreadProc, (LPVOID)this, 0, NULL);
+		m_hThread = CreateThread(NULL, 0, ThreadProc, (LPVOID)this, 0,
+					 NULL);
 		if (m_hThread == NULL) {
 			break;
 		}
@@ -111,10 +112,11 @@ DWORD CPreviewThread::ThreadProc()
 {
 	HANDLE hNotifyEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
 	HANDLE hCaptureEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
-	
+
 	DWORD cbStride = FOURCC_CalcMinStride(m_dwFOURCC, m_cx, 2);
-	DWORD dwFrameSize = FOURCC_CalcImageSize(m_dwFOURCC, m_cx, m_cy, cbStride);
-	BYTE* byBuffer = new BYTE[dwFrameSize];
+	DWORD dwFrameSize =
+		FOURCC_CalcImageSize(m_dwFOURCC, m_cx, m_cy, cbStride);
+	BYTE *byBuffer = new BYTE[dwFrameSize];
 	if (m_pCallback != NULL) {
 		memset(byBuffer, 0, dwFrameSize);
 		m_pCallback->OnVideoCallback(byBuffer, cbStride);
@@ -131,11 +133,14 @@ DWORD CPreviewThread::ThreadProc()
 			break;
 
 		MWCAP_VIDEO_BUFFER_INFO videoBufferInfo;
-		if (MW_SUCCEEDED != MWGetVideoBufferInfo(m_hChannel, &videoBufferInfo))
+		if (MW_SUCCEEDED !=
+		    MWGetVideoBufferInfo(m_hChannel, &videoBufferInfo))
 			break;
 
 		MWCAP_VIDEO_FRAME_INFO videoFrameInfo;
-		xr = MWGetVideoFrameInfo(m_hChannel, videoBufferInfo.iNewestBufferedFullFrame, &videoFrameInfo);
+		xr = MWGetVideoFrameInfo(
+			m_hChannel, videoBufferInfo.iNewestBufferedFullFrame,
+			&videoFrameInfo);
 		if (xr != MW_SUCCEEDED)
 			break;
 
@@ -163,7 +168,8 @@ DWORD CPreviewThread::ThreadProc()
 				continue;
 
 			HANDLE aEvent[] = {m_hEvent, hNotifyEvent};
-			DWORD dwRet = WaitForMultipleObjects(2, aEvent, FALSE, INFINITE);
+			DWORD dwRet = WaitForMultipleObjects(2, aEvent, FALSE,
+							     INFINITE);
 			if (dwRet == WAIT_OBJECT_0)
 				break;
 
@@ -175,21 +181,31 @@ DWORD CPreviewThread::ThreadProc()
 			if (xr != MW_SUCCEEDED)
 				continue;
 
-			xr = MWGetVideoFrameInfo(m_hChannel, videoBufferInfo.iNewestBufferedFullFrame, &videoFrameInfo);
+			xr = MWGetVideoFrameInfo(
+				m_hChannel,
+				videoBufferInfo.iNewestBufferedFullFrame,
+				&videoFrameInfo);
 			if (xr != MW_SUCCEEDED)
 				continue;
 
-			xr = MWCaptureVideoFrameToVirtualAddress(m_hChannel, MWCAP_VIDEO_FRAME_ID_NEWEST_BUFFERED, byBuffer, dwFrameSize, cbStride, FALSE, NULL, m_dwFOURCC, m_cx, m_cy); 
+			xr = MWCaptureVideoFrameToVirtualAddress(
+				m_hChannel,
+				MWCAP_VIDEO_FRAME_ID_NEWEST_BUFFERED, byBuffer,
+				dwFrameSize, cbStride, FALSE, NULL, m_dwFOURCC,
+				m_cx, m_cy);
 
 			WaitForSingleObject(hCaptureEvent, INFINITE);
-			xr = MWGetVideoCaptureStatus(m_hChannel, &captureStatus);
+			xr = MWGetVideoCaptureStatus(m_hChannel,
+						     &captureStatus);
 
 			if (m_pCallback != NULL) {
-				m_pCallback->OnVideoCallback(byBuffer, cbStride);
+				m_pCallback->OnVideoCallback(byBuffer,
+							     cbStride);
 			}
 
 			MWCAP_VIDEO_CAPTURE_STATUS captureStatus;
-			xr = MWGetVideoCaptureStatus(m_hChannel, &captureStatus);
+			xr = MWGetVideoCaptureStatus(m_hChannel,
+						     &captureStatus);
 		}
 
 		xr = MWUnregisterTimer(m_hChannel, hTimer);
@@ -205,7 +221,7 @@ DWORD CPreviewThread::ThreadProc()
 		m_pCallback->OnVideoCallback(byBuffer, cbStride);
 	}
 
-	delete [] byBuffer;
+	delete[] byBuffer;
 
 	CloseHandle(hNotifyEvent);
 	CloseHandle(hCaptureEvent);

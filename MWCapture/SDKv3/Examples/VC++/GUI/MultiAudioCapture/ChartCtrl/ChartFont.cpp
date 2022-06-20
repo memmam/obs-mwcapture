@@ -21,22 +21,34 @@
 #include "stdafx.h"
 #include "ChartFont.h"
 
-CChartFont::CChartFont(const TChartString& strFaceName, int iPointSize)
-  : m_strFaceName(strFaceName), m_iPointSize(iPointSize), m_bItalic(false),
-    m_bBold(false), m_bUnderline(false), m_bVertical(false), m_Font(), m_bDirty(true), 
-	m_pOldFont(NULL)
+CChartFont::CChartFont(const TChartString &strFaceName, int iPointSize)
+	: m_strFaceName(strFaceName),
+	  m_iPointSize(iPointSize),
+	  m_bItalic(false),
+	  m_bBold(false),
+	  m_bUnderline(false),
+	  m_bVertical(false),
+	  m_Font(),
+	  m_bDirty(true),
+	  m_pOldFont(NULL)
 {
 }
 
-CChartFont::CChartFont(const CChartFont& copy)
+CChartFont::CChartFont(const CChartFont &copy)
 {
 	*this = copy;
 }
 
-CChartFont::CChartFont() 
-  : m_strFaceName(_T("Microsoft Sans Serif")), m_iPointSize(100), m_bItalic(false),
-    m_bBold(false), m_bUnderline(false), m_bVertical(false), m_Font(), m_bDirty(true), 
-	m_pOldFont(NULL)
+CChartFont::CChartFont()
+	: m_strFaceName(_T("Microsoft Sans Serif")),
+	  m_iPointSize(100),
+	  m_bItalic(false),
+	  m_bBold(false),
+	  m_bUnderline(false),
+	  m_bVertical(false),
+	  m_Font(),
+	  m_bDirty(true),
+	  m_pOldFont(NULL)
 {
 }
 
@@ -69,7 +81,7 @@ CChartFont::~CChartFont()
 	return m_pFont;
 }*/
 
-void CChartFont::operator=(const CChartFont& objectSrc)
+void CChartFont::operator=(const CChartFont &objectSrc)
 {
 	m_strFaceName = objectSrc.m_strFaceName;
 	m_iPointSize = objectSrc.m_iPointSize;
@@ -82,15 +94,15 @@ void CChartFont::operator=(const CChartFont& objectSrc)
 	m_bDirty = true;
 }
 
-void CChartFont::SelectFont(CDC* pDC) const
+void CChartFont::SelectFont(CDC *pDC) const
 {
-	if (m_bDirty)
-	{
+	if (m_bDirty) {
 		LOGFONT lf;
-		memset(&lf, 0, sizeof(LOGFONT));       
-		lf.lfHeight = m_iPointSize;     
+		memset(&lf, 0, sizeof(LOGFONT));
+		lf.lfHeight = m_iPointSize;
 #ifdef _CRT_INSECURE_DEPRECATE
-		_tcscpy_s(lf.lfFaceName,LF_FACESIZE-1 , m_strFaceName.c_str());
+		_tcscpy_s(lf.lfFaceName, LF_FACESIZE - 1,
+			  m_strFaceName.c_str());
 #else
 		_tcscpy(lf.lfFaceName, m_strFaceName.c_str());
 #endif
@@ -101,8 +113,7 @@ void CChartFont::SelectFont(CDC* pDC) const
 		else
 			lf.lfWeight = FW_NORMAL;
 
-		if (m_bVertical)
-		{
+		if (m_bVertical) {
 			lf.lfOrientation = 900;
 			lf.lfEscapement = 900;
 		}
@@ -115,18 +126,15 @@ void CChartFont::SelectFont(CDC* pDC) const
 	m_pOldFont = pDC->SelectObject(&m_Font);
 }
 
-void CChartFont::UnselectFont(CDC* pDC) const
+void CChartFont::UnselectFont(CDC *pDC) const
 {
 	ASSERT(m_pOldFont);
 	pDC->SelectObject(m_pOldFont);
 	m_pOldFont = NULL;
 }
 
-void CChartFont::SetFont(const TChartString& strFaceName, 
-						 int iPointSize,
-						 bool bItalic, 
-						 bool bBold, 
-						 bool bUnderline)
+void CChartFont::SetFont(const TChartString &strFaceName, int iPointSize,
+			 bool bItalic, bool bBold, bool bUnderline)
 {
 	m_strFaceName = strFaceName;
 	m_iPointSize = iPointSize;

@@ -1,15 +1,14 @@
 #include "mw_cc_layer.h"
 
-CMWCCLayer::CMWCCLayer(CMWCCPlayerUIManager* t_p_manager):
-CMWIMGUIWidget(t_p_manager)
+CMWCCLayer::CMWCCLayer(CMWCCPlayerUIManager *t_p_manager)
+	: CMWIMGUIWidget(t_p_manager)
 {
-	m_imgui_flags = ImGuiWindowFlags_NoMove|
-		ImGuiWindowFlags_NoDecoration|
-		ImGuiWindowFlags_AlwaysAutoResize|
-		ImGuiWindowFlags_NoSavedSettings|
-		ImGuiWindowFlags_NoFocusOnAppearing|
-		ImGuiWindowFlags_NoNav|
-		ImGuiWindowFlags_NoMouseInputs;
+	m_imgui_flags = ImGuiWindowFlags_NoMove |
+			ImGuiWindowFlags_NoDecoration |
+			ImGuiWindowFlags_AlwaysAutoResize |
+			ImGuiWindowFlags_NoSavedSettings |
+			ImGuiWindowFlags_NoFocusOnAppearing |
+			ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoMouseInputs;
 
 	m_b_open = true;
 	memset(m_cs_name, 0, 128);
@@ -20,21 +19,17 @@ CMWIMGUIWidget(t_p_manager)
 
 	m_imvec2_size.x = 600;
 	m_imvec2_size.y = 110;
-
 }
 
-CMWCCLayer::~CMWCCLayer()
-{
-
-}
+CMWCCLayer::~CMWCCLayer() {}
 
 void CMWCCLayer::update_widget()
 {
-	ImGuiIO& io = ImGui::GetIO();
+	ImGuiIO &io = ImGui::GetIO();
 	ImVec2 t_imvec2_pos;
 	t_imvec2_pos.x = 0;
 	t_imvec2_pos.y = 18;
-	
+
 	m_imvec2_size.x = io.DisplaySize.x;
 	m_imvec2_size.y = io.DisplaySize.y - 18;
 
@@ -44,13 +39,11 @@ void CMWCCLayer::update_widget()
 	ImGui::Begin(m_cs_name, &m_b_open, m_imgui_flags);
 
 	// draw cc
-	ImDrawList* t_p_list = ImGui::GetWindowDrawList();
-	t_p_list->AddImageQuad(
-		(void*)(intptr_t)m_ui_texture_id,
-		ImVec2(0,m_imvec2_size.y),
-		ImVec2(m_imvec2_size.x,m_imvec2_size.y),
-		ImVec2(m_imvec2_size.x,18),
-		ImVec2(0,18));
+	ImDrawList *t_p_list = ImGui::GetWindowDrawList();
+	t_p_list->AddImageQuad((void *)(intptr_t)m_ui_texture_id,
+			       ImVec2(0, m_imvec2_size.y),
+			       ImVec2(m_imvec2_size.x, m_imvec2_size.y),
+			       ImVec2(m_imvec2_size.x, 18), ImVec2(0, 18));
 
 	ImGui::End();
 }
@@ -60,12 +53,12 @@ void CMWCCLayer::set_texture_id(unsigned int t_ui_id)
 	m_ui_texture_id = t_ui_id;
 }
 
-char* CMWCCLayer::get_name()
+char *CMWCCLayer::get_name()
 {
 	return m_cs_name;
 }
 
-void CMWCCLayer::set_name(char* t_cs_name)
+void CMWCCLayer::set_name(char *t_cs_name)
 {
 	memset(m_cs_name, 0, 128);
 	sprintf(m_cs_name, "%s", t_cs_name);

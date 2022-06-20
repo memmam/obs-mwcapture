@@ -3,21 +3,21 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell’s SDK 
-// and not to Magewell’s SDK as a whole. 
+// The following license only applies to head files and library within Magewell’s SDK
+// and not to Magewell’s SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. (“Magewell”) All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell’s head files and library 
+// Magewell grands to any person who obtains the copy of Magewell’s head files and library
 // the rights,including without limitation, to use, modify, publish, sublicense, distribute
 // the Software on the conditions that all the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL “AS IS” AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -30,7 +30,7 @@
 #include "StdAfx.h"
 #include "VideoSend.h"
 
-#define WM_NDIVIDEOSIGNAL_CHANGED	(WM_USER + 301)
+#define WM_NDIVIDEOSIGNAL_CHANGED (WM_USER + 301)
 IMPLEMENT_DYNAMIC(CVideoSend, CWnd)
 CVideoSend::CVideoSend(void)
 {
@@ -43,18 +43,15 @@ CVideoSend::CVideoSend(void)
 	m_dwFourcc = MWFOURCC_BGRA;
 }
 
-
-CVideoSend::~CVideoSend(void)
-{
-}
+CVideoSend::~CVideoSend(void) {}
 
 BEGIN_MESSAGE_MAP(CVideoSend, CWnd)
-	ON_WM_ERASEBKGND()
-	ON_WM_PAINT()
-	ON_WM_CREATE()
-	ON_WM_DESTROY()
+ON_WM_ERASEBKGND()
+ON_WM_PAINT()
+ON_WM_CREATE()
+ON_WM_DESTROY()
 
-	ON_MESSAGE(WM_NDIVIDEOSIGNAL_CHANGED, &CVideoSend::OnMsgVideoSignalChanged)
+ON_MESSAGE(WM_NDIVIDEOSIGNAL_CHANGED, &CVideoSend::OnMsgVideoSignalChanged)
 END_MESSAGE_MAP()
 
 int CVideoSend::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -71,7 +68,7 @@ void CVideoSend::OnDestroy()
 	CWnd::OnDestroy();
 }
 
-BOOL CVideoSend::OnEraseBkgnd(CDC* pDC)
+BOOL CVideoSend::OnEraseBkgnd(CDC *pDC)
 {
 	return CWnd::OnEraseBkgnd(pDC);
 }
@@ -81,7 +78,9 @@ void CVideoSend::OnPaint()
 	CPaintDC dc(this); // device context for painting
 }
 
-BOOL CVideoSend::CreateNDISender(int nIndex, int cx, int cy, DWORD dwFrameDuration, DWORD dwFourcc, char* pSenderName)
+BOOL CVideoSend::CreateNDISender(int nIndex, int cx, int cy,
+				 DWORD dwFrameDuration, DWORD dwFourcc,
+				 char *pSenderName)
 {
 	m_nIndex = g_nValidChannel[nIndex];
 	m_cx = cx;
@@ -91,7 +90,7 @@ BOOL CVideoSend::CreateNDISender(int nIndex, int cx, int cy, DWORD dwFrameDurati
 
 	CMWAutoLock lock(m_lock);
 	// Not required, but "correct" (see the SDK documentation.
-	if (!NDIlib_initialize()) 
+	if (!NDIlib_initialize())
 		return FALSE;
 
 	// Create an NDI source that is called "My Video" and is clocked to the video.
@@ -103,12 +102,13 @@ BOOL CVideoSend::CreateNDISender(int nIndex, int cx, int cy, DWORD dwFrameDurati
 
 	// We create the NDI sender
 	m_pNDI_send = NDIlib_send_create(&NDI_send_create_desc);
-	if (!m_pNDI_send) 
+	if (!m_pNDI_send)
 		return FALSE;
 
 	SetNDICaptureFrameParams(cx, cy, dwFrameDuration, dwFourcc);
 
-	static const char* p_connection_string = "<ndi_product long_name=\"NDILib Send Example.\" "
+	static const char *p_connection_string =
+		"<ndi_product long_name=\"NDILib Send Example.\" "
 		"             short_name=\"NDISender\" "
 		"             manufacturer=\"(None)\" "
 		"             version=\"1.000.000\" "
@@ -118,7 +118,7 @@ BOOL CVideoSend::CreateNDISender(int nIndex, int cx, int cy, DWORD dwFrameDurati
 	NDIlib_metadata_frame_t NDI_connection_type;
 	NDI_connection_type.length = strlen(p_connection_string);
 	NDI_connection_type.timecode = NDIlib_send_timecode_synthesize;
-	NDI_connection_type.p_data = (CHAR*)p_connection_string;
+	NDI_connection_type.p_data = (CHAR *)p_connection_string;
 
 	NDIlib_send_add_connection_metadata(m_pNDI_send, &NDI_connection_type);
 
@@ -127,8 +127,7 @@ BOOL CVideoSend::CreateNDISender(int nIndex, int cx, int cy, DWORD dwFrameDurati
 
 void CVideoSend::DestoryNDISender()
 {
-	if(m_pNDI_send != NULL)
-	{
+	if (m_pNDI_send != NULL) {
 		NDIlib_send_destroy(m_pNDI_send);
 		m_pNDI_send = NULL;
 		// Not required, but you add it will be better
@@ -136,7 +135,8 @@ void CVideoSend::DestoryNDISender()
 	}
 }
 
-BOOL CVideoSend::SetNDICaptureFrameParams(int cx, int cy, DWORD dwFrameDuration, DWORD dwFourcc)
+BOOL CVideoSend::SetNDICaptureFrameParams(int cx, int cy, DWORD dwFrameDuration,
+					  DWORD dwFourcc)
 {
 	//video
 	DWORD cbStride = FOURCC_CalcMinStride(dwFourcc, cx, 2);
@@ -150,15 +150,11 @@ BOOL CVideoSend::SetNDICaptureFrameParams(int cx, int cy, DWORD dwFrameDuration,
 	m_videoFrame.timecode = NDIlib_send_timecode_synthesize;
 	m_videoFrame.line_stride_in_bytes = cbStride;
 
-	if (dwFourcc == MWFOURCC_BGRA)
-	{
+	if (dwFourcc == MWFOURCC_BGRA) {
 		m_videoFrame.FourCC = NDIlib_FourCC_type_BGRA;
-	}
-	else if (dwFourcc == MWFOURCC_UYVY)
-	{
+	} else if (dwFourcc == MWFOURCC_UYVY) {
 		m_videoFrame.FourCC = NDIlib_FourCC_type_UYVY;
-	}
-	else
+	} else
 		return FALSE;
 	m_videoFrame.FourCC = m_videoFrame.FourCC;
 
@@ -175,10 +171,8 @@ BOOL CVideoSend::SetNDICaptureFrameParams(int cx, int cy, DWORD dwFrameDuration,
 	MWGetAudioSignalStatus(t_hChannel, &audioStatus);
 	int nAudioCount = 0;
 
-	for (int i = 0; i < 4; i++)
-	{
-		if (audioStatus.wChannelValid & (0x01 << i))
-		{
+	for (int i = 0; i < 4; i++) {
+		if (audioStatus.wChannelValid & (0x01 << i)) {
 			nAudioCount += 2;
 		}
 	}
@@ -201,11 +195,13 @@ LRESULT CVideoSend::OnMsgVideoSignalChanged(WPARAM w, LPARAM l)
 	CMWAutoLock lock(m_lock);
 	SetNDICaptureFrameParams(m_cx, m_cy, m_dwFrameDuration, m_dwFourcc);
 	m_lockRecrete.Unlock();
-	
+
 	return 0;
 }
 
-BOOL CVideoSend::GetNDIVar(NDIlib_send_instance_t *pNDI_send, NDIlib_video_frame_v2_t *pVideoFrame, NDIlib_audio_frame_interleaved_16s_t *pAudioFrame)
+BOOL CVideoSend::GetNDIVar(NDIlib_send_instance_t *pNDI_send,
+			   NDIlib_video_frame_v2_t *pVideoFrame,
+			   NDIlib_audio_frame_interleaved_16s_t *pAudioFrame)
 {
 	*pNDI_send = m_pNDI_send;
 	*pVideoFrame = m_videoFrame;

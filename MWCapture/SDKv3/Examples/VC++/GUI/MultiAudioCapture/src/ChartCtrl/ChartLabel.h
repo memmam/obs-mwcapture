@@ -19,11 +19,10 @@
  *
  */
 
-#ifndef _CHARTLABEL_H_ 
+#ifndef _CHARTLABEL_H_
 #define _CHARTLABEL_H_
 
-template <class PointType>
-class CChartSerieBase;
+template<class PointType> class CChartSerieBase;
 
 //! Interface which should be implemented in order to provide text to a label.
 /**
@@ -38,14 +37,12 @@ class CChartSerieBase;
 	the string returned by this object and refresh the control and all labels will
 	be updated.
 **/
-template <class PointType>
-class CChartLabelProvider
-{
+template<class PointType> class CChartLabelProvider {
 public:
 	//! Constructor
-	CChartLabelProvider()  { }
+	CChartLabelProvider() {}
 	//! Destructor
-	virtual ~CChartLabelProvider()  { }
+	virtual ~CChartLabelProvider() {}
 
 	//! Method to override in order to provide the text of the label.
 	/**
@@ -55,22 +52,20 @@ public:
 			The index of the point in the series to which the label is attached
 		@return a string which will be the text displayed in the label.
 	**/
-	virtual TChartString GetText(CChartSerieBase<PointType>* pSerie,
-			unsigned PointIndex) = 0;
+	virtual TChartString GetText(CChartSerieBase<PointType> *pSerie,
+				     unsigned PointIndex) = 0;
 };
 
 //! Draws a label containing some text which is attached to a point of a series.
 /**
 	This is a base class which should be overriden for specific label types. 
 **/
-template <class PointType>
-class CChartLabel
-{
+template<class PointType> class CChartLabel {
 	friend CChartSerieBase<PointType>;
 
 public:
 	//! Sets a static text to be displayed in the label.
-	void SetLabelText(const TChartString& strText);
+	void SetLabelText(const TChartString &strText);
 	//! Sets the font of the text label.
 	/**
 		@param nPointSize
@@ -78,18 +73,19 @@ public:
 		@param strFaceName
 			The font face name
 	**/
-	void SetFont(int nPointSize, const TChartString& strFaceName);
+	void SetFont(int nPointSize, const TChartString &strFaceName);
 	//! Shows/hides the label.
 	void SetVisisble(bool bVisible);
 	//! Sets a label provider for more flexibility in how the text is supplied.
-	void SetLabelProvider(CChartLabelProvider<PointType>* pProvider)
+	void SetLabelProvider(CChartLabelProvider<PointType> *pProvider)
 	{
 		m_pLabelProvider = pProvider;
 	}
 
 protected:
 	//! Constructor
-	CChartLabel(CChartCtrl* pParentCtrl, CChartSerieBase<PointType>* pParentSeries);
+	CChartLabel(CChartCtrl *pParentCtrl,
+		    CChartSerieBase<PointType> *pParentSeries);
 	//! Destructor
 	virtual ~CChartLabel();
 
@@ -97,7 +93,7 @@ protected:
 	/**
 		This pure virtual function must be overriden by all child classes.
 	**/
-	virtual void Draw(CDC* pDC, unsigned uPointIndex) = 0;
+	virtual void Draw(CDC *pDC, unsigned uPointIndex) = 0;
 
 	//! Specifies if the label is visible or not.
 	bool m_bIsVisible;
@@ -109,14 +105,14 @@ protected:
 	//! The static text of the label.
 	TChartString m_strLabelText;
 	//! The text provider.
-	CChartLabelProvider<PointType>* m_pLabelProvider;
+	CChartLabelProvider<PointType> *m_pLabelProvider;
 
 	//! The parent charting control.
-	CChartCtrl*  m_pParentCtrl;
+	CChartCtrl *m_pParentCtrl;
 	//! The parent series.
-	CChartSerieBase<PointType>* m_pParentSeries;
+	CChartSerieBase<PointType> *m_pParentSeries;
 };
 
 #include "ChartLabel.inl"
 
-#endif  // _CHARTLABEL_H_
+#endif // _CHARTLABEL_H_

@@ -18,10 +18,8 @@
 /*                                                                         */
 /***************************************************************************/
 
-
 #ifndef TTUNPAT_H_
 #define TTUNPAT_H_
-
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -32,11 +30,9 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
-
 FT_BEGIN_HEADER
 
-
- /***************************************************************************
+/***************************************************************************
   *
   * @constant:
   *   FT_PARAM_TAG_UNPATENTED_HINTING
@@ -49,15 +45,12 @@ FT_BEGIN_HEADER
   *   bytecode interpreter for a typeface opened by @FT_Open_Face.
   *
   */
-#define FT_PARAM_TAG_UNPATENTED_HINTING  FT_MAKE_TAG( 'u', 'n', 'p', 'a' )
+#define FT_PARAM_TAG_UNPATENTED_HINTING FT_MAKE_TAG('u', 'n', 'p', 'a')
 
-  /* */
-
+/* */
 
 FT_END_HEADER
 
-
 #endif /* TTUNPAT_H_ */
-
 
 /* END */

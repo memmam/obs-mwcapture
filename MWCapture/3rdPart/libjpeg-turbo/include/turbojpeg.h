@@ -36,7 +36,6 @@
 #endif
 #define DLLCALL
 
-
 /**
  * @addtogroup TurboJPEG
  * TurboJPEG API.  This API provides an interface for generating, decoding, and
@@ -74,7 +73,6 @@
  * @{
  */
 
-
 /**
  * The number of chrominance subsampling options
  */
@@ -89,36 +87,35 @@
  * (the human eye is more sensitive to small changes in brightness than to
  * small changes in color.)  This is called "chrominance subsampling".
  */
-enum TJSAMP
-{
-  /**
+enum TJSAMP {
+	/**
    * 4:4:4 chrominance subsampling (no chrominance subsampling).  The JPEG or
    * YUV image will contain one chrominance component for every pixel in the
    * source image.
    */
-  TJSAMP_444=0,
-  /**
+	TJSAMP_444 = 0,
+	/**
    * 4:2:2 chrominance subsampling.  The JPEG or YUV image will contain one
    * chrominance component for every 2x1 block of pixels in the source image.
    */
-  TJSAMP_422,
-  /**
+	TJSAMP_422,
+	/**
    * 4:2:0 chrominance subsampling.  The JPEG or YUV image will contain one
    * chrominance component for every 2x2 block of pixels in the source image.
    */
-  TJSAMP_420,
-  /**
+	TJSAMP_420,
+	/**
    * Grayscale.  The JPEG or YUV image will contain no chrominance components.
    */
-  TJSAMP_GRAY,
-  /**
+	TJSAMP_GRAY,
+	/**
    * 4:4:0 chrominance subsampling.  The JPEG or YUV image will contain one
    * chrominance component for every 1x2 block of pixels in the source image.
    *
    * @note 4:4:0 subsampling is not fully accelerated in libjpeg-turbo.
    */
-  TJSAMP_440,
-  /**
+	TJSAMP_440,
+	/**
    * 4:1:1 chrominance subsampling.  The JPEG or YUV image will contain one
    * chrominance component for every 4x1 block of pixels in the source image.
    * JPEG images compressed with 4:1:1 subsampling will be almost exactly the
@@ -129,7 +126,7 @@ enum TJSAMP
    *
    * @note 4:1:1 subsampling is not fully accelerated in libjpeg-turbo.
    */
-  TJSAMP_411
+	TJSAMP_411
 };
 
 /**
@@ -141,7 +138,7 @@ enum TJSAMP
  * - 16x16 for 4:2:0
  * - 32x8 for 4:1:1
  */
-static const int tjMCUWidth[TJ_NUMSAMP]  = {8, 16, 16, 8, 8, 32};
+static const int tjMCUWidth[TJ_NUMSAMP] = {8, 16, 16, 8, 8, 32};
 
 /**
  * MCU block height (in pixels) for a given level of chrominance subsampling.
@@ -154,7 +151,6 @@ static const int tjMCUWidth[TJ_NUMSAMP]  = {8, 16, 16, 8, 8, 32};
  */
 static const int tjMCUHeight[TJ_NUMSAMP] = {8, 8, 16, 8, 16, 8};
 
-
 /**
  * The number of pixel formats
  */
@@ -163,78 +159,77 @@ static const int tjMCUHeight[TJ_NUMSAMP] = {8, 8, 16, 8, 16, 8};
 /**
  * Pixel formats
  */
-enum TJPF
-{
-  /**
+enum TJPF {
+	/**
    * RGB pixel format.  The red, green, and blue components in the image are
    * stored in 3-byte pixels in the order R, G, B from lowest to highest byte
    * address within each pixel.
    */
-  TJPF_RGB=0,
-  /**
+	TJPF_RGB = 0,
+	/**
    * BGR pixel format.  The red, green, and blue components in the image are
    * stored in 3-byte pixels in the order B, G, R from lowest to highest byte
    * address within each pixel.
    */
-  TJPF_BGR,
-  /**
+	TJPF_BGR,
+	/**
    * RGBX pixel format.  The red, green, and blue components in the image are
    * stored in 4-byte pixels in the order R, G, B from lowest to highest byte
    * address within each pixel.  The X component is ignored when compressing
    * and undefined when decompressing.
    */
-  TJPF_RGBX,
-  /**
+	TJPF_RGBX,
+	/**
    * BGRX pixel format.  The red, green, and blue components in the image are
    * stored in 4-byte pixels in the order B, G, R from lowest to highest byte
    * address within each pixel.  The X component is ignored when compressing
    * and undefined when decompressing.
    */
-  TJPF_BGRX,
-  /**
+	TJPF_BGRX,
+	/**
    * XBGR pixel format.  The red, green, and blue components in the image are
    * stored in 4-byte pixels in the order R, G, B from highest to lowest byte
    * address within each pixel.  The X component is ignored when compressing
    * and undefined when decompressing.
    */
-  TJPF_XBGR,
-  /**
+	TJPF_XBGR,
+	/**
    * XRGB pixel format.  The red, green, and blue components in the image are
    * stored in 4-byte pixels in the order B, G, R from highest to lowest byte
    * address within each pixel.  The X component is ignored when compressing
    * and undefined when decompressing.
    */
-  TJPF_XRGB,
-  /**
+	TJPF_XRGB,
+	/**
    * Grayscale pixel format.  Each 1-byte pixel represents a luminance
    * (brightness) level from 0 to 255.
    */
-  TJPF_GRAY,
-  /**
+	TJPF_GRAY,
+	/**
    * RGBA pixel format.  This is the same as @ref TJPF_RGBX, except that when
    * decompressing, the X component is guaranteed to be 0xFF, which can be
    * interpreted as an opaque alpha channel.
    */
-  TJPF_RGBA,
-  /**
+	TJPF_RGBA,
+	/**
    * BGRA pixel format.  This is the same as @ref TJPF_BGRX, except that when
    * decompressing, the X component is guaranteed to be 0xFF, which can be
    * interpreted as an opaque alpha channel.
    */
-  TJPF_BGRA,
-  /**
+	TJPF_BGRA,
+	/**
    * ABGR pixel format.  This is the same as @ref TJPF_XBGR, except that when
    * decompressing, the X component is guaranteed to be 0xFF, which can be
    * interpreted as an opaque alpha channel.
    */
-  TJPF_ABGR,
-  /**
+	TJPF_ABGR,
+	/**
    * ARGB pixel format.  This is the same as @ref TJPF_XRGB, except that when
    * decompressing, the X component is guaranteed to be 0xFF, which can be
    * interpreted as an opaque alpha channel.
    */
-  TJPF_ARGB,
-  /**
+	TJPF_ARGB,
+	/**
    * CMYK pixel format.  Unlike RGB, which is an additive color model used
    * primarily for display, CMYK (Cyan/Magenta/Yellow/Key) is a subtractive
    * color model used primarily for printing.  In the CMYK color model, the
@@ -249,9 +244,8 @@ enum TJPF
    * CMYK pixels into a YCCK JPEG image (see #TJCS_YCCK) and decompressing YCCK
    * JPEG images into CMYK pixels.
    */
-  TJPF_CMYK
+	TJPF_CMYK
 };
-
 
 /**
  * Red offset (in bytes) for a given pixel format.  This specifies the number
@@ -267,7 +261,8 @@ static const int tjRedOffset[TJ_NUMPF] = {0, 2, 0, 2, 3, 1, 0, 0, 2, 3, 1, -1};
  * <tt>char pixel[]</tt>, then the green component will be
  * <tt>pixel[tjGreenOffset[TJ_BGRX]]</tt>.
  */
-static const int tjGreenOffset[TJ_NUMPF] = {1, 1, 1, 1, 2, 2, 0, 1, 1, 2, 2, -1};
+static const int tjGreenOffset[TJ_NUMPF] = {1, 1, 1, 1, 2, 2,
+					    0, 1, 1, 2, 2, -1};
 /**
  * Blue offset (in bytes) for a given pixel format.  This specifies the number
  * of bytes that the Blue component is offset from the start of the pixel.  For
@@ -281,7 +276,6 @@ static const int tjBlueOffset[TJ_NUMPF] = {2, 0, 2, 0, 1, 3, 0, 2, 0, 1, 3, -1};
  */
 static const int tjPixelSize[TJ_NUMPF] = {3, 3, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4};
 
-
 /**
  * The number of JPEG colorspaces
  */
@@ -290,17 +284,16 @@ static const int tjPixelSize[TJ_NUMPF] = {3, 3, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4};
 /**
  * JPEG colorspaces
  */
-enum TJCS
-{
-  /**
+enum TJCS {
+	/**
    * RGB colorspace.  When compressing the JPEG image, the R, G, and B
    * components in the source image are reordered into image planes, but no
    * colorspace conversion or subsampling is performed.  RGB JPEG images can be
    * decompressed to any of the extended RGB pixel formats or grayscale, but
    * they cannot be decompressed to YUV images.
    */
-  TJCS_RGB=0,
-  /**
+	TJCS_RGB = 0,
+	/**
    * YCbCr colorspace.  YCbCr is not an absolute colorspace but rather a
    * mathematical transformation of RGB designed solely for storage and
    * transmission.  YCbCr images must be converted to RGB before they can
@@ -315,23 +308,23 @@ enum TJCS
    * can be compressed from and decompressed to any of the extended RGB pixel
    * formats or grayscale, or they can be decompressed to YUV planar images.
    */
-  TJCS_YCbCr,
-  /**
+	TJCS_YCbCr,
+	/**
    * Grayscale colorspace.  The JPEG image retains only the luminance data (Y
    * component), and any color data from the source image is discarded.
    * Grayscale JPEG images can be compressed from and decompressed to any of
    * the extended RGB pixel formats or grayscale, or they can be decompressed
    * to YUV planar images.
    */
-  TJCS_GRAY,
-  /**
+	TJCS_GRAY,
+	/**
    * CMYK colorspace.  When compressing the JPEG image, the C, M, Y, and K
    * components in the source image are reordered into image planes, but no
    * colorspace conversion or subsampling is performed.  CMYK JPEG images can
    * only be decompressed to CMYK pixels.
    */
-  TJCS_CMYK,
-  /**
+	TJCS_CMYK,
+	/**
    * YCCK colorspace.  YCCK (AKA "YCbCrK") is not an absolute colorspace but
    * rather a mathematical transformation of CMYK designed solely for storage
    * and transmission.  It is to CMYK as YCbCr is to RGB.  CMYK pixels can be
@@ -340,15 +333,14 @@ enum TJCS
    * perceptual loss.  YCCK JPEG images can only be compressed from and
    * decompressed to CMYK pixels.
    */
-  TJCS_YCCK
+	TJCS_YCCK
 };
-
 
 /**
  * The uncompressed source/destination image is stored in bottom-up (Windows,
  * OpenGL) order, not top-down (X11) order.
  */
-#define TJFLAG_BOTTOMUP      2
+#define TJFLAG_BOTTOMUP 2
 /**
  * When decompressing an image that was compressed using chrominance
  * subsampling, use the fastest chrominance upsampling algorithm available in
@@ -356,7 +348,7 @@ enum TJCS
  * creates a smooth transition between neighboring chrominance components in
  * order to reduce upsampling artifacts in the decompressed image.
  */
-#define TJFLAG_FASTUPSAMPLE  256
+#define TJFLAG_FASTUPSAMPLE 256
 /**
  * Disable buffer (re)allocation.  If passed to one of the JPEG compression or
  * transform functions, this flag will cause those functions to generate an
@@ -364,7 +356,7 @@ enum TJCS
  * attempting to allocate or reallocate that buffer.  This reproduces the
  * behavior of earlier versions of TurboJPEG.
  */
-#define TJFLAG_NOREALLOC     1024
+#define TJFLAG_NOREALLOC 1024
 /**
  * Use the fastest DCT/IDCT algorithm available in the underlying codec.  The
  * default if this flag is not specified is implementation-specific.  For
@@ -373,7 +365,7 @@ enum TJCS
  * only a very slight effect on accuracy, but it uses the accurate algorithm
  * when decompressing, because this has been shown to have a larger effect.
  */
-#define TJFLAG_FASTDCT       2048
+#define TJFLAG_FASTDCT 2048
 /**
  * Use the most accurate DCT/IDCT algorithm available in the underlying codec.
  * The default if this flag is not specified is implementation-specific.  For
@@ -382,8 +374,7 @@ enum TJCS
  * only a very slight effect on accuracy, but it uses the accurate algorithm
  * when decompressing, because this has been shown to have a larger effect.
  */
-#define TJFLAG_ACCURATEDCT   4096
-
+#define TJFLAG_ACCURATEDCT 4096
 
 /**
  * The number of transform operations
@@ -393,52 +384,50 @@ enum TJCS
 /**
  * Transform operations for #tjTransform()
  */
-enum TJXOP
-{
-  /**
+enum TJXOP {
+	/**
    * Do not transform the position of the image pixels
    */
-  TJXOP_NONE=0,
-  /**
+	TJXOP_NONE = 0,
+	/**
    * Flip (mirror) image horizontally.  This transform is imperfect if there
    * are any partial MCU blocks on the right edge (see #TJXOPT_PERFECT.)
    */
-  TJXOP_HFLIP,
-  /**
+	TJXOP_HFLIP,
+	/**
    * Flip (mirror) image vertically.  This transform is imperfect if there are
    * any partial MCU blocks on the bottom edge (see #TJXOPT_PERFECT.)
    */
-  TJXOP_VFLIP,
-  /**
+	TJXOP_VFLIP,
+	/**
    * Transpose image (flip/mirror along upper left to lower right axis.)  This
    * transform is always perfect.
    */
-  TJXOP_TRANSPOSE,
-  /**
+	TJXOP_TRANSPOSE,
+	/**
    * Transverse transpose image (flip/mirror along upper right to lower left
    * axis.)  This transform is imperfect if there are any partial MCU blocks in
    * the image (see #TJXOPT_PERFECT.)
    */
-  TJXOP_TRANSVERSE,
-  /**
+	TJXOP_TRANSVERSE,
+	/**
    * Rotate image clockwise by 90 degrees.  This transform is imperfect if
    * there are any partial MCU blocks on the bottom edge (see
    * #TJXOPT_PERFECT.)
    */
-  TJXOP_ROT90,
-  /**
+	TJXOP_ROT90,
+	/**
    * Rotate image 180 degrees.  This transform is imperfect if there are any
    * partial MCU blocks in the image (see #TJXOPT_PERFECT.)
    */
-  TJXOP_ROT180,
-  /**
+	TJXOP_ROT180,
+	/**
    * Rotate image counter-clockwise by 90 degrees.  This transform is imperfect
    * if there are any partial MCU blocks on the right edge (see
    * #TJXOPT_PERFECT.)
    */
-  TJXOP_ROT270
+	TJXOP_ROT270
 };
-
 
 /**
  * This option will cause #tjTransform() to return an error if the transform is
@@ -452,22 +441,22 @@ enum TJXOP
  * that cannot be transformed will be left in place, which will create
  * odd-looking strips on the right or bottom edge of the image.
  */
-#define TJXOPT_PERFECT  1
+#define TJXOPT_PERFECT 1
 /**
  * This option will cause #tjTransform() to discard any partial MCU blocks that
  * cannot be transformed.
  */
-#define TJXOPT_TRIM     2
+#define TJXOPT_TRIM 2
 /**
  * This option will enable lossless cropping.  See #tjTransform() for more
  * information.
  */
-#define TJXOPT_CROP     4
+#define TJXOPT_CROP 4
 /**
  * This option will discard the color data in the input image and produce
  * a grayscale output image.
  */
-#define TJXOPT_GRAY     8
+#define TJXOPT_GRAY 8
 /**
  * This option will prevent #tjTransform() from outputting a JPEG image for
  * this particular transform (this can be used in conjunction with a custom
@@ -476,72 +465,68 @@ enum TJXOP
  */
 #define TJXOPT_NOOUTPUT 16
 
-
 /**
  * Scaling factor
  */
-typedef struct
-{
-  /**
+typedef struct {
+	/**
    * Numerator
    */
-  int num;
-  /**
+	int num;
+	/**
    * Denominator
    */
-  int denom;
+	int denom;
 } tjscalingfactor;
 
 /**
  * Cropping region
  */
-typedef struct
-{
-  /**
+typedef struct {
+	/**
    * The left boundary of the cropping region.  This must be evenly divisible
    * by the MCU block width (see #tjMCUWidth.)
    */
-  int x;
-  /**
+	int x;
+	/**
    * The upper boundary of the cropping region.  This must be evenly divisible
    * by the MCU block height (see #tjMCUHeight.)
    */
-  int y;
-  /**
+	int y;
+	/**
    * The width of the cropping region. Setting this to 0 is the equivalent of
    * setting it to the width of the source JPEG image - x.
    */
-  int w;
-  /**
+	int w;
+	/**
    * The height of the cropping region. Setting this to 0 is the equivalent of
    * setting it to the height of the source JPEG image - y.
    */
-  int h;
+	int h;
 } tjregion;
 
 /**
  * Lossless transform
  */
-typedef struct tjtransform
-{
-  /**
+typedef struct tjtransform {
+	/**
    * Cropping region
    */
-  tjregion r;
-  /**
+	tjregion r;
+	/**
    * One of the @ref TJXOP "transform operations"
    */
-  int op;
-  /**
+	int op;
+	/**
    * The bitwise OR of one of more of the @ref TJXOPT_CROP "transform options"
    */
-  int options;
-  /**
+	int options;
+	/**
    * Arbitrary data that can be accessed within the body of the callback
    * function
    */
-  void *data;
-  /**
+	void *data;
+	/**
    * A callback function that can be used to modify the DCT coefficients
    * after they are losslessly transformed but before they are transcoded to a
    * new JPEG image.  This allows for custom filters or other transformations
@@ -574,35 +559,33 @@ typedef struct tjtransform
    *
    * @return 0 if the callback was successful, or -1 if an error occurred.
    */
-  int (*customFilter)(short *coeffs, tjregion arrayRegion,
-    tjregion planeRegion, int componentIndex, int transformIndex,
-    struct tjtransform *transform);
+	int (*customFilter)(short *coeffs, tjregion arrayRegion,
+			    tjregion planeRegion, int componentIndex,
+			    int transformIndex, struct tjtransform *transform);
 } tjtransform;
 
 /**
  * TurboJPEG instance handle
  */
-typedef void* tjhandle;
-
+typedef void *tjhandle;
 
 /**
  * Pad the given width to the nearest 32-bit boundary
  */
-#define TJPAD(width) (((width)+3)&(~3))
+#define TJPAD(width) (((width) + 3) & (~3))
 
 /**
  * Compute the scaled value of <tt>dimension</tt> using the given scaling
  * factor.  This macro performs the integer equivalent of <tt>ceil(dimension *
  * scalingFactor)</tt>.
  */
-#define TJSCALED(dimension, scalingFactor) ((dimension * scalingFactor.num \
-  + scalingFactor.denom - 1) / scalingFactor.denom)
-
+#define TJSCALED(dimension, scalingFactor)                           \
+	((dimension * scalingFactor.num + scalingFactor.denom - 1) / \
+	 scalingFactor.denom)
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 /**
  * Create a TurboJPEG compressor instance.
@@ -611,7 +594,6 @@ extern "C" {
  * occurred (see #tjGetErrorStr().)
  */
 DLLEXPORT tjhandle DLLCALL tjInitCompress(void);
-
 
 /**
  * Compress an RGB, grayscale, or CMYK image into a JPEG image.
@@ -673,9 +655,10 @@ DLLEXPORT tjhandle DLLCALL tjInitCompress(void);
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
 */
 DLLEXPORT int DLLCALL tjCompress2(tjhandle handle, const unsigned char *srcBuf,
-  int width, int pitch, int height, int pixelFormat, unsigned char **jpegBuf,
-  unsigned long *jpegSize, int jpegSubsamp, int jpegQual, int flags);
-
+				  int width, int pitch, int height,
+				  int pixelFormat, unsigned char **jpegBuf,
+				  unsigned long *jpegSize, int jpegSubsamp,
+				  int jpegQual, int flags);
 
 /**
  * Compress a YUV planar image into a JPEG image.
@@ -737,9 +720,11 @@ DLLEXPORT int DLLCALL tjCompress2(tjhandle handle, const unsigned char *srcBuf,
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
 */
 DLLEXPORT int DLLCALL tjCompressFromYUV(tjhandle handle,
-  const unsigned char *srcBuf, int width, int pad, int height, int subsamp,
-  unsigned char **jpegBuf, unsigned long *jpegSize, int jpegQual, int flags);
-
+					const unsigned char *srcBuf, int width,
+					int pad, int height, int subsamp,
+					unsigned char **jpegBuf,
+					unsigned long *jpegSize, int jpegQual,
+					int flags);
 
 /**
  * Compress a set of Y, U (Cb), and V (Cr) image planes into a JPEG image.
@@ -806,11 +791,10 @@ DLLEXPORT int DLLCALL tjCompressFromYUV(tjhandle handle,
  *
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
 */
-DLLEXPORT int DLLCALL tjCompressFromYUVPlanes(tjhandle handle,
-  const unsigned char **srcPlanes, int width, const int *strides, int height,
-  int subsamp, unsigned char **jpegBuf, unsigned long *jpegSize, int jpegQual,
-  int flags);
-
+DLLEXPORT int DLLCALL tjCompressFromYUVPlanes(
+	tjhandle handle, const unsigned char **srcPlanes, int width,
+	const int *strides, int height, int subsamp, unsigned char **jpegBuf,
+	unsigned long *jpegSize, int jpegQual, int flags);
 
 /**
  * The maximum size of the buffer (in bytes) required to hold a JPEG image with
@@ -835,8 +819,7 @@ DLLEXPORT int DLLCALL tjCompressFromYUVPlanes(tjhandle handle,
  * image, or -1 if the arguments are out of bounds.
  */
 DLLEXPORT unsigned long DLLCALL tjBufSize(int width, int height,
-  int jpegSubsamp);
-
+					  int jpegSubsamp);
 
 /**
  * The size of the buffer (in bytes) required to hold a YUV planar image with
@@ -856,8 +839,7 @@ DLLEXPORT unsigned long DLLCALL tjBufSize(int width, int height,
  * -1 if the arguments are out of bounds.
  */
 DLLEXPORT unsigned long DLLCALL tjBufSizeYUV2(int width, int pad, int height,
-  int subsamp);
-
+					      int subsamp);
 
 /**
  * The size of the buffer (in bytes) required to hold a YUV image plane with
@@ -881,8 +863,8 @@ DLLEXPORT unsigned long DLLCALL tjBufSizeYUV2(int width, int pad, int height,
  * plane, or -1 if the arguments are out of bounds.
  */
 DLLEXPORT unsigned long DLLCALL tjPlaneSizeYUV(int componentID, int width,
-  int stride, int height, int subsamp);
-
+					       int stride, int height,
+					       int subsamp);
 
 /**
  * The plane width of a YUV image plane with the given parameters.  Refer to
@@ -900,7 +882,6 @@ DLLEXPORT unsigned long DLLCALL tjPlaneSizeYUV(int componentID, int width,
  */
 DLLEXPORT int tjPlaneWidth(int componentID, int width, int subsamp);
 
-
 /**
  * The plane height of a YUV image plane with the given parameters.  Refer to
  * @ref YUVnotes "YUV Image Format Notes" for a description of plane height.
@@ -916,7 +897,6 @@ DLLEXPORT int tjPlaneWidth(int componentID, int width, int subsamp);
  * -1 if the arguments are out of bounds.
  */
 DLLEXPORT int tjPlaneHeight(int componentID, int height, int subsamp);
-
 
 /**
  * Encode an RGB or grayscale image into a YUV planar image.  This function
@@ -966,10 +946,10 @@ DLLEXPORT int tjPlaneHeight(int componentID, int height, int subsamp);
  *
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
 */
-DLLEXPORT int DLLCALL tjEncodeYUV3(tjhandle handle,
-  const unsigned char *srcBuf, int width, int pitch, int height,
-  int pixelFormat, unsigned char *dstBuf, int pad, int subsamp, int flags);
-
+DLLEXPORT int DLLCALL tjEncodeYUV3(tjhandle handle, const unsigned char *srcBuf,
+				   int width, int pitch, int height,
+				   int pixelFormat, unsigned char *dstBuf,
+				   int pad, int subsamp, int flags);
 
 /**
  * Encode an RGB or grayscale image into separate Y, U (Cb), and V (Cr) image
@@ -1025,10 +1005,10 @@ DLLEXPORT int DLLCALL tjEncodeYUV3(tjhandle handle,
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
 */
 DLLEXPORT int DLLCALL tjEncodeYUVPlanes(tjhandle handle,
-  const unsigned char *srcBuf, int width, int pitch, int height,
-  int pixelFormat, unsigned char **dstPlanes, int *strides, int subsamp,
-  int flags);
-
+					const unsigned char *srcBuf, int width,
+					int pitch, int height, int pixelFormat,
+					unsigned char **dstPlanes, int *strides,
+					int subsamp, int flags);
 
 /**
  * Create a TurboJPEG decompressor instance.
@@ -1037,7 +1017,6 @@ DLLEXPORT int DLLCALL tjEncodeYUVPlanes(tjhandle handle,
  * occurred (see #tjGetErrorStr().)
 */
 DLLEXPORT tjhandle DLLCALL tjInitDecompress(void);
-
 
 /**
  * Retrieve information about a JPEG image without decompressing it.
@@ -1065,9 +1044,10 @@ DLLEXPORT tjhandle DLLCALL tjInitDecompress(void);
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
 */
 DLLEXPORT int DLLCALL tjDecompressHeader3(tjhandle handle,
-  const unsigned char *jpegBuf, unsigned long jpegSize, int *width,
-  int *height, int *jpegSubsamp, int *jpegColorspace);
-
+					  const unsigned char *jpegBuf,
+					  unsigned long jpegSize, int *width,
+					  int *height, int *jpegSubsamp,
+					  int *jpegColorspace);
 
 /**
  * Returns a list of fractional scaling factors that the JPEG decompressor in
@@ -1079,8 +1059,7 @@ DLLEXPORT int DLLCALL tjDecompressHeader3(tjhandle handle,
  * @return a pointer to a list of fractional scaling factors, or NULL if an
  * error is encountered (see #tjGetErrorStr().)
 */
-DLLEXPORT tjscalingfactor* DLLCALL tjGetScalingFactors(int *numscalingfactors);
-
+DLLEXPORT tjscalingfactor *DLLCALL tjGetScalingFactors(int *numscalingfactors);
 
 /**
  * Decompress a JPEG image to an RGB, grayscale, or CMYK image.
@@ -1132,9 +1111,10 @@ DLLEXPORT tjscalingfactor* DLLCALL tjGetScalingFactors(int *numscalingfactors);
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
  */
 DLLEXPORT int DLLCALL tjDecompress2(tjhandle handle,
-  const unsigned char *jpegBuf, unsigned long jpegSize, unsigned char *dstBuf,
-  int width, int pitch, int height, int pixelFormat, int flags);
-
+				    const unsigned char *jpegBuf,
+				    unsigned long jpegSize,
+				    unsigned char *dstBuf, int width, int pitch,
+				    int height, int pixelFormat, int flags);
 
 /**
  * Decompress a JPEG image to a YUV planar image.  This function performs JPEG
@@ -1182,9 +1162,10 @@ DLLEXPORT int DLLCALL tjDecompress2(tjhandle handle,
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
  */
 DLLEXPORT int DLLCALL tjDecompressToYUV2(tjhandle handle,
-  const unsigned char *jpegBuf, unsigned long jpegSize, unsigned char *dstBuf,
-  int width, int pad, int height, int flags);
-
+					 const unsigned char *jpegBuf,
+					 unsigned long jpegSize,
+					 unsigned char *dstBuf, int width,
+					 int pad, int height, int flags);
 
 /**
  * Decompress a JPEG image into separate Y, U (Cb), and V (Cr) image
@@ -1238,9 +1219,11 @@ DLLEXPORT int DLLCALL tjDecompressToYUV2(tjhandle handle,
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
  */
 DLLEXPORT int DLLCALL tjDecompressToYUVPlanes(tjhandle handle,
-  const unsigned char *jpegBuf, unsigned long jpegSize,
-  unsigned char **dstPlanes, int width, int *strides, int height, int flags);
-
+					      const unsigned char *jpegBuf,
+					      unsigned long jpegSize,
+					      unsigned char **dstPlanes,
+					      int width, int *strides,
+					      int height, int flags);
 
 /**
  * Decode a YUV planar image into an RGB or grayscale image.  This function
@@ -1290,9 +1273,9 @@ DLLEXPORT int DLLCALL tjDecompressToYUVPlanes(tjhandle handle,
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
  */
 DLLEXPORT int DLLCALL tjDecodeYUV(tjhandle handle, const unsigned char *srcBuf,
-  int pad, int subsamp, unsigned char *dstBuf, int width, int pitch,
-  int height, int pixelFormat, int flags);
-
+				  int pad, int subsamp, unsigned char *dstBuf,
+				  int width, int pitch, int height,
+				  int pixelFormat, int flags);
 
 /**
  * Decode a set of Y, U (Cb), and V (Cr) image planes into an RGB or grayscale
@@ -1347,10 +1330,11 @@ DLLEXPORT int DLLCALL tjDecodeYUV(tjhandle handle, const unsigned char *srcBuf,
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
  */
 DLLEXPORT int DLLCALL tjDecodeYUVPlanes(tjhandle handle,
-  const unsigned char **srcPlanes, const int *strides, int subsamp,
-  unsigned char *dstBuf, int width, int pitch, int height, int pixelFormat,
-  int flags);
-
+					const unsigned char **srcPlanes,
+					const int *strides, int subsamp,
+					unsigned char *dstBuf, int width,
+					int pitch, int height, int pixelFormat,
+					int flags);
 
 /**
  * Create a new TurboJPEG transformer instance.
@@ -1359,7 +1343,6 @@ DLLEXPORT int DLLCALL tjDecodeYUVPlanes(tjhandle handle,
  * occurred (see #tjGetErrorStr().)
  */
 DLLEXPORT tjhandle DLLCALL tjInitTransform(void);
-
 
 /**
  * Losslessly transform a JPEG image into another JPEG image.  Lossless
@@ -1420,11 +1403,11 @@ DLLEXPORT tjhandle DLLCALL tjInitTransform(void);
  *
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
  */
-DLLEXPORT int DLLCALL tjTransform(tjhandle handle,
-  const unsigned char *jpegBuf, unsigned long jpegSize, int n,
-  unsigned char **dstBufs, unsigned long *dstSizes, tjtransform *transforms,
-  int flags);
-
+DLLEXPORT int DLLCALL tjTransform(tjhandle handle, const unsigned char *jpegBuf,
+				  unsigned long jpegSize, int n,
+				  unsigned char **dstBufs,
+				  unsigned long *dstSizes,
+				  tjtransform *transforms, int flags);
 
 /**
  * Destroy a TurboJPEG compressor, decompressor, or transformer instance.
@@ -1435,7 +1418,6 @@ DLLEXPORT int DLLCALL tjTransform(tjhandle handle,
  * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr().)
  */
 DLLEXPORT int DLLCALL tjDestroy(tjhandle handle);
-
 
 /**
  * Allocate an image buffer for use with TurboJPEG.  You should always use
@@ -1450,8 +1432,7 @@ DLLEXPORT int DLLCALL tjDestroy(tjhandle handle);
  *
  * @sa tjFree()
  */
-DLLEXPORT unsigned char* DLLCALL tjAlloc(int bytes);
-
+DLLEXPORT unsigned char *DLLCALL tjAlloc(int bytes);
 
 /**
  * Free an image buffer previously allocated by TurboJPEG.  You should always
@@ -1465,21 +1446,18 @@ DLLEXPORT unsigned char* DLLCALL tjAlloc(int bytes);
  */
 DLLEXPORT void DLLCALL tjFree(unsigned char *buffer);
 
-
 /**
  * Returns a descriptive error message explaining why the last command failed.
  *
  * @return a descriptive error message explaining why the last command failed.
  */
-DLLEXPORT char* DLLCALL tjGetErrorStr(void);
-
+DLLEXPORT char *DLLCALL tjGetErrorStr(void);
 
 /* Deprecated functions and macros */
-#define TJFLAG_FORCEMMX        8
-#define TJFLAG_FORCESSE       16
-#define TJFLAG_FORCESSE2      32
-#define TJFLAG_FORCESSE3     128
-
+#define TJFLAG_FORCEMMX 8
+#define TJFLAG_FORCESSE 16
+#define TJFLAG_FORCESSE2 32
+#define TJFLAG_FORCESSE3 128
 
 /* Backward compatibility functions and macros (nothing to see here) */
 #define NUMSUBOPT TJ_NUMSAMP
@@ -1502,38 +1480,45 @@ DLLEXPORT char* DLLCALL tjGetErrorStr(void);
 DLLEXPORT unsigned long DLLCALL TJBUFSIZE(int width, int height);
 
 DLLEXPORT unsigned long DLLCALL TJBUFSIZEYUV(int width, int height,
-  int jpegSubsamp);
+					     int jpegSubsamp);
 
 DLLEXPORT unsigned long DLLCALL tjBufSizeYUV(int width, int height,
-  int subsamp);
+					     int subsamp);
 
 DLLEXPORT int DLLCALL tjCompress(tjhandle handle, unsigned char *srcBuf,
-  int width, int pitch, int height, int pixelSize, unsigned char *dstBuf,
-  unsigned long *compressedSize, int jpegSubsamp, int jpegQual, int flags);
+				 int width, int pitch, int height,
+				 int pixelSize, unsigned char *dstBuf,
+				 unsigned long *compressedSize, int jpegSubsamp,
+				 int jpegQual, int flags);
 
-DLLEXPORT int DLLCALL tjEncodeYUV(tjhandle handle,
-  unsigned char *srcBuf, int width, int pitch, int height, int pixelSize,
-  unsigned char *dstBuf, int subsamp, int flags);
+DLLEXPORT int DLLCALL tjEncodeYUV(tjhandle handle, unsigned char *srcBuf,
+				  int width, int pitch, int height,
+				  int pixelSize, unsigned char *dstBuf,
+				  int subsamp, int flags);
 
-DLLEXPORT int DLLCALL tjEncodeYUV2(tjhandle handle,
-  unsigned char *srcBuf, int width, int pitch, int height, int pixelFormat,
-  unsigned char *dstBuf, int subsamp, int flags);
+DLLEXPORT int DLLCALL tjEncodeYUV2(tjhandle handle, unsigned char *srcBuf,
+				   int width, int pitch, int height,
+				   int pixelFormat, unsigned char *dstBuf,
+				   int subsamp, int flags);
 
 DLLEXPORT int DLLCALL tjDecompressHeader(tjhandle handle,
-  unsigned char *jpegBuf, unsigned long jpegSize, int *width, int *height);
+					 unsigned char *jpegBuf,
+					 unsigned long jpegSize, int *width,
+					 int *height);
 
 DLLEXPORT int DLLCALL tjDecompressHeader2(tjhandle handle,
-  unsigned char *jpegBuf, unsigned long jpegSize, int *width, int *height,
-  int *jpegSubsamp);
+					  unsigned char *jpegBuf,
+					  unsigned long jpegSize, int *width,
+					  int *height, int *jpegSubsamp);
 
-DLLEXPORT int DLLCALL tjDecompress(tjhandle handle,
-  unsigned char *jpegBuf, unsigned long jpegSize, unsigned char *dstBuf,
-  int width, int pitch, int height, int pixelSize, int flags);
+DLLEXPORT int DLLCALL tjDecompress(tjhandle handle, unsigned char *jpegBuf,
+				   unsigned long jpegSize,
+				   unsigned char *dstBuf, int width, int pitch,
+				   int height, int pixelSize, int flags);
 
-DLLEXPORT int DLLCALL tjDecompressToYUV(tjhandle handle,
-  unsigned char *jpegBuf, unsigned long jpegSize, unsigned char *dstBuf,
-  int flags);
-
+DLLEXPORT int DLLCALL tjDecompressToYUV(tjhandle handle, unsigned char *jpegBuf,
+					unsigned long jpegSize,
+					unsigned char *dstBuf, int flags);
 
 /**
  * @}

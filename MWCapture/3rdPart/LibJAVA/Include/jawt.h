@@ -138,10 +138,10 @@ extern "C" {
  * Structure for a native rectangle.
  */
 typedef struct jawt_Rectangle {
-    jint x;
-    jint y;
-    jint width;
-    jint height;
+	jint x;
+	jint y;
+	jint width;
+	jint height;
 } JAWT_Rectangle;
 
 struct jawt_DrawingSurface;
@@ -151,28 +151,28 @@ struct jawt_DrawingSurface;
  * Structure for containing the underlying drawing information of a component.
  */
 typedef struct jawt_DrawingSurfaceInfo {
-    /*
+	/*
      * Pointer to the platform-specific information.  This can be safely
      * cast to a JAWT_Win32DrawingSurfaceInfo on Windows or a
      * JAWT_X11DrawingSurfaceInfo on Solaris. On Mac OS X, when using the
      * native Cocoa toolkit this is a pointer to a NSObject that conforms
      * to the JAWT_SurfaceLayers protocol. See jawt_md.h for details.
      */
-    void* platformInfo;
-    /* Cached pointer to the underlying drawing surface */
-    struct jawt_DrawingSurface* ds;
-    /* Bounding rectangle of the drawing surface */
-    JAWT_Rectangle bounds;
-    /* Number of rectangles in the clip */
-    jint clipSize;
-    /* Clip rectangle array */
-    JAWT_Rectangle* clip;
+	void *platformInfo;
+	/* Cached pointer to the underlying drawing surface */
+	struct jawt_DrawingSurface *ds;
+	/* Bounding rectangle of the drawing surface */
+	JAWT_Rectangle bounds;
+	/* Number of rectangles in the clip */
+	jint clipSize;
+	/* Clip rectangle array */
+	JAWT_Rectangle *clip;
 } JAWT_DrawingSurfaceInfo;
 
-#define JAWT_LOCK_ERROR                 0x00000001
-#define JAWT_LOCK_CLIP_CHANGED          0x00000002
-#define JAWT_LOCK_BOUNDS_CHANGED        0x00000004
-#define JAWT_LOCK_SURFACE_CHANGED       0x00000008
+#define JAWT_LOCK_ERROR 0x00000001
+#define JAWT_LOCK_CLIP_CHANGED 0x00000002
+#define JAWT_LOCK_BOUNDS_CHANGED 0x00000004
+#define JAWT_LOCK_SURFACE_CHANGED 0x00000008
 
 /*
  * JAWT_DrawingSurface
@@ -181,16 +181,16 @@ typedef struct jawt_DrawingSurfaceInfo {
  * thread as the call to GetDrawingSurface.
  */
 typedef struct jawt_DrawingSurface {
-    /*
+	/*
      * Cached reference to the Java environment of the calling thread.
      * If Lock(), Unlock(), GetDrawingSurfaceInfo() or
      * FreeDrawingSurfaceInfo() are called from a different thread,
      * this data member should be set before calling those functions.
      */
-    JNIEnv* env;
-    /* Cached reference to the target object */
-    jobject target;
-    /*
+	JNIEnv *env;
+	/* Cached reference to the target object */
+	jobject target;
+	/*
      * Lock the surface of the target component for native rendering.
      * When finished drawing, the surface must be unlocked with
      * Unlock().  This function returns a bitmask with one or more of the
@@ -205,9 +205,8 @@ typedef struct jawt_DrawingSurface {
      *
      * JAWT_LOCK_SURFACE_CHANGED - When the surface itself has changed
      */
-    jint (JNICALL *Lock)
-        (struct jawt_DrawingSurface* ds);
-    /*
+	jint(JNICALL *Lock)(struct jawt_DrawingSurface *ds);
+	/*
      * Get the drawing surface info.
      * The value returned may be cached, but the values may change if
      * additional calls to Lock() or Unlock() are made.
@@ -216,18 +215,16 @@ typedef struct jawt_DrawingSurface {
      * When finished with the returned value, FreeDrawingSurfaceInfo must be
      * called.
      */
-    JAWT_DrawingSurfaceInfo* (JNICALL *GetDrawingSurfaceInfo)
-        (struct jawt_DrawingSurface* ds);
-    /*
+	JAWT_DrawingSurfaceInfo *(JNICALL *GetDrawingSurfaceInfo)(
+		struct jawt_DrawingSurface *ds);
+	/*
      * Free the drawing surface info.
      */
-    void (JNICALL *FreeDrawingSurfaceInfo)
-        (JAWT_DrawingSurfaceInfo* dsi);
-    /*
+	void(JNICALL *FreeDrawingSurfaceInfo)(JAWT_DrawingSurfaceInfo *dsi);
+	/*
      * Unlock the drawing surface of the target component for native rendering.
      */
-    void (JNICALL *Unlock)
-        (struct jawt_DrawingSurface* ds);
+	void(JNICALL *Unlock)(struct jawt_DrawingSurface *ds);
 } JAWT_DrawingSurface;
 
 /*
@@ -235,12 +232,12 @@ typedef struct jawt_DrawingSurface {
  * Structure for containing native AWT functions.
  */
 typedef struct jawt {
-    /*
+	/*
      * Version of this structure.  This must always be set before
      * calling JAWT_GetAWT()
      */
-    jint version;
-    /*
+	jint version;
+	/*
      * Return a drawing surface from a target jobject.  This value
      * may be cached.
      * Returns NULL if an error has occurred.
@@ -249,24 +246,23 @@ typedef struct jawt {
      * FreeDrawingSurface() must be called when finished with the
      * returned JAWT_DrawingSurface.
      */
-    JAWT_DrawingSurface* (JNICALL *GetDrawingSurface)
-        (JNIEnv* env, jobject target);
-    /*
+	JAWT_DrawingSurface *(JNICALL *GetDrawingSurface)(JNIEnv *env,
+							  jobject target);
+	/*
      * Free the drawing surface allocated in GetDrawingSurface.
      */
-    void (JNICALL *FreeDrawingSurface)
-        (JAWT_DrawingSurface* ds);
-    /*
+	void(JNICALL *FreeDrawingSurface)(JAWT_DrawingSurface *ds);
+	/*
      * Since 1.4
      * Locks the entire AWT for synchronization purposes
      */
-    void (JNICALL *Lock)(JNIEnv* env);
-    /*
+	void(JNICALL *Lock)(JNIEnv *env);
+	/*
      * Since 1.4
      * Unlocks the entire AWT for synchronization purposes
      */
-    void (JNICALL *Unlock)(JNIEnv* env);
-    /*
+	void(JNICALL *Unlock)(JNIEnv *env);
+	/*
      * Since 1.4
      * Returns a reference to a java.awt.Component from a native
      * platform handle.  On Windows, this corresponds to an HWND;
@@ -277,7 +273,7 @@ typedef struct jawt {
      * This function returns a NULL reference if no component could be
      * found with matching platform information.
      */
-    jobject (JNICALL *GetComponent)(JNIEnv* env, void* platformInfo);
+	jobject(JNICALL *GetComponent)(JNIEnv *env, void *platformInfo);
 
 } JAWT;
 
@@ -286,7 +282,7 @@ typedef struct jawt {
  * an error occurs.
  */
 _JNI_IMPORT_OR_EXPORT_
-jboolean JNICALL JAWT_GetAWT(JNIEnv* env, JAWT* awt);
+jboolean JNICALL JAWT_GetAWT(JNIEnv *env, JAWT *awt);
 
 #define JAWT_VERSION_1_3 0x00010003
 #define JAWT_VERSION_1_4 0x00010004

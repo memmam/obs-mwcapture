@@ -6,17 +6,17 @@
 #include "../mw_imgui_widget/mw_encoder_adapter.h"
 #include "../mw_imgui_widget/mw_hdr_overlay_text.h"
 
-class CMWHDRCaptureUIManager{
+class CMWHDRCaptureUIManager {
 public:
 	CMWHDRCaptureUIManager();
 	~CMWHDRCaptureUIManager();
 
 public:
-	void add_widget(CMWIMGUIWidget* t_p_wid);
+	void add_widget(CMWIMGUIWidget *t_p_wid);
 	void update_ui();
 
 private:
-	vector<CMWIMGUIWidget*>		m_vec_widget;
+	vector<CMWIMGUIWidget *> m_vec_widget;
 };
 
 #endif

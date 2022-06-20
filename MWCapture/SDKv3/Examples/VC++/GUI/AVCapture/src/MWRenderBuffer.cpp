@@ -14,8 +14,8 @@ CMWRenderBuffer::CMWRenderBuffer()
 	m_u32_dur_encode = 0;
 	m_pa_buf = NULL;
 	m_pa_buf = new mw_buffer_t[m_u32_num_buf];
-	if(m_pa_buf!=NULL){
-		for(int i=0;i<m_u32_num_buf;i++){
+	if (m_pa_buf != NULL) {
+		for (int i = 0; i < m_u32_num_buf; i++) {
 			m_pa_buf[i].m_p_buf = NULL;
 			m_pa_buf[i].m_u32_size_buf = 0;
 			m_pa_buf[i].m_u32_size_data = 0;
@@ -33,18 +33,15 @@ CMWRenderBuffer::~CMWRenderBuffer()
 	DeleteCriticalSection(&m_cs_lock);
 }
 
-
-bool 
-CMWRenderBuffer::alloc_buf(uint32_t t_u32_size)
+bool CMWRenderBuffer::alloc_buf(uint32_t t_u32_size)
 {
 	bool t_b_ret = false;
 
-	if(t_u32_size==0||
-		m_pa_buf == NULL)
+	if (t_u32_size == 0 || m_pa_buf == NULL)
 		return t_b_ret;
 
-	for(int i = 0;i<m_u32_num_buf;i++){
-		if(m_pa_buf[i].m_p_buf!=NULL){
+	for (int i = 0; i < m_u32_num_buf; i++) {
+		if (m_pa_buf[i].m_p_buf != NULL) {
 			delete[] m_pa_buf[i].m_p_buf;
 			m_pa_buf[i].m_p_buf = NULL;
 		}
@@ -53,18 +50,18 @@ CMWRenderBuffer::alloc_buf(uint32_t t_u32_size)
 	}
 
 	t_b_ret = true;
-	for(int i=0;i<m_u32_num_buf;i++){
+	for (int i = 0; i < m_u32_num_buf; i++) {
 		m_pa_buf[i].m_p_buf = new uint8_t[t_u32_size];
-		if(m_pa_buf[i].m_p_buf!=NULL){
+		if (m_pa_buf[i].m_p_buf != NULL) {
 			m_pa_buf[i].m_u32_size_buf = t_u32_size;
 			m_pa_buf[i].m_u32_size_data = 0;
-		}else{
+		} else {
 			t_b_ret = false;
 			break;
 		}
 	}
 
-	if(!t_b_ret){
+	if (!t_b_ret) {
 		free_buf();
 	}
 
@@ -73,13 +70,13 @@ CMWRenderBuffer::alloc_buf(uint32_t t_u32_size)
 
 void CMWRenderBuffer::free_buf()
 {
-	if(m_pa_buf!=NULL){
-		for(int i=0;i<m_u32_num_buf;i++){
-			if(m_pa_buf[i].m_p_buf!=NULL){
+	if (m_pa_buf != NULL) {
+		for (int i = 0; i < m_u32_num_buf; i++) {
+			if (m_pa_buf[i].m_p_buf != NULL) {
 				delete[] m_pa_buf[i].m_p_buf;
 				m_pa_buf[i].m_p_buf = NULL;
 			}
-			m_pa_buf[i].m_u32_size_buf=0;
+			m_pa_buf[i].m_u32_size_buf = 0;
 			m_pa_buf[i].m_u32_size_data = 0;
 		}
 		delete[] m_pa_buf;
@@ -87,10 +84,9 @@ void CMWRenderBuffer::free_buf()
 	}
 }
 
-mw_buffer_t* 
-CMWRenderBuffer::get_buf_to_fill()
+mw_buffer_t *CMWRenderBuffer::get_buf_to_fill()
 {
-	mw_buffer_t* t_p_buf = NULL;
+	mw_buffer_t *t_p_buf = NULL;
 
 	EnterCriticalSection(&m_cs_lock);
 	t_p_buf = &m_pa_buf[m_u32_id_write];
@@ -105,21 +101,23 @@ void CMWRenderBuffer::put_buf_filled()
 	m_u32_id_write++;
 	m_u32_dur_render = 1;
 	m_u32_dur_encode = 1;
-	m_u32_id_write=m_u32_id_write%m_u32_num_buf;
+	m_u32_id_write = m_u32_id_write % m_u32_num_buf;
 	LeaveCriticalSection(&m_cs_lock);
 }
 
-mw_buffer_t* CMWRenderBuffer::get_buf_render(uint32_t& t_id_render)
+mw_buffer_t *CMWRenderBuffer::get_buf_render(uint32_t &t_id_render)
 {
-	mw_buffer_t* t_p_buf = NULL;
+	mw_buffer_t *t_p_buf = NULL;
 
 	//EnterCriticalSection(&m_cs_lock);
 
-	if(m_u32_dur_render==0){
-		t_p_buf= NULL;
+	if (m_u32_dur_render == 0) {
+		t_p_buf = NULL;
 		t_id_render = 0;
-	}else{
-		m_u32_id_read_render = (m_u32_id_write + m_u32_num_buf -m_u32_dur_render)%m_u32_num_buf;
+	} else {
+		m_u32_id_read_render =
+			(m_u32_id_write + m_u32_num_buf - m_u32_dur_render) %
+			m_u32_num_buf;
 		t_p_buf = &m_pa_buf[m_u32_id_read_render];
 		t_id_render = m_u32_id_read_render;
 	}
@@ -129,18 +127,19 @@ mw_buffer_t* CMWRenderBuffer::get_buf_render(uint32_t& t_id_render)
 	return t_p_buf;
 }
 
-
-mw_buffer_t* CMWRenderBuffer::get_buf_encode(uint32_t& t_id_encode)
+mw_buffer_t *CMWRenderBuffer::get_buf_encode(uint32_t &t_id_encode)
 {
-	mw_buffer_t* t_p_buf = NULL;
+	mw_buffer_t *t_p_buf = NULL;
 
 	//EnterCriticalSection(&m_cs_lock);
 
-	if(m_u32_dur_encode==0){
-		t_p_buf= NULL;
+	if (m_u32_dur_encode == 0) {
+		t_p_buf = NULL;
 		t_id_encode = 0;
-	}else{
-		m_u32_id_read_encode = (m_u32_id_write + m_u32_num_buf -m_u32_dur_encode)%m_u32_num_buf;
+	} else {
+		m_u32_id_read_encode =
+			(m_u32_id_write + m_u32_num_buf - m_u32_dur_encode) %
+			m_u32_num_buf;
 		t_p_buf = &m_pa_buf[m_u32_id_read_encode];
 		t_id_encode = m_u32_id_read_encode;
 	}
@@ -155,11 +154,11 @@ uint32_t CMWRenderBuffer::get_buf_num()
 	return m_u32_num_buf;
 }
 
-mw_buffer_t* CMWRenderBuffer::get_buf_by_id(uint32_t t_u32_id)
+mw_buffer_t *CMWRenderBuffer::get_buf_by_id(uint32_t t_u32_id)
 {
-	mw_buffer_t* t_p_buf = NULL;
+	mw_buffer_t *t_p_buf = NULL;
 
-	if(t_u32_id>=0&&t_u32_id<m_u32_num_buf)
+	if (t_u32_id >= 0 && t_u32_id < m_u32_num_buf)
 		t_p_buf = &m_pa_buf[t_u32_id];
 
 	return t_p_buf;
@@ -167,11 +166,11 @@ mw_buffer_t* CMWRenderBuffer::get_buf_by_id(uint32_t t_u32_id)
 
 void CMWRenderBuffer::clear_data()
 {
-	for(int i=0;i<m_u32_num_buf;i++){
-		if(m_pa_buf[i].m_p_buf!=NULL)
-			memset(m_pa_buf[i].m_p_buf,0,m_pa_buf[i].m_u32_size_buf);
+	for (int i = 0; i < m_u32_num_buf; i++) {
+		if (m_pa_buf[i].m_p_buf != NULL)
+			memset(m_pa_buf[i].m_p_buf, 0,
+			       m_pa_buf[i].m_u32_size_buf);
 	}
-
 
 	m_u32_id_write = 0;
 	m_u32_id_read_render = 0;
@@ -189,6 +188,5 @@ bool CMWRenderBuffer::is_clear()
 
 void CMWRenderBuffer::reset_encode_id()
 {
-	m_u32_dur_encode=1;
+	m_u32_dur_encode = 1;
 }
-

@@ -3,20 +3,20 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell's SDK 
-// and not to Magewell's SDK as a whole. 
+// The following license only applies to head files and library within Magewell's SDK
+// and not to Magewell's SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. ("Magewell") All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell's head files and library 
+// Magewell grands to any person who obtains the copy of Magewell's head files and library
 // the rights,including without limitation, to use on the condition that the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL "AS IS" AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -34,7 +34,7 @@
 #elif LIBMWCAPTURE_DLL
 #define LIBMWCAPTURE_API __declspec(dllimport)
 #else
-#define LIBMWCAPTURE_API 
+#define LIBMWCAPTURE_API
 #endif
 
 #ifdef _WIN32
@@ -94,10 +94,7 @@ extern "C" {
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBRegisterHotPlug(
-    LPFN_HOT_PLUG_CALLBACK lpfnCallback,
-	void *				   pParam
-    );
+MWUSBRegisterHotPlug(LPFN_HOT_PLUG_CALLBACK lpfnCallback, void *pParam);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -138,10 +135,8 @@ MWUSBRegisterHotPlug(
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBRegisterHotPlugWithStdCallBack(
-    LPFN_HOT_PLUG_STDCALL_CALLBACK	lpfnCallback,
-	void *							pParam
-    );
+MWUSBRegisterHotPlugWithStdCallBack(LPFN_HOT_PLUG_STDCALL_CALLBACK lpfnCallback,
+				    void *pParam);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -167,8 +162,7 @@ MWUSBRegisterHotPlugWithStdCallBack(
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBUnRegisterHotPlug(
-    );
+MWUSBUnRegisterHotPlug();
 
 /**
  * @ingroup group_functions_usbcapture
@@ -209,10 +203,7 @@ MWUSBUnRegisterHotPlug(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBSetNotifyEnable(
-	HUSBCHANNEL						hChannel,
-	MWCAP_NOTIFY_ENABLE *			pNotify
-	);
+MWUSBSetNotifyEnable(HUSBCHANNEL hChannel, MWCAP_NOTIFY_ENABLE *pNotify);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -259,10 +250,7 @@ MWUSBSetNotifyEnable(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetNotifyStatus(
-	HUSBCHANNEL						hChannel,
-	uint64_t *						pullStatusBit
-	);
+MWUSBGetNotifyStatus(HUSBCHANNEL hChannel, uint64_t *pullStatusBit);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -288,11 +276,8 @@ MWUSBGetNotifyStatus(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBSetFirmwareErase(
-	HUSBCHANNEL 					hChannel,
-	uint32_t						cbOffset,
-	uint32_t						cbErase
-	);
+MWUSBSetFirmwareErase(HUSBCHANNEL hChannel, uint32_t cbOffset,
+		      uint32_t cbErase);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -329,10 +314,7 @@ MWUSBSetFirmwareErase(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetFirmwareReadAddress(
-	HUSBCHANNEL 					hChannel,
-	uint32_t *						pdwAddress
-	);
+MWUSBGetFirmwareReadAddress(HUSBCHANNEL hChannel, uint32_t *pdwAddress);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -372,11 +354,7 @@ MWUSBGetFirmwareReadAddress(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetEDIDLoopThrough(
-	HUSBCHANNEL						hChannel,
-	char *							pbyEDID,
-	uint32_t *						pcbEDID
-	);
+MWUSBGetEDIDLoopThrough(HUSBCHANNEL hChannel, char *pbyEDID, uint32_t *pcbEDID);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -413,10 +391,7 @@ MWUSBGetEDIDLoopThrough(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetLoopThroughValid(
-	HUSBCHANNEL						hChannel,
-	bool_t *						pbValid
-	);
+MWUSBGetLoopThroughValid(HUSBCHANNEL hChannel, bool_t *pbValid);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -455,11 +430,8 @@ MWUSBGetLoopThroughValid(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetAudioVolume(
-	HUSBCHANNEL						hChannel,
-	MWCAP_USB_AUDIO_NODE			audioNode,
-	MWCAP_AUDIO_VOLUME*				pVolume
-	);
+MWUSBGetAudioVolume(HUSBCHANNEL hChannel, MWCAP_USB_AUDIO_NODE audioNode,
+		    MWCAP_AUDIO_VOLUME *pVolume);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -500,11 +472,8 @@ MWUSBGetAudioVolume(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBSetAudioVolume(
-	HUSBCHANNEL						hChannel,
-	MWCAP_USB_AUDIO_NODE			audioNode,
-	MWCAP_AUDIO_VOLUME*				pVolume
-	);
+MWUSBSetAudioVolume(HUSBCHANNEL hChannel, MWCAP_USB_AUDIO_NODE audioNode,
+		    MWCAP_AUDIO_VOLUME *pVolume);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -541,10 +510,8 @@ MWUSBSetAudioVolume(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetVideoOutputFOURCC(
-	HUSBCHANNEL 					hChannel,
-	MWCAP_VIDEO_OUTPUT_FOURCC*		pOutputFourCC
-	);
+MWUSBGetVideoOutputFOURCC(HUSBCHANNEL hChannel,
+			  MWCAP_VIDEO_OUTPUT_FOURCC *pOutputFourCC);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -587,10 +554,8 @@ MWUSBGetVideoOutputFOURCC(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBSetVideoOutputFOURCC(
-	HUSBCHANNEL 					hChannel,
-	MWCAP_VIDEO_OUTPUT_FOURCC*		pOutputFourCC
-	);
+MWUSBSetVideoOutputFOURCC(HUSBCHANNEL hChannel,
+			  MWCAP_VIDEO_OUTPUT_FOURCC *pOutputFourCC);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -627,10 +592,8 @@ MWUSBSetVideoOutputFOURCC(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetVideoOutputFrameSize(
-	HUSBCHANNEL 						hChannel,
-	MWCAP_VIDEO_OUTPUT_FRAME_SIZE*		pFrameSize
-	);
+MWUSBGetVideoOutputFrameSize(HUSBCHANNEL hChannel,
+			     MWCAP_VIDEO_OUTPUT_FRAME_SIZE *pFrameSize);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -673,10 +636,8 @@ MWUSBGetVideoOutputFrameSize(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBSetVideoOutputFrameSize(
-	HUSBCHANNEL 						hChannel,
-	MWCAP_VIDEO_OUTPUT_FRAME_SIZE*		pFrameSize
-	);
+MWUSBSetVideoOutputFrameSize(HUSBCHANNEL hChannel,
+			     MWCAP_VIDEO_OUTPUT_FRAME_SIZE *pFrameSize);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -714,9 +675,8 @@ MWUSBSetVideoOutputFrameSize(
 MW_RESULT
 LIBMWCAPTURE_API
 MWUSBGetVideoOutputFrameInterval(
-	HUSBCHANNEL 							hChannel,
-	MWCAP_VIDEO_OUTPUT_FRAME_INTERVAL*		pFrameInterval
-	);
+	HUSBCHANNEL hChannel,
+	MWCAP_VIDEO_OUTPUT_FRAME_INTERVAL *pFrameInterval);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -760,9 +720,8 @@ MWUSBGetVideoOutputFrameInterval(
 MW_RESULT
 LIBMWCAPTURE_API
 MWUSBSetVideoOutputFrameInterval(
-	HUSBCHANNEL 							hChannel,
-	MWCAP_VIDEO_OUTPUT_FRAME_INTERVAL*		pFrameInterval
-	);
+	HUSBCHANNEL hChannel,
+	MWCAP_VIDEO_OUTPUT_FRAME_INTERVAL *pFrameInterval);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -800,10 +759,8 @@ MWUSBSetVideoOutputFrameInterval(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetStatusImageMode(
-	HUSBCHANNEL						hChannel,
-	MWCAP_STATUS_IMAGE_MODE *		pImageMode
-	);
+MWUSBGetStatusImageMode(HUSBCHANNEL hChannel,
+			MWCAP_STATUS_IMAGE_MODE *pImageMode);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -843,10 +800,8 @@ MWUSBGetStatusImageMode(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBSetStatusImageMode(
-	HUSBCHANNEL						hChannel,
-	MWCAP_STATUS_IMAGE_MODE *		pImageMode
-	);
+MWUSBSetStatusImageMode(HUSBCHANNEL hChannel,
+			MWCAP_STATUS_IMAGE_MODE *pImageMode);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -883,10 +838,7 @@ MWUSBSetStatusImageMode(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetDeviceNameMode(
-	HUSBCHANNEL						hChannel,
-	MWCAP_DEVICE_NAME_MODE *		pNameMode
-	);
+MWUSBGetDeviceNameMode(HUSBCHANNEL hChannel, MWCAP_DEVICE_NAME_MODE *pNameMode);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -925,10 +877,7 @@ MWUSBGetDeviceNameMode(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBSetDeviceNameMode(
-	HUSBCHANNEL						hChannel,
-	MWCAP_DEVICE_NAME_MODE *		pNameMode
-	);
+MWUSBSetDeviceNameMode(HUSBCHANNEL hChannel, MWCAP_DEVICE_NAME_MODE *pNameMode);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -969,9 +918,7 @@ MWUSBSetDeviceNameMode(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBSaveOptions(
-	HUSBCHANNEL		hChannel 
-	);
+MWUSBSaveOptions(HUSBCHANNEL hChannel);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -1006,9 +953,7 @@ MWUSBSaveOptions(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBLoadOptions(
-	HUSBCHANNEL		hChannel
-	);
+MWUSBLoadOptions(HUSBCHANNEL hChannel);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -1043,9 +988,7 @@ MWUSBLoadOptions(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBResetOptions(
-	HUSBCHANNEL		hChannel
-	);
+MWUSBResetOptions(HUSBCHANNEL hChannel);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -1083,10 +1026,7 @@ MWUSBResetOptions(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetExtensionSupported(
-	HUSBCHANNEL				hChannel,
-	uint32_t *				pdwFlag
-	);
+MWUSBGetExtensionSupported(HUSBCHANNEL hChannel, uint32_t *pdwFlag);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -1128,11 +1068,9 @@ MWUSBGetExtensionSupported(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetVideoCaptureSupportFrameRate(
-	HCHANNEL					hChannel,
-	MWCAP_VIDEO_FRAMERATE*		pFramerate,
-	int*						nCount
-);
+MWUSBGetVideoCaptureSupportFrameRate(HCHANNEL hChannel,
+				     MWCAP_VIDEO_FRAMERATE *pFramerate,
+				     int *nCount);
 
 /**
  * @ingroup group_functions_usbcapture
@@ -1174,11 +1112,9 @@ MWUSBGetVideoCaptureSupportFrameRate(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUSBGetVideoCaptureSupportFrameRateEx(
-	HCHANNEL					hChannel,
-	MWCAP_VIDEO_FRAMERATE_EX*	pFramerate,
-	int*						nCount
-);
+MWUSBGetVideoCaptureSupportFrameRateEx(HCHANNEL hChannel,
+				       MWCAP_VIDEO_FRAMERATE_EX *pFramerate,
+				       int *nCount);
 
 #ifdef __cplusplus
 }

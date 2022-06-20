@@ -3,21 +3,21 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell’s SDK 
-// and not to Magewell’s SDK as a whole. 
+// The following license only applies to head files and library within Magewell’s SDK
+// and not to Magewell’s SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. (“Magewell”) All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell’s head files and library 
+// Magewell grands to any person who obtains the copy of Magewell’s head files and library
 // the rights,including without limitation, to use, modify, publish, sublicense, distribute
 // the Software on the conditions that all the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL “AS IS” AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -34,10 +34,11 @@
 
 // for dump info
 #include <DbgHelp.h>
-#pragma comment(lib,"DbgHelp.lib")
+#pragma comment(lib, "DbgHelp.lib")
 
-void	 CreateDumpFile(LPCWSTR lpstrDumpFilePathName, EXCEPTION_POINTERS *pException);
-LONG	 ApplicationCrashHandler(EXCEPTION_POINTERS *pException);
+void CreateDumpFile(LPCWSTR lpstrDumpFilePathName,
+		    EXCEPTION_POINTERS *pException);
+LONG ApplicationCrashHandler(EXCEPTION_POINTERS *pException);
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -48,24 +49,22 @@ int g_nValidChannelCount = 0;
 // CLowLatencyApp
 
 BEGIN_MESSAGE_MAP(CLowLatencyApp, CWinApp)
-	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
+ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
-
 
 // CLowLatencyApp construction
 
 CLowLatencyApp::CLowLatencyApp()
 {
-	SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)ApplicationCrashHandler);
+	SetUnhandledExceptionFilter(
+		(LPTOP_LEVEL_EXCEPTION_FILTER)ApplicationCrashHandler);
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
 }
 
-
 // The one and only CLowLatencyApp object
 
 CLowLatencyApp theApp;
-
 
 // CLowLatencyApp initialization
 
@@ -76,35 +75,34 @@ BOOL CLowLatencyApp::InitInstance()
 	WCHAR wPath[1024] = {0};
 	GetCurrentDirectory(1024, wPath);
 
-	int len = WideCharToMultiByte(CP_ACP, 0, wPath, wcslen(wPath), NULL, 0, NULL, NULL);  
-	char* chPath = new char[len + 1];  
-	WideCharToMultiByte(CP_ACP, 0, wPath, wcslen(wPath), chPath, len, NULL, NULL);  
-	chPath[len] = '\0';  
+	int len = WideCharToMultiByte(CP_ACP, 0, wPath, wcslen(wPath), NULL, 0,
+				      NULL, NULL);
+	char *chPath = new char[len + 1];
+	WideCharToMultiByte(CP_ACP, 0, wPath, wcslen(wPath), chPath, len, NULL,
+			    NULL);
+	chPath[len] = '\0';
 
 	char chDrive[64] = {0};
 	_splitpath(chPath, chDrive, NULL, NULL, NULL);
 
 	CString strDrive(chDrive);
 
-	if(chPath!=NULL)
+	if (chPath != NULL)
 		delete chPath;
 
 	MWCaptureInitInstance();
 
 	int nVideoCount = MWGetChannelCount();
-	for (int i = 0; i < nVideoCount; i++)
-	{
+	for (int i = 0; i < nVideoCount; i++) {
 		MWCAP_CHANNEL_INFO mci;
 		MWGetChannelInfoByIndex(i, &mci);
-		if (0 == strcmp(mci.szFamilyName, "Pro Capture"))
-		{
+		if (0 == strcmp(mci.szFamilyName, "Pro Capture")) {
 			g_nValidChannel[g_nValidChannelCount] = i;
-			g_nValidChannelCount ++;
+			g_nValidChannelCount++;
 		}
 	}
 
-	if (nVideoCount <= 0 || g_nValidChannelCount <= 0)
-	{
+	if (nVideoCount <= 0 || g_nValidChannelCount <= 0) {
 		AfxMessageBox(_T("Can't find capture device!\n"));
 		return FALSE;
 	}
@@ -130,20 +128,16 @@ BOOL CLowLatencyApp::InitInstance()
 	CLowLatencyDlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
-	if (nResponse == IDOK)
-	{
+	if (nResponse == IDOK) {
 		// TODO: Place code here to handle when the dialog is
 		//  dismissed with OK
-	}
-	else if (nResponse == IDCANCEL)
-	{
+	} else if (nResponse == IDCANCEL) {
 		// TODO: Place code here to handle when the dialog is
 		//  dismissed with Cancel
 	}
 
 	// Delete the shell manager created above.
-	if (pShellManager != NULL)
-	{
+	if (pShellManager != NULL) {
 		delete pShellManager;
 	}
 
@@ -159,22 +153,25 @@ int CLowLatencyApp::ExitInstance()
 	return CWinApp::ExitInstance();
 }
 
-void CreateDumpFile(LPCWSTR lpstrDumpFilePathName, EXCEPTION_POINTERS *pException)  
-{  
-	HANDLE hDumpFile = CreateFile(lpstrDumpFilePathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);  
+void CreateDumpFile(LPCWSTR lpstrDumpFilePathName,
+		    EXCEPTION_POINTERS *pException)
+{
+	HANDLE hDumpFile = CreateFile(lpstrDumpFilePathName, GENERIC_WRITE, 0,
+				      NULL, CREATE_ALWAYS,
+				      FILE_ATTRIBUTE_NORMAL, NULL);
 
-	MINIDUMP_EXCEPTION_INFORMATION dumpInfo;  
-	dumpInfo.ExceptionPointers = pException;  
-	dumpInfo.ThreadId = GetCurrentThreadId();  
-	dumpInfo.ClientPointers = TRUE;  
+	MINIDUMP_EXCEPTION_INFORMATION dumpInfo;
+	dumpInfo.ExceptionPointers = pException;
+	dumpInfo.ThreadId = GetCurrentThreadId();
+	dumpInfo.ClientPointers = TRUE;
 
-	MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hDumpFile, MiniDumpNormal, &dumpInfo, NULL, NULL);  
-	CloseHandle(hDumpFile);  
+	MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hDumpFile,
+			  MiniDumpNormal, &dumpInfo, NULL, NULL);
+	CloseHandle(hDumpFile);
 }
 
-
-LONG ApplicationCrashHandler(EXCEPTION_POINTERS *pException)  
-{     
-	CreateDumpFile(L"LowLatency.dmp",pException);  
-	return EXCEPTION_EXECUTE_HANDLER;  
+LONG ApplicationCrashHandler(EXCEPTION_POINTERS *pException)
+{
+	CreateDumpFile(L"LowLatency.dmp", pException);
+	return EXCEPTION_EXECUTE_HANDLER;
 }

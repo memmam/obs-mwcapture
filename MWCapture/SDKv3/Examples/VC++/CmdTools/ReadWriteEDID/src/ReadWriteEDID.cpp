@@ -3,21 +3,21 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell’s SDK 
-// and not to Magewell’s SDK as a whole. 
+// The following license only applies to head files and library within Magewell’s SDK
+// and not to Magewell’s SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. (“Magewell”) All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell’s head files and library 
+// Magewell grands to any person who obtains the copy of Magewell’s head files and library
 // the rights,including without limitation, to use, modify, publish, sublicense, distribute
 // the Software on the conditions that all the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL “AS IS” AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -41,54 +41,54 @@ using namespace std;
 
 // for dump info
 #include <DbgHelp.h>
-#pragma comment(lib,"DbgHelp.lib")
+#pragma comment(lib, "DbgHelp.lib")
 
 #include "LibMWCapture\MWCapture.h"
 
-
 HCHANNEL hChannel;
-int		 *nProDevChannel;
-int		 nChannelCount;
+int *nProDevChannel;
+int nChannelCount;
 
-void	 CreateDumpFile(LPCWSTR lpstrDumpFilePathName, EXCEPTION_POINTERS *pException);
-LONG	 ApplicationCrashHandler(EXCEPTION_POINTERS *pException);
+void CreateDumpFile(LPCWSTR lpstrDumpFilePathName,
+		    EXCEPTION_POINTERS *pException);
+LONG ApplicationCrashHandler(EXCEPTION_POINTERS *pException);
 
-void	 ShowInfo();
-void	 Initialize();
-BOOL	 WriteFilePermissionTest();
-bool	 ConfigValidChannel();
-BOOL	 OpenChannel(int argc, char* argv[]);
-void	 ReadWriteEDID(int argc, char* argv[]);
-BOOL	 Getfilesuffix(const TCHAR* pFilePath);
-void	 FileFailed(FILE* pFile);
-void	 CloseDevice();
-void	 ExitProgram();
-wchar_t* AnsiToUnicode( const char* szStr );
-char*	 UnicodeToAnsi( const wchar_t* szStr );
-BOOL	 GetPath(char* szPath,int nSize);
+void ShowInfo();
+void Initialize();
+BOOL WriteFilePermissionTest();
+bool ConfigValidChannel();
+BOOL OpenChannel(int argc, char *argv[]);
+void ReadWriteEDID(int argc, char *argv[]);
+BOOL Getfilesuffix(const TCHAR *pFilePath);
+void FileFailed(FILE *pFile);
+void CloseDevice();
+void ExitProgram();
+wchar_t *AnsiToUnicode(const char *szStr);
+char *UnicodeToAnsi(const wchar_t *szStr);
+BOOL GetPath(char *szPath, int nSize);
 
-
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-	SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)ApplicationCrashHandler); 
+	SetUnhandledExceptionFilter(
+		(LPTOP_LEVEL_EXCEPTION_FILTER)ApplicationCrashHandler);
 
 	ShowInfo();
 
 	Initialize();
 
-	if(!WriteFilePermissionTest()){
+	if (!WriteFilePermissionTest()) {
 		ExitProgram();
 		MWCaptureExitInstance();
 		return 1;
 	}
 
-	if(!ConfigValidChannel()){
+	if (!ConfigValidChannel()) {
 		ExitProgram();
 		MWCaptureExitInstance();
 		return 1;
 	}
 
-	if(!OpenChannel(argc, argv)){
+	if (!OpenChannel(argc, argv)) {
 		ExitProgram();
 		MWCaptureExitInstance();
 		return 1;
@@ -110,7 +110,8 @@ void ShowInfo()
 	WORD wBuild;
 	MWGetVersion(&byMaj, &byMin, &wBuild);
 
-	printf("Magewell MWCapture SDK %d.%d.1.%d - ReadWriteEDID\n", byMaj, byMin, wBuild);
+	printf("Magewell MWCapture SDK %d.%d.1.%d - ReadWriteEDID\n", byMaj,
+	       byMin, wBuild);
 	printf("All Devices are supported.\n");
 	printf("Usage:\n");
 	printf("<EDID file full path> : \"X:\\X\\XX.bin\"\n");
@@ -124,7 +125,7 @@ void Initialize()
 {
 	hChannel = NULL;
 	nProDevChannel = NULL;
-	nChannelCount=0;
+	nChannelCount = 0;
 
 	MWCaptureInitInstance();
 }
@@ -132,45 +133,40 @@ void Initialize()
 //test the permission of write file at the specified path
 BOOL WriteFilePermissionTest()
 {
-	FILE* pFile = NULL;
+	FILE *pFile = NULL;
 	char path[256];
 	WCHAR *wPath = NULL;
 	BOOL bRet = FALSE;
-	bRet = GetPath(path,256);
-	if(bRet!=TRUE)
+	bRet = GetPath(path, 256);
+	if (bRet != TRUE)
 		return FALSE;
 	_mkdir(path);
 
 	sprintf_s(path, "%s\\temp.bin", path);
 	wPath = AnsiToUnicode(path);
 	errno_t errNum = _tfopen_s(&pFile, wPath, _T("wb"));
-	if (NULL == pFile)
-	{
-		if (errNum == 13){
-			char szError[256]={0};
+	if (NULL == pFile) {
+		if (errNum == 13) {
+			char szError[256] = {0};
 			size_t tSZ = 256;
-			strerror_s(szError,tSZ,errNum);
+			strerror_s(szError, tSZ, errNum);
 			printf("\nError: %s\n", szError);
 		}
 
 		printf("Please restart the application with administrator permission.\n");
 
-		if(wPath != NULL)
-		{
+		if (wPath != NULL) {
 			delete[] wPath;
 			wPath = NULL;
 		}
 
 		return FALSE;
-	}
-	else
-	{
+	} else {
 		fclose(pFile);
 		pFile = NULL;
 		remove(path);
 
-		if(wPath != NULL)
-		{
+		if (wPath != NULL) {
 			delete[] wPath;
 			wPath = NULL;
 		}
@@ -183,25 +179,22 @@ BOOL WriteFilePermissionTest()
 bool ConfigValidChannel()
 {
 	nChannelCount = MWGetChannelCount();
-	if (nChannelCount == 0) 
-	{
+	if (nChannelCount == 0) {
 		printf("ERROR: Can't find channels!\n");
 		return false;
 	}
 	nProDevChannel = new int[nChannelCount];
 	memset(nProDevChannel, -1, nChannelCount * sizeof(int));
 
-	for (int i = 0; i < nChannelCount; i++)
-	{
+	for (int i = 0; i < nChannelCount; i++) {
 		MWCAP_CHANNEL_INFO info;
 		MW_RESULT mr = MWGetChannelInfoByIndex(i, &info);
-		if (mr == MW_SUCCEEDED)
-		{
+		if (mr == MW_SUCCEEDED) {
 			nProDevChannel[i] = i;
 		}
 	}
 
-	if(nChannelCount < 2)
+	if (nChannelCount < 2)
 		printf("Find %d channel.\n", nChannelCount);
 	else
 		printf("Find %d channels.\n", nChannelCount);
@@ -210,17 +203,16 @@ bool ConfigValidChannel()
 }
 
 //open channel by default(open the 0 channel) or use command parameter to open the specified channel
-BOOL OpenChannel(int argc, char* argv[])
+BOOL OpenChannel(int argc, char *argv[])
 {
-	int t_n_dev_index=-1;
-	for(int i=0;i<nChannelCount;i++){
-		if(nProDevChannel[i]!=-1){
-			t_n_dev_index=i;
+	int t_n_dev_index = -1;
+	for (int i = 0; i < nChannelCount; i++) {
+		if (nProDevChannel[i] != -1) {
+			t_n_dev_index = i;
 			break;
 		}
 	}
-	if(t_n_dev_index == -1)
-	{
+	if (t_n_dev_index == -1) {
 		printf("ERROR: Can't find any device!\n");
 		return FALSE;
 	}
@@ -231,51 +223,43 @@ BOOL OpenChannel(int argc, char* argv[])
 	int nDevIndex = -1;
 	BOOL bIndex = FALSE;
 
-	MWCAP_CHANNEL_INFO videoInfo = { 0 };
-	if (argc == 1) 
-	{
+	MWCAP_CHANNEL_INFO videoInfo = {0};
+	if (argc == 1) {
 		bIndex = TRUE;
 		nDevIndex = t_n_dev_index;
-	}
-	else 
-	{
+	} else {
 		WCHAR *Argv1 = AnsiToUnicode(argv[1]);
 
-		if (NULL == _tcsstr(Argv1, _T(":")))
-		{
+		if (NULL == _tcsstr(Argv1, _T(":"))) {
 			bIndex = TRUE;
 
-			if (wcslen((const wchar_t*)Argv1) > 2)
+			if (wcslen((const wchar_t *)Argv1) > 2)
 				nDevIndex = -1;
-			else if (wcslen((const wchar_t*)Argv1) == 2)
-			{
-				if ((Argv1[0] >= '0' && Argv1[0] <= '9') && (Argv1[1] >= '0' && Argv1[1] <= '9'))
+			else if (wcslen((const wchar_t *)Argv1) == 2) {
+				if ((Argv1[0] >= '0' && Argv1[0] <= '9') &&
+				    (Argv1[1] >= '0' && Argv1[1] <= '9'))
 					nDevIndex = _tstoi(Argv1);
 				else
 					nDevIndex = -1;
-			}
-			else if (wcslen((const wchar_t*)Argv1) == 1)
-				nDevIndex = (Argv1[0] >= '0' && Argv1[0] <= '9') ? _tstoi(Argv1) : -1;
+			} else if (wcslen((const wchar_t *)Argv1) == 1)
+				nDevIndex = (Argv1[0] >= '0' && Argv1[0] <= '9')
+						    ? _tstoi(Argv1)
+						    : -1;
 
-			if (nDevIndex < 0 || nDevIndex >= MWGetChannelCount())
-			{
+			if (nDevIndex < 0 || nDevIndex >= MWGetChannelCount()) {
 				printf("\nERROR: Invalid params!\n");
 
-				if(Argv1 != NULL)
-				{
+				if (Argv1 != NULL) {
 					delete[] Argv1;
 					Argv1 = NULL;
 				}
 
 				return FALSE;
 			}
-		}
-		else
-		{
+		} else {
 			bIndex = FALSE;
 
-			if (wcslen((const wchar_t*)Argv1) == 3)
-			{
+			if (wcslen((const wchar_t *)Argv1) == 3) {
 				if (Argv1[0] >= '0' && Argv1[0] <= '9')
 					byBoardId = Argv1[0] - '0';
 				else if (Argv1[0] >= 'a' && Argv1[0] <= 'f')
@@ -289,19 +273,15 @@ BOOL OpenChannel(int argc, char* argv[])
 					byChannelId = _tstoi(&Argv1[2]);
 				else
 					byChannelId = -1;
-			}
-			else
-			{
+			} else {
 				byBoardId = -1;
 				byChannelId = -1;
 			}
 
-			if (-1 == byBoardId || -1 == byChannelId)
-			{
+			if (-1 == byBoardId || -1 == byChannelId) {
 				printf("\nERROR: Invalid params!\n");
 
-				if(Argv1 != NULL)
-				{
+				if (Argv1 != NULL) {
 					delete[] Argv1;
 					Argv1 = NULL;
 				}
@@ -310,15 +290,13 @@ BOOL OpenChannel(int argc, char* argv[])
 			}
 		}
 
-		if(Argv1 != NULL)
-		{
+		if (Argv1 != NULL) {
 			delete[] Argv1;
 			Argv1 = NULL;
 		}
 	}
 
-	if (bIndex == TRUE)
-	{
+	if (bIndex == TRUE) {
 		WCHAR path[128] = {0};
 		MWGetDevicePath(nProDevChannel[nDevIndex], path);
 		hChannel = MWOpenChannelByPath(path);
@@ -326,42 +304,39 @@ BOOL OpenChannel(int argc, char* argv[])
 			printf("ERROR: Open channel %d error!\n", nDevIndex);
 			return FALSE;
 		}
-	}
-	else
-	{
+	} else {
 		hChannel = MWOpenChannel(byBoardId, byChannelId);
 		if (hChannel == NULL) {
-			printf("ERROR: Open channel %X:%d error!\n", byBoardId, byChannelId);
+			printf("ERROR: Open channel %X:%d error!\n", byBoardId,
+			       byChannelId);
 			return FALSE;
 		}
 	}
 
-	if (MW_SUCCEEDED != MWGetChannelInfo(hChannel, &videoInfo)) 
-	{
+	if (MW_SUCCEEDED != MWGetChannelInfo(hChannel, &videoInfo)) {
 		printf("ERROR: Can't get channel info!\n");
 		return FALSE;
 	}
 
-	printf("Open channel - BoardIndex = %X, ChannelIndex = %d.\n", videoInfo.byBoardIndex, videoInfo.byChannelIndex);
+	printf("Open channel - BoardIndex = %X, ChannelIndex = %d.\n",
+	       videoInfo.byBoardIndex, videoInfo.byChannelIndex);
 	printf("Product Name: %s\n", videoInfo.szProductName);
 	printf("Board SerialNo: %s\n\n", videoInfo.szBoardSerialNo);
 
 	return TRUE;
 }
 
-void ReadWriteEDID(int argc, char* argv[])
+void ReadWriteEDID(int argc, char *argv[])
 {
 	BOOL bWriteMode = FALSE;
-	if (argc == 3) 
-	{
+	if (argc == 3) {
 		WCHAR *Argv2 = AnsiToUnicode(argv[2]);
 
-		if (0 != (_taccess(Argv2, 4)) || FALSE == Getfilesuffix(Argv2)) 
-		{
+		if (0 != (_taccess(Argv2, 4)) ||
+		    FALSE == Getfilesuffix(Argv2)) {
 			printf("ERROR: unknown EDID file!\n");
 
-			if(Argv2 != NULL)
-			{
+			if (Argv2 != NULL) {
 				delete[] Argv2;
 				Argv2 = NULL;
 			}
@@ -371,14 +346,12 @@ void ReadWriteEDID(int argc, char* argv[])
 
 		bWriteMode = TRUE;
 
-		FILE* pFile = NULL;
+		FILE *pFile = NULL;
 		_tfopen_s(&pFile, Argv2, _T("rb"));
-		if (pFile == NULL)
-		{
+		if (pFile == NULL) {
 			FileFailed(pFile);
 
-			if(Argv2 != NULL)
-			{
+			if (Argv2 != NULL) {
 				delete[] Argv2;
 				Argv2 = NULL;
 			}
@@ -388,12 +361,10 @@ void ReadWriteEDID(int argc, char* argv[])
 
 		BYTE byData = 0;
 		int nCount = fread(&byData, 1, 1, pFile);
-		if (nCount != 1 || byData != 0x00)
-		{
+		if (nCount != 1 || byData != 0x00) {
 			FileFailed(pFile);
 
-			if(Argv2 != NULL)
-			{
+			if (Argv2 != NULL) {
 				delete[] Argv2;
 				Argv2 = NULL;
 			}
@@ -401,15 +372,12 @@ void ReadWriteEDID(int argc, char* argv[])
 			return;
 		}
 
-		for (int i = 0; i < 6; i++)
-		{
+		for (int i = 0; i < 6; i++) {
 			nCount = fread(&byData, 1, 1, pFile);
-			if (nCount != 1 || byData != 0xff)
-			{
+			if (nCount != 1 || byData != 0xff) {
 				FileFailed(pFile);
 
-				if(Argv2 != NULL)
-				{
+				if (Argv2 != NULL) {
 					delete[] Argv2;
 					Argv2 = NULL;
 				}
@@ -419,24 +387,21 @@ void ReadWriteEDID(int argc, char* argv[])
 		}
 
 		nCount = fread(&byData, 1, 1, pFile);
-		if (nCount != 1 || byData != 0x00)
-		{
+		if (nCount != 1 || byData != 0x00) {
 			FileFailed(pFile);
 
-			if(Argv2 != NULL)
-			{
+			if (Argv2 != NULL) {
 				delete[] Argv2;
 				Argv2 = NULL;
 			}
 
 			return;
 		}
-		
+
 		fclose(pFile);
 		pFile = NULL;
 
-		if(Argv2 != NULL)
-		{
+		if (Argv2 != NULL) {
 			delete[] Argv2;
 			Argv2 = NULL;
 		}
@@ -444,66 +409,55 @@ void ReadWriteEDID(int argc, char* argv[])
 
 	DWORD dwVideoSource = 0;
 	DWORD dwAudioSource = 0;
-	if (MW_SUCCEEDED != MWGetVideoInputSource(hChannel, &dwVideoSource)) 
-	{
+	if (MW_SUCCEEDED != MWGetVideoInputSource(hChannel, &dwVideoSource)) {
 		printf("ERROR: Can't get video input source!\n");
 		return;
 	}
-	if (MW_SUCCEEDED != MWGetAudioInputSource(hChannel, &dwAudioSource)) 
-	{
+	if (MW_SUCCEEDED != MWGetAudioInputSource(hChannel, &dwAudioSource)) {
 		printf("ERROR: Can't get audio input source!\n");
 		return;
 	}
-	if (INPUT_TYPE(dwVideoSource) != MWCAP_VIDEO_INPUT_TYPE_HDMI || INPUT_TYPE(dwAudioSource) != MWCAP_AUDIO_INPUT_TYPE_HDMI) {
+	if (INPUT_TYPE(dwVideoSource) != MWCAP_VIDEO_INPUT_TYPE_HDMI ||
+	    INPUT_TYPE(dwAudioSource) != MWCAP_AUDIO_INPUT_TYPE_HDMI) {
 		printf("Type of input source is not HDMI !\n");
 		return;
 	}
 
 	MW_RESULT xr;
 
-	if (bWriteMode) 
-	{
+	if (bWriteMode) {
 		WCHAR *Argv2 = AnsiToUnicode(argv[2]);
-		FILE * pFile = NULL;
+		FILE *pFile = NULL;
 		_tfopen_s(&pFile, Argv2, _T("rb"));
-		if (pFile != NULL) 
-		{
+		if (pFile != NULL) {
 			BYTE byData[1024];
 			int nSize = (int)fread(byData, 1, 1024, pFile);
-				
+
 			xr = MWSetEDID(hChannel, byData, nSize);
-			if (xr == MW_SUCCEEDED) 
-			{
+			if (xr == MW_SUCCEEDED) {
 				printf("Set EDID succeeded!\n");
-			}
-			else 
-			{
+			} else {
 				printf("ERROR: Set EDID!\n");
 			}
 
 			fclose(pFile);
 			pFile = NULL;
-		}
-		else 
-		{
+		} else {
 			printf("ERROR: Read EDID file!\n");
 			printf("Please restart the application with administrator permission.\n");
 		}
 
-		if(Argv2 != NULL)
-		{
+		if (Argv2 != NULL) {
 			delete[] Argv2;
 			Argv2 = NULL;
 		}
-	}
-	else 
-	{
-		FILE * pFile = NULL;
+	} else {
+		FILE *pFile = NULL;
 		char path[256];
 		WCHAR *wPath = NULL;
 		BOOL bRet = FALSE;
-		bRet = GetPath(path,256);
-		if(bRet!=TRUE){
+		bRet = GetPath(path, 256);
+		if (bRet != TRUE) {
 			printf("\nCan't get the save path.\n");
 			return;
 		}
@@ -515,57 +469,49 @@ void ReadWriteEDID(int argc, char* argv[])
 		printf("\nThe file is saved in %s.\n\n", path);
 
 		_tfopen_s(&pFile, wPath, _T("wb"));
-		if (pFile != NULL) 
-		{
+		if (pFile != NULL) {
 			ULONG ulSize = 256;
 			BYTE byData[256];
 			xr = MWGetEDID(hChannel, byData, &ulSize);
 			if (xr == MW_SUCCEEDED) {
-				int nWriteSize = (int)fwrite(byData, 1, 256, pFile);
-				if (nWriteSize == ulSize) 
-				{
+				int nWriteSize =
+					(int)fwrite(byData, 1, 256, pFile);
+				if (nWriteSize == ulSize) {
 					printf("Write EDID to ReadWriteEDID.bin OK!\n");
-				}
-				else 
-				{
+				} else {
 					printf("ERROR: Write ReadWriteEDID.bin!\n");
 				}
-			}
-			else 
-			{
+			} else {
 				printf("ERROR: Get EDID Info!\n");
 			}
 
 			fclose(pFile);
 			pFile = NULL;
-		}
-		else 
-		{
+		} else {
 			printf("ERROR: Open ReadWriteEDID.bin!\n");
 			printf("Please restart the application with administrator permission.\n");
 		}
 
-		if(wPath != NULL)
-		{
+		if (wPath != NULL) {
 			delete[] wPath;
 			wPath = NULL;
 		}
 	}
 }
 
-BOOL Getfilesuffix(const TCHAR* pFilePath)
+BOOL Getfilesuffix(const TCHAR *pFilePath)
 {
-	wstring str((const wchar_t*)pFilePath);
+	wstring str((const wchar_t *)pFilePath);
 	str = str.substr(str.find_last_of('\\') + 1);
 	str = str.substr(str.find_first_of('.') + 1);
-	
+
 	if (0 != _wcsicmp(L"BIN", str.c_str()))
 		return FALSE;
 
 	return TRUE;
 }
 
-void FileFailed(FILE* pFile)
+void FileFailed(FILE *pFile)
 {
 	fclose(pFile);
 	pFile = NULL;
@@ -578,22 +524,23 @@ void FileFailed(FILE* pFile)
 //stop capture and free memory.
 void CloseDevice()
 {
-	if (hChannel != NULL){
+	if (hChannel != NULL) {
 		MWCloseChannel(hChannel);
-		hChannel=NULL;
+		hChannel = NULL;
 	}
-	if (nProDevChannel != NULL){
+	if (nProDevChannel != NULL) {
 		delete[] nProDevChannel;
-		nProDevChannel=NULL;
+		nProDevChannel = NULL;
 	}
 
 	MWCaptureExitInstance();
 }
 
-void ExitProgram(){
-	if (nProDevChannel != NULL){
+void ExitProgram()
+{
+	if (nProDevChannel != NULL) {
 		delete[] nProDevChannel;
-		nProDevChannel=NULL;
+		nProDevChannel = NULL;
 	}
 
 	fflush(stdin);
@@ -602,77 +549,77 @@ void ExitProgram(){
 }
 
 //A2W
-inline wchar_t* AnsiToUnicode( const char* szStr )
+inline wchar_t *AnsiToUnicode(const char *szStr)
 {
-	int nLen = MultiByteToWideChar( CP_ACP, MB_PRECOMPOSED, szStr, -1, NULL, 0 );
-	if (nLen == 0)
-	{
-	   return NULL;
+	int nLen =
+		MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, szStr, -1, NULL, 0);
+	if (nLen == 0) {
+		return NULL;
 	}
-	wchar_t* pResult = new wchar_t[nLen];
-	MultiByteToWideChar( CP_ACP, MB_PRECOMPOSED, szStr, -1, pResult, nLen );
+	wchar_t *pResult = new wchar_t[nLen];
+	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, szStr, -1, pResult, nLen);
 	return pResult;
 }
- 
+
 // W2A
-inline char* UnicodeToAnsi( const wchar_t* szStr )
+inline char *UnicodeToAnsi(const wchar_t *szStr)
 {
-	int nLen = WideCharToMultiByte( CP_ACP, 0, szStr, -1, NULL, 0, NULL, NULL );
-	if (nLen == 0)
-	{
-	   return NULL;
+	int nLen =
+		WideCharToMultiByte(CP_ACP, 0, szStr, -1, NULL, 0, NULL, NULL);
+	if (nLen == 0) {
+		return NULL;
 	}
-	char* pResult = new char[nLen];
-	WideCharToMultiByte( CP_ACP, 0, szStr, -1, pResult, nLen, NULL, NULL );
+	char *pResult = new char[nLen];
+	WideCharToMultiByte(CP_ACP, 0, szStr, -1, pResult, nLen, NULL, NULL);
 	return pResult;
 }
 
-void CreateDumpFile(LPCWSTR lpstrDumpFilePathName, EXCEPTION_POINTERS *pException)  
-{  
-	HANDLE hDumpFile = CreateFile(lpstrDumpFilePathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);  
+void CreateDumpFile(LPCWSTR lpstrDumpFilePathName,
+		    EXCEPTION_POINTERS *pException)
+{
+	HANDLE hDumpFile = CreateFile(lpstrDumpFilePathName, GENERIC_WRITE, 0,
+				      NULL, CREATE_ALWAYS,
+				      FILE_ATTRIBUTE_NORMAL, NULL);
 
-	MINIDUMP_EXCEPTION_INFORMATION dumpInfo;  
-	dumpInfo.ExceptionPointers = pException;  
-	dumpInfo.ThreadId = GetCurrentThreadId();  
-	dumpInfo.ClientPointers = TRUE;  
+	MINIDUMP_EXCEPTION_INFORMATION dumpInfo;
+	dumpInfo.ExceptionPointers = pException;
+	dumpInfo.ThreadId = GetCurrentThreadId();
+	dumpInfo.ClientPointers = TRUE;
 
-	MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hDumpFile, MiniDumpNormal, &dumpInfo, NULL, NULL);  
-	CloseHandle(hDumpFile);  
+	MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hDumpFile,
+			  MiniDumpNormal, &dumpInfo, NULL, NULL);
+	CloseHandle(hDumpFile);
 }
 
-
-LONG ApplicationCrashHandler(EXCEPTION_POINTERS *pException)  
-{     
-	CreateDumpFile(L"ReadWriteEDID.dmp",pException);  
-	return EXCEPTION_EXECUTE_HANDLER;  
+LONG ApplicationCrashHandler(EXCEPTION_POINTERS *pException)
+{
+	CreateDumpFile(L"ReadWriteEDID.dmp", pException);
+	return EXCEPTION_EXECUTE_HANDLER;
 }
 
-BOOL 
-	GetPath(char* szPath,int nSize)
+BOOL GetPath(char *szPath, int nSize)
 {
 	char szTmp[256];
-	char* pszTmp = NULL;
+	char *pszTmp = NULL;
 	size_t tSZ = 0;
-	if(_dupenv_s(&pszTmp,&tSZ,"HOMEDRIVE")==0&&
-		pszTmp!=NULL){
-			strcpy_s(szTmp,pszTmp);
-			free(pszTmp);
-			pszTmp = NULL;
-	}else
+	if (_dupenv_s(&pszTmp, &tSZ, "HOMEDRIVE") == 0 && pszTmp != NULL) {
+		strcpy_s(szTmp, pszTmp);
+		free(pszTmp);
+		pszTmp = NULL;
+	} else
 		return FALSE;
 
-	if(_dupenv_s(&pszTmp,&tSZ,"HOMEPATH")==0&&
-		pszTmp!=NULL){
-			strcat_s(szTmp,pszTmp);
-			free(pszTmp);
-			pszTmp = NULL;
-	}else
+	if (_dupenv_s(&pszTmp, &tSZ, "HOMEPATH") == 0 && pszTmp != NULL) {
+		strcat_s(szTmp, pszTmp);
+		free(pszTmp);
+		pszTmp = NULL;
+	} else
 		return FALSE;
 
-	strcat_s(szTmp,"\\Magewell");
-	if(nSize<256)
+	strcat_s(szTmp, "\\Magewell");
+	if (nSize < 256)
 		return FALSE;
-	memcpy(szPath,szTmp,256);
+	memcpy(szPath, szTmp, 256);
 
 	return TRUE;
 }

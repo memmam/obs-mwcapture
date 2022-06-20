@@ -14,11 +14,9 @@
 
 // Misc helper functions
 
-HINSTANCE	GetInstance();
-HBITMAP		SetBitmapImg(HINSTANCE hinst, WORD nID, HWND hwnd);
-void        ShowLastError(HWND hwnd);
-
-
+HINSTANCE GetInstance();
+HBITMAP SetBitmapImg(HINSTANCE hinst, WORD nID, HWND hwnd);
+void ShowLastError(HWND hwnd);
 
 /******************************************************************************
  *
@@ -41,137 +39,129 @@ void        ShowLastError(HWND hwnd);
  *
  *****************************************************************************/
 
-class CBaseDialog
-{
+class CBaseDialog {
 
 private:
-	LONG		m_NcTop;
-	LONG		m_NcBottom;
-	LONG		m_NcWidth;
-	void		CalcNcSize();
+	LONG m_NcTop;
+	LONG m_NcBottom;
+	LONG m_NcWidth;
+	void CalcNcSize();
 
 protected:
-    HINSTANCE   m_hinst;    // application instance
-    HWND        m_hwnd;     // parent window - can be NULL
-    HWND        m_hDlg;     // this dialog window
-    int         m_nID;      // Resource ID of the dialog window 
-                            // (Set this in the constructor)
+	HINSTANCE m_hinst; // application instance
+	HWND m_hwnd;       // parent window - can be NULL
+	HWND m_hDlg;       // this dialog window
+	int m_nID;         // Resource ID of the dialog window
+			   // (Set this in the constructor)
 
 protected:
+	// Dialog proc for the dialog we manage
+	static INT_PTR CALLBACK DialogProc(HWND hDlg, UINT msg, WPARAM wParam,
+					   LPARAM lParam);
 
-    // Dialog proc for the dialog we manage
-    static INT_PTR CALLBACK DialogProc(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam);
-    
-    // Return one of our dialog controls
+	// Return one of our dialog controls
 	HWND GetDlgItem(int nID) { return ::GetDlgItem(m_hDlg, nID); }
 
-    void EnableWindow(int nID, BOOL bEnable)
-    {
-        HWND hControl = GetDlgItem(nID);
-        assert(hControl != NULL);
+	void EnableWindow(int nID, BOOL bEnable)
+	{
+		HWND hControl = GetDlgItem(nID);
+		assert(hControl != NULL);
 
-        if (!bEnable &&  hControl == GetFocus())
-        {
-            // If we're being disabled and this control has focus,
-            // set the focus to the next control.
+		if (!bEnable && hControl == GetFocus()) {
+			// If we're being disabled and this control has focus,
+			// set the focus to the next control.
 
-            ::SendMessage(m_hDlg, WM_NEXTDLGCTL, 0, FALSE);
-        }
+			::SendMessage(m_hDlg, WM_NEXTDLGCTL, 0, FALSE);
+		}
 
-        ::EnableWindow(hControl, bEnable);
-    }
+		::EnableWindow(hControl, bEnable);
+	}
 
-    // Associate a Control object with a control window.
-    void SetControlWindow(Control& control, int nID);
+	// Associate a Control object with a control window.
+	void SetControlWindow(Control &control, int nID);
 
-    // Redraw a control
+	// Redraw a control
 	void RedrawControl(int nID);
 
+	// some wrappers for Win32 functions
+	void EnableMenuItem(int nID, BOOL bEnable)
+	{
+		::EnableMenuItem(GetMenu(m_hDlg), nID,
+				 (bEnable ? MF_ENABLED : MF_GRAYED));
+	}
 
-    // some wrappers for Win32 functions
-    void EnableMenuItem(int nID, BOOL bEnable)
-    {
-        ::EnableMenuItem(GetMenu(m_hDlg), nID, (bEnable ? MF_ENABLED : MF_GRAYED));
-    }
+	BOOL SetDlgItemText(int nIDDlgItem, LPCTSTR lpString)
+	{
+		return ::SetDlgItemText(m_hDlg, nIDDlgItem, lpString);
+	}
 
+	UINT GetDlgItemText(int nIDDlgItem, LPTSTR lpString, int nMaxCount)
+	{
+		return ::GetDlgItemText(m_hDlg, nIDDlgItem, lpString,
+					nMaxCount);
+	}
 
-    BOOL SetDlgItemText(int nIDDlgItem, LPCTSTR lpString)
-    {
-        return ::SetDlgItemText(m_hDlg, nIDDlgItem, lpString);
-    }
+	BOOL SetDlgItemInt(int nIDDlgItem, UINT uValue, BOOL bSigned)
+	{
+		return ::SetDlgItemInt(m_hDlg, nIDDlgItem, uValue, bSigned);
+	}
 
-    UINT GetDlgItemText(int nIDDlgItem, LPTSTR lpString, int nMaxCount)
-    {
-        return ::GetDlgItemText(m_hDlg,  nIDDlgItem, lpString, nMaxCount);
-    }
+	UINT GetDlgItemInt(int nIDDlgItem, BOOL *lpTranslated, BOOL bSigned)
+	{
+		return ::GetDlgItemInt(m_hDlg, nIDDlgItem, lpTranslated,
+				       bSigned);
+	}
 
-    BOOL SetDlgItemInt(int nIDDlgItem, UINT uValue, BOOL bSigned)
-    {
-        return ::SetDlgItemInt(m_hDlg, nIDDlgItem, uValue, bSigned);
-    }
+	BOOL CheckDlgButton(int nIDButton, UINT uCheck)
+	{
+		return ::CheckDlgButton(m_hDlg, nIDButton, uCheck);
+	}
 
-    UINT GetDlgItemInt(int nIDDlgItem, BOOL *lpTranslated, BOOL bSigned)
-    {
-        return ::GetDlgItemInt(m_hDlg, nIDDlgItem, lpTranslated, bSigned);
-    }
+	UINT IsDlgButtonChecked(int nIDButton)
+	{
+		return ::IsDlgButtonChecked(m_hDlg, nIDButton);
+	}
 
-    BOOL CheckDlgButton(int nIDButton, UINT uCheck)
-    {
-        return ::CheckDlgButton(m_hDlg, nIDButton, uCheck);
-    }
+	// Override the following to handle various window messages
 
-    UINT IsDlgButtonChecked(int nIDButton)
-    {
-        return ::IsDlgButtonChecked(m_hDlg, nIDButton);
-    }
+	// WM_INIT_DIALOG
+	virtual HRESULT OnInitDialog() { return S_OK; }
 
+	// IDOK and IDCANCEL. Return TRUE to close the dialog or FALSE to leave it open
+	virtual BOOL OnOK() { return TRUE; }
+	virtual BOOL OnCancel() { return TRUE; }
 
-    // Override the following to handle various window messages
+	// WM_COMMAND (except IDOK and IDCANCEL)
+	virtual INT_PTR OnCommand(HWND /*hControl*/, WORD /*idControl*/,
+				  WORD /*msg*/)
+	{
+		return 0;
+	}
 
-    // WM_INIT_DIALOG
-    virtual HRESULT OnInitDialog() { return S_OK; }   
+	// WM_NOTIFY
+	virtual INT_PTR OnNotify(NMHDR * /*pNotifyHeader*/) { return 0; }
 
-    // IDOK and IDCANCEL. Return TRUE to close the dialog or FALSE to leave it open
-    virtual BOOL OnOK() { return TRUE; }
-    virtual BOOL OnCancel() { return TRUE; }
-
-    // WM_COMMAND (except IDOK and IDCANCEL)
-    virtual INT_PTR OnCommand(HWND /*hControl*/, WORD /*idControl*/, WORD /*msg*/)
-    {
-        return 0;
-    }
-
-    // WM_NOTIFY
-    virtual INT_PTR OnNotify(NMHDR * /*pNotifyHeader*/)
-    {
-        return 0;
-    }
-
-    // All other window messages
-    virtual INT_PTR OnReceiveMsg(UINT /*msg*/, WPARAM /*wParam*/, LPARAM /*lParam*/)
-    {
-        return FALSE;
-    }
+	// All other window messages
+	virtual INT_PTR OnReceiveMsg(UINT /*msg*/, WPARAM /*wParam*/,
+				     LPARAM /*lParam*/)
+	{
+		return FALSE;
+	}
 
 	virtual void EndDialog(INT_PTR cmd)
 	{
-		if (m_hDlg)
-		{
+		if (m_hDlg) {
 			::EndDialog(m_hDlg, cmd);
 		}
 	}
 
 public:
-    CBaseDialog(int nID);
-    virtual ~CBaseDialog();
+	CBaseDialog(int nID);
+	virtual ~CBaseDialog();
 
-    virtual BOOL ShowDialog(HINSTANCE hinst, HWND hwnd);
+	virtual BOOL ShowDialog(HINSTANCE hinst, HWND hwnd);
 
 	LONG NonClientTop() const { return m_NcTop; }
 	LONG NonClientBottom() const { return m_NcBottom; }
 	LONG NonClientWidth() const { return m_NcWidth; }
 };
-
-
-
-

@@ -47,19 +47,19 @@
 typedef uint32_t AVCRC;
 
 typedef enum {
-    AV_CRC_8_ATM,
-    AV_CRC_16_ANSI,
-    AV_CRC_16_CCITT,
-    AV_CRC_32_IEEE,
-    AV_CRC_32_IEEE_LE,  /*< reversed bitorder version of AV_CRC_32_IEEE */
-    AV_CRC_16_ANSI_LE,  /*< reversed bitorder version of AV_CRC_16_ANSI */
+	AV_CRC_8_ATM,
+	AV_CRC_16_ANSI,
+	AV_CRC_16_CCITT,
+	AV_CRC_32_IEEE,
+	AV_CRC_32_IEEE_LE, /*< reversed bitorder version of AV_CRC_32_IEEE */
+	AV_CRC_16_ANSI_LE, /*< reversed bitorder version of AV_CRC_16_ANSI */
 #if FF_API_CRC_BIG_TABLE
-    AV_CRC_24_IEEE = 12,
+	AV_CRC_24_IEEE = 12,
 #else
-    AV_CRC_24_IEEE,
-#endif /* FF_API_CRC_BIG_TABLE */
-    AV_CRC_MAX,         /*< Not part of public API! Do not use outside libavutil. */
-}AVCRCId;
+	AV_CRC_24_IEEE,
+#endif              /* FF_API_CRC_BIG_TABLE */
+	AV_CRC_MAX, /*< Not part of public API! Do not use outside libavutil. */
+} AVCRCId;
 
 /**
  * Initialize a CRC table.
@@ -93,8 +93,8 @@ const AVCRC *av_crc_get_table(AVCRCId crc_id);
  *
  * @see av_crc_init() "le" parameter
  */
-uint32_t av_crc(const AVCRC *ctx, uint32_t crc,
-                const uint8_t *buffer, size_t length) av_pure;
+uint32_t av_crc(const AVCRC *ctx, uint32_t crc, const uint8_t *buffer,
+		size_t length) av_pure;
 
 /**
  * @}

@@ -18,7 +18,7 @@
 	VOS_DOS_WINDOWS32
 	VOS_NT_WINDOWS32
 */
-#define VER_FILE_OS			VOS_NT_WINDOWS32
+#define VER_FILE_OS VOS_NT_WINDOWS32
 
 /*	
 	VFT_UNKNOWN
@@ -29,8 +29,8 @@
 	VFT_VXD
 	VFT_STATIC_LIB
 */
-#define VER_FILE_TYPE		VFT_APP
+#define VER_FILE_TYPE VFT_APP
 
-#define FILE_DESCRIPTION	"Magewell MWCapture Application\0"
-#define ORIGINAL_FILENAME	"NvidiaCodec.exe\0"
-#define INTERNAL_NAME		ORIGINAL_FILENAME
+#define FILE_DESCRIPTION "Magewell MWCapture Application\0"
+#define ORIGINAL_FILENAME "NvidiaCodec.exe\0"
+#define INTERNAL_NAME ORIGINAL_FILENAME

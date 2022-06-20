@@ -29,8 +29,7 @@
 	Currently this class only allows to have a logarithmic axis with a
 	base of 10. 
 **/
-class CChartLogarithmicAxis : public CChartAxis
-{
+class CChartLogarithmicAxis : public CChartAxis {
 	friend CChartCtrl;
 
 private:
@@ -43,7 +42,7 @@ private:
 	void PanAxis(long PanStart, long PanEnd);
 
 	double GetFirstTickValue() const;
-	bool GetNextTickValue(double dCurrentTick, double& dNextTick) const;
+	bool GetNextTickValue(double dCurrentTick, double &dNextTick) const;
 	TChartString GetTickLabel(double TickValue) const;
 	long ValueToScreenStandard(double Value) const;
 	long ValueToScreenDiscrete(double Value) const;
@@ -52,11 +51,12 @@ private:
 	void RefreshTickIncrement();
 	void RefreshFirstTick();
 
-	void GetScrollbarSteps(int& iTotalSteps, int& iCurrentStep);
-	void SetAxisToScrollStep(int iPreviousStep, int iCurrentStep, bool bScrollInverted);
+	void GetScrollbarSteps(int &iTotalSteps, int &iCurrentStep);
+	void SetAxisToScrollStep(int iPreviousStep, int iCurrentStep,
+				 bool bScrollInverted);
 
 	//! Caches the value of the first tick.
 	double m_dFirstTickValue;
 };
 
-#endif  // _CHARTLOGARITHMICAXIS_H_
+#endif // _CHARTLOGARITHMICAXIS_H_

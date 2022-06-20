@@ -17,31 +17,31 @@
 
 // D3D10/CUDA interop (CUDA 3.0+)
 #if __CUDA_API_VERSION >= 3020
-tcuD3D10GetDevice                     *cuD3D10GetDevice;
-tcuD3D10CtxCreate                     *cuD3D10CtxCreate;
-tcuGraphicsD3D10RegisterResource      *cuGraphicsD3D10RegisterResource;
+tcuD3D10GetDevice *cuD3D10GetDevice;
+tcuD3D10CtxCreate *cuD3D10CtxCreate;
+tcuGraphicsD3D10RegisterResource *cuGraphicsD3D10RegisterResource;
 #endif
 
-tcuD3D10RegisterResource              *cuD3D10RegisterResource;
-tcuD3D10UnregisterResource            *cuD3D10UnregisterResource;
-tcuD3D10MapResources                  *cuD3D10MapResources;
-tcuD3D10UnmapResources                *cuD3D10UnmapResources;
-tcuD3D10ResourceSetMapFlags           *cuD3D10ResourceSetMapFlags;
-tcuD3D10ResourceGetMappedArray        *cuD3D10ResourceGetMappedArray;
+tcuD3D10RegisterResource *cuD3D10RegisterResource;
+tcuD3D10UnregisterResource *cuD3D10UnregisterResource;
+tcuD3D10MapResources *cuD3D10MapResources;
+tcuD3D10UnmapResources *cuD3D10UnmapResources;
+tcuD3D10ResourceSetMapFlags *cuD3D10ResourceSetMapFlags;
+tcuD3D10ResourceGetMappedArray *cuD3D10ResourceGetMappedArray;
 
 #if __CUDA_API_VERSION >= 3020
-tcuD3D10ResourceGetMappedPointer      *cuD3D10ResourceGetMappedPointer;
-tcuD3D10ResourceGetMappedSize         *cuD3D10ResourceGetMappedSize;
-tcuD3D10ResourceGetMappedPitch        *cuD3D10ResourceGetMappedPitch;
-tcuD3D10ResourceGetSurfaceDimensions  *cuD3D10ResourceGetSurfaceDimensions;
+tcuD3D10ResourceGetMappedPointer *cuD3D10ResourceGetMappedPointer;
+tcuD3D10ResourceGetMappedSize *cuD3D10ResourceGetMappedSize;
+tcuD3D10ResourceGetMappedPitch *cuD3D10ResourceGetMappedPitch;
+tcuD3D10ResourceGetSurfaceDimensions *cuD3D10ResourceGetSurfaceDimensions;
 #endif /* __CUDA_API_VERSION >= 3020 */
 
 #if defined(__CUDA_API_VERSION_INTERNAL) || __CUDA_API_VERSION < 3020
-tcuD3D10CtxCreate                     *cuD3D10CtxCreate;
-tcuD3D10ResourceGetMappedPitch        *cuD3D10ResourceGetMappedPitch;
-tcuD3D10ResourceGetMappedPointer      *cuD3D10ResourceGetMappedPointer;
-tcuD3D10ResourceGetMappedSize         *cuD3D10ResourceGetMappedSize;
-tcuD3D10ResourceGetSurfaceDimensions  *cuD3D10ResourceGetSurfaceDimensions;
+tcuD3D10CtxCreate *cuD3D10CtxCreate;
+tcuD3D10ResourceGetMappedPitch *cuD3D10ResourceGetMappedPitch;
+tcuD3D10ResourceGetMappedPointer *cuD3D10ResourceGetMappedPointer;
+tcuD3D10ResourceGetMappedSize *cuD3D10ResourceGetMappedSize;
+tcuD3D10ResourceGetSurfaceDimensions *cuD3D10ResourceGetSurfaceDimensions;
 #endif /* __CUDA_API_VERSION_INTERNAL || __CUDA_API_VERSION < 3020 */
 
 #define STRINGIFY(X) #X
@@ -57,21 +57,21 @@ static LPCWSTR __CudaLibName = L"nvcuda.dll";
 static LPCSTR __CudaLibName = "nvcuda.dll";
 #endif
 
-#define GET_PROC_EX(name, alias, required)                     \
-    alias = (t##name *)GetProcAddress(CudaDrvLib, #name);               \
-    if (alias == NULL && required) {                                    \
-        printf("Failed to find required function \"%s\" in %s\n",       \
-               #name, __CudaLibName);                                  \
-        return CUDA_ERROR_UNKNOWN;                                      \
-    }
+#define GET_PROC_EX(name, alias, required)                                \
+	alias = (t##name *)GetProcAddress(CudaDrvLib, #name);             \
+	if (alias == NULL && required) {                                  \
+		printf("Failed to find required function \"%s\" in %s\n", \
+		       #name, __CudaLibName);                             \
+		return CUDA_ERROR_UNKNOWN;                                \
+	}
 
-#define GET_PROC_EX_V2(name, alias, required)                           \
-    alias = (t##name *)GetProcAddress(CudaDrvLib, STRINGIFY(name##_v2));\
-    if (alias == NULL && required) {                                    \
-        printf("Failed to find required function \"%s\" in %s\n",       \
-               STRINGIFY(name##_v2), __CudaLibName);                       \
-        return CUDA_ERROR_UNKNOWN;                                      \
-    }
+#define GET_PROC_EX_V2(name, alias, required)                                \
+	alias = (t##name *)GetProcAddress(CudaDrvLib, STRINGIFY(name##_v2)); \
+	if (alias == NULL && required) {                                     \
+		printf("Failed to find required function \"%s\" in %s\n",    \
+		       STRINGIFY(name##_v2), __CudaLibName);                 \
+		return CUDA_ERROR_UNKNOWN;                                   \
+	}
 
 #elif defined(__unix__) || defined(__APPLE__) || defined(__MACOSX)
 
@@ -85,46 +85,47 @@ static char __CudaLibName[] = "/usr/local/cuda/lib/libcuda.dylib";
 static char __CudaLibName[] = "libcuda.so";
 #endif
 
-#define GET_PROC_EX(name, alias, required)                              \
-    alias = (t##name *)dlsym(CudaDrvLib, #name);                        \
-    if (alias == NULL && required) {                                    \
-        printf("Failed to find required function \"%s\" in %s\n",       \
-               #name, __CudaLibName);                                  \
-        return CUDA_ERROR_UNKNOWN;                                      \
-    }
+#define GET_PROC_EX(name, alias, required)                                \
+	alias = (t##name *)dlsym(CudaDrvLib, #name);                      \
+	if (alias == NULL && required) {                                  \
+		printf("Failed to find required function \"%s\" in %s\n", \
+		       #name, __CudaLibName);                             \
+		return CUDA_ERROR_UNKNOWN;                                \
+	}
 
-#define GET_PROC_EX_V2(name, alias, required)                           \
-    alias = (t##name *)dlsym(CudaDrvLib, STRINGIFY(name##_v2));         \
-    if (alias == NULL && required) {                                    \
-        printf("Failed to find required function \"%s\" in %s\n",       \
-               STRINGIFY(name##_v2), __CudaLibName);                    \
-        return CUDA_ERROR_UNKNOWN;                                      \
-    }
+#define GET_PROC_EX_V2(name, alias, required)                             \
+	alias = (t##name *)dlsym(CudaDrvLib, STRINGIFY(name##_v2));       \
+	if (alias == NULL && required) {                                  \
+		printf("Failed to find required function \"%s\" in %s\n", \
+		       STRINGIFY(name##_v2), __CudaLibName);              \
+		return CUDA_ERROR_UNKNOWN;                                \
+	}
 
 #else
 #error unsupported platform
 #endif
 
-#define CHECKED_CALL(call)              \
-    do {                                \
-        CUresult result = (call);       \
-        if (CUDA_SUCCESS != result) {   \
-            return result;              \
-        }                               \
-    } while(0)
+#define CHECKED_CALL(call)                    \
+	do {                                  \
+		CUresult result = (call);     \
+		if (CUDA_SUCCESS != result) { \
+			return result;        \
+		}                             \
+	} while (0)
 
-#define GET_PROC_REQUIRED(name) GET_PROC_EX(name,name,1)
-#define GET_PROC_OPTIONAL(name) GET_PROC_EX(name,name,0)
-#define GET_PROC(name)          GET_PROC_REQUIRED(name)
-#define GET_PROC_V2(name)       GET_PROC_EX_V2(name,name,1)
+#define GET_PROC_REQUIRED(name) GET_PROC_EX(name, name, 1)
+#define GET_PROC_OPTIONAL(name) GET_PROC_EX(name, name, 0)
+#define GET_PROC(name) GET_PROC_REQUIRED(name)
+#define GET_PROC_V2(name) GET_PROC_EX_V2(name, name, 1)
 
 // Prior to calling cuInitD3D10, CudaDrvLib must be loaded, and cuInit must be called
-CUresult CUDAAPI cuInitD3D10(unsigned int Flags, int cudaVersion, CUDADRIVER &CudaDrvLib)
+CUresult CUDAAPI cuInitD3D10(unsigned int Flags, int cudaVersion,
+			     CUDADRIVER &CudaDrvLib)
 {
-    // fetch all function pointers
-    GET_PROC(cuD3D10GetDevice);
-    GET_PROC(cuD3D10CtxCreate);
-    GET_PROC(cuGraphicsD3D10RegisterResource);
+	// fetch all function pointers
+	GET_PROC(cuD3D10GetDevice);
+	GET_PROC(cuD3D10CtxCreate);
+	GET_PROC(cuGraphicsD3D10RegisterResource);
 
-    return CUDA_SUCCESS;
+	return CUDA_SUCCESS;
 }

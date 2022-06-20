@@ -36,15 +36,14 @@
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  *  [MW_ENCODER_CALLBACK](@ref MW_ENCODER_CALLBACK)
  */
-typedef enum mw_venc_frame_type
-{
-    MW_VENC_FRAME_TYPE_UNKNOWN,							///<Unknown frame
-    MW_VENC_FRAME_TYPE_IDR,								///<IDR frame
-    MW_VENC_FRAME_TYPE_I,								///<I-frame
-    MW_VENC_FRAME_TYPE_P,								///<P-frame
-    MW_VENC_FRAME_TYPE_B,								///<B-frame
-    MW_VENC_FRAME_TYPE_COUNT							///<Number of frame types enumerated
-}mw_venc_frame_type_t;
+typedef enum mw_venc_frame_type {
+	MW_VENC_FRAME_TYPE_UNKNOWN, ///<Unknown frame
+	MW_VENC_FRAME_TYPE_IDR,     ///<IDR frame
+	MW_VENC_FRAME_TYPE_I,       ///<I-frame
+	MW_VENC_FRAME_TYPE_P,       ///<P-frame
+	MW_VENC_FRAME_TYPE_B,       ///<B-frame
+	MW_VENC_FRAME_TYPE_COUNT    ///<Number of frame types enumerated
+} mw_venc_frame_type_t;
 
 /**
  * @ingroup group_hwe_variables_struct
@@ -56,12 +55,11 @@ typedef enum mw_venc_frame_type
  * 	[mw_venc_create](@ref mw_venc_create) \n
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  */
-typedef struct mw_venc_frame_info
-{
-    mw_venc_frame_type_t frame_type;
-    int32_t delay;
-    int64_t pts;
-}mw_venc_frame_info_t;
+typedef struct mw_venc_frame_info {
+	mw_venc_frame_type_t frame_type;
+	int32_t delay;
+	int64_t pts;
+} mw_venc_frame_info_t;
 
 /**
  * @ingroup group_hwe_functions
@@ -71,7 +69,9 @@ typedef struct mw_venc_frame_info
  * 	[mw_venc_create](@ref mw_venc_create) \n
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  */
-typedef void(*MW_ENCODER_CALLBACK)(void * user_ptr, const uint8_t * p_frame, uint32_t frame_len, mw_venc_frame_info_t *p_frame_info);
+typedef void (*MW_ENCODER_CALLBACK)(void *user_ptr, const uint8_t *p_frame,
+				    uint32_t frame_len,
+				    mw_venc_frame_info_t *p_frame_info);
 
 /**
  * @ingroup group_hwe_variables_enum
@@ -82,14 +82,17 @@ typedef void(*MW_ENCODER_CALLBACK)(void * user_ptr, const uint8_t * p_frame, uin
  * 	[mw_venc_create_ex](@ref mw_venc_create_ex) \n
  * 	[mw_venc_get_default_param](@ref mw_venc_get_default_param) \n
  */
-typedef enum mw_venc_platform
-{
-    MW_VENC_PLATFORM_UNKNOWN	=0,						///<Unknown hardware type, the binary value is 0000 0000
-    MW_VENC_PLATFORM_AMD		=1,						///<AMD graphics, the binary value is 0000 0001
-    MW_VENC_PLATFORM_INTEL		=2,						///<Intel graphics, the binary value is 0000 0010
-	MW_VENC_PLATFORM_NVIDIA		=4,						///<Nvidia graphics, the binary value is 0000 0100
-	MW_VENC_PLATFORM_COUNT								///<The maximum input value 
-}mw_venc_platform_t;
+typedef enum mw_venc_platform {
+	MW_VENC_PLATFORM_UNKNOWN =
+		0, ///<Unknown hardware type, the binary value is 0000 0000
+	MW_VENC_PLATFORM_AMD =
+		1, ///<AMD graphics, the binary value is 0000 0001
+	MW_VENC_PLATFORM_INTEL =
+		2, ///<Intel graphics, the binary value is 0000 0010
+	MW_VENC_PLATFORM_NVIDIA =
+		4, ///<Nvidia graphics, the binary value is 0000 0100
+	MW_VENC_PLATFORM_COUNT ///<The maximum input value
+} mw_venc_platform_t;
 
 /**
  * @ingroup group_hwe_variables_enum
@@ -102,15 +105,14 @@ typedef enum mw_venc_platform
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  * 	[mw_venc_get_default_param](@ref mw_venc_get_default_param) \n
  */
-typedef enum mw_venc_code_type
-{
-    MW_VENC_CODE_TYPE_UNKNOWN,							///<Unknown
-	MW_VENC_CODE_TYPE_AVC,								///<AVC/H264
-    MW_VENC_CODE_TYPE_HEVC,								///<HEVC/H265
-	MW_VENC_CODE_TYPE_H264 = MW_VENC_CODE_TYPE_AVC,		///<H264
-	MW_VENC_CODE_TYPE_H265 = MW_VENC_CODE_TYPE_HEVC,	///<H265
-	MW_VENC_CODE_TYPE_COUNT								///<The maximum input value 
-}mw_venc_code_type_t;
+typedef enum mw_venc_code_type {
+	MW_VENC_CODE_TYPE_UNKNOWN,                       ///<Unknown
+	MW_VENC_CODE_TYPE_AVC,                           ///<AVC/H264
+	MW_VENC_CODE_TYPE_HEVC,                          ///<HEVC/H265
+	MW_VENC_CODE_TYPE_H264 = MW_VENC_CODE_TYPE_AVC,  ///<H264
+	MW_VENC_CODE_TYPE_H265 = MW_VENC_CODE_TYPE_HEVC, ///<H265
+	MW_VENC_CODE_TYPE_COUNT ///<The maximum input value
+} mw_venc_code_type_t;
 
 /**
  * @ingroup group_hwe_variables_enum
@@ -123,14 +125,13 @@ typedef enum mw_venc_code_type
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  * 	[mw_venc_get_default_param](@ref mw_venc_get_default_param) \n
  */
-typedef enum mw_venc_targetusage
-{
-    MW_VENC_TARGETUSAGE_UNKNOWN,						///<Unknown
-    MW_VENC_TARGETUSAGE_BEST_QUALITY,					///<Quality first
-    MW_VENC_TARGETUSAGE_BALANCED,						///<Balance the coding quality and speed
-    MW_VENC_TARGETUSAGE_BEST_SPEED,						///<Speed first
-    MW_VENC_TARGETUSAGE_COUNT							///<The maximum input value 
-}mw_venc_targetusage_t;
+typedef enum mw_venc_targetusage {
+	MW_VENC_TARGETUSAGE_UNKNOWN,      ///<Unknown
+	MW_VENC_TARGETUSAGE_BEST_QUALITY, ///<Quality first
+	MW_VENC_TARGETUSAGE_BALANCED,   ///<Balance the coding quality and speed
+	MW_VENC_TARGETUSAGE_BEST_SPEED, ///<Speed first
+	MW_VENC_TARGETUSAGE_COUNT       ///<The maximum input value
+} mw_venc_targetusage_t;
 
 /**
  * @ingroup group_hwe_variables_enum
@@ -145,14 +146,13 @@ typedef enum mw_venc_targetusage
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  * 	[mw_venc_get_default_param](@ref mw_venc_get_default_param) \n
  */
-typedef enum mw_venc_rate_control_mode
-{
-    MW_VENC_RATECONTROL_UNKNOWN,						///<Unknown
-    MW_VENC_RATECONTROL_CBR,							///<Constant Bit Rate
-    MW_VENC_RATECONTROL_VBR,							///<Variable Bit Rate
-    MW_VENC_RATECONTROL_CQP,							///<Constant Quantization Parameter
-    MW_VENC_RATECONTROL_COUNT							///<The maximum input value 
-}mw_venc_rate_control_mode_t;
+typedef enum mw_venc_rate_control_mode {
+	MW_VENC_RATECONTROL_UNKNOWN, ///<Unknown
+	MW_VENC_RATECONTROL_CBR,     ///<Constant Bit Rate
+	MW_VENC_RATECONTROL_VBR,     ///<Variable Bit Rate
+	MW_VENC_RATECONTROL_CQP,     ///<Constant Quantization Parameter
+	MW_VENC_RATECONTROL_COUNT    ///<The maximum input value
+} mw_venc_rate_control_mode_t;
 
 /**
  * @ingroup group_hwe_variables_enum
@@ -165,15 +165,14 @@ typedef enum mw_venc_rate_control_mode
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  * 	[mw_venc_get_default_param](@ref mw_venc_get_default_param) \n
  */
-typedef enum mw_venc_profile
-{
-    MW_VENC_PROFILE_UNKNOWN,							///<Unknown
-    MW_VENC_PROFILE_H264_BASELINE,						///<H264 baseline
-    MW_VENC_PROFILE_H264_MAIN,							///<H264 main
-    MW_VENC_PROFILE_H264_HIGH,							///<H264 high
-	MW_VENC_PROFILE_H265_MAIN,							///<H265 main
-	MW_VENC_PROFILE_COUNT								///<The maximum input value 
-}mw_venc_profile_t;
+typedef enum mw_venc_profile {
+	MW_VENC_PROFILE_UNKNOWN,       ///<Unknown
+	MW_VENC_PROFILE_H264_BASELINE, ///<H264 baseline
+	MW_VENC_PROFILE_H264_MAIN,     ///<H264 main
+	MW_VENC_PROFILE_H264_HIGH,     ///<H264 high
+	MW_VENC_PROFILE_H265_MAIN,     ///<H265 main
+	MW_VENC_PROFILE_COUNT          ///<The maximum input value
+} mw_venc_profile_t;
 
 /**
  * @ingroup group_hwe_variables_enum
@@ -186,18 +185,17 @@ typedef enum mw_venc_profile
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  * 	[mw_venc_get_default_param](@ref mw_venc_get_default_param) \n
  */
-typedef enum mw_venc_level
-{
-    MW_VENC_LEVEL_UNKNOWN,								///<Unknown
-    MW_VENC_LEVEL_2_1,									///<Level 2.1
-    MW_VENC_LEVEL_3_1,									///<Level 3.1
-    MW_VENC_LEVEL_4_1,									///<Level 4.1
-	MW_VENC_LEVEL_5_1,									///<Level 5.1
-	MW_VENC_LEVEL_5_2,									///<Level 5.2
-	MW_VENC_LEVEL_6_1,									///<Level 6.1
-	MW_VENC_LEVEL_6_2,									///<Level 6.2
-	MW_VENC_LEVEL_COUNT									///<The maximum input value 
-}mw_venc_level_t;
+typedef enum mw_venc_level {
+	MW_VENC_LEVEL_UNKNOWN, ///<Unknown
+	MW_VENC_LEVEL_2_1,     ///<Level 2.1
+	MW_VENC_LEVEL_3_1,     ///<Level 3.1
+	MW_VENC_LEVEL_4_1,     ///<Level 4.1
+	MW_VENC_LEVEL_5_1,     ///<Level 5.1
+	MW_VENC_LEVEL_5_2,     ///<Level 5.2
+	MW_VENC_LEVEL_6_1,     ///<Level 6.1
+	MW_VENC_LEVEL_6_2,     ///<Level 6.2
+	MW_VENC_LEVEL_COUNT    ///<The maximum input value
+} mw_venc_level_t;
 
 /**
  * @ingroup group_hwe_variables_enum
@@ -210,21 +208,20 @@ typedef enum mw_venc_level
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  * 	[mw_venc_get_default_param](@ref mw_venc_get_default_param) \n
  */
-typedef enum mw_venc_fourcc
-{
-    MW_VENC_FOURCC_UNKNOWN,								///<Unknown
-    MW_VENC_FOURCC_NV12,								///<NV12 equals #MWFOURCC_NV12
-    MW_VENC_FOURCC_NV21,								///<NV21 equals #MWFOURCC_NV21
-    MW_VENC_FOURCC_YV12,								///<YV12 equals #MWFOURCC_YV12
-    MW_VENC_FOURCC_I420,								///<I420 equals #MWFOURCC_I420
-    MW_VENC_FOURCC_YUY2,								///<YUY2 equals #MWFOURCC_YUY2
-    MW_VENC_FOURCC_P010,								///<P010 equals #MWFOURCC_P010
-	MW_VENC_FOURCC_BGRA,								///<BGRA equals #MWFOURCC_BGRA
-	MW_VENC_FOURCC_RGBA,								///<RGBA equals #MWFOURCC_RGBA
-    MW_VENC_FOURCC_ARGB,								///<ARGB equals #MWFOURCC_ARGB
-    MW_VENC_FOURCC_ABGR,								///<ABGR equals #MWFOURCC_ABGR
-	MW_VENC_FOURCC_COUNT								///<The maximum input value 
-}mw_venc_fourcc_t;
+typedef enum mw_venc_fourcc {
+	MW_VENC_FOURCC_UNKNOWN, ///<Unknown
+	MW_VENC_FOURCC_NV12,    ///<NV12 equals #MWFOURCC_NV12
+	MW_VENC_FOURCC_NV21,    ///<NV21 equals #MWFOURCC_NV21
+	MW_VENC_FOURCC_YV12,    ///<YV12 equals #MWFOURCC_YV12
+	MW_VENC_FOURCC_I420,    ///<I420 equals #MWFOURCC_I420
+	MW_VENC_FOURCC_YUY2,    ///<YUY2 equals #MWFOURCC_YUY2
+	MW_VENC_FOURCC_P010,    ///<P010 equals #MWFOURCC_P010
+	MW_VENC_FOURCC_BGRA,    ///<BGRA equals #MWFOURCC_BGRA
+	MW_VENC_FOURCC_RGBA,    ///<RGBA equals #MWFOURCC_RGBA
+	MW_VENC_FOURCC_ARGB,    ///<ARGB equals #MWFOURCC_ARGB
+	MW_VENC_FOURCC_ABGR,    ///<ABGR equals #MWFOURCC_ABGR
+	MW_VENC_FOURCC_COUNT    ///<The maximum input value
+} mw_venc_fourcc_t;
 
 /**
  * @ingroup group_hwe_variables_struct
@@ -240,22 +237,21 @@ typedef enum mw_venc_fourcc
  *  [mw_venc_get_property](@ref mw_venc_get_property)
  *  [mw_venc_set_property](@ref mw_venc_set_property)
  */
-typedef struct mw_venc_rate_control
-{
-	mw_venc_rate_control_mode_t mode;					///<Bitrate controlling methods
-	union{
-        struct {
-            uint32_t target_bitrate;					///<Target bitrate: only valid when the bitrate is variable or constant.
-            uint32_t max_bitrate;						///<The maximun bitrate: only valid when the bitrate is variable.
-        };
+typedef struct mw_venc_rate_control {
+	mw_venc_rate_control_mode_t mode; ///<Bitrate controlling methods
+	union {
 		struct {
-		    uint8_t qpi;								///<I-Frame QP
-			uint8_t qpb;								///<B-Frame QP
-			uint8_t qpp;								///<P-Frame QP
-            uint8_t reserved;							///<Reserved      
+			uint32_t target_bitrate; ///<Target bitrate: only valid when the bitrate is variable or constant.
+			uint32_t max_bitrate; ///<The maximun bitrate: only valid when the bitrate is variable.
+		};
+		struct {
+			uint8_t qpi;      ///<I-Frame QP
+			uint8_t qpb;      ///<B-Frame QP
+			uint8_t qpp;      ///<P-Frame QP
+			uint8_t reserved; ///<Reserved
 		};
 	};
-}mw_venc_rate_control_t;
+} mw_venc_rate_control_t;
 
 /**
  * @ingroup group_hwe_variables_struct
@@ -270,10 +266,10 @@ typedef struct mw_venc_rate_control
  *  [mw_venc_get_property](@ref mw_venc_get_property)
  *  [mw_venc_set_property](@ref mw_venc_set_property)
  */
-typedef struct mw_venc_fps{
-		int32_t num;									///<Numerator of frames
-		int32_t den;									///<Denominator of frames
-}mw_venc_fps_t;
+typedef struct mw_venc_fps {
+	int32_t num; ///<Numerator of frames
+	int32_t den; ///<Denominator of frames
+} mw_venc_fps_t;
 
 /**
  * @ingroup group_hwe_variables_struct
@@ -286,10 +282,10 @@ typedef struct mw_venc_fps{
  *  [mw_venc_set_property](@ref mw_venc_set_property)
  */
 typedef struct mw_venc_extdata {
-    uint8_t *p_extdata;									///<Extended data pointer. The data includes vps(Video Parameter Set),sps(Sequence Parameter Set) and pps(Picture Parameter Set).
-    uint32_t extdata_len;								///<The total length of entended data
-    uint32_t len[3];									///<len[0] vps_len;len[1] sps_len;len[2] pps_len
-}mw_venc_extdata_t;
+	uint8_t *p_extdata; ///<Extended data pointer. The data includes vps(Video Parameter Set),sps(Sequence Parameter Set) and pps(Picture Parameter Set).
+	uint32_t extdata_len; ///<The total length of entended data
+	uint32_t len[3];      ///<len[0] vps_len;len[1] sps_len;len[2] pps_len
+} mw_venc_extdata_t;
 
 /**
  * @ingroup group_hwe_variables_enum
@@ -299,34 +295,32 @@ typedef struct mw_venc_extdata {
  *  [mw_venc_get_property](@ref mw_venc_get_property)
  *  [mw_venc_set_property](@ref mw_venc_set_property)
  */
-typedef enum mw_venc_property
-{
-    MW_VENC_PROPERTY_UNKNOWN,							///<Unknown
-	MW_VENC_PROPERTY_RATE_CONTROL,						///<Rate: #mw_venc_rate_control_t default MW_VENC_RATECONTROL_CBR 4096k
-	MW_VENC_PROPERTY_FPS,								///<Frame rate: #mw_venc_fps_t default 60/1
-	MW_VENC_PROPERTY_GOP_SIZE,							///<GOP: int32_t default 60
-	MW_VENC_PROPERTY_SLICE_NUM,							///<Number of slices: int32_t default 1
-	MW_VENC_PROPERTY_GOP_REF_SIZE,						///<GOP reference size: int32_t defalut  0, if = 1 -> no b-frame
-    MW_VENC_PROPERTY_EXTDATA,       					///<Extened data: #mw_venc_extdata_t just get vps sps pps
-    MW_VENC_PROPERTY_FORCE_IDR,     					///<Force IDR 
-	MW_VENC_PROPERTY_COUNT								///<The maximum input value 
-}mw_venc_property_t;
+typedef enum mw_venc_property {
+	MW_VENC_PROPERTY_UNKNOWN, ///<Unknown
+	MW_VENC_PROPERTY_RATE_CONTROL, ///<Rate: #mw_venc_rate_control_t default MW_VENC_RATECONTROL_CBR 4096k
+	MW_VENC_PROPERTY_FPS,       ///<Frame rate: #mw_venc_fps_t default 60/1
+	MW_VENC_PROPERTY_GOP_SIZE,  ///<GOP: int32_t default 60
+	MW_VENC_PROPERTY_SLICE_NUM, ///<Number of slices: int32_t default 1
+	MW_VENC_PROPERTY_GOP_REF_SIZE, ///<GOP reference size: int32_t defalut  0, if = 1 -> no b-frame
+	MW_VENC_PROPERTY_EXTDATA, ///<Extened data: #mw_venc_extdata_t just get vps sps pps
+	MW_VENC_PROPERTY_FORCE_IDR, ///<Force IDR
+	MW_VENC_PROPERTY_COUNT      ///<The maximum input value
+} mw_venc_property_t;
 
 /**
  * @ingroup group_hwe_variables_enum
  * @brief mw_venc_status_t
  * @details Return status of coding APIs
  */
-typedef enum mw_venc_status
-{
-	MW_VENC_STATUS_SUCCESS,								///<Success
-	MW_VENC_STATUS_FAIL,								///<Fail
-	MW_VENC_STATUS_UNSUPPORT,							///<Not supported
-    MW_VENC_STATUS_BUSY,								///<Busy
-	MW_VENC_STATUS_INVALID_PARAM,						///<Invalid parameter
-	MW_VENC_STATUS_UNKNOWN_ERROR,						///<Unknown error
-	MW_VENC_STATUS_COUNT								///<The maximum input value 
-}mw_venc_status_t;
+typedef enum mw_venc_status {
+	MW_VENC_STATUS_SUCCESS,       ///<Success
+	MW_VENC_STATUS_FAIL,          ///<Fail
+	MW_VENC_STATUS_UNSUPPORT,     ///<Not supported
+	MW_VENC_STATUS_BUSY,          ///<Busy
+	MW_VENC_STATUS_INVALID_PARAM, ///<Invalid parameter
+	MW_VENC_STATUS_UNKNOWN_ERROR, ///<Unknown error
+	MW_VENC_STATUS_COUNT          ///<The maximum input value
+} mw_venc_status_t;
 
 /**
  * @ingroup group_hwe_variables_enum
@@ -337,14 +331,14 @@ typedef enum mw_venc_status
  *  [mw_venc_create_ex](@ref mw_venc_create_ex) \n
  */
 typedef enum mw_venc_amd_mem_type {
-	MW_VENC_AMD_MEM_AUTO,								///<Uses memory determined by system
-	MW_VENC_AMD_MEM_CPU,								///<Uses memory
-	MW_VENC_AMD_MEM_DX9,								///<Uses DX9
-	MW_VENC_AMD_MEM_DX11,								///<Uses DX11
-	MW_VENC_AMD_MEM_OPENGL,								///<Uses OpenGL
-    MW_VENC_AMD_MEM_VULKAN,								///<Uses Vulkan
-	MW_VENC_AMD_MEM_COUNT								///<The maximum input value 
-}mw_venc_amd_mem_type_t;
+	MW_VENC_AMD_MEM_AUTO,   ///<Uses memory determined by system
+	MW_VENC_AMD_MEM_CPU,    ///<Uses memory
+	MW_VENC_AMD_MEM_DX9,    ///<Uses DX9
+	MW_VENC_AMD_MEM_DX11,   ///<Uses DX11
+	MW_VENC_AMD_MEM_OPENGL, ///<Uses OpenGL
+	MW_VENC_AMD_MEM_VULKAN, ///<Uses Vulkan
+	MW_VENC_AMD_MEM_COUNT   ///<The maximum input value
+} mw_venc_amd_mem_type_t;
 
 /**
  * @ingroup group_hwe_variables_struct
@@ -365,21 +359,22 @@ typedef enum mw_venc_amd_mem_type {
  * 	[mw_venc_get_default_param](@ref mw_venc_get_default_param) \n
  */
 typedef struct mw_venc_param {
-	mw_venc_code_type_t code_type;						///<Code type, H264 or H265 
-	mw_venc_fourcc_t fourcc;							///<Color format of input data 
-	mw_venc_targetusage_t targetusage;					///<Preset
-	mw_venc_rate_control_t rate_control;				///<Frame control 
-	int32_t width;										///<width of input video
-	int32_t height;										///<Height of input video
-	mw_venc_fps_t fps;									///<Frame rate 
-	int32_t slice_num;									///<Slice number 
-	int32_t gop_pic_size;								///<GOP size
-	int32_t gop_ref_size;								///<Referenced GOP size 
-	mw_venc_profile_t profile;							///<Profile
-	mw_venc_level_t level;								///<Level
-    int32_t intel_async_depth;
-	mw_venc_amd_mem_type_t amd_mem_reserved;			///<AMD storage type, which are valid only if you are using AMD to encode. 
-}mw_venc_param_t;
+	mw_venc_code_type_t code_type;       ///<Code type, H264 or H265
+	mw_venc_fourcc_t fourcc;             ///<Color format of input data
+	mw_venc_targetusage_t targetusage;   ///<Preset
+	mw_venc_rate_control_t rate_control; ///<Frame control
+	int32_t width;                       ///<width of input video
+	int32_t height;                      ///<Height of input video
+	mw_venc_fps_t fps;                   ///<Frame rate
+	int32_t slice_num;                   ///<Slice number
+	int32_t gop_pic_size;                ///<GOP size
+	int32_t gop_ref_size;                ///<Referenced GOP size
+	mw_venc_profile_t profile;           ///<Profile
+	mw_venc_level_t level;               ///<Level
+	int32_t intel_async_depth;
+	mw_venc_amd_mem_type_t
+		amd_mem_reserved; ///<AMD storage type, which are valid only if you are using AMD to encode.
+} mw_venc_param_t;
 
 /**
  * @ingroup group_hwe_variables_struct
@@ -392,8 +387,8 @@ typedef struct mw_venc_param {
  *  [mw_venc_create_by_index](@ref mw_venc_create_by_index) \n
  */
 typedef struct mw_venc_gpu_info {
-	char gpu_name[128];									///<gpu name
-	mw_venc_platform_t platform;						///<gpu platform
-}mw_venc_gpu_info_t;
+	char gpu_name[128];          ///<gpu name
+	mw_venc_platform_t platform; ///<gpu platform
+} mw_venc_gpu_info_t;
 
 #endif

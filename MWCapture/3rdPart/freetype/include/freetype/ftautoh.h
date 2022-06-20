@@ -15,7 +15,6 @@
 /*                                                                         */
 /***************************************************************************/
 
-
 #ifndef FTAUTOH_H_
 #define FTAUTOH_H_
 
@@ -28,11 +27,9 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
-
 FT_BEGIN_HEADER
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @section:
    *   auto_hinter
@@ -54,8 +51,7 @@ FT_BEGIN_HEADER
    *
    */
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @property:
    *   glyph-to-script-map
@@ -108,8 +104,7 @@ FT_BEGIN_HEADER
    *
    */
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @enum:
    *   FT_AUTOHINTER_SCRIPT_XXX
@@ -228,13 +223,12 @@ FT_BEGIN_HEADER
    *     zone support.
    *
    */
-#define FT_AUTOHINTER_SCRIPT_NONE   0
-#define FT_AUTOHINTER_SCRIPT_LATIN  1
-#define FT_AUTOHINTER_SCRIPT_CJK    2
-#define FT_AUTOHINTER_SCRIPT_INDIC  3
+#define FT_AUTOHINTER_SCRIPT_NONE 0
+#define FT_AUTOHINTER_SCRIPT_LATIN 1
+#define FT_AUTOHINTER_SCRIPT_CJK 2
+#define FT_AUTOHINTER_SCRIPT_INDIC 3
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @struct:
    *   FT_Prop_GlyphToScriptMap
@@ -245,15 +239,13 @@ FT_BEGIN_HEADER
    *   The data exchange structure for the @glyph-to-script-map property.
    *
    */
-  typedef struct  FT_Prop_GlyphToScriptMap_
-  {
-    FT_Face     face;
-    FT_UShort*  map;
+typedef struct FT_Prop_GlyphToScriptMap_ {
+	FT_Face face;
+	FT_UShort *map;
 
-  } FT_Prop_GlyphToScriptMap;
+} FT_Prop_GlyphToScriptMap;
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @property:
    *   fallback-script
@@ -291,8 +283,7 @@ FT_BEGIN_HEADER
    *
    */
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @property:
    *   default-script
@@ -336,8 +327,7 @@ FT_BEGIN_HEADER
    *
    */
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @property:
    *   increase-x-height
@@ -374,8 +364,7 @@ FT_BEGIN_HEADER
    *
    */
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @struct:
    *   FT_Prop_IncreaseXHeight
@@ -384,15 +373,13 @@ FT_BEGIN_HEADER
    *   The data exchange structure for the @increase-x-height property.
    *
    */
-  typedef struct  FT_Prop_IncreaseXHeight_
-  {
-    FT_Face  face;
-    FT_UInt  limit;
+typedef struct FT_Prop_IncreaseXHeight_ {
+	FT_Face face;
+	FT_UInt limit;
 
-  } FT_Prop_IncreaseXHeight;
+} FT_Prop_IncreaseXHeight;
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @property:
    *   warping
@@ -441,8 +428,7 @@ FT_BEGIN_HEADER
    *
    */
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @property:
    *   no-stem-darkening[autofit]
@@ -481,8 +467,7 @@ FT_BEGIN_HEADER
    *
    */
 
-
-  /**************************************************************************
+/**************************************************************************
    *
    * @property:
    *   darkening-parameters[autofit]
@@ -499,13 +484,10 @@ FT_BEGIN_HEADER
    *   variable similar to the CFF driver.
    */
 
-
-  /* */
-
+/* */
 
 FT_END_HEADER
 
 #endif /* FTAUTOH_H_ */
-
 
 /* END */

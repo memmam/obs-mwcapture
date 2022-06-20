@@ -38,9 +38,7 @@
 	<li>double GetY()</li>
 	<li>double GetYMax()</li></ul>
 **/
-template <class T>
-class CChartPointsArray
-{
+template<class T> class CChartPointsArray {
 public:
 	//! Constructor
 	/**
@@ -52,16 +50,16 @@ public:
 	~CChartPointsArray();
 
 	//! Returns the number of points currently stored.
-	unsigned GetPointsCount() const   { return m_iCurrentPoints; }
+	unsigned GetPointsCount() const { return m_iCurrentPoints; }
 	//! Sets the size by which the internal buffer is increased when reallocation occurs
-	void SetResize(int iResize)  { m_iResize = iResize; }
+	void SetResize(int iResize) { m_iResize = iResize; }
 
 	//! Adds a new point in the array.
 	/**
 		@param newPoint
 			The new point to add
 	**/
-	void AddPoint(const T& newPoint);
+	void AddPoint(const T &newPoint);
 	//! Adds multiple points in the array.
 	/**
 		The points are added to the ones currently stored in the array.
@@ -70,7 +68,7 @@ public:
 		@param uCount
 			The number of points to add
 	**/
-	void AddPoints(T* pPoints, unsigned uCount);
+	void AddPoints(T *pPoints, unsigned uCount);
 	//! Sets multiple points in the array.
 	/**
 		The points currently stored in the array are first removed
@@ -80,7 +78,7 @@ public:
 		@param uCount
 			The number of points to add
 	**/
-	void SetPoints(T* pPoints, unsigned uCount);
+	void SetPoints(T *pPoints, unsigned uCount);
 	//! Removes all the points from the array.
 	void Clear();
 	//! Removes a certain amount of points from the begining of the series.
@@ -88,14 +86,14 @@ public:
 	//! Removes a certain amount of points from the end of the series.
 	void RemovePointsFromEnd(unsigned Count);
 	//! Retrieves the points at the specified index
-	T& operator[](unsigned Index);
+	T &operator[](unsigned Index);
 	//! Retrieves the points at the specified index
-	const T& operator[](unsigned Index) const;
+	const T &operator[](unsigned Index) const;
 
 	//! Retrieves the minimum and maximum X values of the points stored in the array.
-	bool GetSerieXMinMax(double& Min, double& Max)  const;
+	bool GetSerieXMinMax(double &Min, double &Max) const;
 	//! Retrieves the minimum and maximum Y values of the points stored in the array.
-	bool GetSerieYMinMax(double& Min, double& Max)  const;
+	bool GetSerieYMinMax(double &Min, double &Max) const;
 
 	//! Specifies how the points should be ordered in the array.
 	/**
@@ -107,7 +105,7 @@ public:
 	**/
 	void SetOrdering(PointsOrdering newOrdering);
 	//! Retrieves the ordering of the points in the array.
-	PointsOrdering GetOrdering() const  { return m_Ordering; } 
+	PointsOrdering GetOrdering() const { return m_Ordering; }
 	//! Refreshes the point ordering.
 	void ReorderPoints();
 
@@ -125,12 +123,11 @@ public:
 			This parameter will store the index of the last visible point
 		@return false if no points are in the array. 
 	**/
-	bool GetVisiblePoints(double dAxisMin, double dAxisMax, 
-						  unsigned& uFirstPt, unsigned& uLastPt) const;
-	
+	bool GetVisiblePoints(double dAxisMin, double dAxisMax,
+			      unsigned &uFirstPt, unsigned &uLastPt) const;
 
 	//! Returns the internal buffer of the array
-	T* GetInternalBuffer() const	{ return m_pPoints; }
+	T *GetInternalBuffer() const { return m_pPoints; }
 
 private:
 	//! Caches the minimum X value.
@@ -145,21 +142,21 @@ private:
 	//! Recalculates the min and max values.
 	void RefreshMinMax();
 	//! Inserts a new point in the array.
-	void InsertNewPoint(const T& newPoint);
+	void InsertNewPoint(const T &newPoint);
 	//! Inserts a new point at a specific position in the array.
-	void InsertPointAtPos(const T& newPoint, int iPos);
+	void InsertPointAtPos(const T &newPoint, int iPos);
 	//! Comparison function which compares two points based on their X values.
-	static int ComparePointsOnX(void const* pA, void const* pB);
+	static int ComparePointsOnX(void const *pA, void const *pB);
 	//! Comparison function which compares two points based on their Y values.
-	static int ComparePointsOnY(void const* pA, void const* pB);
+	static int ComparePointsOnY(void const *pA, void const *pB);
 	//! Implements a binary search used to find the index of a points give the X or Y value.
 	int BinarySearch(unsigned uLeft, unsigned uRight, double dFind) const;
 
 	//! The array of points
-	T* m_pPoints;
-	//! The number of allocated points 
+	T *m_pPoints;
+	//! The number of allocated points
 	unsigned m_iMaxPoints;
-	//! The number of points currently used 
+	//! The number of points currently used
 	unsigned m_iCurrentPoints;
 	//! The size by which the array is incremented once it is full
 	unsigned m_iResize;

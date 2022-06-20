@@ -15,7 +15,6 @@
 /*                                                                         */
 /***************************************************************************/
 
-
 #ifndef FTLZW_H_
 #define FTLZW_H_
 
@@ -28,26 +27,25 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
-
 FT_BEGIN_HEADER
 
-  /*************************************************************************/
-  /*                                                                       */
-  /* <Section>                                                             */
-  /*    lzw                                                                */
-  /*                                                                       */
-  /* <Title>                                                               */
-  /*    LZW Streams                                                        */
-  /*                                                                       */
-  /* <Abstract>                                                            */
-  /*    Using LZW-compressed font files.                                   */
-  /*                                                                       */
-  /* <Description>                                                         */
-  /*    This section contains the declaration of LZW-specific functions.   */
-  /*                                                                       */
-  /*************************************************************************/
+/*************************************************************************/
+/*                                                                       */
+/* <Section>                                                             */
+/*    lzw                                                                */
+/*                                                                       */
+/* <Title>                                                               */
+/*    LZW Streams                                                        */
+/*                                                                       */
+/* <Abstract>                                                            */
+/*    Using LZW-compressed font files.                                   */
+/*                                                                       */
+/* <Description>                                                         */
+/*    This section contains the declaration of LZW-specific functions.   */
+/*                                                                       */
+/*************************************************************************/
 
- /************************************************************************
+/************************************************************************
   *
   * @function:
   *   FT_Stream_OpenLZW
@@ -84,16 +82,13 @@ FT_BEGIN_HEADER
   *   This function may return `FT_Err_Unimplemented_Feature' if your build
   *   of FreeType was not compiled with LZW support.
   */
-  FT_EXPORT( FT_Error )
-  FT_Stream_OpenLZW( FT_Stream  stream,
-                     FT_Stream  source );
+FT_EXPORT(FT_Error)
+FT_Stream_OpenLZW(FT_Stream stream, FT_Stream source);
 
-  /* */
-
+/* */
 
 FT_END_HEADER
 
 #endif /* FTLZW_H_ */
-
 
 /* END */

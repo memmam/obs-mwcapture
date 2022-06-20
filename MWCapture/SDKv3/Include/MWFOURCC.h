@@ -1,16 +1,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 // CONFIDENTIAL and PROPRIETARY software of Magewell Electronics Co., Ltd.
-// Copyright (c) 2011-2020 Magewell Electronics Co., Ltd. (Nanjing) 
+// Copyright (c) 2011-2020 Magewell Electronics Co., Ltd. (Nanjing)
 // All rights reserved.
 // This copyright notice MUST be reproduced on all authorized copies.
 ////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
-#ifndef MWFOURCC    
-#define MWFOURCC(ch0, ch1, ch2, ch3)											\
-        ((DWORD)(BYTE)(ch0) | ((DWORD)(BYTE)(ch1) << 8) |							\
-        ((DWORD)(BYTE)(ch2) << 16) | ((DWORD)(BYTE)(ch3) << 24))
+#ifndef MWFOURCC
+#define MWFOURCC(ch0, ch1, ch2, ch3)                      \
+	((DWORD)(BYTE)(ch0) | ((DWORD)(BYTE)(ch1) << 8) | \
+	 ((DWORD)(BYTE)(ch2) << 16) | ((DWORD)(BYTE)(ch3) << 24))
 #endif
 
 /**
@@ -18,7 +18,7 @@
  * @brief Unknown color formate
  * @details Unknown color formate\n
 */
-#define MWFOURCC_UNK		MWFOURCC('U', 'N', 'K', 'N')
+#define MWFOURCC_UNK MWFOURCC('U', 'N', 'K', 'N')
 
 /**
  * @ingroup group_fourcc
@@ -29,7 +29,7 @@
  * 			   [Y0], [Y1], [Y2], ...\n
  *             ...\n
 */
-#define MWFOURCC_GREY		MWFOURCC('G', 'R', 'E', 'Y')					
+#define MWFOURCC_GREY MWFOURCC('G', 'R', 'E', 'Y')
 
 /**
  * @ingroup group_fourcc
@@ -40,7 +40,7 @@
  * 			   [Y0], [Y1], [Y2], ...\n
  *             ...\n
 */
-#define MWFOURCC_Y800		MWFOURCC('Y', '8', '0', '0')
+#define MWFOURCC_Y800 MWFOURCC('Y', '8', '0', '0')
 
 /**
  * @ingroup group_fourcc
@@ -51,7 +51,7 @@
  * 			   [Y0], [Y1], [Y2], ...\n
  *             ...\n
 */
-#define MWFOURCC_Y8			MWFOURCC('Y', '8', ' ', ' ')
+#define MWFOURCC_Y8 MWFOURCC('Y', '8', ' ', ' ')
 
 /**
  * @ingroup group_fourcc
@@ -62,7 +62,7 @@
  * 			   [Y0], [Y1], [Y2], ...\n
  *             ...\n
 */
-#define MWFOURCC_Y16		MWFOURCC('Y', '1', '6', ' ')
+#define MWFOURCC_Y16 MWFOURCC('Y', '1', '6', ' ')
 
 /**
  * @ingroup group_fourcc
@@ -73,7 +73,7 @@
  * 			   [R5, G5, B5, A1], ...\n
  * 			   ...\n
 */
-#define MWFOURCC_RGB15		MWFOURCC('R', 'G', 'B', '5')
+#define MWFOURCC_RGB15 MWFOURCC('R', 'G', 'B', '5')
 
 /**
  * @ingroup group_fourcc
@@ -84,7 +84,7 @@
  * 			   [R5, G6, B5],[R5, G6, B5] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_RGB16		MWFOURCC('R', 'G', 'B', '6')
+#define MWFOURCC_RGB16 MWFOURCC('R', 'G', 'B', '6')
 
 /**
  * @ingroup group_fourcc
@@ -95,7 +95,7 @@
  * 			   [R8, G8, B8],[R8, G8, B8] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_RGB24		MWFOURCC('R', 'G', 'B', ' ')					
+#define MWFOURCC_RGB24 MWFOURCC('R', 'G', 'B', ' ')
 
 /**
  * @ingroup group_fourcc
@@ -106,7 +106,7 @@
  * 			   [R8, G8, B8, A8],[R8, G8, B8, A8] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_RGBA		MWFOURCC('R', 'G', 'B', 'A')
+#define MWFOURCC_RGBA MWFOURCC('R', 'G', 'B', 'A')
 
 /**
  * @ingroup group_fourcc
@@ -117,7 +117,7 @@
  * 			   [A8, R8, G8, B8],[A8, R8, G8, B8] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_ARGB		MWFOURCC('A', 'R', 'G', 'B')
+#define MWFOURCC_ARGB MWFOURCC('A', 'R', 'G', 'B')
 
 /**
  * @ingroup group_fourcc
@@ -128,7 +128,7 @@
  * 			   [B5, G5, R5, A1],[B5, G5, R5, A1] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_BGR15		MWFOURCC('B', 'G', 'R', '5')
+#define MWFOURCC_BGR15 MWFOURCC('B', 'G', 'R', '5')
 
 /**
  * @ingroup group_fourcc
@@ -139,7 +139,7 @@
  * 			   [B5, G6, R5],[B5, G6, R5] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_BGR16		MWFOURCC('B', 'G', 'R', '6')
+#define MWFOURCC_BGR16 MWFOURCC('B', 'G', 'R', '6')
 
 /**
  * @ingroup group_fourcc
@@ -150,7 +150,7 @@
  * 			   [B8, G8, R8],[B8, G8, R8] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_BGR24		MWFOURCC('B', 'G', 'R', ' ')
+#define MWFOURCC_BGR24 MWFOURCC('B', 'G', 'R', ' ')
 
 /**
  * @ingroup group_fourcc
@@ -161,7 +161,7 @@
  * 			   [B8, G8, R8, A8],[B8, G8, R8, A8] ...\n
  *             ...\n
 */
-#define MWFOURCC_BGRA		MWFOURCC('B', 'G', 'R', 'A')
+#define MWFOURCC_BGRA MWFOURCC('B', 'G', 'R', 'A')
 
 /**
  * @ingroup group_fourcc
@@ -172,7 +172,7 @@
  * 			   [A8, B8, G8, R8],[A8, B8, G8, R8] ...\n
  *             ...\n
 */
-#define MWFOURCC_ABGR		MWFOURCC('A', 'B', 'G', 'R')
+#define MWFOURCC_ABGR MWFOURCC('A', 'B', 'G', 'R')
 
 /**
  * @ingroup group_fourcc
@@ -194,7 +194,7 @@
  * 			   [Y00 U00 V00][Y01 U00 V00][Y02 U01 V01][Y03 U01 V01] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_NV16		MWFOURCC('N', 'V', '1', '6')
+#define MWFOURCC_NV16 MWFOURCC('N', 'V', '1', '6')
 
 /**
  * @ingroup group_fourcc
@@ -216,7 +216,7 @@
  * 			   [Y00 U00 V00][Y01 U00 V00][Y02 U01 V01][Y03 U01 V01] ...\n
  * 	           ...\n
 */
-#define MWFOURCC_NV61		MWFOURCC('N', 'V', '6', '1')
+#define MWFOURCC_NV61 MWFOURCC('N', 'V', '6', '1')
 
 /**
  * @ingroup group_fourcc
@@ -243,7 +243,7 @@
  * 			   [Y00 U00 V00][Y01 U00 V00][Y02 U01 V01][Y03 U01 V01] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_I422		MWFOURCC('I', '4', '2', '2')
+#define MWFOURCC_I422 MWFOURCC('I', '4', '2', '2')
 
 /**
  * @ingroup group_fourcc
@@ -270,8 +270,7 @@
  * 			   [Y00 U00 V00][Y01 U00 V00][Y02 U01 V01][Y03 U01 V01] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_YV16		MWFOURCC('Y', 'V', '1', '6')
-
+#define MWFOURCC_YV16 MWFOURCC('Y', 'V', '1', '6')
 
 /**
  * @ingroup group_fourcc
@@ -285,7 +284,7 @@
  * 			   [Y00 U00 V01][Y01 U00 V01][Y02 U02 V03][Y03 U02 V03] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_YUY2       MWFOURCC('Y', 'U', 'Y', '2')
+#define MWFOURCC_YUY2 MWFOURCC('Y', 'U', 'Y', '2')
 
 /**
  * @ingroup group_fourcc
@@ -299,7 +298,7 @@
  * 			   [Y00 U00 V01][Y01 U00 V01][Y02 U02 V03][Y03 U02 V03] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_YUYV       MWFOURCC('Y', 'U', 'Y', 'V')
+#define MWFOURCC_YUYV MWFOURCC('Y', 'U', 'Y', 'V')
 
 /**
  * @ingroup group_fourcc
@@ -313,7 +312,7 @@
  * 			   [Y00 U00 V01][Y01 U00 V01][Y02 U02 V03][Y03 U02 V03] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_UYVY       MWFOURCC('U', 'Y', 'V', 'Y')
+#define MWFOURCC_UYVY MWFOURCC('U', 'Y', 'V', 'Y')
 
 /**
  * @ingroup group_fourcc
@@ -327,7 +326,7 @@
  * 			   [Y00 U01 V00][Y01 U01 V00][Y02 U03 V02][Y03 U03 V02] ...\n
  *             ...\n
 */
-#define MWFOURCC_YVYU       MWFOURCC('Y', 'V', 'Y', 'U')
+#define MWFOURCC_YVYU MWFOURCC('Y', 'V', 'Y', 'U')
 
 /**
  * @ingroup group_fourcc
@@ -341,7 +340,7 @@
  * 			   [Y00 U01 V00][Y01 U01 V00][Y02 U03 V02][Y03 U03 V02] ...\n
  *  		   ...\n
 */
-#define MWFOURCC_VYUY       MWFOURCC('V', 'Y', 'U', 'Y')
+#define MWFOURCC_VYUY MWFOURCC('V', 'Y', 'U', 'Y')
 
 /**
  * @ingroup group_fourcc
@@ -367,7 +366,7 @@
  * 			   [Y30 U10 V10][Y31 U10 V10][Y32 U11 V11][Y33 U11 V11] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_I420       MWFOURCC('I', '4', '2', '0')
+#define MWFOURCC_I420 MWFOURCC('I', '4', '2', '0')
 
 /**
  * @ingroup group_fourcc
@@ -393,7 +392,7 @@
  * 			   [Y30 U10 V10][Y31 U10 V10][Y32 U11 V11][Y33 U11 V11] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_IYUV       MWFOURCC('I', 'Y', 'U', 'V')
+#define MWFOURCC_IYUV MWFOURCC('I', 'Y', 'U', 'V')
 
 /**
  * @ingroup group_fourcc
@@ -417,7 +416,7 @@
  * 			   [Y30 U10 V10][Y31 U10 V10][Y32 U11 V11][Y33 U11 V11] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_NV12       MWFOURCC('N', 'V', '1', '2')
+#define MWFOURCC_NV12 MWFOURCC('N', 'V', '1', '2')
 
 /**
  * @ingroup group_fourcc
@@ -443,7 +442,7 @@
  * 			   [Y30 U10 V10][Y31 U10 V10][Y32 U11 V11][Y33 U11 V11] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_YV12       MWFOURCC('Y', 'V', '1', '2')
+#define MWFOURCC_YV12 MWFOURCC('Y', 'V', '1', '2')
 
 /**
  * @ingroup group_fourcc
@@ -467,7 +466,7 @@
  * 			   [Y30 U10 V10][Y31 U10 V10][Y32 U11 V11][Y33 U11 V11] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_NV21       MWFOURCC('N', 'V', '2', '1')
+#define MWFOURCC_NV21 MWFOURCC('N', 'V', '2', '1')
 
 /**
  * @ingroup group_fourcc
@@ -491,7 +490,7 @@
  * 			   [Y30(Y10bits) U10(U10bits) V10(V10bits)][Y31(Y10bits) U10(U10bits) V10(V10bits)][Y32(Y10bits) U11(U10bits) V11(V10bits)][Y33(Y10bits) U11(U10bits) V11(V10bits)] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_P010		MWFOURCC('P', '0', '1', '0')
+#define MWFOURCC_P010 MWFOURCC('P', '0', '1', '0')
 
 /**
  * @ingroup group_fourcc
@@ -517,7 +516,7 @@
  * 			   [Y30(Y10bits) U30(U10bits) V30(V10bits)][Y31(Y10bits) U30(U10bits) V30(V10bits)][Y32(Y10bits) U31(U10bits) V31(V10bits)][Y33(Y10bits) U31(U10bits) V31(V10bits)] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_P210		MWFOURCC('P', '2', '1', '0')
+#define MWFOURCC_P210 MWFOURCC('P', '2', '1', '0')
 
 /**
  * @ingroup group_fourcc
@@ -531,7 +530,7 @@
  * 			   [U30 Y30 V30][U31 Y31 V31][U32 Y32 V32][U33 Y33 V33] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_IYU2		MWFOURCC('I', 'Y', 'U', '2')
+#define MWFOURCC_IYU2 MWFOURCC('I', 'Y', 'U', '2')
 
 /**
  * @ingroup group_fourcc
@@ -545,8 +544,7 @@
  * 			   [V30 Y30 U30][V31 Y31 U31][V32 Y32 U32][V33 Y33 U33] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_V308		MWFOURCC('v', '3', '0', '8')
-
+#define MWFOURCC_V308 MWFOURCC('v', '3', '0', '8')
 
 /**
  * @ingroup group_fourcc
@@ -560,7 +558,7 @@
  * 			   [A30 Y30 U30 V30][A31 Y31 U31 V31][A32 Y32 U32 V32][A33 Y33 U33 V33] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_AYUV		MWFOURCC('A', 'Y', 'U', 'V')
+#define MWFOURCC_AYUV MWFOURCC('A', 'Y', 'U', 'V')
 
 /**
  * @ingroup group_fourcc
@@ -574,7 +572,7 @@
  * 			   [U30 Y30 V30 A30][U31 Y31 V31 A31][U32 Y32 V32 A32][U33 Y33 V33 A33] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_UYVA		MWFOURCC('U', 'Y', 'V', 'A')
+#define MWFOURCC_UYVA MWFOURCC('U', 'Y', 'V', 'A')
 
 /**
  * @ingroup group_fourcc
@@ -588,7 +586,7 @@
  * 			   [U30 Y30 V30 A30][U31 Y31 V31 A31][U32 Y32 V32 A32][U33 Y33 V33 A33] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_V408		MWFOURCC('v', '4', '0', '8')
+#define MWFOURCC_V408 MWFOURCC('v', '4', '0', '8')
 
 /**
  * @ingroup group_fourcc
@@ -602,7 +600,7 @@
  * 			   [V30 Y30 U30 A30][V31 Y31 U31 A31][V32 Y32 U32 A32][V33 Y33 U33 A33] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_VYUA		MWFOURCC('V', 'Y', 'U', 'A')
+#define MWFOURCC_VYUA MWFOURCC('V', 'Y', 'U', 'A')
 
 /**
 * @ingroup group_fourcc
@@ -617,7 +615,7 @@
 *             ...\n
 *
 */
-#define MWFOURCC_V210		MWFOURCC('v', '2', '1', '0')
+#define MWFOURCC_V210 MWFOURCC('v', '2', '1', '0')
 
 /**
  * @ingroup group_fourcc
@@ -631,7 +629,7 @@
  * 			   [U30 Y30 V30 A30 (U10Y10V10A2)][U31 Y31 V31 A31 (U10Y10V10A2)][U32 Y32 V32 A32 (U10Y10V10A2)][U33 Y33 V33 A33 (U10Y10V10A2)] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_Y410		MWFOURCC('Y', '4', '1', '0')
+#define MWFOURCC_Y410 MWFOURCC('Y', '4', '1', '0')
 
 /**
  * @ingroup group_fourcc
@@ -645,7 +643,7 @@
  * 			   [A30 U30 Y30 V30 (A2U10Y10V10)][A31 U31 Y31 V31 (A2U10Y10V10)][A32 U32 Y32 V32 (A2U10Y10V10)][A33 U33 Y33 V33 (A2U10Y10V10)] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_V410		MWFOURCC('v', '4', '1', '0')
+#define MWFOURCC_V410 MWFOURCC('v', '4', '1', '0')
 
 /**
  * @ingroup group_fourcc
@@ -656,7 +654,7 @@
  * 			   [R00 G00 B00 A00 (R10G10B10A2)][R01 G01 B01 A01 (R10G10B10A2)][R02 G02 B02 A02 (R10G10B10A2)][R03 G03 B03 A03 (R10G10B10A2)] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_RGB10		MWFOURCC('R', 'G', '1', '0')
+#define MWFOURCC_RGB10 MWFOURCC('R', 'G', '1', '0')
 
 /**
  * @ingroup group_fourcc
@@ -667,7 +665,7 @@
  * 			   [B00 G00 R00 A00 (B10G10R10A2)][B01 G01 R01 A01 (B10G10R10A2)][B02 G02 R02 A02 (B10G10R10A2)][B03 G03 R03 A03 (B10G10R10A2)] ...\n
  * 			   ...\n
 */
-#define MWFOURCC_BGR10		MWFOURCC('B', 'G', '1', '0')
+#define MWFOURCC_BGR10 MWFOURCC('B', 'G', '1', '0')
 
 /**
  * @ingroup group_fourcc
@@ -675,9 +673,7 @@
  * @param[in] dwFOURCC			color format
  * @return If the color format is RGB, which returns TRUE; otherwise returns FALSE.
 */
-inline BOOLEAN FOURCC_IsRGB(
-	DWORD dwFOURCC
-	) 
+inline BOOLEAN FOURCC_IsRGB(DWORD dwFOURCC)
 {
 	switch (dwFOURCC) {
 	case MWFOURCC_RGB15:
@@ -704,9 +700,7 @@ inline BOOLEAN FOURCC_IsRGB(
  * @param[in] dwFOURCC			color format
  * @return If the color format is packed, which returns TRUE; otherwise returns FALSE.
 */
-inline BOOLEAN FOURCC_IsPacked(
-	DWORD dwFOURCC
-	) 
+inline BOOLEAN FOURCC_IsPacked(DWORD dwFOURCC)
 {
 	switch (dwFOURCC) {
 	case MWFOURCC_NV12:
@@ -732,9 +726,7 @@ inline BOOLEAN FOURCC_IsPacked(
  * @param[in] dwFOURCC			color format
  * @return Returns the bits that pixel of color format takess
 */
-inline int FOURCC_GetBpp(
-	DWORD dwFOURCC
-	) 
+inline int FOURCC_GetBpp(DWORD dwFOURCC)
 {
 	switch (dwFOURCC) {
 	case MWFOURCC_GREY:
@@ -748,7 +740,7 @@ inline int FOURCC_GetBpp(
 	case MWFOURCC_NV12:
 	case MWFOURCC_NV21:
 		return 12;
-	
+
 	case MWFOURCC_Y16:
 	case MWFOURCC_RGB15:
 	case MWFOURCC_BGR15:
@@ -764,15 +756,15 @@ inline int FOURCC_GetBpp(
 	case MWFOURCC_NV16:
 	case MWFOURCC_NV61:
 		return 16;
-		
+
 	case MWFOURCC_IYU2:
 	case MWFOURCC_V308:
 	case MWFOURCC_RGB24:
 	case MWFOURCC_BGR24:
 	case MWFOURCC_P010:
-    case MWFOURCC_V210:
+	case MWFOURCC_V210:
 		return 24;
-		
+
 	case MWFOURCC_AYUV:
 	case MWFOURCC_UYVA:
 	case MWFOURCC_V408:
@@ -787,7 +779,7 @@ inline int FOURCC_GetBpp(
 	case MWFOURCC_RGB10:
 	case MWFOURCC_BGR10:
 		return 32;
-		
+
 	default:
 		return 0;
 	}
@@ -801,35 +793,31 @@ inline int FOURCC_GetBpp(
  * @param[in]	dwAlign				Byte alignment
  * @return Returns the the number of bytes that a line data of image takes.
 */
-inline DWORD FOURCC_CalcMinStride(
-	DWORD dwFOURCC,
-	int cx,
-	DWORD dwAlign
-	)
+inline DWORD FOURCC_CalcMinStride(DWORD dwFOURCC, int cx, DWORD dwAlign)
 {
 	BOOLEAN bPacked = FOURCC_IsPacked(dwFOURCC);
-	
+
 	DWORD cbLine;
-	
+
 	if (bPacked) {
-        if (dwFOURCC == MWFOURCC_V210) {
-            cx = (cx + 47) / 48 * 48;
-            cbLine = cx * 8 / 3;
-        } else {
-            int nBpp = FOURCC_GetBpp(dwFOURCC);
-            cbLine = (cx * nBpp) / 8;
-        }
-    } else {
-        switch (dwFOURCC) {
-            case MWFOURCC_P010:
-            case MWFOURCC_P210:
-                cbLine = cx * 2;
-                break;
-            default:
-                cbLine = cx;
-                break;
-        }
-    }
+		if (dwFOURCC == MWFOURCC_V210) {
+			cx = (cx + 47) / 48 * 48;
+			cbLine = cx * 8 / 3;
+		} else {
+			int nBpp = FOURCC_GetBpp(dwFOURCC);
+			cbLine = (cx * nBpp) / 8;
+		}
+	} else {
+		switch (dwFOURCC) {
+		case MWFOURCC_P010:
+		case MWFOURCC_P210:
+			cbLine = cx * 2;
+			break;
+		default:
+			cbLine = cx;
+			break;
+		}
+	}
 
 	return (cbLine + dwAlign - 1) & ~(dwAlign - 1);
 }
@@ -843,72 +831,68 @@ inline DWORD FOURCC_CalcMinStride(
  * @param[in]	cbStride			The bytes of line width
  * @return Returns the number of bytes that the image takes.
 */
-inline DWORD FOURCC_CalcImageSize(
-	DWORD dwFOURCC,
-	int cx,
-	int cy,
-	DWORD cbStride
-	) 
+inline DWORD FOURCC_CalcImageSize(DWORD dwFOURCC, int cx, int cy,
+				  DWORD cbStride)
 {
-    BOOLEAN bPacked = FOURCC_IsPacked(dwFOURCC);
+	BOOLEAN bPacked = FOURCC_IsPacked(dwFOURCC);
 
-    if (bPacked) {
-        DWORD cbLine;
+	if (bPacked) {
+		DWORD cbLine;
 
-        if (dwFOURCC == MWFOURCC_V210) {
-            cx = (cx + 47) / 48 * 48;
-            cbLine = cx * 8 / 3;
-        } else {
-            int nBpp = FOURCC_GetBpp(dwFOURCC);
-            cbLine = (cx * nBpp) / 8;
-        }
-        if (cbStride < cbLine)
-            return 0;
+		if (dwFOURCC == MWFOURCC_V210) {
+			cx = (cx + 47) / 48 * 48;
+			cbLine = cx * 8 / 3;
+		} else {
+			int nBpp = FOURCC_GetBpp(dwFOURCC);
+			cbLine = (cx * nBpp) / 8;
+		}
+		if (cbStride < cbLine)
+			return 0;
 
-        return cbStride * cy;
-    } else {
-        if (cbStride < (DWORD)cx)
-            return 0;
+		return cbStride * cy;
+	} else {
+		if (cbStride < (DWORD)cx)
+			return 0;
 
-        switch (dwFOURCC) {
-            case MWFOURCC_NV12:
-            case MWFOURCC_NV21:
-            case MWFOURCC_YV12:
-            case MWFOURCC_IYUV:
-            case MWFOURCC_I420:
-                if ((cbStride & 1) || (cy & 1))
-                    return 0;
-                return cbStride * cy * 3 / 2;
-            case MWFOURCC_I422:
-            case MWFOURCC_YV16:
-            case MWFOURCC_NV16:
-            case MWFOURCC_NV61:
-                if (cbStride & 1)
-                    return 0;
-                return cbStride * cy * 2;
-            case MWFOURCC_P010:
-                if ((cbStride & 3) || (cy & 1))
-                    return 0;
-                return cbStride * cy * 3 / 2;
-            case MWFOURCC_P210:
-                if (cbStride & 3)
-                    return 0;
-                return cbStride * cy * 2;
+		switch (dwFOURCC) {
+		case MWFOURCC_NV12:
+		case MWFOURCC_NV21:
+		case MWFOURCC_YV12:
+		case MWFOURCC_IYUV:
+		case MWFOURCC_I420:
+			if ((cbStride & 1) || (cy & 1))
+				return 0;
+			return cbStride * cy * 3 / 2;
+		case MWFOURCC_I422:
+		case MWFOURCC_YV16:
+		case MWFOURCC_NV16:
+		case MWFOURCC_NV61:
+			if (cbStride & 1)
+				return 0;
+			return cbStride * cy * 2;
+		case MWFOURCC_P010:
+			if ((cbStride & 3) || (cy & 1))
+				return 0;
+			return cbStride * cy * 3 / 2;
+		case MWFOURCC_P210:
+			if (cbStride & 3)
+				return 0;
+			return cbStride * cy * 2;
 
-            default:
-                return 0;
-        }
-    }
+		default:
+			return 0;
+		}
+	}
 }
-	
+
 #ifdef _KSMEDIA_
-#define MWCAP_BITMAPINFOHEADER	KS_BITMAPINFOHEADER
-#define MWCAP_BI_RGB			KS_BI_RGB
-#define MWCAP_BI_BITFIELDS		KS_BI_BITFIELDS
+#define MWCAP_BITMAPINFOHEADER KS_BITMAPINFOHEADER
+#define MWCAP_BI_RGB KS_BI_RGB
+#define MWCAP_BI_BITFIELDS KS_BI_BITFIELDS
 #else
-#define MWCAP_BITMAPINFOHEADER	BITMAPINFOHEADER
-#define MWCAP_BI_RGB			BI_RGB
-#define MWCAP_BI_BITFIELDS		BI_BITFIELDS
+#define MWCAP_BITMAPINFOHEADER BITMAPINFOHEADER
+#define MWCAP_BI_RGB BI_RGB
+#define MWCAP_BI_BITFIELDS BI_BITFIELDS
 #endif
 
 /**
@@ -920,9 +904,11 @@ inline DWORD FOURCC_CalcImageSize(
  * @param[in]	dwBlueMask			Blue mask
  * @return If the mask is the same as specified color format, it returns TRUE; otherwise, which returns FALSE.
 */
-inline BOOLEAN FOURCC_IsMask(const DWORD * pdwMasks, DWORD dwRedMask, DWORD dwGreenMask, DWORD dwBlueMask)
+inline BOOLEAN FOURCC_IsMask(const DWORD *pdwMasks, DWORD dwRedMask,
+			     DWORD dwGreenMask, DWORD dwBlueMask)
 {
-	return ((pdwMasks[0] == dwRedMask) && (pdwMasks[1] == dwGreenMask) && (pdwMasks[2] == dwBlueMask));
+	return ((pdwMasks[0] == dwRedMask) && (pdwMasks[1] == dwGreenMask) &&
+		(pdwMasks[2] == dwBlueMask));
 }
 
 /**
@@ -933,11 +919,8 @@ inline BOOLEAN FOURCC_IsMask(const DWORD * pdwMasks, DWORD dwRedMask, DWORD dwGr
  * @param[in]	pdwMasks			Color mask
  * @return Returns the bitmap color format fits the mask.
 */
-inline DWORD FOURCC_GetFromBitmapHeader(
-	DWORD biCompression,
-	WORD biBitCount,
-	DWORD * pdwMasks
-	)
+inline DWORD FOURCC_GetFromBitmapHeader(DWORD biCompression, WORD biBitCount,
+					DWORD *pdwMasks)
 {
 	switch (biCompression) {
 	case MWCAP_BI_RGB:
@@ -953,37 +936,46 @@ inline DWORD FOURCC_GetFromBitmapHeader(
 		}
 		break;
 
-	case MWCAP_BI_BITFIELDS:
-	{
+	case MWCAP_BI_BITFIELDS: {
 		switch (biBitCount) {
 		case 16:
-			if (FOURCC_IsMask(pdwMasks, 0x0000F800, 0x000007E0, 0x0000001F))
+			if (FOURCC_IsMask(pdwMasks, 0x0000F800, 0x000007E0,
+					  0x0000001F))
 				return MWFOURCC_BGR16;
-			else if (FOURCC_IsMask(pdwMasks, 0x0000001F, 0x000007E0, 0x0000F800))
+			else if (FOURCC_IsMask(pdwMasks, 0x0000001F, 0x000007E0,
+					       0x0000F800))
 				return MWFOURCC_RGB16;
-			else if (FOURCC_IsMask(pdwMasks, 0x00007C00, 0x000003E0, 0x0000001F))
+			else if (FOURCC_IsMask(pdwMasks, 0x00007C00, 0x000003E0,
+					       0x0000001F))
 				return MWFOURCC_BGR15;
-			else if (FOURCC_IsMask(pdwMasks, 0x0000001F, 0x000003E0, 0x00007C00))
+			else if (FOURCC_IsMask(pdwMasks, 0x0000001F, 0x000003E0,
+					       0x00007C00))
 				return MWFOURCC_RGB15;
 			else
 				return MWFOURCC_UNK;
 
 		case 24:
-			if (FOURCC_IsMask(pdwMasks, 0x00FF0000, 0x0000FF00, 0x000000FF))
+			if (FOURCC_IsMask(pdwMasks, 0x00FF0000, 0x0000FF00,
+					  0x000000FF))
 				return MWFOURCC_BGR24;
-			else if (FOURCC_IsMask(pdwMasks, 0x000000FF, 0x0000FF00, 0x00FF0000))
+			else if (FOURCC_IsMask(pdwMasks, 0x000000FF, 0x0000FF00,
+					       0x00FF0000))
 				return MWFOURCC_RGB24;
 			else
 				return MWFOURCC_UNK;
 
 		case 32:
-			if (FOURCC_IsMask(pdwMasks, 0x00FF0000, 0x0000FF00, 0x000000FF))
+			if (FOURCC_IsMask(pdwMasks, 0x00FF0000, 0x0000FF00,
+					  0x000000FF))
 				return MWFOURCC_BGRA;
-			else if (FOURCC_IsMask(pdwMasks, 0x000000FF, 0x0000FF00, 0x00FF0000))
+			else if (FOURCC_IsMask(pdwMasks, 0x000000FF, 0x0000FF00,
+					       0x00FF0000))
 				return MWFOURCC_RGBA;
-			else if (FOURCC_IsMask(pdwMasks, 0xFF000000, 0x00FF0000, 0x0000FF00))
+			else if (FOURCC_IsMask(pdwMasks, 0xFF000000, 0x00FF0000,
+					       0x0000FF00))
 				return MWFOURCC_ABGR;
-			else if (FOURCC_IsMask(pdwMasks, 0x0000FF00, 0x00FF0000, 0xFF000000))
+			else if (FOURCC_IsMask(pdwMasks, 0x0000FF00, 0x00FF0000,
+					       0xFF000000))
 				return MWFOURCC_ARGB;
 			else
 				return MWFOURCC_UNK;
@@ -991,8 +983,7 @@ inline DWORD FOURCC_GetFromBitmapHeader(
 		default:
 			return MWFOURCC_UNK;
 		}
-	}
-	break;
+	} break;
 
 	default:
 		return biCompression;
@@ -1005,10 +996,9 @@ inline DWORD FOURCC_GetFromBitmapHeader(
  * @param[in] 	pbmih		Bitmap header address
  * @return Returns the color format which fits the mask.
 */
-inline DWORD FOURCC_GetFromBitmapHeader(
-	const MWCAP_BITMAPINFOHEADER * pbmih
-	) 
+inline DWORD FOURCC_GetFromBitmapHeader(const MWCAP_BITMAPINFOHEADER *pbmih)
 {
 	DWORD *pdwMasks = (DWORD *)(pbmih + 1);
-	return FOURCC_GetFromBitmapHeader(pbmih->biCompression, pbmih->biBitCount, pdwMasks);
+	return FOURCC_GetFromBitmapHeader(pbmih->biCompression,
+					  pbmih->biBitCount, pdwMasks);
 }

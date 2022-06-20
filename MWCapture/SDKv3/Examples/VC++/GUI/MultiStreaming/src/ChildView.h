@@ -3,21 +3,21 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell’s SDK 
-// and not to Magewell’s SDK as a whole. 
+// The following license only applies to head files and library within Magewell’s SDK
+// and not to Magewell’s SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. (“Magewell”) All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell’s head files and library 
+// Magewell grands to any person who obtains the copy of Magewell’s head files and library
 // the rights,including without limitation, to use, modify, publish, sublicense, distribute
 // the Software on the conditions that all the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL “AS IS” AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -33,35 +33,34 @@
 #include "stdafx.h"
 #include "MWDXRender.h"
 
-#define FRAME_DURATION			333333
+#define FRAME_DURATION 333333
 
-#define CAPTURE_COLORSPACE		MWFOURCC_RGBA
+#define CAPTURE_COLORSPACE MWFOURCC_RGBA
 
 // CChildView window
 
-class CChildView : public CView
-{
-// Construction
+class CChildView : public CView {
+	// Construction
 public:
 	CChildView();
 	virtual ~CChildView();
-	
-// Attributes
+
+	// Attributes
 public:
 	DECLARE_DYNCREATE(CChildView)
-// Operations
+	// Operations
 public:
+	// Overrides
+protected:
+	virtual BOOL PreCreateWindow(CREATESTRUCT &cs);
 
-// Overrides
-	protected:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-
-// Implementation
+	// Implementation
 public:
 	BOOL StartPreview(int nChannelId, int cx, int cy);
 	void StopPreview();
 
-	BOOL GetCaptureInfo(int* pcx, int* pcy, DWORD* pdwFmt, double* pdFps) {
+	BOOL GetCaptureInfo(int *pcx, int *pcy, DWORD *pdwFmt, double *pdFps)
+	{
 		if (m_hChannel == NULL)
 			return FALSE;
 
@@ -74,7 +73,7 @@ public:
 	}
 
 public:
-	virtual void OnDraw(CDC* /*pDC*/);
+	virtual void OnDraw(CDC * /*pDC*/);
 	// Generated message map functions
 protected:
 	afx_msg void OnPaint();
@@ -84,25 +83,27 @@ protected:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 
 protected:
-	static DWORD WINAPI VideoThreadProc(LPVOID pvParam) {
-		CChildView* pThis = (CChildView *)pvParam;
+	static DWORD WINAPI VideoThreadProc(LPVOID pvParam)
+	{
+		CChildView *pThis = (CChildView *)pvParam;
 		return pThis->VideoThreadProcEx();
 	}
 	DWORD VideoThreadProcEx();
 
-private:	
-	MWDXRender*					m_pRenderer;
-	HCHANNEL					m_hChannel;
+private:
+	MWDXRender *m_pRenderer;
+	HCHANNEL m_hChannel;
 
-	HANDLE						m_hExitEvent;
-	HANDLE						m_hCaptureThread;
+	HANDLE m_hExitEvent;
+	HANDLE m_hCaptureThread;
 
-	double						m_dCurrentFps;
+	double m_dCurrentFps;
 
-	int							m_nWidth;
-	int							m_nHeight;
+	int m_nWidth;
+	int m_nHeight;
+
 public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	virtual BOOL PreTranslateMessage(MSG *pMsg);
 };
 
 extern int g_nValidChannel[];

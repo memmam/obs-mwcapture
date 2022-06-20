@@ -32,7 +32,7 @@ class CChartCtrl;
 class CChartGrid;
 class CChartSerie;
 class CChartAxisLabel;
-   
+
 //! Base class that takes care of the management of a chart axis.
 /**
 	This class cannot be instanciated but should be overriden in order
@@ -46,8 +46,7 @@ class CChartAxisLabel;
 	in addition override some specific functions (e.g. those handling the scrollbar).
 	Take a look at the CChartLogarithmicAxis class for more details.
 **/
-class CChartAxis 
-{
+class CChartAxis {
 	friend CChartCtrl;
 	friend CChartGrid;
 	friend CChartSerie;
@@ -71,8 +70,8 @@ public:
 	**/
 	void SetInverted(bool bInverted);
 	//! Retrieves if the axis is inverted or not.
-	bool IsInverted() const  { return m_bIsInverted; }
-	
+	bool IsInverted() const { return m_bIsInverted; }
+
 	//! Sets the axis in automatic or manual mode.
 	/**
 		In automatic mode, the axis min and max will be updated
@@ -81,16 +80,15 @@ public:
 			true if the axis should be automatic.
 		@deprecated You should use the SetAutomaticType instead.
 	**/
-	void SetAutomatic(bool bAutomatic); 
+	void SetAutomatic(bool bAutomatic);
 	//! Returns true if an automatic mode has been set on this axis.
 	/**
 		@deprecated You should use the GetAutomaticType instead.
 	**/
-	bool IsAutomatic()  const  { return m_AutoMode != NotAutomatic; }
+	bool IsAutomatic() const { return m_AutoMode != NotAutomatic; }
 
 	//! The different modes of automatic modes for an axis.
-	enum EAxisAutoModes 
-	{
+	enum EAxisAutoModes {
 		//! The axis min and max values are set manually
 		NotAutomatic,
 		//! The axis min and max values of the axis are the min and max values of all series associated with this axis. This corresponds to the "standard" automatic mode that was implemented before version 3.0.
@@ -100,14 +98,14 @@ public:
 	};
 
 	//! Sets the automatic mode of the axis
-	void SetAutomaticMode(EAxisAutoModes AutoMode); 
+	void SetAutomaticMode(EAxisAutoModes AutoMode);
 	//! Gets the automatic type of the axis
-	EAxisAutoModes GetAutomaticMode()  const  { return m_AutoMode; }
+	EAxisAutoModes GetAutomaticMode() const { return m_AutoMode; }
 
 	//! Sets the axis visible/invisible.
-	void SetVisible(bool bVisible); 
+	void SetVisible(bool bVisible);
 	//! Retrieves the axis automatic mode.
-	bool IsVisible()  const  { return m_bIsVisible; }
+	bool IsVisible() const { return m_bIsVisible; }
 
 	//! Sets the axis min and max values.
 	/**
@@ -120,18 +118,18 @@ public:
 	**/
 	void SetMinMax(double Minimum, double Maximum);
 	//! Gets the min anx max values of the axis.
-	void GetMinMax(double& Minimum, double& Maximum) const
+	void GetMinMax(double &Minimum, double &Maximum) const
 	{
 		Minimum = m_MinValue;
 		Maximum = m_MaxValue;
 	}
 
 	//! Sets the axis color.
-	void	 SetAxisColor(COLORREF NewColor);
+	void SetAxisColor(COLORREF NewColor);
 	//! Sets the tick labels color.
-	void	 SetTextColor(COLORREF NewColor);
+	void SetTextColor(COLORREF NewColor);
 	//! Gets the tick labels color.
-	COLORREF GetTextColor() const		{ return m_TextColor;		}
+	COLORREF GetTextColor() const { return m_TextColor; }
 	//! Sets the tick labels font
 	/**
 		@param nPointSize
@@ -139,12 +137,12 @@ public:
 		@param strFaceName
 			The font face name
 	**/
-	void SetFont(int nPointSize, const TChartString& strFaceName);
+	void SetFont(int nPointSize, const TChartString &strFaceName);
 
 	//! Retrieves the chart axis label object
-	CChartAxisLabel* GetLabel() const	{ return m_pAxisLabel; }
+	CChartAxisLabel *GetLabel() const { return m_pAxisLabel; }
 	//! Retrieves the chart axis grid object
-	CChartGrid*		 GetGrid()	const	{ return m_pAxisGrid;  }
+	CChartGrid *GetGrid() const { return m_pAxisGrid; }
 
 	//! Sets the margin size
 	/**
@@ -158,20 +156,20 @@ public:
 	void SetMarginSize(bool bAuto, int iNewSize);
 
 	//! Enable the pan and zoom for this axis.
-	void SetPanZoomEnabled(bool bEnabled)	{ m_bZoomEnabled = bEnabled; }
+	void SetPanZoomEnabled(bool bEnabled) { m_bZoomEnabled = bEnabled; }
 	//! Sets the zoom limit.
 	/**
 		The zoom limit is the minimum lenght (in values) of the axis.
 	**/
-	void SetZoomLimit(double dLimit)		{ m_dZoomLimit = dLimit; }
+	void SetZoomLimit(double dLimit) { m_dZoomLimit = dLimit; }
 
 	//! Enables/disables the scroll bar.
 	void EnableScrollBar(bool bEnabled);
 	//! Retrieves if the scroll bar is enabled or not.
-	bool ScrollBarEnabled() const  
-	{ 
+	bool ScrollBarEnabled() const
+	{
 		if (m_pScrollBar)
-			return (m_pScrollBar->GetEnabled()); 
+			return (m_pScrollBar->GetEnabled());
 		else
 			return false;
 	}
@@ -209,8 +207,8 @@ public:
 			The value to convert
 		@return the screen position of the value
 	**/
-    long ValueToScreen(double Value) const;
- 	//! Converts a screen position to a value on the axis
+	long ValueToScreen(double Value) const;
+	//! Converts a screen position to a value on the axis
 	/**
 		The function is implemented for an axis with a standard
 		behavior (the axis shows a continuous range of doubles).
@@ -222,13 +220,13 @@ public:
 			The screen value to convert
 		@return the double value
 	**/
-   virtual double ScreenToValue(long ScreenVal) const;
+	virtual double ScreenToValue(long ScreenVal) const;
 
-   	//! Returns true if the axis is horizontal
-	bool IsHorizontal() const { return m_bIsHorizontal; } 
+	//! Returns true if the axis is horizontal
+	bool IsHorizontal() const { return m_bIsHorizontal; }
 
 	//! Returns true if a screen point is in the region of the axis.
-	BOOL IsPointInside(const CPoint& screenPoint) const;
+	BOOL IsPointInside(const CPoint &screenPoint) const;
 
 protected:
 	//! Returns the first tick value.
@@ -247,7 +245,8 @@ protected:
 			The value of the next tick will be stored in this parameter
 		@return true if there is a next or false when the current tick is the last one.
 	**/
-	virtual bool GetNextTickValue(double dCurrentTick, double& dNextTick) const = 0;
+	virtual bool GetNextTickValue(double dCurrentTick,
+				      double &dNextTick) const = 0;
 	//! Retrieves the screen position of a certain tick.
 	/**
 		This pure virtual function must be implemented for specific
@@ -276,7 +275,7 @@ protected:
 		@param Value
 			The value to convert
 		@return the screen position of the value
-	**/	
+	**/
 	virtual long ValueToScreenStandard(double Value) const;
 
 	//! Retrieves the label for a specific tick.
@@ -304,7 +303,7 @@ protected:
 		@param iCurrentStep
 			Stores the current step index for the scrollbar
 	**/
-	virtual void GetScrollbarSteps(int& iTotalSteps, int& iCurrentStep);
+	virtual void GetScrollbarSteps(int &iTotalSteps, int &iCurrentStep);
 	//! Sets the axis to the specified scrollbar step.
 	/**
 		This function can be implemented for specific axis types which
@@ -317,7 +316,8 @@ protected:
 		@param bScrollInverted
 			Specifies if the scroll is inverted or not.
 	**/
-	virtual void SetAxisToScrollStep(int iPreviousStep, int iCurrentStep, bool bScrollInverted);
+	virtual void SetAxisToScrollStep(int iPreviousStep, int iCurrentStep,
+					 bool bScrollInverted);
 
 	//! Pan the axis
 	/**
@@ -335,11 +335,11 @@ protected:
 	void UndoZoom();
 
 	//! Retrieves the lenght (in pixels) of the axis
-    long  GetAxisLenght() const;
+	long GetAxisLenght() const;
 	//! Retrieves the min and max values for all the series related to this axis
-	void GetSeriesMinMax(double& Minimum, double& Maximum);
+	void GetSeriesMinMax(double &Minimum, double &Maximum);
 	//! Retrieves the screen min and max values for all the series related to this axis
-	void GetSeriesScreenMinMax(double& Minimum, double& Maximum);
+	void GetSeriesScreenMinMax(double &Minimum, double &Maximum);
 
 private:
 	//! Refresh the axis if it is automatic
@@ -359,16 +359,16 @@ private:
 		is the largest width and the y value is the largest height.
 		They do not necessarily belong to the same tick.
 	**/
-	CSize GetLargestTick(CDC* pDC);
+	CSize GetLargestTick(CDC *pDC);
 
 	//! Sets the axis as a secondary axis.
 	/**
 		A secondary axis is on top for horizontal axis and on the
 		right for vertical axis.
 	**/
-	void SetSecondary(bool bSecondary)	{ m_bIsSecondary = bSecondary; }
+	void SetSecondary(bool bSecondary) { m_bIsSecondary = bSecondary; }
 	//! Returns true if the axis is secondary.
-	bool IsSecondary() const			{ return m_bIsSecondary; }
+	bool IsSecondary() const { return m_bIsSecondary; }
 	//! Sets the axis to horizontal/vertical
 	void SetHorizontal(bool bHorizontal);
 
@@ -377,13 +377,13 @@ private:
 	  @param pDC
 		The DC used to draw the axis.
 	**/
-	void Draw(CDC* pDC);
+	void Draw(CDC *pDC);
 	//! Draw the axis label
 	/**
 	  @param pDC
 		The DC used to draw the axis.
 	**/
-	void DrawLabel(CDC* pDC);
+	void DrawLabel(CDC *pDC);
 	//! Draw a specific tick on the axis.
 	/**
 		@param pDC
@@ -393,7 +393,7 @@ private:
 		The tick label will be drawn on the tick or between two ticks
 		depending if the axis is set as standard or discrete.
 	**/
-	void DrawTick(CDC* pDC, double dTickVal);
+	void DrawTick(CDC *pDC, double dTickVal);
 	//! Check whether a specific label is still on the axis.
 	/**
 		@param dTickVal
@@ -407,9 +407,9 @@ private:
 	/**
 		This is used when the axis is in automatic mode.
 	**/
-	void RegisterSeries(CChartSerie* pSeries);
+	void RegisterSeries(CChartSerie *pSeries);
 	//! Unregister a series with this axis.
-	void UnregisterSeries(CChartSerie* pSeries);
+	void UnregisterSeries(CChartSerie *pSeries);
 
 	//! Creates and attach a new scroll bar to the axis
 	void CreateScrollBar();
@@ -419,7 +419,7 @@ private:
 	void RefreshScrollBar();
 
 	//! Sets the parent charting control.
-	void SetParent(CChartCtrl* pParent);
+	void SetParent(CChartCtrl *pParent);
 
 	//! Sets the axis size
 	/**
@@ -428,7 +428,7 @@ private:
 		@param MarginRect
 			The rectangle in which the axis should be contained
 	**/
-	void SetAxisSize(const CRect& ControlRect, const CRect& MarginRect);
+	void SetAxisSize(const CRect &ControlRect, const CRect &MarginRect);
 	//! Removes the margin needed for the axis from the full control rect.
 	/**
 		@param ControlRect
@@ -438,8 +438,8 @@ private:
 		@param pDC
 			The CDC used to draw the axis.
 	**/
-	int ClipMargin(CRect ControlRect,CRect& MarginRect,CDC* pDC);	
-	//! Recalculate the axis properties. 
+	int ClipMargin(CRect ControlRect, CRect &MarginRect, CDC *pDC);
+	//! Recalculate the axis properties.
 	/**
 		This function simply calls RefreshTickIncrement and 
 		RefreshFirstTick.
@@ -448,14 +448,14 @@ private:
 
 protected:
 	//! The parent chart control.
-	CChartCtrl* m_pParentCtrl;
+	CChartCtrl *m_pParentCtrl;
 
 	//! Indicates if this is an horizontal or vertical axis
-	bool m_bIsHorizontal;	  
+	bool m_bIsHorizontal;
 	//! Indicates if the axis is inverted
-	bool m_bIsInverted;	
+	bool m_bIsInverted;
 	//! Indicates if the axis is automatic
-//	bool m_bIsAutomatic;  
+	//	bool m_bIsAutomatic;
 	//! Indicates the automatic mode of the axis
 	EAxisAutoModes m_AutoMode;
 
@@ -467,19 +467,19 @@ protected:
 		The secondary axis is either on the top (for horizontal
 		axis) or on the right (for vertical axis) of the chart.
 	**/
-	bool m_bIsSecondary;	
+	bool m_bIsSecondary;
 
 	//! The axis max value
-	double m_MaxValue;		
+	double m_MaxValue;
 	//! The axis min value
-	double m_MinValue;	
+	double m_MinValue;
 	//! Min value of the axis before it has been zoomed
-	double m_UnzoomMin;		
+	double m_UnzoomMin;
 	//! Max value of the axis before it has been zoomed
-	double m_UnzoomMax;		
+	double m_UnzoomMax;
 
 	//! Specify if the tick increment is manual or automatic
-	bool m_bAutoTicks;	
+	bool m_bAutoTicks;
 	//! Specify if the axis has to be in discrete mode or not
 	bool m_bDiscrete;
 
@@ -492,7 +492,7 @@ protected:
 
 private:
 	//! The font size used for the axis labels
-	int  m_nFontSize;		
+	int m_nFontSize;
 	//! The font face name used for the axis labels
 	TChartString m_strFontName;
 	//! The color used for the axis labels
@@ -501,13 +501,13 @@ private:
 	COLORREF m_AxisColor;
 
 	//! The grid related to this axis
-	CChartGrid*			m_pAxisGrid;
+	CChartGrid *m_pAxisGrid;
 	//! The axis label associated with this axis
-	CChartAxisLabel*	m_pAxisLabel;
+	CChartAxisLabel *m_pAxisLabel;
 
-	typedef std::list<CChartSerie*> SeriesList;
+	typedef std::list<CChartSerie *> SeriesList;
 	//! List containing pointers to series related to this axis
-	SeriesList m_pRelatedSeries;		
+	SeriesList m_pRelatedSeries;
 
 	//! Specify if the margin size is calculated automatically
 	bool m_bAutoMargin;
@@ -520,7 +520,7 @@ private:
 	double m_dZoomLimit;
 
 	//! The axis scrollbar
-	CChartScrollBar* m_pScrollBar;
+	CChartScrollBar *m_pScrollBar;
 };
 
-#endif  // _CHARTAXIS_H_
+#endif // _CHARTAXIS_H_

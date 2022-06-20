@@ -35,8 +35,7 @@ class CChartAxis;
 	To create a dragline cursor, call the CreateDragLineCursor from the
 	CChartCtrl class.
 **/
-class CChartDragLineCursor : public CChartCursor
-{
+class CChartDragLineCursor : public CChartCursor {
 	friend CChartCtrl;
 
 public:
@@ -52,16 +51,16 @@ protected:
 	void OnMouseButtonUp(CPoint mousePoint);
 
 	//! Draw the cursor.
-	void Draw(CDC* pDC);
+	void Draw(CDC *pDC);
 
 private:
 	//! Constructor
-	CChartDragLineCursor(CChartCtrl* pParent, CChartAxis* pRelatedAxis);
+	CChartDragLineCursor(CChartCtrl *pParent, CChartAxis *pRelatedAxis);
 	//! Destructor
 	~CChartDragLineCursor();
 
 	//! The axis to which this cursor is attached.
-	CChartAxis* m_pRelatedAxis;
+	CChartAxis *m_pRelatedAxis;
 
 	//! flag specifying if the cursor is currently being dragged.
 	bool m_bDragged;
@@ -69,4 +68,4 @@ private:
 	long m_lPosition;
 };
 
-#endif  // _CHARTDRAGLINECURSOR_H_
+#endif // _CHARTDRAGLINECURSOR_H_

@@ -112,15 +112,13 @@
  * @endcode
  */
 #ifdef _WIN32
-MWVENC_API 
+MWVENC_API
 #endif
-mw_venc_handle_t 
-mw_venc_create_ex(
-    mw_venc_platform_t platform,
-    mw_venc_inframe_mode_t inframe_mode,
-    mw_venc_param_ex_t *p_param,
-    MW_ENCODER_CALLBACK frame_callback, 
-    void *user_ptr);
+mw_venc_handle_t mw_venc_create_ex(mw_venc_platform_t platform,
+				   mw_venc_inframe_mode_t inframe_mode,
+				   mw_venc_param_ex_t *p_param,
+				   MW_ENCODER_CALLBACK frame_callback,
+				   void *user_ptr);
 
 /**
  * @ingroup group_hwe_ex_functions
@@ -150,12 +148,10 @@ mw_venc_create_ex(
  * The usage refers to  [mw_venc_create_ex](@ref mw_venc_create_ex)
  */
 #ifdef _WIN32
-MWVENC_API 
+MWVENC_API
 #endif
-mw_venc_status_t 
-mw_venc_put_opengl_texture(
-    mw_venc_handle_t handle, 
-    uint32_t texture[]);
+mw_venc_status_t mw_venc_put_opengl_texture(mw_venc_handle_t handle,
+					    uint32_t texture[]);
 
 /**
  * @ingroup group_hwe_ex_functions
@@ -178,7 +174,6 @@ mw_venc_put_opengl_texture(
 #ifdef _WIN32
 MWVENC_API
 #endif
-mw_venc_status_t
-mw_venc_destory_ex(mw_venc_handle_t handle);
+mw_venc_status_t mw_venc_destory_ex(mw_venc_handle_t handle);
 
 #endif

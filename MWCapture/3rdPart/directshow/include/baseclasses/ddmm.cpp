@@ -7,7 +7,6 @@
 // Copyright (c) 1995-2001 Microsoft Corporation.  All rights reserved.
 //------------------------------------------------------------------------------
 
-
 #include <streams.h>
 #include <ddraw.h>
 #include "ddmm.h"
@@ -16,57 +15,60 @@
  * FindDeviceCallback
  */
 typedef struct {
-	LPSTR   szDevice;
-	GUID*   lpGUID;
-	GUID    GUID;
-	BOOL    fFound;
-}   FindDeviceData;
+	LPSTR szDevice;
+	GUID *lpGUID;
+	GUID GUID;
+	BOOL fFound;
+} FindDeviceData;
 
-BOOL CALLBACK FindDeviceCallback(__in_opt GUID* lpGUID, __in LPSTR szName, __in LPSTR szDevice, __in LPVOID lParam)
+BOOL CALLBACK FindDeviceCallback(__in_opt GUID *lpGUID, __in LPSTR szName,
+				 __in LPSTR szDevice, __in LPVOID lParam)
 {
-	FindDeviceData *p = (FindDeviceData*)lParam;
+	FindDeviceData *p = (FindDeviceData *)lParam;
 
 	if (lstrcmpiA(p->szDevice, szDevice) == 0) {
-	    if (lpGUID) {
-		p->GUID = *lpGUID;
-		p->lpGUID = &p->GUID;
-	    } else {
-		p->lpGUID = NULL;
-	    }
-	    p->fFound = TRUE;
-	    return FALSE;
+		if (lpGUID) {
+			p->GUID = *lpGUID;
+			p->lpGUID = &p->GUID;
+		} else {
+			p->lpGUID = NULL;
+		}
+		p->fFound = TRUE;
+		return FALSE;
 	}
 	return TRUE;
 }
 
-
-BOOL CALLBACK FindDeviceCallbackEx(__in_opt GUID* lpGUID, __in LPSTR szName, __in LPSTR szDevice, __in LPVOID lParam, HMONITOR hMonitor)
+BOOL CALLBACK FindDeviceCallbackEx(__in_opt GUID *lpGUID, __in LPSTR szName,
+				   __in LPSTR szDevice, __in LPVOID lParam,
+				   HMONITOR hMonitor)
 {
-	FindDeviceData *p = (FindDeviceData*)lParam;
+	FindDeviceData *p = (FindDeviceData *)lParam;
 
 	if (lstrcmpiA(p->szDevice, szDevice) == 0) {
-	    if (lpGUID) {
-		p->GUID = *lpGUID;
-		p->lpGUID = &p->GUID;
-	    } else {
-		p->lpGUID = NULL;
-	    }
-	    p->fFound = TRUE;
-	    return FALSE;
+		if (lpGUID) {
+			p->GUID = *lpGUID;
+			p->lpGUID = &p->GUID;
+		} else {
+			p->lpGUID = NULL;
+		}
+		p->fFound = TRUE;
+		return FALSE;
 	}
 	return TRUE;
 }
-
 
 /*
  * DirectDrawCreateFromDevice
  *
  * create a DirectDraw object for a particular device
  */
-IDirectDraw * DirectDrawCreateFromDevice(__in_opt LPSTR szDevice, PDRAWCREATE DirectDrawCreateP, PDRAWENUM DirectDrawEnumerateP)
+IDirectDraw *DirectDrawCreateFromDevice(__in_opt LPSTR szDevice,
+					PDRAWCREATE DirectDrawCreateP,
+					PDRAWENUM DirectDrawEnumerateP)
 {
-	IDirectDraw*    pdd = NULL;
-	FindDeviceData  find;
+	IDirectDraw *pdd = NULL;
+	FindDeviceData find;
 
 	if (szDevice == NULL) {
 		DirectDrawCreateP(NULL, &pdd, NULL);
@@ -74,11 +76,10 @@ IDirectDraw * DirectDrawCreateFromDevice(__in_opt LPSTR szDevice, PDRAWCREATE Di
 	}
 
 	find.szDevice = szDevice;
-	find.fFound   = FALSE;
+	find.fFound = FALSE;
 	DirectDrawEnumerateP(FindDeviceCallback, (LPVOID)&find);
 
-	if (find.fFound)
-	{
+	if (find.fFound) {
 		//
 		// In 4bpp mode the following DDraw call causes a message box to be popped
 		// up by DDraw (!?!).  It's DDraw's fault, but we don't like it.  So we
@@ -92,16 +93,18 @@ IDirectDraw * DirectDrawCreateFromDevice(__in_opt LPSTR szDevice, PDRAWCREATE Di
 	return pdd;
 }
 
-
 /*
  * DirectDrawCreateFromDeviceEx
  *
  * create a DirectDraw object for a particular device
  */
-IDirectDraw * DirectDrawCreateFromDeviceEx(__in_opt LPSTR szDevice, PDRAWCREATE DirectDrawCreateP, LPDIRECTDRAWENUMERATEEXA DirectDrawEnumerateExP)
+IDirectDraw *
+DirectDrawCreateFromDeviceEx(__in_opt LPSTR szDevice,
+			     PDRAWCREATE DirectDrawCreateP,
+			     LPDIRECTDRAWENUMERATEEXA DirectDrawEnumerateExP)
 {
-	IDirectDraw*    pdd = NULL;
-	FindDeviceData  find;
+	IDirectDraw *pdd = NULL;
+	FindDeviceData find;
 
 	if (szDevice == NULL) {
 		DirectDrawCreateP(NULL, &pdd, NULL);
@@ -109,12 +112,11 @@ IDirectDraw * DirectDrawCreateFromDeviceEx(__in_opt LPSTR szDevice, PDRAWCREATE 
 	}
 
 	find.szDevice = szDevice;
-	find.fFound   = FALSE;
+	find.fFound = FALSE;
 	DirectDrawEnumerateExP(FindDeviceCallbackEx, (LPVOID)&find,
-					DDENUM_ATTACHEDSECONDARYDEVICES);
+			       DDENUM_ATTACHEDSECONDARYDEVICES);
 
-	if (find.fFound)
-	{
+	if (find.fFound) {
 		//
 		// In 4bpp mode the following DDraw call causes a message box to be popped
 		// up by DDraw (!?!).  It's DDraw's fault, but we don't like it.  So we

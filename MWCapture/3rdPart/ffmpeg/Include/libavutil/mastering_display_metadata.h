@@ -24,7 +24,6 @@
 #include "frame.h"
 #include "rational.h"
 
-
 /**
  * Mastering display metadata capable of representing the color volume of
  * the display used to master the content (SMPTE 2086:2014).
@@ -36,35 +35,35 @@
  *       and its size is not a part of the public ABI.
  */
 typedef struct AVMasteringDisplayMetadata {
-    /**
+	/**
      * CIE 1931 xy chromaticity coords of color primaries (r, g, b order).
      */
-    AVRational display_primaries[3][2];
+	AVRational display_primaries[3][2];
 
-    /**
+	/**
      * CIE 1931 xy chromaticity coords of white point.
      */
-    AVRational white_point[2];
+	AVRational white_point[2];
 
-    /**
+	/**
      * Min luminance of mastering display (cd/m^2).
      */
-    AVRational min_luminance;
+	AVRational min_luminance;
 
-    /**
+	/**
      * Max luminance of mastering display (cd/m^2).
      */
-    AVRational max_luminance;
+	AVRational max_luminance;
 
-    /**
+	/**
      * Flag indicating whether the display primaries (and white point) are set.
      */
-    int has_primaries;
+	int has_primaries;
 
-    /**
+	/**
      * Flag indicating whether the luminance (min_ and max_) have been set.
      */
-    int has_luminance;
+	int has_luminance;
 
 } AVMasteringDisplayMetadata;
 
@@ -84,6 +83,7 @@ AVMasteringDisplayMetadata *av_mastering_display_metadata_alloc(void);
  *
  * @return The AVMasteringDisplayMetadata structure to be filled by caller.
  */
-AVMasteringDisplayMetadata *av_mastering_display_metadata_create_side_data(AVFrame *frame);
+AVMasteringDisplayMetadata *
+av_mastering_display_metadata_create_side_data(AVFrame *frame);
 
 #endif /* AVUTIL_MASTERING_DISPLAY_METADATA_H */

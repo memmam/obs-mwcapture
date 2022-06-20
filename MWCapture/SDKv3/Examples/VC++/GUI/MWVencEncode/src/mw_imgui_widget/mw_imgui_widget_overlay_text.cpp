@@ -3,21 +3,21 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell’s SDK 
-// and not to Magewell’s SDK as a whole. 
+// The following license only applies to head files and library within Magewell’s SDK
+// and not to Magewell’s SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. (“Magewell”) All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell’s head files and library 
+// Magewell grands to any person who obtains the copy of Magewell’s head files and library
 // the rights,including without limitation, to use, modify, publish, sublicense, distribute
 // the Software on the conditions that all the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL “AS IS” AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -31,15 +31,15 @@
 #include "mw_imgui_widget_overlay_text.h"
 #include "stdio.h"
 
-CMWIMGUIWidgetOverlayText::CMWIMGUIWidgetOverlayText(CMWIMGUIUIManager* t_p_manager):
-	CMWIMGUIWidget(t_p_manager)
+CMWIMGUIWidgetOverlayText::CMWIMGUIWidgetOverlayText(
+	CMWIMGUIUIManager *t_p_manager)
+	: CMWIMGUIWidget(t_p_manager)
 {
-	m_imgui_flags = ImGuiWindowFlags_NoMove|
-					ImGuiWindowFlags_NoDecoration|
-					ImGuiWindowFlags_AlwaysAutoResize|
-					ImGuiWindowFlags_NoSavedSettings|
-					ImGuiWindowFlags_NoFocusOnAppearing|
-					ImGuiWindowFlags_NoNav;
+	m_imgui_flags =
+		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration |
+		ImGuiWindowFlags_AlwaysAutoResize |
+		ImGuiWindowFlags_NoSavedSettings |
+		ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav;
 
 	m_b_open = true;
 	memset(m_cs_name, 0, 128);
@@ -55,14 +55,11 @@ CMWIMGUIWidgetOverlayText::CMWIMGUIWidgetOverlayText(CMWIMGUIUIManager* t_p_mana
 	sprintf(m_cs_text, "text");
 }
 
-CMWIMGUIWidgetOverlayText::~CMWIMGUIWidgetOverlayText()
-{
-
-}
+CMWIMGUIWidgetOverlayText::~CMWIMGUIWidgetOverlayText() {}
 
 void CMWIMGUIWidgetOverlayText::update_widget()
 {
-	ImGuiIO& io = ImGui::GetIO();
+	ImGuiIO &io = ImGui::GetIO();
 	ImVec2 t_imvec2_pos;
 	t_imvec2_pos.x = io.DisplaySize.x - m_imvec2_size.x - 10;
 	t_imvec2_pos.y = io.DisplaySize.y - m_imvec2_size.y - 10;
@@ -76,23 +73,23 @@ void CMWIMGUIWidgetOverlayText::update_widget()
 	ImGui::End();
 }
 
-char* CMWIMGUIWidgetOverlayText::get_name()
+char *CMWIMGUIWidgetOverlayText::get_name()
 {
 	return m_cs_name;
 }
 
-void CMWIMGUIWidgetOverlayText::set_name(char* t_cs_name)
+void CMWIMGUIWidgetOverlayText::set_name(char *t_cs_name)
 {
 	memset(m_cs_name, 0, 128);
 	sprintf(m_cs_name, "%s", t_cs_name);
 }
 
-char* CMWIMGUIWidgetOverlayText::get_text()
+char *CMWIMGUIWidgetOverlayText::get_text()
 {
 	return m_cs_text;
 }
 
-void CMWIMGUIWidgetOverlayText::set_text(char* t_cs_text)
+void CMWIMGUIWidgetOverlayText::set_text(char *t_cs_text)
 {
 	memset(m_cs_text, 0, 1024);
 	sprintf(m_cs_text, "%s", t_cs_text);

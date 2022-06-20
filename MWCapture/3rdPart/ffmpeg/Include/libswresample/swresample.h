@@ -127,7 +127,7 @@
 #include "libswresample/version.h"
 
 #if LIBSWRESAMPLE_VERSION_MAJOR < 1
-#define SWR_CH_MAX 32   ///< Maximum number of channels
+#define SWR_CH_MAX 32 ///< Maximum number of channels
 #endif
 
 /**
@@ -143,34 +143,34 @@
 
 /** Dithering algorithms */
 enum SwrDitherType {
-    SWR_DITHER_NONE = 0,
-    SWR_DITHER_RECTANGULAR,
-    SWR_DITHER_TRIANGULAR,
-    SWR_DITHER_TRIANGULAR_HIGHPASS,
+	SWR_DITHER_NONE = 0,
+	SWR_DITHER_RECTANGULAR,
+	SWR_DITHER_TRIANGULAR,
+	SWR_DITHER_TRIANGULAR_HIGHPASS,
 
-    SWR_DITHER_NS = 64,         ///< not part of API/ABI
-    SWR_DITHER_NS_LIPSHITZ,
-    SWR_DITHER_NS_F_WEIGHTED,
-    SWR_DITHER_NS_MODIFIED_E_WEIGHTED,
-    SWR_DITHER_NS_IMPROVED_E_WEIGHTED,
-    SWR_DITHER_NS_SHIBATA,
-    SWR_DITHER_NS_LOW_SHIBATA,
-    SWR_DITHER_NS_HIGH_SHIBATA,
-    SWR_DITHER_NB,              ///< not part of API/ABI
+	SWR_DITHER_NS = 64, ///< not part of API/ABI
+	SWR_DITHER_NS_LIPSHITZ,
+	SWR_DITHER_NS_F_WEIGHTED,
+	SWR_DITHER_NS_MODIFIED_E_WEIGHTED,
+	SWR_DITHER_NS_IMPROVED_E_WEIGHTED,
+	SWR_DITHER_NS_SHIBATA,
+	SWR_DITHER_NS_LOW_SHIBATA,
+	SWR_DITHER_NS_HIGH_SHIBATA,
+	SWR_DITHER_NB, ///< not part of API/ABI
 };
 
 /** Resampling Engines */
 enum SwrEngine {
-    SWR_ENGINE_SWR,             /**< SW Resampler */
-    SWR_ENGINE_SOXR,            /**< SoX Resampler */
-    SWR_ENGINE_NB,              ///< not part of API/ABI
+	SWR_ENGINE_SWR,  /**< SW Resampler */
+	SWR_ENGINE_SOXR, /**< SoX Resampler */
+	SWR_ENGINE_NB,   ///< not part of API/ABI
 };
 
 /** Resampling Filter Types */
 enum SwrFilterType {
-    SWR_FILTER_TYPE_CUBIC,              /**< Cubic */
-    SWR_FILTER_TYPE_BLACKMAN_NUTTALL,   /**< Blackman Nuttall windowed sinc */
-    SWR_FILTER_TYPE_KAISER,             /**< Kaiser windowed sinc */
+	SWR_FILTER_TYPE_CUBIC,            /**< Cubic */
+	SWR_FILTER_TYPE_BLACKMAN_NUTTALL, /**< Blackman Nuttall windowed sinc */
+	SWR_FILTER_TYPE_KAISER,           /**< Kaiser windowed sinc */
 };
 
 /**
@@ -251,10 +251,11 @@ int swr_is_initialized(struct SwrContext *s);
  * @see swr_init(), swr_free()
  * @return NULL on error, allocated context otherwise
  */
-struct SwrContext *swr_alloc_set_opts(struct SwrContext *s,
-                                      int64_t out_ch_layout, enum AVSampleFormat out_sample_fmt, int out_sample_rate,
-                                      int64_t  in_ch_layout, enum AVSampleFormat  in_sample_fmt, int  in_sample_rate,
-                                      int log_offset, void *log_ctx);
+struct SwrContext *
+swr_alloc_set_opts(struct SwrContext *s, int64_t out_ch_layout,
+		   enum AVSampleFormat out_sample_fmt, int out_sample_rate,
+		   int64_t in_ch_layout, enum AVSampleFormat in_sample_fmt,
+		   int in_sample_rate, int log_offset, void *log_ctx);
 
 /**
  * @}
@@ -308,7 +309,7 @@ void swr_close(struct SwrContext *s);
  * @return number of samples output per channel, negative value on error
  */
 int swr_convert(struct SwrContext *s, uint8_t **out, int out_count,
-                                const uint8_t **in , int in_count);
+		const uint8_t **in, int in_count);
 
 /**
  * Convert the next timestamp from input to output
@@ -354,7 +355,8 @@ int64_t swr_next_pts(struct SwrContext *s, int64_t pts);
  *            @li compensation unsupported by resampler, or
  *            @li swr_init() fails when called.
  */
-int swr_set_compensation(struct SwrContext *s, int sample_delta, int compensation_distance);
+int swr_set_compensation(struct SwrContext *s, int sample_delta,
+			 int compensation_distance);
 
 /**
  * Set a customized input channel mapping.
@@ -390,11 +392,10 @@ int swr_set_channel_mapping(struct SwrContext *s, const int *channel_map);
  * @return                    0 on success, negative AVERROR code on failure
  */
 int swr_build_matrix(uint64_t in_layout, uint64_t out_layout,
-                     double center_mix_level, double surround_mix_level,
-                     double lfe_mix_level, double rematrix_maxval,
-                     double rematrix_volume, double *matrix,
-                     int stride, enum AVMatrixEncoding matrix_encoding,
-                     void *log_ctx);
+		     double center_mix_level, double surround_mix_level,
+		     double lfe_mix_level, double rematrix_maxval,
+		     double rematrix_volume, double *matrix, int stride,
+		     enum AVMatrixEncoding matrix_encoding, void *log_ctx);
 
 /**
  * Set a customized remix matrix.
@@ -556,8 +557,7 @@ const char *swresample_license(void);
  * @return                0 on success, AVERROR on failure or nonmatching
  *                        configuration.
  */
-int swr_convert_frame(SwrContext *swr,
-                      AVFrame *output, const AVFrame *input);
+int swr_convert_frame(SwrContext *swr, AVFrame *output, const AVFrame *input);
 
 /**
  * Configure or reconfigure the SwrContext using the information

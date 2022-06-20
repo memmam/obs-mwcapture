@@ -15,7 +15,6 @@
 /*                                                                         */
 /***************************************************************************/
 
-
 #ifndef FTGZIP_H_
 #define FTGZIP_H_
 
@@ -28,27 +27,25 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
-
 FT_BEGIN_HEADER
 
-  /*************************************************************************/
-  /*                                                                       */
-  /* <Section>                                                             */
-  /*    gzip                                                               */
-  /*                                                                       */
-  /* <Title>                                                               */
-  /*    GZIP Streams                                                       */
-  /*                                                                       */
-  /* <Abstract>                                                            */
-  /*    Using gzip-compressed font files.                                  */
-  /*                                                                       */
-  /* <Description>                                                         */
-  /*    This section contains the declaration of Gzip-specific functions.  */
-  /*                                                                       */
-  /*************************************************************************/
+/*************************************************************************/
+/*                                                                       */
+/* <Section>                                                             */
+/*    gzip                                                               */
+/*                                                                       */
+/* <Title>                                                               */
+/*    GZIP Streams                                                       */
+/*                                                                       */
+/* <Abstract>                                                            */
+/*    Using gzip-compressed font files.                                  */
+/*                                                                       */
+/* <Description>                                                         */
+/*    This section contains the declaration of Gzip-specific functions.  */
+/*                                                                       */
+/*************************************************************************/
 
-
- /************************************************************************
+/************************************************************************
   *
   * @function:
   *   FT_Stream_OpenGzip
@@ -87,12 +84,10 @@ FT_BEGIN_HEADER
   *   This function may return `FT_Err_Unimplemented_Feature' if your build
   *   of FreeType was not compiled with zlib support.
   */
-  FT_EXPORT( FT_Error )
-  FT_Stream_OpenGzip( FT_Stream  stream,
-                      FT_Stream  source );
+FT_EXPORT(FT_Error)
+FT_Stream_OpenGzip(FT_Stream stream, FT_Stream source);
 
-
- /************************************************************************
+/************************************************************************
   *
   * @function:
   *   FT_Gzip_Uncompress
@@ -130,19 +125,14 @@ FT_BEGIN_HEADER
   *   This function may return `FT_Err_Unimplemented_Feature' if your build
   *   of FreeType was not compiled with zlib support.
   */
-  FT_EXPORT( FT_Error )
-  FT_Gzip_Uncompress( FT_Memory       memory,
-                      FT_Byte*        output,
-                      FT_ULong*       output_len,
-                      const FT_Byte*  input,
-                      FT_ULong        input_len );
+FT_EXPORT(FT_Error)
+FT_Gzip_Uncompress(FT_Memory memory, FT_Byte *output, FT_ULong *output_len,
+		   const FT_Byte *input, FT_ULong input_len);
 
-  /* */
-
+/* */
 
 FT_END_HEADER
 
 #endif /* FTGZIP_H_ */
-
 
 /* END */

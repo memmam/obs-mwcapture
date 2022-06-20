@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////
 // Button.cpp: Button control class.
-// 
+//
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
 // ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
@@ -32,23 +32,23 @@
 // rcBound:   Bounding rectangle.
 //-----------------------------------------------------------------------------
 
-HRESULT Button::CreateText(HWND hParent, const TCHAR *szCaption, int nID, 
-                               const Rect& rcBound)
+HRESULT Button::CreateText(HWND hParent, const TCHAR *szCaption, int nID,
+			   const Rect &rcBound)
 {
-    CREATESTRUCT create;
+	CREATESTRUCT create;
 	ZeroMemory(&create, sizeof(CREATESTRUCT));
 
-    create.x = rcBound.left;
-    create.y = rcBound.top;
-    create.cx = rcBound.right - create.x;
-    create.cy = rcBound.bottom - create.y;
+	create.x = rcBound.left;
+	create.y = rcBound.top;
+	create.cx = rcBound.right - create.x;
+	create.cy = rcBound.bottom - create.y;
 
-    create.hwndParent = hParent;
-    create.lpszName = szCaption;
-    create.hMenu = (HMENU)(INT_PTR)nID;
-    create.lpszClass = TEXT("BUTTON");
-    create.style = BS_PUSHBUTTON | BS_FLAT;
-    return Control::Create(create);
+	create.hwndParent = hParent;
+	create.lpszName = szCaption;
+	create.hMenu = (HMENU)(INT_PTR)nID;
+	create.lpszClass = TEXT("BUTTON");
+	create.style = BS_PUSHBUTTON | BS_FLAT;
+	return Control::Create(create);
 }
 
 //-----------------------------------------------------------------------------
@@ -61,14 +61,14 @@ HRESULT Button::CreateText(HWND hParent, const TCHAR *szCaption, int nID,
 // rcBound: Bounding rectangle.
 //-----------------------------------------------------------------------------
 
-HRESULT Button::CreateBitmap(HWND hParent, int nImgID, int nID, const Rect& rcSize)
+HRESULT Button::CreateBitmap(HWND hParent, int nImgID, int nID,
+			     const Rect &rcSize)
 {
-    HRESULT hr = CreateText(hParent, NULL, nID, rcSize);
-    if (SUCCEEDED(hr))
-    {
-        SetImage((WORD)nImgID);
-    }
-    return hr;
+	HRESULT hr = CreateText(hParent, NULL, nID, rcSize);
+	if (SUCCEEDED(hr)) {
+		SetImage((WORD)nImgID);
+	}
+	return hr;
 }
 
 //-----------------------------------------------------------------------------
@@ -80,7 +80,7 @@ HRESULT Button::CreateBitmap(HWND hParent, int nImgID, int nID, const Rect& rcSi
 
 BOOL Button::SetImage(WORD nImgId)
 {
-    AddStyle(BS_BITMAP);
-    HBITMAP hBitmap = SetBitmapImg(GetInstance(), nImgId, m_hwnd);
-    return (hBitmap ? TRUE : FALSE);
+	AddStyle(BS_BITMAP);
+	HBITMAP hBitmap = SetBitmapImg(GetInstance(), nImgId, m_hwnd);
+	return (hBitmap ? TRUE : FALSE);
 }

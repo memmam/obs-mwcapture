@@ -9,7 +9,7 @@
 #define MW_MP4_H
 
 #include <stdint.h>
-#if !defined( _WIN32 )
+#if !defined(_WIN32)
 #include <stdbool.h>
 #endif
 
@@ -20,81 +20,81 @@
 #define MW_MP4_API __declspec(dllimport)
 #endif
 #else
-#define MW_MP4_API 
+#define MW_MP4_API
 #endif
 
-typedef struct _mw_mp4_handle_t{int32_t r;} *mw_mp4_handle_t;
+typedef struct _mw_mp4_handle_t {
+	int32_t r;
+} * mw_mp4_handle_t;
 
-typedef enum _mw_mp4_status
-{
-    MW_MP4_STATUS_SUCCESS = 0,
-    MW_MP4_STATUS_UNEXPECTED_ERROR,
-    MW_MP4_STATUS_INVALID_PARAM,
+typedef enum _mw_mp4_status {
+	MW_MP4_STATUS_SUCCESS = 0,
+	MW_MP4_STATUS_UNEXPECTED_ERROR,
+	MW_MP4_STATUS_INVALID_PARAM,
 } mw_mp4_status_t;
 
 typedef enum _mw_mp4_video_type {
-    MW_MP4_VIDEO_TYPE_UNKNOWN = 0,
-    MW_MP4_VIDEO_TYPE_H264    = 1,
-    MW_MP4_VIDEO_TYPE_HEVC    = 2,
-    MW_MP4_VIDEO_TYPE_H265    = MW_MP4_VIDEO_TYPE_HEVC
-}mw_mp4_video_type_t;
+	MW_MP4_VIDEO_TYPE_UNKNOWN = 0,
+	MW_MP4_VIDEO_TYPE_H264 = 1,
+	MW_MP4_VIDEO_TYPE_HEVC = 2,
+	MW_MP4_VIDEO_TYPE_H265 = MW_MP4_VIDEO_TYPE_HEVC
+} mw_mp4_video_type_t;
 
 typedef struct _mw_mp4_h264_parameter_set {
-    uint8_t*		sps;        // can be nullptr if it's contained in the stream
-    int16_t			sps_size;   // can be 0 if it's contained in the stream
-    uint8_t*		pps;        // can be nullptr if it's contained in the stream
-    int16_t			pps_size;   // can be 0 if it's contained in the stream
+	uint8_t *sps;     // can be nullptr if it's contained in the stream
+	int16_t sps_size; // can be 0 if it's contained in the stream
+	uint8_t *pps;     // can be nullptr if it's contained in the stream
+	int16_t pps_size; // can be 0 if it's contained in the stream
 } mw_mp4_h264_parameter_set_t;
 
 typedef struct _mw_mp4_hevc_parameter_set {
-    uint8_t*		sps;            // can be nullptr if it's contained in the stream
-    int16_t			sps_size;       // can be 0 if it's contained in the stream
-    uint8_t*		pps;            // can be nullptr if it's contained in the stream
-    int16_t			pps_size;       // can be 0 if it's contained in the stream
-    uint8_t*		vps;            // can be nullptr if it's contained in the stream
-    int16_t			vps_size;       // can be 0 if it's contained in the stream
+	uint8_t *sps;     // can be nullptr if it's contained in the stream
+	int16_t sps_size; // can be 0 if it's contained in the stream
+	uint8_t *pps;     // can be nullptr if it's contained in the stream
+	int16_t pps_size; // can be 0 if it's contained in the stream
+	uint8_t *vps;     // can be nullptr if it's contained in the stream
+	int16_t vps_size; // can be 0 if it's contained in the stream
 } mw_mp4_hevc_parameter_set_t;
 
 typedef struct _mw_mp4_video_info {
-    mw_mp4_video_type_t codec_type;
-    uint32_t		    timescale;
-    uint16_t		    width;
-    uint16_t		    height;
+	mw_mp4_video_type_t codec_type;
+	uint32_t timescale;
+	uint16_t width;
+	uint16_t height;
 
-    union{
-        mw_mp4_h264_parameter_set_t h264;
-        mw_mp4_hevc_parameter_set_t hevc;
-    };
+	union {
+		mw_mp4_h264_parameter_set_t h264;
+		mw_mp4_hevc_parameter_set_t hevc;
+	};
 } mw_mp4_video_info_t;
 
 typedef enum _mw_mp4_audio_type {
-    MW_MP4_AUDIO_TYPE_UNKNOWN    = 0,
-    MW_MP4_AUDIO_TYPE_AAC        = 1,
-    MW_MP4_AUDIO_TYPE_ADTS_AAC   = 2
-}mw_mp4_audio_codec_t;
+	MW_MP4_AUDIO_TYPE_UNKNOWN = 0,
+	MW_MP4_AUDIO_TYPE_AAC = 1,
+	MW_MP4_AUDIO_TYPE_ADTS_AAC = 2
+} mw_mp4_audio_codec_t;
 
 typedef struct _mw_mp4_audio_info {
-    mw_mp4_audio_codec_t codec_type;
-    uint32_t		     timescale;
-    uint16_t		     sample_rate; // can be 0 if codec is aac with adts
-    uint16_t		     channels; // can be 0 if codec is aac with  adts
-    uint8_t			     profile; // can be 0 if codec is aac with  adts
+	mw_mp4_audio_codec_t codec_type;
+	uint32_t timescale;
+	uint16_t sample_rate; // can be 0 if codec is aac with adts
+	uint16_t channels;    // can be 0 if codec is aac with  adts
+	uint8_t profile;      // can be 0 if codec is aac with  adts
 } mw_mp4_audio_info_t;
 
 typedef enum _mw_mp4_subtitle_type {
-    MW_MP4_SUBTITLE_TYPE_UNKNOWN = 0,
-    MW_MP4_SUBTITLE_TYPE_CC608   = 1,
-    MW_MP4_SUBTITLE_TYPE_CC708   = 2
-}mw_mp4_subtitle_type_t;
+	MW_MP4_SUBTITLE_TYPE_UNKNOWN = 0,
+	MW_MP4_SUBTITLE_TYPE_CC608 = 1,
+	MW_MP4_SUBTITLE_TYPE_CC708 = 2
+} mw_mp4_subtitle_type_t;
 
 typedef struct _mw_mp4_subtitle_info {
-    mw_mp4_subtitle_type_t  codec_type;
-    uint32_t		        timescale;
+	mw_mp4_subtitle_type_t codec_type;
+	uint32_t timescale;
 } mw_mp4_subtitle_info_t;
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /**
@@ -107,7 +107,7 @@ extern "C"
  * @return  return MW_STATUS_SUCCESS if successfully else error code
  */
 MW_MP4_API
-mw_mp4_handle_t mw_mp4_open(const char * p_path);
+mw_mp4_handle_t mw_mp4_open(const char *p_path);
 
 /**
 * @ingroup group_mp4_functions
@@ -119,7 +119,7 @@ mw_mp4_handle_t mw_mp4_open(const char * p_path);
 * @return  return MW_STATUS_SUCCESS if successfully else error code
 */
 MW_MP4_API
-mw_mp4_handle_t mw_mp4_open_ex(const wchar_t * p_path);
+mw_mp4_handle_t mw_mp4_open_ex(const wchar_t *p_path);
 
 /**
  * @ingroup group_mp4_functions
@@ -129,7 +129,8 @@ mw_mp4_handle_t mw_mp4_open_ex(const wchar_t * p_path);
 * @return  return MW_STATUS_SUCCESS if successfully else error code
 */
 MW_MP4_API
-mw_mp4_status_t mw_mp4_set_video(mw_mp4_handle_t handle, const mw_mp4_video_info_t* p_info);
+mw_mp4_status_t mw_mp4_set_video(mw_mp4_handle_t handle,
+				 const mw_mp4_video_info_t *p_info);
 
 /**
  * @ingroup group_mp4_functions
@@ -139,7 +140,8 @@ mw_mp4_status_t mw_mp4_set_video(mw_mp4_handle_t handle, const mw_mp4_video_info
 * @return  return MW_STATUS_SUCCESS if successfully else error code
 */
 MW_MP4_API
-mw_mp4_status_t mw_mp4_set_audio(mw_mp4_handle_t handle, const mw_mp4_audio_info_t* p_info);
+mw_mp4_status_t mw_mp4_set_audio(mw_mp4_handle_t handle,
+				 const mw_mp4_audio_info_t *p_info);
 
 /**
  * @ingroup group_mp4_functions
@@ -149,7 +151,8 @@ mw_mp4_status_t mw_mp4_set_audio(mw_mp4_handle_t handle, const mw_mp4_audio_info
 * @return  return MW_STATUS_SUCCESS if successfully else error code
 */
 MW_MP4_API
-mw_mp4_status_t mw_mp4_set_subtitle(mw_mp4_handle_t handle, const mw_mp4_subtitle_info_t* p_info);
+mw_mp4_status_t mw_mp4_set_subtitle(mw_mp4_handle_t handle,
+				    const mw_mp4_subtitle_info_t *p_info);
 
 /**
  * @ingroup group_mp4_functions
@@ -163,7 +166,9 @@ mw_mp4_status_t mw_mp4_set_subtitle(mw_mp4_handle_t handle, const mw_mp4_subtitl
 * @return  return MW_STATUS_SUCCESS if successfully else error code
 */
 MW_MP4_API
-mw_mp4_status_t mw_mp4_write_video(mw_mp4_handle_t handle, const uint8_t * p_stream, uint32_t size, uint64_t timestamp);
+mw_mp4_status_t mw_mp4_write_video(mw_mp4_handle_t handle,
+				   const uint8_t *p_stream, uint32_t size,
+				   uint64_t timestamp);
 
 /**
  * @ingroup group_mp4_functions
@@ -175,7 +180,9 @@ mw_mp4_status_t mw_mp4_write_video(mw_mp4_handle_t handle, const uint8_t * p_str
 * @return  return MW_STATUS_SUCCESS if successfully else error code
 */
 MW_MP4_API
-mw_mp4_status_t mw_mp4_write_audio(mw_mp4_handle_t handle, const uint8_t * p_stream, uint32_t size, uint64_t timestamp);
+mw_mp4_status_t mw_mp4_write_audio(mw_mp4_handle_t handle,
+				   const uint8_t *p_stream, uint32_t size,
+				   uint64_t timestamp);
 
 /**
  * @ingroup group_mp4_functions
@@ -187,7 +194,9 @@ mw_mp4_status_t mw_mp4_write_audio(mw_mp4_handle_t handle, const uint8_t * p_str
 * @return  return MW_STATUS_SUCCESS if successfully else error code
 */
 MW_MP4_API
-mw_mp4_status_t mw_mp4_write_subtitle(mw_mp4_handle_t handle, const uint8_t * p_stream, uint32_t size, uint64_t timestamp);
+mw_mp4_status_t mw_mp4_write_subtitle(mw_mp4_handle_t handle,
+				      const uint8_t *p_stream, uint32_t size,
+				      uint64_t timestamp);
 
 /**
  * @ingroup group_mp4_functions
@@ -206,7 +215,7 @@ mw_mp4_status_t mw_mp4_close(mw_mp4_handle_t handle);
 * @return  return MW_STATUS_SUCCESS if successfully else error code
 */
 MW_MP4_API
-mw_mp4_status_t mw_mp4_repair(const char * p_path, bool del);
+mw_mp4_status_t mw_mp4_repair(const char *p_path, bool del);
 
 /**
 * @ingroup group_mp4_functions
@@ -216,7 +225,7 @@ mw_mp4_status_t mw_mp4_repair(const char * p_path, bool del);
 * @return  return MW_STATUS_SUCCESS if successfully else error code
 */
 MW_MP4_API
-mw_mp4_status_t mw_mp4_repair_ex(const wchar_t * p_path, bool del);
+mw_mp4_status_t mw_mp4_repair_ex(const wchar_t *p_path, bool del);
 #ifdef __cplusplus
 }
 #endif

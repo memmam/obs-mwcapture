@@ -38,7 +38,6 @@
 
 class CChartLegend;
 
-
 //! Base class for all series of the control
 /**
 	This class inherits from CChartSeries and introduces the concept of 
@@ -47,15 +46,13 @@ class CChartLegend;
 	This class is much more than a simple base class. It already store
 	all the data points and provide utility functions to manipulate them.
 **/
-template <class T>
-class CChartSerieBase : public CChartSerie
-{
+template<class T> class CChartSerieBase : public CChartSerie {
 	friend CChartCtrl;
 	friend CChartLegend;
 
 public:
 	//! Adds a single data point to the series.
-	void AddPoint(const T& newPoint);
+	void AddPoint(const T &newPoint);
 	//! Adds an array of points to the series.
 	/**
 		Points which were already present in the series are kept.
@@ -64,13 +61,13 @@ public:
 		@param Count
 			Size of the array
 	**/
-	void AddPoints(T* pPoints, unsigned Count);
+	void AddPoints(T *pPoints, unsigned Count);
 	//! Retrieves the point at the specified index.
 	/**
 		@param index
 			The index of the point to retrieve
 	**/
-	const T& GetPoint(unsigned index) const;
+	const T &GetPoint(unsigned index) const;
 	//! Sets an array of points to the series.
 	/**
 		Points which were already present in the series are discarded.
@@ -79,7 +76,7 @@ public:
 		@param Count
 			Size of the array
 	**/
-	void SetPoints(T* pPoints, unsigned Count);
+	void SetPoints(T *pPoints, unsigned Count);
 	//! Removes a certain amount of points from the begining of the series.
 	void RemovePointsFromBegin(unsigned Count);
 	//! Removes a certain amount of points from the end of the series.
@@ -88,7 +85,7 @@ public:
 	void ClearSerie();
 
 	//! Returns the number of points in the series.
-	unsigned GetPointsCount() const  { return m_vPoints.GetPointsCount(); }
+	unsigned GetPointsCount() const { return m_vPoints.GetPointsCount(); }
 
 	//! Retrieves the minimum and maxium Y values of the series.
 	/**
@@ -99,7 +96,7 @@ public:
 		@return
 			false if the series doesn't contain data or is invisible
 	**/
-	bool GetSerieYMinMax(double& Min, double& Max)  const;
+	bool GetSerieYMinMax(double &Min, double &Max) const;
 	//! Retrieves the minimum and maxium X values of the series.
 	/**
 		@param Min
@@ -109,7 +106,7 @@ public:
 		@return
 			false if the series doesn't contain data or is invisible
 	**/
-	bool GetSerieXMinMax(double& Min, double& Max)  const;
+	bool GetSerieXMinMax(double &Min, double &Max) const;
 	//! Retrieves the minimum and maxium screen X values of the series.
 	/**
 		@param Min
@@ -119,7 +116,7 @@ public:
 		@return
 			false if the series doesn't contain data or is invisible
 	**/
-	bool GetSerieXScreenMinMax(double& Min, double& Max)  const;
+	bool GetSerieXScreenMinMax(double &Min, double &Max) const;
 	//! Retrieves the minimum and maxium screen Y values of the series.
 	/**
 		@param Min
@@ -129,7 +126,7 @@ public:
 		@return
 			false if the series doesn't contain data or is invisible
 	**/
-	bool GetSerieYScreenMinMax(double& Min, double& Max)  const;
+	bool GetSerieYScreenMinMax(double &Min, double &Max) const;
 
 	//! Creates and attaches a balloon label on a point of the series.
 	/**
@@ -140,7 +137,9 @@ public:
 			The text of the label
 		@return the created CChartBalloonLabel
 	**/
-	CChartBalloonLabel<T>* CreateBalloonLabel(unsigned uPointIndex, const TChartString& strLabelText);
+	CChartBalloonLabel<T> *
+	CreateBalloonLabel(unsigned uPointIndex,
+			   const TChartString &strLabelText);
 	//! Creates and attaches a balloon label on a point of the series.
 	/**
 		This functions specifies a CChartLabelProvider object which is used to
@@ -153,7 +152,9 @@ public:
 			Object providing the text displayed on the label
 		@return the created CChartBalloonLabel
 	**/
-	CChartBalloonLabel<T>* CreateBalloonLabel(unsigned uPointIndex, CChartLabelProvider<T>* pLabelProvider);
+	CChartBalloonLabel<T> *
+	CreateBalloonLabel(unsigned uPointIndex,
+			   CChartLabelProvider<T> *pLabelProvider);
 	//! Attaches a custom label on a point of the series.
 	/**
 		@param uPointIndex
@@ -161,10 +162,10 @@ public:
 		@param pLabel
 			The label to attach to the point
 	**/
-	void AttachCustomLabel(unsigned uPointIndex, CChartLabel<T>* pLabel);
+	void AttachCustomLabel(unsigned uPointIndex, CChartLabel<T> *pLabel);
 
 	//! Constructor
-	CChartSerieBase(CChartCtrl* pParent);
+	CChartSerieBase(CChartCtrl *pParent);
 	//! Destructor
 	virtual ~CChartSerieBase();
 
@@ -191,7 +192,7 @@ public:
 		@param pListener
 			The listener to register
 	**/
-	void RegisterMouseListener(CChartSeriesMouseListener<T>* pListener);
+	void RegisterMouseListener(CChartSeriesMouseListener<T> *pListener);
 	//! Unregister the series mouse listener for this series
 	void UnregisterMouseListener();
 
@@ -205,27 +206,26 @@ protected:
 			The index of the last visible point is stored in this argument
 		@return false if the series has no ordering or no data points.
 	**/
-	bool GetVisiblePoints(unsigned& uFirst, unsigned& uLast) const;
+	bool GetVisiblePoints(unsigned &uFirst, unsigned &uLast) const;
 
 	//! Called by the control to check if an event occured on the series.
-	bool OnMouseEvent(CChartMouseListener::MouseEvent mouseEvent, 
-					const CPoint& screenPoint);
+	bool OnMouseEvent(CChartMouseListener::MouseEvent mouseEvent,
+			  const CPoint &screenPoint);
 
 	//! The helper class containing all the data points.
 	CChartPointsArray<T> m_vPoints;
 	//! Index of the last point drawn
-	unsigned m_uLastDrawnPoint;		
+	unsigned m_uLastDrawnPoint;
 
 private:
 	//! Draws the labels of the series.
-	void DrawLabels(CDC* pDC);
+	void DrawLabels(CDC *pDC);
 
-	typedef std::map<unsigned, CChartLabel<T>*> TLabelMap;
+	typedef std::map<unsigned, CChartLabel<T> *> TLabelMap;
 	//! Map containing the labels of the series.
 	TLabelMap m_mapLabels;
 
-	CChartSeriesMouseListener<T>* m_pMouseListener;
+	CChartSeriesMouseListener<T> *m_pMouseListener;
 };
 
 #include "ChartSerieBase.inl"
-

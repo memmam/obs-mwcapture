@@ -15,15 +15,13 @@
 #ifndef _ASFERR_H
 #define _ASFERR_H
 
-
-#define STATUS_SEVERITY(hr)  (((hr) >> 30) & 0x3)
+#define STATUS_SEVERITY(hr) (((hr) >> 30) & 0x3)
 
 #ifdef RC_INVOKED
 #define _ASF_HRESULT_TYPEDEF_(_sc) _sc
 #else // RC_INVOKED
 #define _ASF_HRESULT_TYPEDEF_(_sc) ((HRESULT)_sc)
 #endif // RC_INVOKED
-
 
 ///////////////////////////////////////////////////////////////////////////
 //
@@ -58,17 +56,15 @@
 //
 // Define the facility codes
 //
-#define FACILITY_NS                      0xD
-
+#define FACILITY_NS 0xD
 
 //
 // Define the severity codes
 //
-#define STATUS_SEVERITY_WARNING          0x2
-#define STATUS_SEVERITY_SUCCESS          0x0
-#define STATUS_SEVERITY_INFORMATIONAL    0x1
-#define STATUS_SEVERITY_ERROR            0x3
-
+#define STATUS_SEVERITY_WARNING 0x2
+#define STATUS_SEVERITY_SUCCESS 0x0
+#define STATUS_SEVERITY_INFORMATIONAL 0x1
+#define STATUS_SEVERITY_ERROR 0x3
 
 //
 // MessageId: ASF_E_BUFFEROVERRUN
@@ -77,7 +73,7 @@
 //
 //  An attempt was made to seek or position past the end of a buffer.%0
 //
-#define ASF_E_BUFFEROVERRUN              _ASF_HRESULT_TYPEDEF_(0xC00D07D0L)
+#define ASF_E_BUFFEROVERRUN _ASF_HRESULT_TYPEDEF_(0xC00D07D0L)
 
 //
 // MessageId: ASF_E_BUFFERTOOSMALL
@@ -86,7 +82,7 @@
 //
 //  The supplied input or output buffer was too small.%0
 //
-#define ASF_E_BUFFERTOOSMALL             _ASF_HRESULT_TYPEDEF_(0xC00D07D1L)
+#define ASF_E_BUFFERTOOSMALL _ASF_HRESULT_TYPEDEF_(0xC00D07D1L)
 
 //
 // MessageId: ASF_E_BADLANGUAGEID
@@ -95,7 +91,7 @@
 //
 //  The language ID was not found.%0
 //
-#define ASF_E_BADLANGUAGEID              _ASF_HRESULT_TYPEDEF_(0xC00D07D2L)
+#define ASF_E_BADLANGUAGEID _ASF_HRESULT_TYPEDEF_(0xC00D07D2L)
 
 //
 // MessageId: ASF_E_NOPAYLOADLENGTH
@@ -104,7 +100,7 @@
 //
 //  The multiple payload packet is missing the payload length.%0
 //
-#define ASF_E_NOPAYLOADLENGTH            _ASF_HRESULT_TYPEDEF_(0xC00D07DBL)
+#define ASF_E_NOPAYLOADLENGTH _ASF_HRESULT_TYPEDEF_(0xC00D07DBL)
 
 //
 // MessageId: ASF_E_TOOMANYPAYLOADS
@@ -113,7 +109,7 @@
 //
 //  The packet contains too many payloads.%0
 //
-#define ASF_E_TOOMANYPAYLOADS            _ASF_HRESULT_TYPEDEF_(0xC00D07DCL)
+#define ASF_E_TOOMANYPAYLOADS _ASF_HRESULT_TYPEDEF_(0xC00D07DCL)
 
 //
 // MessageId: ASF_E_PACKETCONTENTTOOLARGE
@@ -122,7 +118,7 @@
 //
 //  ASF_E_PACKETCONTENTTOOLARGE
 //
-#define ASF_E_PACKETCONTENTTOOLARGE      _ASF_HRESULT_TYPEDEF_(0xC00D07DEL)
+#define ASF_E_PACKETCONTENTTOOLARGE _ASF_HRESULT_TYPEDEF_(0xC00D07DEL)
 
 //
 // MessageId: ASF_E_UNKNOWNPACKETSIZE
@@ -131,7 +127,7 @@
 //
 //  Expecting a fixed packet size but min. and max. are not equal.%0
 //
-#define ASF_E_UNKNOWNPACKETSIZE          _ASF_HRESULT_TYPEDEF_(0xC00D07E0L)
+#define ASF_E_UNKNOWNPACKETSIZE _ASF_HRESULT_TYPEDEF_(0xC00D07E0L)
 
 //
 // MessageId: ASF_E_INVALIDHEADER
@@ -140,7 +136,7 @@
 //
 //  ASF_E_INVALIDHEADER
 //
-#define ASF_E_INVALIDHEADER              _ASF_HRESULT_TYPEDEF_(0xC00D07E2L)
+#define ASF_E_INVALIDHEADER _ASF_HRESULT_TYPEDEF_(0xC00D07E2L)
 
 //
 // MessageId: ASF_E_NOCLOCKOBJECT
@@ -149,7 +145,7 @@
 //
 //  The object does not have a valid clock object.%0
 //
-#define ASF_E_NOCLOCKOBJECT              _ASF_HRESULT_TYPEDEF_(0xC00D07E6L)
+#define ASF_E_NOCLOCKOBJECT _ASF_HRESULT_TYPEDEF_(0xC00D07E6L)
 
 //
 // MessageId: ASF_E_UNKNOWNCLOCKTYPE
@@ -158,7 +154,7 @@
 //
 //  ASF_E_UNKNOWNCLOCKTYPE
 //
-#define ASF_E_UNKNOWNCLOCKTYPE           _ASF_HRESULT_TYPEDEF_(0xC00D07EBL)
+#define ASF_E_UNKNOWNCLOCKTYPE _ASF_HRESULT_TYPEDEF_(0xC00D07EBL)
 
 //
 // MessageId: ASF_E_OPAQUEPACKET
@@ -167,7 +163,7 @@
 //
 //  An attempt was made to restore or access an opaque packet.%0
 //
-#define ASF_E_OPAQUEPACKET               _ASF_HRESULT_TYPEDEF_(0xC00D07EDL)
+#define ASF_E_OPAQUEPACKET _ASF_HRESULT_TYPEDEF_(0xC00D07EDL)
 
 //
 // MessageId: ASF_E_WRONGVERSION
@@ -176,7 +172,7 @@
 //
 //  ASF_E_WRONGVERSION
 //
-#define ASF_E_WRONGVERSION               _ASF_HRESULT_TYPEDEF_(0xC00D07EEL)
+#define ASF_E_WRONGVERSION _ASF_HRESULT_TYPEDEF_(0xC00D07EEL)
 
 //
 // MessageId: ASF_E_OVERFLOW
@@ -185,7 +181,7 @@
 //
 //  An attempt was made to store a value which was larger than then destination's maximum value.%0
 //
-#define ASF_E_OVERFLOW                   _ASF_HRESULT_TYPEDEF_(0xC00D07EFL)
+#define ASF_E_OVERFLOW _ASF_HRESULT_TYPEDEF_(0xC00D07EFL)
 
 //
 // MessageId: ASF_E_NOTFOUND
@@ -194,11 +190,11 @@
 //
 //  The object was not found.%0
 //
-#define ASF_E_NOTFOUND                   _ASF_HRESULT_TYPEDEF_(0xC00D07F0L)
+#define ASF_E_NOTFOUND _ASF_HRESULT_TYPEDEF_(0xC00D07F0L)
 
 //
 // Someone else is using MessageIds 2033 & 2034, so we skip them
-// 
+//
 // 2033 = NS_E_NOTHING_TO_DO
 // 2034 = NS_E_NO_MULTICAST
 
@@ -209,7 +205,7 @@
 //
 //  The object is too large to be processed in the requested manner.%0
 //
-#define ASF_E_OBJECTTOOBIG               _ASF_HRESULT_TYPEDEF_(0xC00D07F3L)
+#define ASF_E_OBJECTTOOBIG _ASF_HRESULT_TYPEDEF_(0xC00D07F3L)
 
 //
 // MessageId: ASF_E_UNEXPECTEDVALUE
@@ -218,7 +214,7 @@
 //
 //  A value was not set as expected.%0
 //
-#define ASF_E_UNEXPECTEDVALUE            _ASF_HRESULT_TYPEDEF_(0xC00D07F4L)
+#define ASF_E_UNEXPECTEDVALUE _ASF_HRESULT_TYPEDEF_(0xC00D07F4L)
 
 //
 // MessageId: ASF_E_INVALIDSTATE
@@ -227,7 +223,7 @@
 //
 //  The request is not valid in the object's current state.%0
 //
-#define ASF_E_INVALIDSTATE               _ASF_HRESULT_TYPEDEF_(0xC00D07F5L)
+#define ASF_E_INVALIDSTATE _ASF_HRESULT_TYPEDEF_(0xC00D07F5L)
 
 //
 // MessageId: ASF_E_NOLIBRARY
@@ -236,7 +232,7 @@
 //
 //  This object does not have a valid library pointer; it was not properly created or it has been Shutdown().%0
 //
-#define ASF_E_NOLIBRARY                  _ASF_HRESULT_TYPEDEF_(0xC00D07F6L)
+#define ASF_E_NOLIBRARY _ASF_HRESULT_TYPEDEF_(0xC00D07F6L)
 
 //
 // MessageId: ASF_E_ALREADYINITIALIZED
@@ -245,7 +241,7 @@
 //
 //  This object has already been initialized; the setting cannot be changed.%0
 //
-#define ASF_E_ALREADYINITIALIZED         _ASF_HRESULT_TYPEDEF_(0xC00D07F7L)
+#define ASF_E_ALREADYINITIALIZED _ASF_HRESULT_TYPEDEF_(0xC00D07F7L)
 
 //
 // MessageId: ASF_E_INVALIDINIT
@@ -254,7 +250,7 @@
 //
 //  This object has not been initialized properly; that operation cannot be performed.%0
 //
-#define ASF_E_INVALIDINIT                _ASF_HRESULT_TYPEDEF_(0xC00D07F8L)
+#define ASF_E_INVALIDINIT _ASF_HRESULT_TYPEDEF_(0xC00D07F8L)
 
 //
 // MessageId: ASF_E_NOHEADEROBJECT
@@ -263,7 +259,7 @@
 //
 //  The ASF Header object could not be found.%0
 //
-#define ASF_E_NOHEADEROBJECT             _ASF_HRESULT_TYPEDEF_(0xC00D07F9L)
+#define ASF_E_NOHEADEROBJECT _ASF_HRESULT_TYPEDEF_(0xC00D07F9L)
 
 //
 // MessageId: ASF_E_NODATAOBJECT
@@ -272,7 +268,7 @@
 //
 //  The ASF Data object could not be found.%0
 //
-#define ASF_E_NODATAOBJECT               _ASF_HRESULT_TYPEDEF_(0xC00D07FAL)
+#define ASF_E_NODATAOBJECT _ASF_HRESULT_TYPEDEF_(0xC00D07FAL)
 
 //
 // MessageId: ASF_E_NOINDEXOBJECT
@@ -281,7 +277,7 @@
 //
 //  The ASF Index object could not be found.%0
 //
-#define ASF_E_NOINDEXOBJECT              _ASF_HRESULT_TYPEDEF_(0xC00D07FBL)
+#define ASF_E_NOINDEXOBJECT _ASF_HRESULT_TYPEDEF_(0xC00D07FBL)
 
 //
 // MessageId: ASF_E_NOSTREAMPROPS
@@ -290,7 +286,7 @@
 //
 //  A Stream Properties object with the correct stream number could not be found.%0
 //
-#define ASF_E_NOSTREAMPROPS              _ASF_HRESULT_TYPEDEF_(0xC00D07FCL)
+#define ASF_E_NOSTREAMPROPS _ASF_HRESULT_TYPEDEF_(0xC00D07FCL)
 
 //
 // MessageId: ASF_E_NOFILEPROPS
@@ -299,7 +295,7 @@
 //
 //  The File Properties object could not be found.%0
 //
-#define ASF_E_NOFILEPROPS                _ASF_HRESULT_TYPEDEF_(0xC00D07FDL)
+#define ASF_E_NOFILEPROPS _ASF_HRESULT_TYPEDEF_(0xC00D07FDL)
 
 //
 // MessageId: ASF_E_NOLANGUAGELIST
@@ -308,7 +304,7 @@
 //
 //  The Language List object could not be found.%0
 //
-#define ASF_E_NOLANGUAGELIST             _ASF_HRESULT_TYPEDEF_(0xC00D07FEL)
+#define ASF_E_NOLANGUAGELIST _ASF_HRESULT_TYPEDEF_(0xC00D07FEL)
 
 //
 // MessageId: ASF_E_NOINDEXPARAMETERS
@@ -317,7 +313,7 @@
 //
 //  The Index Parameters object could not be found.%0
 //
-#define ASF_E_NOINDEXPARAMETERS          _ASF_HRESULT_TYPEDEF_(0xC00D07FFL)
+#define ASF_E_NOINDEXPARAMETERS _ASF_HRESULT_TYPEDEF_(0xC00D07FFL)
 
 //
 // MessageId: ASF_E_UNSUPPORTEDERRORCONCEALMENT
@@ -335,7 +331,7 @@
 //
 //  The flags for this object or set of objects are not properly set.%0
 //
-#define ASF_E_INVALIDFLAGS               _ASF_HRESULT_TYPEDEF_(0xC00D0801L)
+#define ASF_E_INVALIDFLAGS _ASF_HRESULT_TYPEDEF_(0xC00D0801L)
 
 //
 // MessageId: ASF_E_BADDATADESCRIPTOR
@@ -344,7 +340,7 @@
 //
 //  One or more data descriptors is not properly set.%0
 //
-#define ASF_E_BADDATADESCRIPTOR          _ASF_HRESULT_TYPEDEF_(0xC00D0802L)
+#define ASF_E_BADDATADESCRIPTOR _ASF_HRESULT_TYPEDEF_(0xC00D0802L)
 
 //
 // MessageId: ASF_E_BADINDEXINTERVAL
@@ -353,7 +349,7 @@
 //
 //  The index has an invalid time interval (probably zero).%0
 //
-#define ASF_E_BADINDEXINTERVAL           _ASF_HRESULT_TYPEDEF_(0xC00D0803L)
+#define ASF_E_BADINDEXINTERVAL _ASF_HRESULT_TYPEDEF_(0xC00D0803L)
 
 //
 // MessageId: ASF_E_INVALIDTIME
@@ -362,7 +358,7 @@
 //
 //  The given time value is not valid.%0
 //
-#define ASF_E_INVALIDTIME                _ASF_HRESULT_TYPEDEF_(0xC00D0804L)
+#define ASF_E_INVALIDTIME _ASF_HRESULT_TYPEDEF_(0xC00D0804L)
 
 //
 // MessageId: ASF_E_INVALIDINDEX
@@ -371,7 +367,7 @@
 //
 //  The given index value is not valid.%0
 //
-#define ASF_E_INVALIDINDEX               _ASF_HRESULT_TYPEDEF_(0xC00D0805L)
+#define ASF_E_INVALIDINDEX _ASF_HRESULT_TYPEDEF_(0xC00D0805L)
 
 //
 // MessageId: ASF_E_STREAMNUMBERINUSE
@@ -380,7 +376,7 @@
 //
 //  The specified stream number is already in use.%0
 //
-#define ASF_E_STREAMNUMBERINUSE          _ASF_HRESULT_TYPEDEF_(0xC00D0806L)
+#define ASF_E_STREAMNUMBERINUSE _ASF_HRESULT_TYPEDEF_(0xC00D0806L)
 
 //
 // MessageId: ASF_E_BADMEDIATYPE
@@ -389,7 +385,7 @@
 //
 //  The specified media type does not work with this component.%0
 //
-#define ASF_E_BADMEDIATYPE               _ASF_HRESULT_TYPEDEF_(0xC00D0807L)
+#define ASF_E_BADMEDIATYPE _ASF_HRESULT_TYPEDEF_(0xC00D0807L)
 
 //
 // MessageId: ASF_E_WRITEFAILED
@@ -398,7 +394,7 @@
 //
 //  The object could not be written as specified.%0
 //
-#define ASF_E_WRITEFAILED                _ASF_HRESULT_TYPEDEF_(0xC00D0808L)
+#define ASF_E_WRITEFAILED _ASF_HRESULT_TYPEDEF_(0xC00D0808L)
 
 //
 // MessageId: ASF_E_NOTENOUGHDESCRIPTORS
@@ -407,7 +403,7 @@
 //
 //  The given data unit requires a larger number of descriptors to be fully parsed.%0
 //
-#define ASF_E_NOTENOUGHDESCRIPTORS       _ASF_HRESULT_TYPEDEF_(0xC00D0809L)
+#define ASF_E_NOTENOUGHDESCRIPTORS _ASF_HRESULT_TYPEDEF_(0xC00D0809L)
 
 //
 // MessageId: ASF_E_INDEXBLOCKUNLOADED
@@ -416,7 +412,7 @@
 //
 //  The index entries for the specified index block have been unloaded from memory and are not available.%0
 //
-#define ASF_E_INDEXBLOCKUNLOADED         _ASF_HRESULT_TYPEDEF_(0xC00D080AL)
+#define ASF_E_INDEXBLOCKUNLOADED _ASF_HRESULT_TYPEDEF_(0xC00D080AL)
 
 //
 // MessageId: ASF_E_NOTENOUGHBANDWIDTH
@@ -425,7 +421,7 @@
 //
 //  The specified bandwidth is not large enough.%0
 //
-#define ASF_E_NOTENOUGHBANDWIDTH         _ASF_HRESULT_TYPEDEF_(0xC00D080BL)
+#define ASF_E_NOTENOUGHBANDWIDTH _ASF_HRESULT_TYPEDEF_(0xC00D080BL)
 
 //
 // MessageId: ASF_E_EXCEEDEDMAXIMUMOBJECTSIZE
@@ -434,7 +430,7 @@
 //
 //  The object has exceeded its maximum size.%0
 //
-#define ASF_E_EXCEEDEDMAXIMUMOBJECTSIZE  _ASF_HRESULT_TYPEDEF_(0xC00D080CL)
+#define ASF_E_EXCEEDEDMAXIMUMOBJECTSIZE _ASF_HRESULT_TYPEDEF_(0xC00D080CL)
 
 //
 // MessageId: ASF_E_BADDATAUNIT
@@ -443,7 +439,7 @@
 //
 //  The given data unit is corrupted, badly formatted, or otherwise not valid.%0
 //
-#define ASF_E_BADDATAUNIT                _ASF_HRESULT_TYPEDEF_(0xC00D080DL)
+#define ASF_E_BADDATAUNIT _ASF_HRESULT_TYPEDEF_(0xC00D080DL)
 
 //
 // MessageId: ASF_E_HEADERSIZE
@@ -452,8 +448,7 @@
 //
 //  The ASF header has exceeded the specified maximum size.%0
 //
-#define ASF_E_HEADERSIZE                 _ASF_HRESULT_TYPEDEF_(0xC00D080EL)
-
+#define ASF_E_HEADERSIZE _ASF_HRESULT_TYPEDEF_(0xC00D080EL)
 
 ///////////////////////////////////////////////////////////////////////////
 //
@@ -467,14 +462,11 @@
 //
 //  ASF_S_OPAQUEPACKET
 //
-#define ASF_S_OPAQUEPACKET               _ASF_HRESULT_TYPEDEF_(0x000D07F0L)
-
+#define ASF_S_OPAQUEPACKET _ASF_HRESULT_TYPEDEF_(0x000D07F0L)
 
 ///////////////////////////////////////////////////////////////////////////
 //
 // Advanced Streaming Format (ASF) Warnings (2000 - 2999)
 //
 
-
 #endif // _ASFERR_H
-

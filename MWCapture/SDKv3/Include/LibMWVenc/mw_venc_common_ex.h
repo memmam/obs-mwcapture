@@ -32,12 +32,11 @@
  * Related function(s): \n
  * [mw_venc_create_ex](@ref mw_venc_create_ex)
  */
-typedef enum mw_venc_inframe_mode
-{
-    MW_VENC_INFRAME_MODE_UNKNOWN,							///<Inputs unknown data type
-    MW_VENC_INFRAME_MODE_OPENGL_TEXTURE,					///<Inputs OpenGL texture 
-    MW_VENC_INFRAME_MODE_COUNT								///<Number of input data types 
-}mw_venc_inframe_mode_t;
+typedef enum mw_venc_inframe_mode {
+	MW_VENC_INFRAME_MODE_UNKNOWN,        ///<Inputs unknown data type
+	MW_VENC_INFRAME_MODE_OPENGL_TEXTURE, ///<Inputs OpenGL texture
+	MW_VENC_INFRAME_MODE_COUNT           ///<Number of input data types
+} mw_venc_inframe_mode_t;
 
 /**
  * @ingroup group_hwe_ex_variables_struct
@@ -49,10 +48,10 @@ typedef enum mw_venc_inframe_mode
  * [mw_venc_create_ex](@ref mw_venc_create_ex)
  */
 typedef struct mw_venc_amd_opengl_param {
-	void*						m_p_opengl_context;			///<OpenGL context
-	void*						m_p_window;					///<Window handle
-	void*						m_p_dc;						///<DC handle
-}mw_venc_amd_opengl_param_t;
+	void *m_p_opengl_context; ///<OpenGL context
+	void *m_p_window;         ///<Window handle
+	void *m_p_dc;             ///<DC handle
+} mw_venc_amd_opengl_param_t;
 
 /**
  * @ingroup group_hwe_ex_variables_struct
@@ -65,8 +64,9 @@ typedef struct mw_venc_amd_opengl_param {
  * [mw_venc_create_ex](@ref mw_venc_create_ex)
  */
 typedef struct mw_venc_param_ex {
-	mw_venc_param_t				m_venc_param;				///<Encoder	configurations 		
-	mw_venc_amd_opengl_param_t	m_amd_opengl_reserved;		///<AMD OpenGL parameters which are valid if an AMD device is used.	                                                            
-}mw_venc_param_ex_t;
+	mw_venc_param_t m_venc_param; ///<Encoder	configurations
+	mw_venc_amd_opengl_param_t
+		m_amd_opengl_reserved; ///<AMD OpenGL parameters which are valid if an AMD device is used.
+} mw_venc_param_ex_t;
 
 #endif

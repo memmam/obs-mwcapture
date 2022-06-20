@@ -15,7 +15,6 @@
 /*                                                                         */
 /***************************************************************************/
 
-
 #ifndef FTBZIP2_H_
 #define FTBZIP2_H_
 
@@ -28,27 +27,25 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
-
 FT_BEGIN_HEADER
 
-  /*************************************************************************/
-  /*                                                                       */
-  /* <Section>                                                             */
-  /*    bzip2                                                              */
-  /*                                                                       */
-  /* <Title>                                                               */
-  /*    BZIP2 Streams                                                      */
-  /*                                                                       */
-  /* <Abstract>                                                            */
-  /*    Using bzip2-compressed font files.                                 */
-  /*                                                                       */
-  /* <Description>                                                         */
-  /*    This section contains the declaration of Bzip2-specific functions. */
-  /*                                                                       */
-  /*************************************************************************/
+/*************************************************************************/
+/*                                                                       */
+/* <Section>                                                             */
+/*    bzip2                                                              */
+/*                                                                       */
+/* <Title>                                                               */
+/*    BZIP2 Streams                                                      */
+/*                                                                       */
+/* <Abstract>                                                            */
+/*    Using bzip2-compressed font files.                                 */
+/*                                                                       */
+/* <Description>                                                         */
+/*    This section contains the declaration of Bzip2-specific functions. */
+/*                                                                       */
+/*************************************************************************/
 
-
- /************************************************************************
+/************************************************************************
   *
   * @function:
   *   FT_Stream_OpenBzip2
@@ -87,16 +84,13 @@ FT_BEGIN_HEADER
   *   This function may return `FT_Err_Unimplemented_Feature' if your build
   *   of FreeType was not compiled with bzip2 support.
   */
-  FT_EXPORT( FT_Error )
-  FT_Stream_OpenBzip2( FT_Stream  stream,
-                       FT_Stream  source );
+FT_EXPORT(FT_Error)
+FT_Stream_OpenBzip2(FT_Stream stream, FT_Stream source);
 
-  /* */
-
+/* */
 
 FT_END_HEADER
 
 #endif /* FTBZIP2_H_ */
-
 
 /* END */

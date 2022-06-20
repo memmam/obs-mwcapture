@@ -3,20 +3,20 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell's SDK 
-// and not to Magewell's SDK as a whole. 
+// The following license only applies to head files and library within Magewell's SDK
+// and not to Magewell's SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. ("Magewell") All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell's head files and library 
+// Magewell grands to any person who obtains the copy of Magewell's head files and library
 // the rights,including without limitation, to use on the condition that the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL "AS IS" AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -33,12 +33,11 @@
 #elif LIBMWCAPTURE_DLL
 #define LIBMWCAPTURE_API __declspec(dllimport)
 #else
-#define LIBMWCAPTURE_API 
+#define LIBMWCAPTURE_API
 #endif
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /**
@@ -77,11 +76,8 @@ extern "C"
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetDeviceInstanceID(
-	HCHANNEL hChannel,
-	WCHAR * pwszInstanceID,
-	ULONG cbInstanceID
-);
+MWGetDeviceInstanceID(HCHANNEL hChannel, WCHAR *pwszInstanceID,
+		      ULONG cbInstanceID);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -104,10 +100,7 @@ MWGetDeviceInstanceID(
 */
 HCHANNEL
 LIBMWCAPTURE_API
-MWOpenChannel(
-	int								nBoardValue,
-	int								nChannelIndex
-	);
+MWOpenChannel(int nBoardValue, int nChannelIndex);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -148,10 +141,7 @@ MWOpenChannel(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetDeviceTime(
-	HCHANNEL						hChannel,
-	LONGLONG*						pllTime
-	);
+MWGetDeviceTime(HCHANNEL hChannel, LONGLONG *pllTime);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -192,10 +182,7 @@ MWGetDeviceTime(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetDeviceTime(
-	HCHANNEL						hChannel,
-	LONGLONG						llTime
-	);
+MWSetDeviceTime(HCHANNEL hChannel, LONGLONG llTime);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -239,10 +226,7 @@ MWSetDeviceTime(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWRegulateDeviceTime(
-	HCHANNEL						hChannel,
-	LONGLONG						llTime
-	);
+MWRegulateDeviceTime(HCHANNEL hChannel, LONGLONG llTime);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -284,10 +268,7 @@ MWRegulateDeviceTime(
 */
 HTIMER
 LIBMWCAPTURE_API
-MWRegisterTimer(
-	HCHANNEL						hChannel,
-	HANDLE							hEvent
-	);
+MWRegisterTimer(HCHANNEL hChannel, HANDLE hEvent);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -316,10 +297,7 @@ MWRegisterTimer(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUnregisterTimer(
-	HCHANNEL 						hChannel,
-	HTIMER							hTimer
-	);
+MWUnregisterTimer(HCHANNEL hChannel, HTIMER hTimer);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -350,11 +328,7 @@ MWUnregisterTimer(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWScheduleTimer(
-	HCHANNEL 						hChannel,
-	HTIMER							hTimer,
-	LONGLONG						llExpireTime
-	);
+MWScheduleTimer(HCHANNEL hChannel, HTIMER hTimer, LONGLONG llExpireTime);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -400,11 +374,7 @@ MWScheduleTimer(
 */
 HNOTIFY
 LIBMWCAPTURE_API
-MWRegisterNotify(
-	HCHANNEL 						hChannel,
-	HANDLE							hEvent,
-	DWORD64							dwEnableBits
-	);
+MWRegisterNotify(HCHANNEL hChannel, HANDLE hEvent, DWORD64 dwEnableBits);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -432,11 +402,8 @@ MWRegisterNotify(
  * Related function(s): [MWRegisterNotify](@ref MWRegisterNotify) \n
  */
 MW_RESULT
-	LIBMWCAPTURE_API
-	MWUnregisterNotify(
-	HCHANNEL 						hChannel,
-	HNOTIFY							hNotify
-	);
+LIBMWCAPTURE_API
+MWUnregisterNotify(HCHANNEL hChannel, HNOTIFY hNotify);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -466,11 +433,7 @@ MW_RESULT
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetNotifyStatus(
-	HCHANNEL 						hChannel,
-	HNOTIFY							hNotify,
-	ULONGLONG*						pullStatus
-	);
+MWGetNotifyStatus(HCHANNEL hChannel, HNOTIFY hNotify, ULONGLONG *pullStatus);
 
 /**
  * @ingroup group_functions_procapture
@@ -502,10 +465,7 @@ MWGetNotifyStatus(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWStartVideoCapture(
-	HCHANNEL 						hChannel,
-	HANDLE							hEvent
-	);	
+MWStartVideoCapture(HCHANNEL hChannel, HANDLE hEvent);
 
 /**
  * @ingroup group_functions_procapture
@@ -535,9 +495,7 @@ MWStartVideoCapture(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWStopVideoCapture(
-	HCHANNEL 						hChannel
-	);
+MWStopVideoCapture(HCHANNEL hChannel);
 
 /**
  * @ingroup group_functions_procapture
@@ -584,11 +542,7 @@ MWStopVideoCapture(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWPinVideoBuffer(
-	HCHANNEL 						hChannel,
-	LPBYTE							pbFrame,
-	DWORD							cbFrame
-	);
+MWPinVideoBuffer(HCHANNEL hChannel, LPBYTE pbFrame, DWORD cbFrame);
 
 /**
  * @ingroup group_functions_procapture
@@ -617,10 +571,7 @@ MWPinVideoBuffer(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUnpinVideoBuffer(
-	HCHANNEL 						hChannel,
-	LPBYTE							pbFrame
-	);
+MWUnpinVideoBuffer(HCHANNEL hChannel, LPBYTE pbFrame);
 
 /**
  * @ingroup group_functions_procapture
@@ -659,18 +610,11 @@ MWUnpinVideoBuffer(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWCaptureVideoFrameToVirtualAddress(
-	HCHANNEL 						hChannel,
-	int								iFrame,
-	LPBYTE							pbFrame,
-	DWORD							cbFrame,
-	DWORD							cbStride,
-	BOOLEAN							bBottomUp,
-	MWCAP_PTR64						pvContext,
-	DWORD							dwFOURCC,
-	int								cx,
-	int								cy
-	);
+MWCaptureVideoFrameToVirtualAddress(HCHANNEL hChannel, int iFrame,
+				    LPBYTE pbFrame, DWORD cbFrame,
+				    DWORD cbStride, BOOLEAN bBottomUp,
+				    MWCAP_PTR64 pvContext, DWORD dwFOURCC,
+				    int cx, int cy);
 
 /**
  * @ingroup group_functions_procapture
@@ -705,18 +649,11 @@ MWCaptureVideoFrameToVirtualAddress(
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWCaptureVideoFrameToPhysicalAddress(
-	HCHANNEL 						hChannel,
-	int								iFrame,
-	LONGLONG						llFrameAddress,
-	DWORD							cbFrame,
-	DWORD							cbStride,
-	BOOLEAN							bBottomUp,
-	MWCAP_PTR64						pvContext,
-	DWORD							dwFOURCC,
-	int								cx,
-	int								cy
-	);
+MWCaptureVideoFrameToPhysicalAddress(HCHANNEL hChannel, int iFrame,
+				     LONGLONG llFrameAddress, DWORD cbFrame,
+				     DWORD cbStride, BOOLEAN bBottomUp,
+				     MWCAP_PTR64 pvContext, DWORD dwFOURCC,
+				     int cx, int cy);
 
 /**
  * @ingroup group_functions_procapture
@@ -788,20 +725,10 @@ MWCaptureVideoFrameToPhysicalAddress(
 MW_RESULT
 LIBMWCAPTURE_API
 MWCaptureVideoFrameWithOSDToVirtualAddress(
-	HCHANNEL 						hChannel,
-	int								iFrame,
-	LPBYTE							pbFrame,
-	DWORD							cbFrame,
-	DWORD							cbStride,
-	BOOLEAN							bBottomUp,
-	MWCAP_PTR64						pvContext,
-	DWORD							dwFOURCC,
-	int								cx,
-	int								cy,
-	HOSD							hOSDImage,
-	const RECT *					pOSDRects,
-	int								cOSDRects
-	);
+	HCHANNEL hChannel, int iFrame, LPBYTE pbFrame, DWORD cbFrame,
+	DWORD cbStride, BOOLEAN bBottomUp, MWCAP_PTR64 pvContext,
+	DWORD dwFOURCC, int cx, int cy, HOSD hOSDImage, const RECT *pOSDRects,
+	int cOSDRects);
 
 /**
  * @ingroup group_functions_procapture
@@ -840,20 +767,10 @@ MWCaptureVideoFrameWithOSDToVirtualAddress(
 MW_RESULT
 LIBMWCAPTURE_API
 MWCaptureVideoFrameWithOSDToPhysicalAddress(
-	HCHANNEL 						hChannel,
-	int								iFrame,
-	LONGLONG						llFrameAddress,
-	DWORD							cbFrame,
-	DWORD							cbStride,
-	BOOLEAN							bBottomUp,
-	MWCAP_PTR64						pvContext,
-	DWORD							dwFOURCC,
-	int								cx,
-	int								cy,
-	HOSD							hOSDImage,
-	const RECT *					pOSDRects,
-	int								cOSDRects
-	);
+	HCHANNEL hChannel, int iFrame, LONGLONG llFrameAddress, DWORD cbFrame,
+	DWORD cbStride, BOOLEAN bBottomUp, MWCAP_PTR64 pvContext,
+	DWORD dwFOURCC, int cx, int cy, HOSD hOSDImage, const RECT *pOSDRects,
+	int cOSDRects);
 
 /**
  * @ingroup group_functions_procapture
@@ -946,35 +863,17 @@ MWCaptureVideoFrameWithOSDToPhysicalAddress(
 MW_RESULT
 LIBMWCAPTURE_API
 MWCaptureVideoFrameToVirtualAddressEx(
-	HCHANNEL 						hChannel,
-	int								iFrame,
-	LPBYTE							pbFrame,
-	DWORD							cbFrame,
-	DWORD							cbStride,
-	BOOLEAN							bBottomUp,
-	MWCAP_PTR64						pvContext,
-	DWORD							dwFOURCC,
-	int								cx,
-	int								cy,
-	DWORD							dwProcessSwitchs,
-	int								cyParitalNotify,
-	HOSD							hOSDImage,
-	const RECT *					pOSDRects,
-	int								cOSDRects,
-	SHORT							sContrast,
-	SHORT							sBrightness,
-	SHORT							sSaturation,
-	SHORT							sHue,
-	MWCAP_VIDEO_DEINTERLACE_MODE			deinterlaceMode,
-	MWCAP_VIDEO_ASPECT_RATIO_CONVERT_MODE	aspectRatioConvertMode,
-	const RECT *							pRectSrc,
-	const RECT *							pRectDest,
-	int										nAspectX,
-	int										nAspectY,
-	MWCAP_VIDEO_COLOR_FORMAT				colorFormat,
-	MWCAP_VIDEO_QUANTIZATION_RANGE			quantRange,
-	MWCAP_VIDEO_SATURATION_RANGE			satRange
-	);
+	HCHANNEL hChannel, int iFrame, LPBYTE pbFrame, DWORD cbFrame,
+	DWORD cbStride, BOOLEAN bBottomUp, MWCAP_PTR64 pvContext,
+	DWORD dwFOURCC, int cx, int cy, DWORD dwProcessSwitchs,
+	int cyParitalNotify, HOSD hOSDImage, const RECT *pOSDRects,
+	int cOSDRects, SHORT sContrast, SHORT sBrightness, SHORT sSaturation,
+	SHORT sHue, MWCAP_VIDEO_DEINTERLACE_MODE deinterlaceMode,
+	MWCAP_VIDEO_ASPECT_RATIO_CONVERT_MODE aspectRatioConvertMode,
+	const RECT *pRectSrc, const RECT *pRectDest, int nAspectX, int nAspectY,
+	MWCAP_VIDEO_COLOR_FORMAT colorFormat,
+	MWCAP_VIDEO_QUANTIZATION_RANGE quantRange,
+	MWCAP_VIDEO_SATURATION_RANGE satRange);
 
 /**
  * @ingroup group_functions_procapture
@@ -1028,35 +927,17 @@ MWCaptureVideoFrameToVirtualAddressEx(
 MW_RESULT
 LIBMWCAPTURE_API
 MWCaptureVideoFrameToPhysicalAddressEx(
-	HCHANNEL 						hChannel,
-	int								iFrame,
-	LONGLONG						llFrameAddress,
-	DWORD							cbFrame,
-	DWORD							cbStride,
-	BOOLEAN							bBottomUp,
-	MWCAP_PTR64						pvContext,
-	DWORD							dwFOURCC,
-	int								cx,
-	int								cy,
-	DWORD							dwProcessSwitchs,
-	int								cyParitalNotify,
-	HOSD							hOSDImage,
-	const RECT *					pOSDRects,
-	int								cOSDRects,
-	SHORT							sContrast,
-	SHORT							sBrightness,
-	SHORT							sSaturation,
-	SHORT							sHue,
-	MWCAP_VIDEO_DEINTERLACE_MODE			deinterlaceMode,
-	MWCAP_VIDEO_ASPECT_RATIO_CONVERT_MODE	aspectRatioConvertMode,
-	const RECT *							pRectSrc,
-	const RECT *							pRectDest,
-	int										nAspectX,
-	int										nAspectY,
-	MWCAP_VIDEO_COLOR_FORMAT				colorFormat,
-	MWCAP_VIDEO_QUANTIZATION_RANGE			quantRange,
-	MWCAP_VIDEO_SATURATION_RANGE			satRange
-	);
+	HCHANNEL hChannel, int iFrame, LONGLONG llFrameAddress, DWORD cbFrame,
+	DWORD cbStride, BOOLEAN bBottomUp, MWCAP_PTR64 pvContext,
+	DWORD dwFOURCC, int cx, int cy, DWORD dwProcessSwitchs,
+	int cyParitalNotify, HOSD hOSDImage, const RECT *pOSDRects,
+	int cOSDRects, SHORT sContrast, SHORT sBrightness, SHORT sSaturation,
+	SHORT sHue, MWCAP_VIDEO_DEINTERLACE_MODE deinterlaceMode,
+	MWCAP_VIDEO_ASPECT_RATIO_CONVERT_MODE aspectRatioConvertMode,
+	const RECT *pRectSrc, const RECT *pRectDest, int nAspectX, int nAspectY,
+	MWCAP_VIDEO_COLOR_FORMAT colorFormat,
+	MWCAP_VIDEO_QUANTIZATION_RANGE quantRange,
+	MWCAP_VIDEO_SATURATION_RANGE satRange);
 
 /**
  * @ingroup group_functions_procapture
@@ -1088,10 +969,8 @@ MWCaptureVideoFrameToPhysicalAddressEx(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoBufferInfo(
-	HCHANNEL 						hChannel,
-	MWCAP_VIDEO_BUFFER_INFO *		pVideoBufferInfo
-	);
+MWGetVideoBufferInfo(HCHANNEL hChannel,
+		     MWCAP_VIDEO_BUFFER_INFO *pVideoBufferInfo);
 
 /**
  * @ingroup group_functions_procapture
@@ -1124,11 +1003,8 @@ MWGetVideoBufferInfo(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoFrameInfo(
-	HCHANNEL 						hChannel,
-	BYTE							i,
-	MWCAP_VIDEO_FRAME_INFO*			pVideoFrameInfo
-	);
+MWGetVideoFrameInfo(HCHANNEL hChannel, BYTE i,
+		    MWCAP_VIDEO_FRAME_INFO *pVideoFrameInfo);
 
 /**
  * @ingroup group_functions_procapture
@@ -1160,10 +1036,7 @@ MWGetVideoFrameInfo(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoCaptureStatus(
-	HCHANNEL 						hChannel,
-	MWCAP_VIDEO_CAPTURE_STATUS *	pStatus
-	);
+MWGetVideoCaptureStatus(HCHANNEL hChannel, MWCAP_VIDEO_CAPTURE_STATUS *pStatus);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -1214,9 +1087,7 @@ MWGetVideoCaptureStatus(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWStartAudioCapture(
-	HCHANNEL 						hChannel
-	);	
+MWStartAudioCapture(HCHANNEL hChannel);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -1244,10 +1115,8 @@ MWStartAudioCapture(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWStopAudioCapture(
-	HCHANNEL 						hChannel
-	);
-	
+MWStopAudioCapture(HCHANNEL hChannel);
+
 /**
  * @ingroup group_functions_proecocapture
  * @brief Captures an audio frame
@@ -1277,10 +1146,8 @@ MWStopAudioCapture(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWCaptureAudioFrame(
-	HCHANNEL 						hChannel,
-	MWCAP_AUDIO_CAPTURE_FRAME*	pAudioCaptureFrame
-	);
+MWCaptureAudioFrame(HCHANNEL hChannel,
+		    MWCAP_AUDIO_CAPTURE_FRAME *pAudioCaptureFrame);
 
 /**
  * @ingroup group_functions_procapture
@@ -1295,13 +1162,7 @@ MWCaptureAudioFrame(
  * Related function(s): [MWCaptureVideoFrameWithOSDToVirtualAddress](@ref MWCaptureVideoFrameWithOSDToVirtualAddress) \n
 */
 //only rgba image
-HOSD
-LIBMWCAPTURE_API
-MWCreateImage(
-	HCHANNEL 						hChannel,
-	int								cx,
-	int								cy
-	);
+HOSD LIBMWCAPTURE_API MWCreateImage(HCHANNEL hChannel, int cx, int cy);
 
 /**
  * @ingroup group_functions_procapture
@@ -1349,11 +1210,7 @@ MWCreateImage(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWOpenImage(
-	HCHANNEL 						hChannel,
-	HOSD							hImage,
-	LONG*							plRet
-	);
+MWOpenImage(HCHANNEL hChannel, HOSD hImage, LONG *plRet);
 
 /**
  * @ingroup group_functions_procapture
@@ -1385,11 +1242,7 @@ MWOpenImage(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWCloseImage(
-	HCHANNEL 						hChannel,
-	HOSD							hImage,
-	LONG*							plRet
-	);
+MWCloseImage(HCHANNEL hChannel, HOSD hImage, LONG *plRet);
 
 /**
  * @ingroup group_functions_procapture
@@ -1432,25 +1285,15 @@ MWCloseImage(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUploadImageFromVirtualAddress(
-	HCHANNEL 						hChannel,
-	HOSD							hImage,
-	MWCAP_VIDEO_COLOR_FORMAT		cfDest,
-	MWCAP_VIDEO_QUANTIZATION_RANGE	quantRangeDest,
-	MWCAP_VIDEO_SATURATION_RANGE	satRangeDest,
-	WORD							xDest,
-	WORD							yDest,
-	WORD							cxDest,
-	WORD							cyDest,
-	MWCAP_PTR64						pvSrcFrame,
-	DWORD							cbSrcFrame,
-	DWORD							cbSrcStride,
-	WORD							cxSrc,
-	WORD							cySrc,
-	BOOLEAN							bSrcBottomUp,
-	BOOLEAN							bSrcPixelAlpha,
-	BOOLEAN							bSrcPixelXBGR
-	);
+MWUploadImageFromVirtualAddress(HCHANNEL hChannel, HOSD hImage,
+				MWCAP_VIDEO_COLOR_FORMAT cfDest,
+				MWCAP_VIDEO_QUANTIZATION_RANGE quantRangeDest,
+				MWCAP_VIDEO_SATURATION_RANGE satRangeDest,
+				WORD xDest, WORD yDest, WORD cxDest,
+				WORD cyDest, MWCAP_PTR64 pvSrcFrame,
+				DWORD cbSrcFrame, DWORD cbSrcStride, WORD cxSrc,
+				WORD cySrc, BOOLEAN bSrcBottomUp,
+				BOOLEAN bSrcPixelAlpha, BOOLEAN bSrcPixelXBGR);
 
 /**
  * @ingroup group_functions_procapture
@@ -1493,25 +1336,15 @@ MWUploadImageFromVirtualAddress(
 */
 MW_RESULT
 LIBMWCAPTURE_API
-MWUploadImageFromPhysicalAddress(
-	HCHANNEL 						hChannel,
-	HOSD							hImage,
-	MWCAP_VIDEO_COLOR_FORMAT		cfDest,
-	MWCAP_VIDEO_QUANTIZATION_RANGE	quantRangeDest,
-	MWCAP_VIDEO_SATURATION_RANGE	satRangeDest,
-	WORD							xDest,
-	WORD							yDest,
-	WORD							cxDest,
-	WORD							cyDest,
-	LONGLONG						llSrcFrameAddress,
-	DWORD							cbSrcFrame,
-	DWORD							cbSrcStride,
-	WORD							cxSrc,
-	WORD							cySrc,
-	BOOLEAN							bSrcBottomUp,
-	BOOLEAN							bSrcPixelAlpha,
-	BOOLEAN							bSrcPixelXBGR
-	);
+MWUploadImageFromPhysicalAddress(HCHANNEL hChannel, HOSD hImage,
+				 MWCAP_VIDEO_COLOR_FORMAT cfDest,
+				 MWCAP_VIDEO_QUANTIZATION_RANGE quantRangeDest,
+				 MWCAP_VIDEO_SATURATION_RANGE satRangeDest,
+				 WORD xDest, WORD yDest, WORD cxDest,
+				 WORD cyDest, LONGLONG llSrcFrameAddress,
+				 DWORD cbSrcFrame, DWORD cbSrcStride,
+				 WORD cxSrc, WORD cySrc, BOOLEAN bSrcBottomUp,
+				 BOOLEAN bSrcPixelAlpha, BOOLEAN bSrcPixelXBGR);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -1548,10 +1381,7 @@ MWUploadImageFromPhysicalAddress(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetTemperature(
-	HCHANNEL                        hChannel,
-	unsigned int*                   pnTemp
-	);
+MWGetTemperature(HCHANNEL hChannel, unsigned int *pnTemp);
 
 /**
  * @ingroup group_functions_procapture
@@ -1587,11 +1417,8 @@ MWGetTemperature(
  * @endcode
  */
 MW_RESULT
-	LIBMWCAPTURE_API
-	MWGetCustomVideoTimingsCount(
-	HCHANNEL						hChannel,
-	DWORD * 						dwCount
-	);
+LIBMWCAPTURE_API
+MWGetCustomVideoTimingsCount(HCHANNEL hChannel, DWORD *dwCount);
 
 /**
  * @ingroup group_functions_procapture
@@ -1627,11 +1454,8 @@ MW_RESULT
  * @endcode
  */
 MW_RESULT
-	LIBMWCAPTURE_API
-	MWGetCustomVideoResolutionsCount(
-	HCHANNEL							hChannel,
-	DWORD *								dwCount
-	);
+LIBMWCAPTURE_API
+MWGetCustomVideoResolutionsCount(HCHANNEL hChannel, DWORD *dwCount);
 
 /**
  * @ingroup group_functions_proecocapture
@@ -1675,11 +1499,7 @@ MW_RESULT
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWCreateExtendObject(
-	HCHANNEL						hChannel,
-	GUID							guid,
-	LPVOID*							ppObject
-	);
+MWCreateExtendObject(HCHANNEL hChannel, GUID guid, LPVOID *ppObject);
 
 /**
  * @ingroup group_functions_procapture
@@ -1717,10 +1537,8 @@ MWCreateExtendObject(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWGetVideoCaptureOSDSettings(
-	HCHANNEL						hChannel,
-	MWCAP_VIDEO_OSD_SETTINGS*		paOSDSettings
-	);
+MWGetVideoCaptureOSDSettings(HCHANNEL hChannel,
+			     MWCAP_VIDEO_OSD_SETTINGS *paOSDSettings);
 
 /**
  * @ingroup group_functions_procapture
@@ -1759,10 +1577,8 @@ MWGetVideoCaptureOSDSettings(
  */
 MW_RESULT
 LIBMWCAPTURE_API
-MWSetVideoCaptureOSDSettings(
-	HCHANNEL						hChannel,
-	MWCAP_VIDEO_OSD_SETTINGS*		paOSDSettings
-	);
+MWSetVideoCaptureOSDSettings(HCHANNEL hChannel,
+			     MWCAP_VIDEO_OSD_SETTINGS *paOSDSettings);
 
 /**
  * @ingroup group_functions_procapture
@@ -1798,11 +1614,9 @@ MWSetVideoCaptureOSDSettings(
  * @endcode
  */
 MW_RESULT
-	LIBMWCAPTURE_API
-	MWGetVideoPreviewConnectionFormat(
-	HCHANNEL							hChannel,
-	MWCAP_VIDEO_CONNECTION_FORMAT*		paConnectionFormat
-	);
+LIBMWCAPTURE_API
+MWGetVideoPreviewConnectionFormat(
+	HCHANNEL hChannel, MWCAP_VIDEO_CONNECTION_FORMAT *paConnectionFormat);
 
 #ifdef __cplusplus
 }

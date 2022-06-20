@@ -15,7 +15,6 @@
 /*                                                                         */
 /***************************************************************************/
 
-
 #ifndef FTTRIGON_H_
 #define FTTRIGON_H_
 
@@ -27,19 +26,16 @@
 #error "so that freetype.h of FreeType 2 is found first."
 #endif
 
-
 FT_BEGIN_HEADER
 
+/*************************************************************************/
+/*                                                                       */
+/* <Section>                                                             */
+/*   computations                                                        */
+/*                                                                       */
+/*************************************************************************/
 
-  /*************************************************************************/
-  /*                                                                       */
-  /* <Section>                                                             */
-  /*   computations                                                        */
-  /*                                                                       */
-  /*************************************************************************/
-
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @type:
    *   FT_Angle
@@ -49,10 +45,9 @@ FT_BEGIN_HEADER
    *   angle is a 16.16 fixed-point value expressed in degrees.
    *
    */
-  typedef FT_Fixed  FT_Angle;
+typedef FT_Fixed FT_Angle;
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @macro:
    *   FT_ANGLE_PI
@@ -61,10 +56,9 @@ FT_BEGIN_HEADER
    *   The angle pi expressed in @FT_Angle units.
    *
    */
-#define FT_ANGLE_PI  ( 180L << 16 )
+#define FT_ANGLE_PI (180L << 16)
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @macro:
    *   FT_ANGLE_2PI
@@ -73,10 +67,9 @@ FT_BEGIN_HEADER
    *   The angle 2*pi expressed in @FT_Angle units.
    *
    */
-#define FT_ANGLE_2PI  ( FT_ANGLE_PI * 2 )
+#define FT_ANGLE_2PI (FT_ANGLE_PI * 2)
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @macro:
    *   FT_ANGLE_PI2
@@ -85,10 +78,9 @@ FT_BEGIN_HEADER
    *   The angle pi/2 expressed in @FT_Angle units.
    *
    */
-#define FT_ANGLE_PI2  ( FT_ANGLE_PI / 2 )
+#define FT_ANGLE_PI2 (FT_ANGLE_PI / 2)
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @macro:
    *   FT_ANGLE_PI4
@@ -97,10 +89,9 @@ FT_BEGIN_HEADER
    *   The angle pi/4 expressed in @FT_Angle units.
    *
    */
-#define FT_ANGLE_PI4  ( FT_ANGLE_PI / 4 )
+#define FT_ANGLE_PI4 (FT_ANGLE_PI / 4)
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Sin
@@ -120,11 +111,10 @@ FT_BEGIN_HEADER
    *   function @FT_Vector_Unit.
    *
    */
-  FT_EXPORT( FT_Fixed )
-  FT_Sin( FT_Angle  angle );
+FT_EXPORT(FT_Fixed)
+FT_Sin(FT_Angle angle);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Cos
@@ -144,11 +134,10 @@ FT_BEGIN_HEADER
    *   function @FT_Vector_Unit.
    *
    */
-  FT_EXPORT( FT_Fixed )
-  FT_Cos( FT_Angle  angle );
+FT_EXPORT(FT_Fixed)
+FT_Cos(FT_Angle angle);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Tan
@@ -164,11 +153,10 @@ FT_BEGIN_HEADER
    *   The tangent value.
    *
    */
-  FT_EXPORT( FT_Fixed )
-  FT_Tan( FT_Angle  angle );
+FT_EXPORT(FT_Fixed)
+FT_Tan(FT_Angle angle);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Atan2
@@ -188,12 +176,10 @@ FT_BEGIN_HEADER
    *   The arc-tangent value (i.e. angle).
    *
    */
-  FT_EXPORT( FT_Angle )
-  FT_Atan2( FT_Fixed  x,
-            FT_Fixed  y );
+FT_EXPORT(FT_Angle)
+FT_Atan2(FT_Fixed x, FT_Fixed y);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Angle_Diff
@@ -213,12 +199,10 @@ FT_BEGIN_HEADER
    *   Constrained value of `value2-value1'.
    *
    */
-  FT_EXPORT( FT_Angle )
-  FT_Angle_Diff( FT_Angle  angle1,
-                 FT_Angle  angle2 );
+FT_EXPORT(FT_Angle)
+FT_Angle_Diff(FT_Angle angle1, FT_Angle angle2);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Vector_Unit
@@ -240,12 +224,10 @@ FT_BEGIN_HEADER
    *     The input angle.
    *
    */
-  FT_EXPORT( void )
-  FT_Vector_Unit( FT_Vector*  vec,
-                  FT_Angle    angle );
+FT_EXPORT(void)
+FT_Vector_Unit(FT_Vector *vec, FT_Angle angle);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Vector_Rotate
@@ -262,12 +244,10 @@ FT_BEGIN_HEADER
    *     The input angle.
    *
    */
-  FT_EXPORT( void )
-  FT_Vector_Rotate( FT_Vector*  vec,
-                    FT_Angle    angle );
+FT_EXPORT(void)
+FT_Vector_Rotate(FT_Vector *vec, FT_Angle angle);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Vector_Length
@@ -284,11 +264,10 @@ FT_BEGIN_HEADER
    *   vector coordinates.
    *
    */
-  FT_EXPORT( FT_Fixed )
-  FT_Vector_Length( FT_Vector*  vec );
+FT_EXPORT(FT_Fixed)
+FT_Vector_Length(FT_Vector *vec);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Vector_Polarize
@@ -308,13 +287,10 @@ FT_BEGIN_HEADER
    *     The vector angle.
    *
    */
-  FT_EXPORT( void )
-  FT_Vector_Polarize( FT_Vector*  vec,
-                      FT_Fixed   *length,
-                      FT_Angle   *angle );
+FT_EXPORT(void)
+FT_Vector_Polarize(FT_Vector *vec, FT_Fixed *length, FT_Angle *angle);
 
-
-  /*************************************************************************
+/*************************************************************************
    *
    * @function:
    *   FT_Vector_From_Polar
@@ -334,17 +310,13 @@ FT_BEGIN_HEADER
    *     The vector angle.
    *
    */
-  FT_EXPORT( void )
-  FT_Vector_From_Polar( FT_Vector*  vec,
-                        FT_Fixed    length,
-                        FT_Angle    angle );
+FT_EXPORT(void)
+FT_Vector_From_Polar(FT_Vector *vec, FT_Fixed length, FT_Angle angle);
 
-  /* */
-
+/* */
 
 FT_END_HEADER
 
 #endif /* FTTRIGON_H_ */
-
 
 /* END */

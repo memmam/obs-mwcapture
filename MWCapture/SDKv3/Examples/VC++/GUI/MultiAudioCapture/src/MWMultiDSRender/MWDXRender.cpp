@@ -3,21 +3,21 @@
 
 // MAGEWELL PROPRIETARY INFORMATION
 
-// The following license only applies to head files and library within Magewell’s SDK 
-// and not to Magewell’s SDK as a whole. 
+// The following license only applies to head files and library within Magewell’s SDK
+// and not to Magewell’s SDK as a whole.
 
 // Copyrights © Nanjing Magewell Electronics Co., Ltd. (“Magewell”) All rights reserved.
 
-// Magewell grands to any person who obtains the copy of Magewell’s head files and library 
+// Magewell grands to any person who obtains the copy of Magewell’s head files and library
 // the rights,including without limitation, to use, modify, publish, sublicense, distribute
 // the Software on the conditions that all the following terms are met:
 // - The above copyright notice shall be retained in any circumstances.
-// -The following disclaimer shall be included in the software and documentation and/or 
+// -The following disclaimer shall be included in the software and documentation and/or
 // other materials provided for the purpose of publish, distribution or sublicense.
 
 // THE SOFTWARE IS PROVIDED BY MAGEWELL “AS IS” AND ANY EXPRESS, INCLUDING BUT NOT LIMITED TO,
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-// IN NO EVENT SHALL MAGEWELL BE LIABLE 
+// IN NO EVENT SHALL MAGEWELL BE LIABLE
 
 // FOR ANY CLAIM, DIRECT OR INDIRECT DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT,
 // TORT OR OTHERWISE, ARISING IN ANY WAY OF USING THE SOFTWARE.
@@ -33,7 +33,6 @@
 #include <Windows.h>
 #include <WinGDI.h>
 #include <d3d9.h>
-
 
 unsigned char g_cs_vs_yuy2[] = "struct VS_INPUT\n \
 { \n \
@@ -110,7 +109,6 @@ float4 PS(PS_INPUT input) : SV_Target \
 		return float4(r, g, b, 1.0f); \
 	} \
 }";
-
 
 unsigned char g_cs_vs_bgra[] = "struct VS_INPUT\n \
 { \n \
@@ -191,7 +189,7 @@ float4 PS(PS_INPUT input) : SV_Target \
 }";
 
 #ifndef BGR24_CPU
-unsigned char g_cs_vs_bgr24[]="struct VS_INPUT\n \
+unsigned char g_cs_vs_bgr24[] = "struct VS_INPUT\n \
 { \n \
 	float4 Pos : POSITION;\n \
 	float2 Tex : TEXCOORD0;\n \
@@ -335,7 +333,7 @@ float4 PS(PS_INPUT input) : SV_Target \
 
 #endif
 
-unsigned char g_cs_vs_uyvy[]="struct VS_INPUT\n \
+unsigned char g_cs_vs_uyvy[] = "struct VS_INPUT\n \
 { \n \
 	float4 Pos : POSITION;\n \
 	float2 Tex : TEXCOORD0;\n \
@@ -352,7 +350,7 @@ PS_INPUT VS(VS_INPUT input)\n \
 	output.Tex = input.Tex;\n \
 	return output;\n \
 }";
-unsigned char g_cs_ps_uyvy[]="struct VS_INPUT\n \
+unsigned char g_cs_ps_uyvy[] = "struct VS_INPUT\n \
 {\n \
 	float4 Pos : POSITION;\n \
 	float2 Tex : TEXCOORD0;\n \
@@ -472,42 +470,43 @@ float4 PS(PS_INPUT input) : SV_Target\n \
 	return float4(r, g, b, 1.0f);\n \
 }\n";
 
-bool MWDXRender::get_vsfs(s_csvs *t_vs,s_csvs *t_ps,DWORD t_dw_fourcc){
-	bool t_ret=false;
+bool MWDXRender::get_vsfs(s_csvs *t_vs, s_csvs *t_ps, DWORD t_dw_fourcc)
+{
+	bool t_ret = false;
 
-	switch (t_dw_fourcc){
+	switch (t_dw_fourcc) {
 	case MWFOURCC_RGBA:
-		t_vs->m_p_code=g_cs_vs_rgba;
-		t_vs->m_n_code_len=sizeof(g_cs_vs_rgba);
-		t_ps->m_p_code=g_cs_ps_rgba;
-		t_ps->m_n_code_len=sizeof(g_cs_ps_rgba);
-		t_ret=true;
+		t_vs->m_p_code = g_cs_vs_rgba;
+		t_vs->m_n_code_len = sizeof(g_cs_vs_rgba);
+		t_ps->m_p_code = g_cs_ps_rgba;
+		t_ps->m_n_code_len = sizeof(g_cs_ps_rgba);
+		t_ret = true;
 		break;
 	case MWFOURCC_BGRA:
-		t_vs->m_p_code=g_cs_vs_bgra;
-		t_vs->m_n_code_len=sizeof(g_cs_vs_bgra);
-		t_ps->m_p_code=g_cs_ps_bgra;
-		t_ps->m_n_code_len=sizeof(g_cs_ps_bgra);
-		t_ret=true;
+		t_vs->m_p_code = g_cs_vs_bgra;
+		t_vs->m_n_code_len = sizeof(g_cs_vs_bgra);
+		t_ps->m_p_code = g_cs_ps_bgra;
+		t_ps->m_n_code_len = sizeof(g_cs_ps_bgra);
+		t_ret = true;
 		break;
 	case MWFOURCC_YUY2:
-		t_vs->m_p_code=g_cs_vs_yuy2;
-		t_vs->m_n_code_len=sizeof(g_cs_vs_yuy2);
-		t_ps->m_p_code=g_cs_ps_yuy2;
-		t_ps->m_n_code_len=sizeof(g_cs_ps_yuy2);
-		t_ret=true;
+		t_vs->m_p_code = g_cs_vs_yuy2;
+		t_vs->m_n_code_len = sizeof(g_cs_vs_yuy2);
+		t_ps->m_p_code = g_cs_ps_yuy2;
+		t_ps->m_n_code_len = sizeof(g_cs_ps_yuy2);
+		t_ret = true;
 		break;
 	case MWFOURCC_BGR24:
-		t_vs->m_p_code=g_cs_vs_bgr24;
-		t_vs->m_n_code_len=sizeof(g_cs_vs_bgr24);
-		t_ps->m_p_code=g_cs_ps_bgr24;
-		t_ps->m_n_code_len=sizeof(g_cs_ps_bgr24);
+		t_vs->m_p_code = g_cs_vs_bgr24;
+		t_vs->m_n_code_len = sizeof(g_cs_vs_bgr24);
+		t_ps->m_p_code = g_cs_ps_bgr24;
+		t_ps->m_n_code_len = sizeof(g_cs_ps_bgr24);
 		break;
 	case MWFOURCC_UYVY:
-		t_vs->m_p_code=g_cs_vs_uyvy;
-		t_vs->m_n_code_len=sizeof(g_cs_vs_uyvy);
-		t_ps->m_p_code=g_cs_ps_uyvy;
-		t_ps->m_n_code_len=sizeof(g_cs_ps_uyvy);
+		t_vs->m_p_code = g_cs_vs_uyvy;
+		t_vs->m_n_code_len = sizeof(g_cs_vs_uyvy);
+		t_ps->m_p_code = g_cs_ps_uyvy;
+		t_ps->m_n_code_len = sizeof(g_cs_ps_uyvy);
 		break;
 	case MWFOURCC_NV12:
 		t_vs->m_p_code = g_cs_vs_nv12;
@@ -516,11 +515,11 @@ bool MWDXRender::get_vsfs(s_csvs *t_vs,s_csvs *t_ps,DWORD t_dw_fourcc){
 		t_ps->m_n_code_len = sizeof(g_cs_ps_nv12);
 		break;
 	default:
-		t_vs->m_p_code=g_cs_vs_bgra;
-		t_vs->m_n_code_len=sizeof(g_cs_vs_bgra);
-		t_ps->m_p_code=g_cs_ps_bgra;
-		t_ps->m_n_code_len=sizeof(g_cs_ps_bgra);
-		t_ret=false;
+		t_vs->m_p_code = g_cs_vs_bgra;
+		t_vs->m_n_code_len = sizeof(g_cs_vs_bgra);
+		t_ps->m_p_code = g_cs_ps_bgra;
+		t_ps->m_n_code_len = sizeof(g_cs_ps_bgra);
+		t_ret = false;
 		break;
 	}
 
@@ -529,65 +528,69 @@ bool MWDXRender::get_vsfs(s_csvs *t_vs,s_csvs *t_ps,DWORD t_dw_fourcc){
 
 MWDXRender::MWDXRender()
 {
-	m_p_data=NULL;
-	m_p_data2=NULL;
-	m_p_vertex_buffer=NULL;
-	m_p_vertex_layout=NULL;
-	m_p_vertex_shader=NULL;
-	m_p_sampler_state=NULL;
-	m_d3db_rect=NULL;
-	m_p_texture_2d=NULL;
-	m_p_shader_resource_view=NULL;
-	m_p_texture_2d_2=NULL;
-	m_p_shader_resource_view_2=NULL;
-	m_p_fragment_shader=NULL;
-	m_p_render_view=NULL;
-	m_p_swap_chain=NULL;
-	m_p_device_context=NULL;
-	m_p_device=NULL;
+	m_p_data = NULL;
+	m_p_data2 = NULL;
+	m_p_vertex_buffer = NULL;
+	m_p_vertex_layout = NULL;
+	m_p_vertex_shader = NULL;
+	m_p_sampler_state = NULL;
+	m_d3db_rect = NULL;
+	m_p_texture_2d = NULL;
+	m_p_shader_resource_view = NULL;
+	m_p_texture_2d_2 = NULL;
+	m_p_shader_resource_view_2 = NULL;
+	m_p_fragment_shader = NULL;
+	m_p_render_view = NULL;
+	m_p_swap_chain = NULL;
+	m_p_device_context = NULL;
+	m_p_device = NULL;
 }
 
-MWDXRender::~MWDXRender()
+MWDXRender::~MWDXRender() {}
+
+HRESULT MWDXRender::compile_shader_from_file(WCHAR *t_sz_filepath,
+					     LPCSTR t_sz_entrypoint,
+					     LPCSTR t_sz_shader_model,
+					     ID3DBlob **t_pp_blob_out)
 {
-
-}
-
-
-HRESULT MWDXRender::compile_shader_from_file(WCHAR *t_sz_filepath,LPCSTR t_sz_entrypoint,LPCSTR t_sz_shader_model,ID3DBlob** t_pp_blob_out)
-{
-	HRESULT t_hr=S_FALSE;
-
-	DWORD t_dw_shaderflags=D3DCOMPILE_ENABLE_STRICTNESS;
-
-	ID3DBlob *t_p_errorblod;
-	t_hr=D3DX11CompileFromFile(t_sz_filepath,NULL,NULL,t_sz_entrypoint,
-								t_sz_shader_model,t_dw_shaderflags,0,
-								NULL,t_pp_blob_out,&t_p_errorblod,NULL);
-	if(FAILED(t_hr)){
-		if(t_p_errorblod!=NULL){
-			//output the err
-			//release
-			//TRACE("%s\n",t_p_errorblod->GetBufferPointer());
-			t_p_errorblod->Release();
-			t_p_errorblod=NULL;
-		}
-	}
-	if(t_p_errorblod){
-		t_p_errorblod->Release();
-		t_p_errorblod=NULL;
-	}
-	return t_hr;
-}
-
-HRESULT MWDXRender::compile_shader_from_cs(unsigned char*t_p_data, int t_n_data_len, LPCSTR t_sz_entrypoint, LPCSTR t_sz_shader_model, ID3DBlob** t_pp_blob_out) {
 	HRESULT t_hr = S_FALSE;
 
 	DWORD t_dw_shaderflags = D3DCOMPILE_ENABLE_STRICTNESS;
 
 	ID3DBlob *t_p_errorblod;
-	t_hr = D3DCompile(t_p_data,t_n_data_len,NULL, NULL,NULL,t_sz_entrypoint,
-		t_sz_shader_model, t_dw_shaderflags, 0,
-		t_pp_blob_out, &t_p_errorblod);
+	t_hr = D3DX11CompileFromFile(t_sz_filepath, NULL, NULL, t_sz_entrypoint,
+				     t_sz_shader_model, t_dw_shaderflags, 0,
+				     NULL, t_pp_blob_out, &t_p_errorblod, NULL);
+	if (FAILED(t_hr)) {
+		if (t_p_errorblod != NULL) {
+			//output the err
+			//release
+			//TRACE("%s\n",t_p_errorblod->GetBufferPointer());
+			t_p_errorblod->Release();
+			t_p_errorblod = NULL;
+		}
+	}
+	if (t_p_errorblod) {
+		t_p_errorblod->Release();
+		t_p_errorblod = NULL;
+	}
+	return t_hr;
+}
+
+HRESULT MWDXRender::compile_shader_from_cs(unsigned char *t_p_data,
+					   int t_n_data_len,
+					   LPCSTR t_sz_entrypoint,
+					   LPCSTR t_sz_shader_model,
+					   ID3DBlob **t_pp_blob_out)
+{
+	HRESULT t_hr = S_FALSE;
+
+	DWORD t_dw_shaderflags = D3DCOMPILE_ENABLE_STRICTNESS;
+
+	ID3DBlob *t_p_errorblod;
+	t_hr = D3DCompile(t_p_data, t_n_data_len, NULL, NULL, NULL,
+			  t_sz_entrypoint, t_sz_shader_model, t_dw_shaderflags,
+			  0, t_pp_blob_out, &t_p_errorblod);
 	if (FAILED(t_hr)) {
 		if (t_p_errorblod != NULL) {
 			//output the err
@@ -604,126 +607,139 @@ HRESULT MWDXRender::compile_shader_from_cs(unsigned char*t_p_data, int t_n_data_
 	return t_hr;
 }
 
-bool MWDXRender::create_render_with_fourcc(DWORD t_dw_fourcc,bool t_b_reverse)
+bool MWDXRender::create_render_with_fourcc(DWORD t_dw_fourcc, bool t_b_reverse)
 {
-	HRESULT t_hr=S_FALSE;
+	HRESULT t_hr = S_FALSE;
 	// Create vertex buffer
-	s_vertex vertices[] =
-	{
-		
-		XMFLOAT3(-1.0f, 1.0f, 0.5f),XMFLOAT2(0.0f,0.0f),
-		XMFLOAT3(1.0f, 1.0f, 0.5f),XMFLOAT2(1.0f,0.0f),
-		XMFLOAT3(-1.0f, -1.0f, 0.5f),XMFLOAT2(0.0f,1.0f),
-		XMFLOAT3(1.0f, -1.0f, 0.5f),XMFLOAT2(1.0f,1.0f),
+	s_vertex vertices[] = {
+
+		XMFLOAT3(-1.0f, 1.0f, 0.5f),  XMFLOAT2(0.0f, 0.0f),
+		XMFLOAT3(1.0f, 1.0f, 0.5f),   XMFLOAT2(1.0f, 0.0f),
+		XMFLOAT3(-1.0f, -1.0f, 0.5f), XMFLOAT2(0.0f, 1.0f),
+		XMFLOAT3(1.0f, -1.0f, 0.5f),  XMFLOAT2(1.0f, 1.0f),
 
 	};
-	if(t_b_reverse){
-		vertices[0].m_tex=XMFLOAT2(0.0f,1.0f);
-		vertices[1].m_tex=XMFLOAT2(1.0f,1.0f);
-		vertices[2].m_tex=XMFLOAT2(0.0f,0.0f);
-		vertices[3].m_tex=XMFLOAT2(1.0f,0.0f);
+	if (t_b_reverse) {
+		vertices[0].m_tex = XMFLOAT2(0.0f, 1.0f);
+		vertices[1].m_tex = XMFLOAT2(1.0f, 1.0f);
+		vertices[2].m_tex = XMFLOAT2(0.0f, 0.0f);
+		vertices[3].m_tex = XMFLOAT2(1.0f, 0.0f);
 	}
 
-
 	//ZeroMemory(&m_vb_bd,sizeof(m_vb_bd));
-	m_vb_bd.Usage=D3D11_USAGE_DEFAULT;
-	m_vb_bd.ByteWidth=sizeof(s_vertex)*4;
-	m_vb_bd.BindFlags=D3D11_BIND_VERTEX_BUFFER;
-	m_vb_bd.CPUAccessFlags=0;
+	m_vb_bd.Usage = D3D11_USAGE_DEFAULT;
+	m_vb_bd.ByteWidth = sizeof(s_vertex) * 4;
+	m_vb_bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	m_vb_bd.CPUAccessFlags = 0;
 	m_vb_bd.MiscFlags = 0;
 
 	D3D11_SUBRESOURCE_DATA t_initial_data;
-	ZeroMemory(&t_initial_data,sizeof(t_initial_data));
-	t_initial_data.pSysMem=vertices;
-	t_hr=m_p_device->CreateBuffer(&m_vb_bd,&t_initial_data,&m_p_vertex_buffer);
-	if(FAILED(t_hr))
+	ZeroMemory(&t_initial_data, sizeof(t_initial_data));
+	t_initial_data.pSysMem = vertices;
+	t_hr = m_p_device->CreateBuffer(&m_vb_bd, &t_initial_data,
+					&m_p_vertex_buffer);
+	if (FAILED(t_hr))
 		return false;
 
 #ifndef BGR24_CPU
-	if (t_dw_fourcc == MWFOURCC_YUY2 || t_dw_fourcc == MWFOURCC_UYVY || t_dw_fourcc == MWFOURCC_BGR24) {
+	if (t_dw_fourcc == MWFOURCC_YUY2 || t_dw_fourcc == MWFOURCC_UYVY ||
+	    t_dw_fourcc == MWFOURCC_BGR24) {
 #else
-	if (t_dw_fourcc == MWFOURCC_YUY2 || t_dw_fourcc == MWFOURCC_UYVY||t_dw_fourcc==MWFOURCC_NV12) {
-#endif // !BGR24_CPU
-		//create cb_buffer
+	if (t_dw_fourcc == MWFOURCC_YUY2 || t_dw_fourcc == MWFOURCC_UYVY ||
+	    t_dw_fourcc == MWFOURCC_NV12) {
+#endif // !BGR24_CPU \
+	//create cb_buffer
 		m_d3db_rect = NULL;
 		// Create the constant buffers
 		D3D11_BUFFER_DESC bd;
 		ZeroMemory(&bd, sizeof(bd));
 		bd.Usage = D3D11_USAGE_DEFAULT;
-		bd.ByteWidth =  sizeof(s_rect);
-		bd.BindFlags =  D3D11_BIND_CONSTANT_BUFFER;
+		bd.ByteWidth = sizeof(s_rect);
+		bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		bd.CPUAccessFlags = 0;
 		t_hr = m_p_device->CreateBuffer(&bd, NULL, &m_d3db_rect);
 		if (FAILED(t_hr))
 			return false;
 	}
 	//set vertex buffer
-	UINT t_stride=sizeof(s_vertex);
-	UINT t_offset=0;
-	m_p_device_context->IASetVertexBuffers(0,1,&m_p_vertex_buffer,&t_stride,&t_offset);
+	UINT t_stride = sizeof(s_vertex);
+	UINT t_offset = 0;
+	m_p_device_context->IASetVertexBuffers(0, 1, &m_p_vertex_buffer,
+					       &t_stride, &t_offset);
 
 	//set primitive topology
-	m_p_device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+	m_p_device_context->IASetPrimitiveTopology(
+		D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 	//compile the vertex shader
-	s_csvs t_vs,t_ps;
-	bool t_b_ret=get_vsfs(&t_vs,&t_ps,t_dw_fourcc);
+	s_csvs t_vs, t_ps;
+	bool t_b_ret = get_vsfs(&t_vs, &t_ps, t_dw_fourcc);
 
-	m_p_vs_blob=NULL;
-	t_hr = compile_shader_from_cs(t_vs.m_p_code, t_vs.m_n_code_len, "VS", "vs_4_0", &m_p_vs_blob);
-	if(FAILED(t_hr)){
+	m_p_vs_blob = NULL;
+	t_hr = compile_shader_from_cs(t_vs.m_p_code, t_vs.m_n_code_len, "VS",
+				      "vs_4_0", &m_p_vs_blob);
+	if (FAILED(t_hr)) {
 		return false;
 	}
 
 	//create the vertex shader
-	t_hr=m_p_device->CreateVertexShader(m_p_vs_blob->GetBufferPointer(),m_p_vs_blob->GetBufferSize(),NULL,&m_p_vertex_shader);
-	if(FAILED(t_hr)){
+	t_hr = m_p_device->CreateVertexShader(m_p_vs_blob->GetBufferPointer(),
+					      m_p_vs_blob->GetBufferSize(),
+					      NULL, &m_p_vertex_shader);
+	if (FAILED(t_hr)) {
 		m_p_vs_blob->Release();
 		return false;
 	}
 
 	//define the input layout
-	D3D11_INPUT_ELEMENT_DESC t_arr_layout[] =
-	{
-		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-	};
-	UINT t_num_elements = ARRAYSIZE( t_arr_layout );
+	D3D11_INPUT_ELEMENT_DESC t_arr_layout[] = {
+		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,
+		 D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12,
+		 D3D11_INPUT_PER_VERTEX_DATA, 0}};
+	UINT t_num_elements = ARRAYSIZE(t_arr_layout);
 
 	// Create the input layout
-	t_hr = m_p_device->CreateInputLayout( t_arr_layout, t_num_elements, m_p_vs_blob->GetBufferPointer(),
-		m_p_vs_blob->GetBufferSize(), &m_p_vertex_layout);
+	t_hr = m_p_device->CreateInputLayout(t_arr_layout, t_num_elements,
+					     m_p_vs_blob->GetBufferPointer(),
+					     m_p_vs_blob->GetBufferSize(),
+					     &m_p_vertex_layout);
 	m_p_vs_blob->Release();
-	if( FAILED( t_hr ) )
+	if (FAILED(t_hr))
 		return false;
 
 	// Set the input layout
 	m_p_device_context->IASetInputLayout(m_p_vertex_layout);
 
 	// Compile the pixel shader
-	t_hr = compile_shader_from_cs(t_ps.m_p_code, t_ps.m_n_code_len, "PS", "ps_4_0", &m_p_fs_blob);
-	if( FAILED( t_hr ) )
-	{
+	t_hr = compile_shader_from_cs(t_ps.m_p_code, t_ps.m_n_code_len, "PS",
+				      "ps_4_0", &m_p_fs_blob);
+	if (FAILED(t_hr)) {
 		return false;
 	}
 
 	// Create the pixel shader
-	t_hr = m_p_device->CreatePixelShader( m_p_fs_blob->GetBufferPointer(), m_p_fs_blob->GetBufferSize(), NULL, &m_p_fragment_shader );
+	t_hr = m_p_device->CreatePixelShader(m_p_fs_blob->GetBufferPointer(),
+					     m_p_fs_blob->GetBufferSize(), NULL,
+					     &m_p_fragment_shader);
 	m_p_fs_blob->Release();
-	if( FAILED( t_hr ) )
+	if (FAILED(t_hr))
 		return false;
 
-	if(t_dw_fourcc==MWFOURCC_BGR24){
-		m_n_stride=FOURCC_CalcMinStride(MWFOURCC_BGRA,m_n_width,4);
-		int t_n_stride=FOURCC_CalcMinStride(t_dw_fourcc,m_n_width,4);
-		m_n_size=FOURCC_CalcImageSize(t_dw_fourcc,m_n_width,m_n_height,t_n_stride);
-		int t_n_size=FOURCC_CalcImageSize(MWFOURCC_BGRA,m_n_width,m_n_height,m_n_stride);
-		m_n_rc_size =t_n_size;
-	}
-	else{
-		m_n_stride=FOURCC_CalcMinStride(t_dw_fourcc,m_n_width,4);
-		m_n_size=FOURCC_CalcImageSize(t_dw_fourcc,m_n_width,m_n_height,m_n_stride);
-		m_n_rc_size =m_n_size;
+	if (t_dw_fourcc == MWFOURCC_BGR24) {
+		m_n_stride = FOURCC_CalcMinStride(MWFOURCC_BGRA, m_n_width, 4);
+		int t_n_stride =
+			FOURCC_CalcMinStride(t_dw_fourcc, m_n_width, 4);
+		m_n_size = FOURCC_CalcImageSize(t_dw_fourcc, m_n_width,
+						m_n_height, t_n_stride);
+		int t_n_size = FOURCC_CalcImageSize(MWFOURCC_BGRA, m_n_width,
+						    m_n_height, m_n_stride);
+		m_n_rc_size = t_n_size;
+	} else {
+		m_n_stride = FOURCC_CalcMinStride(t_dw_fourcc, m_n_width, 4);
+		m_n_size = FOURCC_CalcImageSize(t_dw_fourcc, m_n_width,
+						m_n_height, m_n_stride);
+		m_n_rc_size = m_n_size;
 	}
 	m_p_data = new unsigned char[m_n_rc_size];
 	m_p_data2 = new unsigned char[m_n_rc_size];
@@ -737,27 +753,24 @@ bool MWDXRender::create_render_with_fourcc(DWORD t_dw_fourcc,bool t_b_reverse)
 	desc.Height = m_n_height;
 	desc.MipLevels = 1;
 	desc.ArraySize = 1;
-	if(t_dw_fourcc==MWFOURCC_YUY2||t_dw_fourcc==MWFOURCC_UYVY){
-		desc.Format = DXGI_FORMAT_R8G8_UNORM;// DXGI_FORMAT_R16_UNORM;// DXGI_FORMAT_R8G8B8A8_UNORM;//DXGI_FORMAT_R8G8_UNORM;//DXGI_FORMAT_R8G8B8A8_UNORM;
-	}
-	else if(t_dw_fourcc==MWFOURCC_RGBA){
+	if (t_dw_fourcc == MWFOURCC_YUY2 || t_dw_fourcc == MWFOURCC_UYVY) {
+		desc.Format =
+			DXGI_FORMAT_R8G8_UNORM; // DXGI_FORMAT_R16_UNORM;// DXGI_FORMAT_R8G8B8A8_UNORM;//DXGI_FORMAT_R8G8_UNORM;//DXGI_FORMAT_R8G8B8A8_UNORM;
+	} else if (t_dw_fourcc == MWFOURCC_RGBA) {
 		desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	}
-	else if(t_dw_fourcc==MWFOURCC_BGRA){
+	} else if (t_dw_fourcc == MWFOURCC_BGRA) {
 		desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	}
-	else if (t_dw_fourcc == MWFOURCC_BGR24) {
+	} else if (t_dw_fourcc == MWFOURCC_BGR24) {
 		desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	}
-	else if (t_dw_fourcc == MWFOURCC_NV12) {
+	} else if (t_dw_fourcc == MWFOURCC_NV12) {
 		desc.Format = DXGI_FORMAT_R8_UNORM;
 	}
 	desc.SampleDesc.Count = 1;
-	desc.Usage = D3D11_USAGE_DEFAULT;//D3D11_USAGE_DEFAULT;
+	desc.Usage = D3D11_USAGE_DEFAULT; //D3D11_USAGE_DEFAULT;
 	desc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
 
 	m_p_texture_2d = NULL;
-	t_hr=m_p_device->CreateTexture2D(&desc, NULL, &m_p_texture_2d);
+	t_hr = m_p_device->CreateTexture2D(&desc, NULL, &m_p_texture_2d);
 	if (FAILED(t_hr))
 		return false;
 
@@ -766,9 +779,10 @@ bool MWDXRender::create_render_with_fourcc(DWORD t_dw_fourcc,bool t_b_reverse)
 	srDesc.Format = desc.Format;
 	srDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srDesc.Texture2D.MostDetailedMip = 0;
-	srDesc.Texture2D.MipLevels = D3DX11_DEFAULT;//1; //D3DX11_DEFAULT;
+	srDesc.Texture2D.MipLevels = D3DX11_DEFAULT; //1; //D3DX11_DEFAULT;
 
-	t_hr=m_p_device->CreateShaderResourceView(m_p_texture_2d, &srDesc, &m_p_shader_resource_view);
+	t_hr = m_p_device->CreateShaderResourceView(m_p_texture_2d, &srDesc,
+						    &m_p_shader_resource_view);
 	if (FAILED(t_hr))
 		return false;
 
@@ -776,19 +790,21 @@ bool MWDXRender::create_render_with_fourcc(DWORD t_dw_fourcc,bool t_b_reverse)
 		// Create the render target texture
 		D3D11_TEXTURE2D_DESC desc2;
 		ZeroMemory(&desc2, sizeof(desc2));
-		desc2.Width = m_n_width/2;
-		desc2.Height = m_n_height/2;
+		desc2.Width = m_n_width / 2;
+		desc2.Height = m_n_height / 2;
 		desc2.MipLevels = 1;
 		desc2.ArraySize = 1;
-		
+
 		desc2.Format = DXGI_FORMAT_R8G8_UNORM;
 
 		desc2.SampleDesc.Count = 1;
-		desc2.Usage = D3D11_USAGE_DEFAULT;//D3D11_USAGE_DEFAULT;
-		desc2.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+		desc2.Usage = D3D11_USAGE_DEFAULT; //D3D11_USAGE_DEFAULT;
+		desc2.BindFlags = D3D11_BIND_RENDER_TARGET |
+				  D3D11_BIND_SHADER_RESOURCE;
 
 		m_p_texture_2d_2 = NULL;
-		t_hr = m_p_device->CreateTexture2D(&desc2, NULL, &m_p_texture_2d_2);
+		t_hr = m_p_device->CreateTexture2D(&desc2, NULL,
+						   &m_p_texture_2d_2);
 		if (FAILED(t_hr))
 			return false;
 
@@ -797,25 +813,33 @@ bool MWDXRender::create_render_with_fourcc(DWORD t_dw_fourcc,bool t_b_reverse)
 		srDesc2.Format = desc2.Format;
 		srDesc2.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 		srDesc2.Texture2D.MostDetailedMip = 0;
-		srDesc2.Texture2D.MipLevels = D3DX11_DEFAULT;//1; //D3DX11_DEFAULT;
+		srDesc2.Texture2D.MipLevels =
+			D3DX11_DEFAULT; //1; //D3DX11_DEFAULT;
 
-		t_hr = m_p_device->CreateShaderResourceView(m_p_texture_2d_2, &srDesc2, &m_p_shader_resource_view_2);
+		t_hr = m_p_device->CreateShaderResourceView(
+			m_p_texture_2d_2, &srDesc2,
+			&m_p_shader_resource_view_2);
 		if (FAILED(t_hr))
 			return false;
 	}
 
 	ZeroMemory(&m_sampler_des, sizeof(m_sampler_des));
-	m_sampler_des.Filter = D3D11_FILTER_ANISOTROPIC;// D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-	m_sampler_des.AddressU = D3D11_TEXTURE_ADDRESS_WRAP; //D3D11_TEXTURE_ADDRESS_CLAMP;// D3D11_TEXTURE_ADDRESS_WRAP;
-	m_sampler_des.AddressV = D3D11_TEXTURE_ADDRESS_WRAP; //D3D11_TEXTURE_ADDRESS_CLAMP;// D3D11_TEXTURE_ADDRESS_WRAP;
-	m_sampler_des.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;// D3D11_TEXTURE_ADDRESS_CLAMP;// D3D11_TEXTURE_ADDRESS_WRAP;
-	m_sampler_des.ComparisonFunc = D3D11_COMPARISON_ALWAYS;// D3D11_COMPARISON_NEVER;
-	m_sampler_des.MinLOD =  0;
-	m_sampler_des.MaxLOD =  D3D11_FLOAT32_MAX;
-	t_hr = m_p_device->CreateSamplerState(&m_sampler_des, &m_p_sampler_state);
+	m_sampler_des.Filter =
+		D3D11_FILTER_ANISOTROPIC; // D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	m_sampler_des.AddressU =
+		D3D11_TEXTURE_ADDRESS_WRAP; //D3D11_TEXTURE_ADDRESS_CLAMP;// D3D11_TEXTURE_ADDRESS_WRAP;
+	m_sampler_des.AddressV =
+		D3D11_TEXTURE_ADDRESS_WRAP; //D3D11_TEXTURE_ADDRESS_CLAMP;// D3D11_TEXTURE_ADDRESS_WRAP;
+	m_sampler_des.AddressW =
+		D3D11_TEXTURE_ADDRESS_WRAP; // D3D11_TEXTURE_ADDRESS_CLAMP;// D3D11_TEXTURE_ADDRESS_WRAP;
+	m_sampler_des.ComparisonFunc =
+		D3D11_COMPARISON_ALWAYS; // D3D11_COMPARISON_NEVER;
+	m_sampler_des.MinLOD = 0;
+	m_sampler_des.MaxLOD = D3D11_FLOAT32_MAX;
+	t_hr = m_p_device->CreateSamplerState(&m_sampler_des,
+					      &m_p_sampler_state);
 	if (FAILED(t_hr))
 		return false;
-
 
 	m_p_device_context->VSSetShader(m_p_vertex_shader, NULL, 0);
 	m_p_device_context->PSSetShader(m_p_fragment_shader, NULL, 0);
@@ -824,190 +848,187 @@ bool MWDXRender::create_render_with_fourcc(DWORD t_dw_fourcc,bool t_b_reverse)
 	t_rect.m_cx = m_n_width;
 	t_rect.m_cy = m_n_height;
 #ifndef BGR24_CPU
-	if (t_dw_fourcc == MWFOURCC_YUY2 || t_dw_fourcc == MWFOURCC_BGR24 || t_dw_fourcc == MWFOURCC_UYVY) {
+	if (t_dw_fourcc == MWFOURCC_YUY2 || t_dw_fourcc == MWFOURCC_BGR24 ||
+	    t_dw_fourcc == MWFOURCC_UYVY) {
 #else
-	if (t_dw_fourcc == MWFOURCC_YUY2 || t_dw_fourcc == MWFOURCC_UYVY||t_dw_fourcc==MWFOURCC_NV12) {
+	if (t_dw_fourcc == MWFOURCC_YUY2 || t_dw_fourcc == MWFOURCC_UYVY ||
+	    t_dw_fourcc == MWFOURCC_NV12) {
 #endif // !BGR24_CPU
 		m_p_device_context->PSSetConstantBuffers(0, 1, &m_d3db_rect);
-		m_p_device_context->UpdateSubresource(m_d3db_rect, 0, NULL, &t_rect, 0, 0);
+		m_p_device_context->UpdateSubresource(m_d3db_rect, 0, NULL,
+						      &t_rect, 0, 0);
 	}
 
-	
 	if (t_dw_fourcc == MWFOURCC_NV12) {
-		m_p_device_context->PSSetShaderResources(0, 1, &m_p_shader_resource_view);
-		m_p_device_context->PSSetShaderResources(1, 1, &m_p_shader_resource_view_2);
-	}
-	else {
-		m_p_device_context->PSSetShaderResources(0, 1, &m_p_shader_resource_view);
+		m_p_device_context->PSSetShaderResources(
+			0, 1, &m_p_shader_resource_view);
+		m_p_device_context->PSSetShaderResources(
+			1, 1, &m_p_shader_resource_view_2);
+	} else {
+		m_p_device_context->PSSetShaderResources(
+			0, 1, &m_p_shader_resource_view);
 	}
 	m_p_device_context->PSSetSamplers(0, 1, &m_p_sampler_state);
 	m_b_set = true;
 	return m_b_set;
-return false;
+	return false;
 }
 
-void MWDXRender::destory_render_with_fourcc(DWORD t_dw_fourcc)
-{
+void MWDXRender::destory_render_with_fourcc(DWORD t_dw_fourcc) {}
 
-}
-
-bool MWDXRender::initialize(int t_n_width,int t_n_height,DWORD dwFourcc,bool t_b_reverse,HWND t_hwnd)
+bool MWDXRender::initialize(int t_n_width, int t_n_height, DWORD dwFourcc,
+			    bool t_b_reverse, HWND t_hwnd)
 {
-	bool t_b_ret=false;
+	bool t_b_ret = false;
 	m_b_set = false;
-	HRESULT t_hr=S_FALSE;
+	HRESULT t_hr = S_FALSE;
 
-	m_n_width=t_n_width;
-	m_n_height=t_n_height;
+	m_n_width = t_n_width;
+	m_n_height = t_n_height;
 
 	m_dw_fourcc = dwFourcc;
 	//define initial parameters for the swap chain
-	ZeroMemory(&m_sd,sizeof(m_sd));
-	m_sd.BufferCount=2;
+	ZeroMemory(&m_sd, sizeof(m_sd));
+	m_sd.BufferCount = 2;
 	m_sd.BufferDesc.Width = t_n_width;
 	m_sd.BufferDesc.Height = t_n_height;
 	m_sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	m_sd.BufferDesc.RefreshRate.Numerator=0;
-	m_sd.BufferDesc.RefreshRate.Denominator=1;
-	m_sd.BufferUsage=DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	m_sd.OutputWindow=t_hwnd;
-	m_sd.SampleDesc.Count=1;
-	m_sd.SampleDesc.Quality=0;
-	m_sd.Windowed=TRUE;
-	m_sd.BufferDesc.ScanlineOrdering=DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+	m_sd.BufferDesc.RefreshRate.Numerator = 0;
+	m_sd.BufferDesc.RefreshRate.Denominator = 1;
+	m_sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	m_sd.OutputWindow = t_hwnd;
+	m_sd.SampleDesc.Count = 1;
+	m_sd.SampleDesc.Quality = 0;
+	m_sd.Windowed = TRUE;
+	m_sd.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	m_sd.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 	m_sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	m_sd.Flags = 0;
 
 	//request a feature level that implements the features setted
-	m_featurelevels=D3D_FEATURE_LEVEL_11_0;//D3D_FEATURE_LEVEL_11_0;
+	m_featurelevels = D3D_FEATURE_LEVEL_11_0; //D3D_FEATURE_LEVEL_11_0;
 
 	//create the device
-	t_hr=D3D11CreateDeviceAndSwapChain(NULL, /*default adapter*/
-									   D3D_DRIVER_TYPE_HARDWARE/*D3D_DRIVER_TYPE_REFERENCE*/,
-									   NULL,
-									   D3D11_CREATE_DEVICE_SINGLETHREADED,
-									   NULL,
-									   0,
-									   D3D11_SDK_VERSION,
-									   &m_sd,
-									   &m_p_swap_chain,
-									   &m_p_device,
-									   &m_featurelevels,
-									   &m_p_device_context);
+	t_hr = D3D11CreateDeviceAndSwapChain(
+		NULL, /*default adapter*/
+		D3D_DRIVER_TYPE_HARDWARE /*D3D_DRIVER_TYPE_REFERENCE*/, NULL,
+		D3D11_CREATE_DEVICE_SINGLETHREADED, NULL, 0, D3D11_SDK_VERSION,
+		&m_sd, &m_p_swap_chain, &m_p_device, &m_featurelevels,
+		&m_p_device_context);
 
-
-	if(FAILED(t_hr))
+	if (FAILED(t_hr))
 		return false;
 
 	//create a target view
-	m_p_render_buffer=NULL;
-	t_hr=m_p_swap_chain->GetBuffer(0,__uuidof(ID3D11Texture2D),(LPVOID*)&m_p_render_buffer);
-	if(FAILED(t_hr))
+	m_p_render_buffer = NULL;
+	t_hr = m_p_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D),
+					 (LPVOID *)&m_p_render_buffer);
+	if (FAILED(t_hr))
 		return false;
 
-	t_hr=m_p_device->CreateRenderTargetView(m_p_render_buffer,NULL,&m_p_render_view);
+	t_hr = m_p_device->CreateRenderTargetView(m_p_render_buffer, NULL,
+						  &m_p_render_view);
 	m_p_render_buffer->Release();
-	if(FAILED(t_hr))
+	if (FAILED(t_hr))
 		return false;
-	m_p_device_context->OMSetRenderTargets(1,&m_p_render_view,NULL);
+	m_p_device_context->OMSetRenderTargets(1, &m_p_render_view, NULL);
 
 	//setup viewport
-	ZeroMemory(&m_vp,sizeof(m_vp));
+	ZeroMemory(&m_vp, sizeof(m_vp));
 	m_vp.Width = (float)t_n_width;
 	m_vp.Height = (float)t_n_height;
-	m_vp.MinDepth=0.0f;
-	m_vp.MaxDepth=1.0f;
-	m_vp.TopLeftX=0.0f;
-	m_vp.TopLeftY=0.0f;
-	m_p_device_context->RSSetViewports(1,&m_vp);
+	m_vp.MinDepth = 0.0f;
+	m_vp.MaxDepth = 1.0f;
+	m_vp.TopLeftX = 0.0f;
+	m_vp.TopLeftY = 0.0f;
+	m_p_device_context->RSSetViewports(1, &m_vp);
 
 	//create vertex buffer
-	memset(m_arr_vex,0,sizeof(XMFLOAT3)*3);
-	m_arr_vex[0]=XMFLOAT3(0.0f,0.5f,0.5f);
-	m_arr_vex[1]=XMFLOAT3(0.5f,-0.5f,0.5f);
-	m_arr_vex[2]=XMFLOAT3(-0.5f,-0.5f,0.5f);
+	memset(m_arr_vex, 0, sizeof(XMFLOAT3) * 3);
+	m_arr_vex[0] = XMFLOAT3(0.0f, 0.5f, 0.5f);
+	m_arr_vex[1] = XMFLOAT3(0.5f, -0.5f, 0.5f);
+	m_arr_vex[2] = XMFLOAT3(-0.5f, -0.5f, 0.5f);
 
-	create_render_with_fourcc(dwFourcc,t_b_reverse);
+	create_render_with_fourcc(dwFourcc, t_b_reverse);
 
 	return m_b_set;
 }
 
 void MWDXRender::cleanup_device()
 {
-	if(m_p_device_context!=NULL){
+	if (m_p_device_context != NULL) {
 		m_p_device_context->Release();
-		m_p_device_context=NULL;
+		m_p_device_context = NULL;
 	}
 
-	if(m_p_vertex_buffer!=NULL){
+	if (m_p_vertex_buffer != NULL) {
 		m_p_vertex_buffer->Release();
-		m_p_vertex_buffer=NULL;
+		m_p_vertex_buffer = NULL;
 	}
 
-	if(m_p_vertex_layout!=NULL){
+	if (m_p_vertex_layout != NULL) {
 		m_p_vertex_layout->Release();
-		m_p_vertex_layout=NULL;
+		m_p_vertex_layout = NULL;
 	}
 
-	if(m_p_vertex_shader!=NULL){
+	if (m_p_vertex_shader != NULL) {
 		m_p_vertex_shader->Release();
-		m_p_vertex_shader=NULL;
+		m_p_vertex_shader = NULL;
 	}
 
-	if(m_p_sampler_state!=NULL){
+	if (m_p_sampler_state != NULL) {
 		m_p_sampler_state->Release();
-		m_p_sampler_state=NULL;
+		m_p_sampler_state = NULL;
 	}
 
-	if(m_d3db_rect!=NULL){
+	if (m_d3db_rect != NULL) {
 		m_d3db_rect->Release();
-		m_d3db_rect=NULL;
+		m_d3db_rect = NULL;
 	}
 
-	if(m_p_texture_2d!=NULL){
+	if (m_p_texture_2d != NULL) {
 		m_p_texture_2d->Release();
-		m_p_texture_2d=NULL;
+		m_p_texture_2d = NULL;
 	}
 
-	if(m_p_shader_resource_view!=NULL){
+	if (m_p_shader_resource_view != NULL) {
 		m_p_shader_resource_view->Release();
-		m_p_shader_resource_view=NULL;
+		m_p_shader_resource_view = NULL;
 	}
 
-	if(m_p_texture_2d_2!=NULL){
+	if (m_p_texture_2d_2 != NULL) {
 		m_p_texture_2d_2->Release();
-		m_p_texture_2d_2=NULL;
+		m_p_texture_2d_2 = NULL;
 	}
 
-	if(m_p_shader_resource_view_2!=NULL){
+	if (m_p_shader_resource_view_2 != NULL) {
 		m_p_shader_resource_view_2->Release();
-		m_p_shader_resource_view_2=NULL;
+		m_p_shader_resource_view_2 = NULL;
 	}
 
-	if(m_p_fragment_shader!=NULL){
+	if (m_p_fragment_shader != NULL) {
 		m_p_fragment_shader->Release();
-		m_p_fragment_shader=NULL;
+		m_p_fragment_shader = NULL;
 	}
 
-	if(m_p_render_view!=NULL){
+	if (m_p_render_view != NULL) {
 		m_p_render_view->Release();
-		m_p_render_view=NULL;
+		m_p_render_view = NULL;
 	}
 
-	if(m_p_swap_chain!=NULL){
+	if (m_p_swap_chain != NULL) {
 		m_p_swap_chain->Release();
-		m_p_swap_chain=NULL;
+		m_p_swap_chain = NULL;
 	}
 
-	if(m_p_device_context!=NULL){
+	if (m_p_device_context != NULL) {
 		m_p_device_context->Release();
-		m_p_device_context=NULL;
+		m_p_device_context = NULL;
 	}
 
-	if(m_p_device!=NULL){
+	if (m_p_device != NULL) {
 		m_p_device->Release();
-		m_p_device=NULL;
+		m_p_device = NULL;
 	}
 
 	if (m_p_data != NULL) {
@@ -1015,64 +1036,64 @@ void MWDXRender::cleanup_device()
 		m_p_data = NULL;
 	}
 
-	if(m_p_data2!=NULL){
+	if (m_p_data2 != NULL) {
 		delete m_p_data2;
-		m_p_data2=NULL;
+		m_p_data2 = NULL;
 	}
 }
 
-bool MWDXRender::paint(unsigned char*data)
+bool MWDXRender::paint(unsigned char *data)
 {
-	bool t_b_ret=true;
-	HRESULT t_hr=S_OK;
+	bool t_b_ret = true;
+	HRESULT t_hr = S_OK;
 
 	//clear buffer
 	if (m_b_set == false)
 		return false;
-	float t_clearcolor[4]={1.0f,1.0f,0.0f,1.0f};
-	m_p_device_context->ClearRenderTargetView(m_p_render_view,t_clearcolor);
+	float t_clearcolor[4] = {1.0f, 1.0f, 0.0f, 1.0f};
+	m_p_device_context->ClearRenderTargetView(m_p_render_view,
+						  t_clearcolor);
 
 	if (m_dw_fourcc == MWFOURCC_BGR24) {
 #ifndef BGR24_CPU
 		memcpy(m_p_data, data, m_n_size);
 #else
-		LONG lSrcStride=m_n_width*3;
-		LONG lDestStride=m_n_width*4;
-		unsigned char *t_p_src=data;
-		unsigned char *t_p_des=m_p_data;
-		for (DWORD y = 0; y < m_n_height; y++)
-		{
-			RGBTRIPLE *pSrcPel = (RGBTRIPLE*)t_p_src;
-			DWORD *pDestPel = (DWORD*)t_p_des;
+		LONG lSrcStride = m_n_width * 3;
+		LONG lDestStride = m_n_width * 4;
+		unsigned char *t_p_src = data;
+		unsigned char *t_p_des = m_p_data;
+		for (DWORD y = 0; y < m_n_height; y++) {
+			RGBTRIPLE *pSrcPel = (RGBTRIPLE *)t_p_src;
+			DWORD *pDestPel = (DWORD *)t_p_des;
 
-			for (DWORD x = 0; x < m_n_width; x++)
-			{
-				pDestPel[x] = D3DCOLOR_XRGB(
-					pSrcPel[x].rgbtRed,
-					pSrcPel[x].rgbtGreen,
-					pSrcPel[x].rgbtBlue
-					);
+			for (DWORD x = 0; x < m_n_width; x++) {
+				pDestPel[x] =
+					D3DCOLOR_XRGB(pSrcPel[x].rgbtRed,
+						      pSrcPel[x].rgbtGreen,
+						      pSrcPel[x].rgbtBlue);
 			}
 
 			t_p_src += lSrcStride;
 			t_p_des += lDestStride;
-			
 		}
 #endif // !BGR24_CPU
-	}
-	else {
+	} else {
 		memcpy(m_p_data, data, m_n_size);
 	}
 
 	if (m_dw_fourcc == MWFOURCC_NV12) {
-		m_p_device_context->UpdateSubresource(m_p_texture_2d, 0, NULL, m_p_data, m_n_width, 0);
-		m_p_device_context->UpdateSubresource(m_p_texture_2d_2, 0, NULL, m_p_data+m_n_width*m_n_height, m_n_width, 0);
+		m_p_device_context->UpdateSubresource(m_p_texture_2d, 0, NULL,
+						      m_p_data, m_n_width, 0);
+		m_p_device_context->UpdateSubresource(
+			m_p_texture_2d_2, 0, NULL,
+			m_p_data + m_n_width * m_n_height, m_n_width, 0);
+	} else {
+		m_p_device_context->UpdateSubresource(m_p_texture_2d, 0, NULL,
+						      m_p_data, m_n_stride, 0);
 	}
-	else {
-		m_p_device_context->UpdateSubresource(m_p_texture_2d, 0, NULL, m_p_data, m_n_stride, 0);
-	}
-	m_p_device_context->Draw(4,0);
-	t_hr=m_p_swap_chain->Present(0,0);
-	if(FAILED(t_hr)) t_b_ret=false;
+	m_p_device_context->Draw(4, 0);
+	t_hr = m_p_swap_chain->Present(0, 0);
+	if (FAILED(t_hr))
+		t_b_ret = false;
 	return t_b_ret;
 }

@@ -64,7 +64,7 @@ struct AVSHA *av_sha_alloc(void);
  * @param bits    number of bits in digest (SHA-1 - 160 bits, SHA-2 224 or 256 bits)
  * @return        zero if initialization succeeded, -1 otherwise
  */
-int av_sha_init(struct AVSHA* context, int bits);
+int av_sha_init(struct AVSHA *context, int bits);
 
 /**
  * Update hash value.
@@ -73,7 +73,8 @@ int av_sha_init(struct AVSHA* context, int bits);
  * @param data    input data to update hash with
  * @param len     input data length
  */
-void av_sha_update(struct AVSHA* context, const uint8_t* data, unsigned int len);
+void av_sha_update(struct AVSHA *context, const uint8_t *data,
+		   unsigned int len);
 
 /**
  * Finish hashing and output digest value.
@@ -81,7 +82,7 @@ void av_sha_update(struct AVSHA* context, const uint8_t* data, unsigned int len)
  * @param context hash function context
  * @param digest  buffer where output digest value is stored
  */
-void av_sha_final(struct AVSHA* context, uint8_t *digest);
+void av_sha_final(struct AVSHA *context, uint8_t *digest);
 
 /**
  * @}
