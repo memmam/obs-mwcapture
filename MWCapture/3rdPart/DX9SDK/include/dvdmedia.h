@@ -262,8 +262,8 @@ enum AM_MPEG2Profile {
 	0x00000001 // duplication of this stream should be restricted
 
 #define AMMPEG2_DoPanScan \
-	0x00000001 //if set, the MPEG-2 video decoder should crop output image \
-		   //  based on pan-scan vectors in picture_display_extension  \
+	0x00000001 //if set, the MPEG-2 video decoder should crop output image
+		   //  based on pan-scan vectors in picture_display_extension
 		   //  and change the picture aspect ratio accordingly.
 #define AMMPEG2_DVDLine21Field1 \
 	0x00000002 //if set, the MPEG-2 decoder must be able to produce an output
@@ -272,11 +272,11 @@ enum AM_MPEG2Profile {
 	0x00000004 //if set, the MPEG-2 decoder must be able to produce an output
 //  pin for DVD style closed caption data found in GOP layer of field 2
 #define AMMPEG2_SourceIsLetterboxed \
-	0x00000008 //if set, indicates that black bars have been encoded in the top \
-		//  and bottom of the video.
+	0x00000008 //if set, indicates that black bars have been encoded in the top
+		   //  and bottom of the video.
 #define AMMPEG2_FilmCameraMode \
-	0x00000010 //if set, indicates "film mode" used for 625/50 content.  If cleared, \
-		//  indicates that "camera mode" was used.
+	0x00000010 //if set, indicates "film mode" used for 625/50 content.  If cleared,
+		   //  indicates that "camera mode" was used.
 #define AMMPEG2_LetterboxAnalogOut \
 	0x00000020 //if set and this stream is sent to an analog output, it should
 //  be letterboxed.  Streams sent to VGA should be letterboxed only by renderers.
@@ -293,7 +293,7 @@ enum AM_MPEG2Profile {
 //  Streams sent to VGA should be widescreened only by renderers.
 
 // PRESENT in dwReserved1 field in VIDEOINFOHEADER2
-#define AMCONTROL_USED \
+#define AMCONTROL_USED                                                                              \
 	0x00000001 // Used to test if these flags are supported.  Set and test for AcceptMediaType. \
 		// If rejected, then you cannot use the AMCONTROL flags (send 0 for dwReserved1)
 #define AMCONTROL_PAD_TO_4x3 \
@@ -354,7 +354,7 @@ typedef struct tagMPEG2VIDEOINFO {
 	0x0001L // the sample is field1 (remember to use AM_VIDEO_FLAG_FIELD_MASK when using this)
 #define AM_VIDEO_FLAG_FIELD2 \
 	0x0002L // the sample is the field2 (remember to use AM_VIDEO_FLAG_FIELD_MASK when using this)
-#define AM_VIDEO_FLAG_FIELD1FIRST \
+#define AM_VIDEO_FLAG_FIELD1FIRST                                                \
 	0x0004L // if set means display field1 first, else display field2 first. \
 		// this bit is irrelavant for 1FieldPerSample mode
 #define AM_VIDEO_FLAG_WEAVE 0x0008L // if set use bob display mode else weave
@@ -366,7 +366,7 @@ typedef struct tagMPEG2VIDEOINFO {
 	0x0010L // P Sample (remember to use AM_VIDEO_FLAG_IPB_MASK when using this)
 #define AM_VIDEO_FLAG_B_SAMPLE \
 	0x0020L // B Sample (remember to use AM_VIDEO_FLAG_IPB_MASK when using this)
-#define AM_VIDEO_FLAG_REPEAT_FIELD \
+#define AM_VIDEO_FLAG_REPEAT_FIELD                                                                      \
 	0x0040L // if set means display the field which has been displayed first again after displaying \
 		// both fields first. This bit is irrelavant for 1FieldPerSample mode
 
@@ -438,9 +438,9 @@ typedef DWORD AM_Step; // number of frame to step
 // New rate change property set, structs. enums etc.
 typedef struct {
 	REFERENCE_TIME
-	StartInTime; // stream time (input) at which to start decoding at this rate
+		StartInTime; // stream time (input) at which to start decoding at this rate
 	REFERENCE_TIME
-	StartOutTime; // reference time (output) at which to start showing at this rate
+		StartOutTime; // reference time (output) at which to start showing at this rate
 	LONG Rate; // new rate * 10000 (decimal)
 } AM_DVD_ChangeRate;
 

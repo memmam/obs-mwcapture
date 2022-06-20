@@ -178,22 +178,22 @@ typedef BOOL(CALLBACK *LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW)(
 
 typedef struct _DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1_DATA {
 	LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1
-	Callback;       // Callback function pointer
-	LPVOID Context; // Callback function context argument
+		Callback; // Callback function pointer
+	LPVOID Context;   // Callback function context argument
 } DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1_DATA,
 	*PDSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1_DATA;
 
 typedef struct _DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_A_DATA {
 	LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA
-	Callback;       // Callback function pointer
-	LPVOID Context; // Callback function context argument
+		Callback; // Callback function pointer
+	LPVOID Context;   // Callback function context argument
 } DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_A_DATA,
 	*PDSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_A_DATA;
 
 typedef struct _DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W_DATA {
 	LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW
-	Callback;       // Callback function pointer
-	LPVOID Context; // Callback function context argument
+		Callback; // Callback function pointer
+	LPVOID Context;   // Callback function context argument
 } DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W_DATA,
 	*PDSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W_DATA;
 

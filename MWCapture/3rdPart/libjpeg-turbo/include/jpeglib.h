@@ -823,10 +823,10 @@ struct jpeg_memory_mgr {
 			     size_t sizeofobject);
 	void *(*alloc_large)(j_common_ptr cinfo, int pool_id,
 			     size_t sizeofobject);
-	JSAMPARRAY(*alloc_sarray)
+	JSAMPARRAY (*alloc_sarray)
 	(j_common_ptr cinfo, int pool_id, JDIMENSION samplesperrow,
 	 JDIMENSION numrows);
-	JBLOCKARRAY(*alloc_barray)
+	JBLOCKARRAY (*alloc_barray)
 	(j_common_ptr cinfo, int pool_id, JDIMENSION blocksperrow,
 	 JDIMENSION numrows);
 	jvirt_sarray_ptr (*request_virt_sarray)(j_common_ptr cinfo, int pool_id,
@@ -840,10 +840,10 @@ struct jpeg_memory_mgr {
 						JDIMENSION numrows,
 						JDIMENSION maxaccess);
 	void (*realize_virt_arrays)(j_common_ptr cinfo);
-	JSAMPARRAY(*access_virt_sarray)
+	JSAMPARRAY (*access_virt_sarray)
 	(j_common_ptr cinfo, jvirt_sarray_ptr ptr, JDIMENSION start_row,
 	 JDIMENSION num_rows, boolean writable);
-	JBLOCKARRAY(*access_virt_barray)
+	JBLOCKARRAY (*access_virt_barray)
 	(j_common_ptr cinfo, jvirt_barray_ptr ptr, JDIMENSION start_row,
 	 JDIMENSION num_rows, boolean writable);
 	void (*free_pool)(j_common_ptr cinfo, int pool_id);

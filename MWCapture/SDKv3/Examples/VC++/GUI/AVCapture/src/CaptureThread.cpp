@@ -662,7 +662,7 @@ DWORD CCaptureThread::AudioThreadProc()
 						&dwInputCount);
 
 					MWCAP_AUDIO_SIGNAL_STATUS
-					audioSignalStatus;
+						audioSignalStatus;
 					xr = MWGetAudioSignalStatus(
 						m_hChannel, &audioSignalStatus);
 					if (m_pCallback != NULL) {
@@ -692,7 +692,7 @@ DWORD CCaptureThread::AudioThreadProc()
 				    MWCAP_NOTIFY_AUDIO_FRAME_BUFFERED) {
 					do {
 						MWCAP_AUDIO_CAPTURE_FRAME
-						audioFrame;
+							audioFrame;
 						xr = MWCaptureAudioFrame(
 							m_hChannel,
 							&audioFrame);

@@ -1383,7 +1383,7 @@ typedef enum _D3DXSHGPUSIMOPT {
 
 typedef struct _D3DXSHMATERIAL {
 	D3DCOLORVALUE
-	Diffuse; // Diffuse albedo of the surface.  (Ignored if object is a Mirror)
+		Diffuse; // Diffuse albedo of the surface.  (Ignored if object is a Mirror)
 	BOOL bMirror; // Must be set to FALSE.  bMirror == TRUE not currently supported
 	BOOL bSubSurf; // true if the object does subsurface scattering - can't do this and be a mirror
 

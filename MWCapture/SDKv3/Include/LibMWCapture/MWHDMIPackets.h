@@ -422,15 +422,15 @@ typedef struct _HDMI_INFOFRAME_PACKET {
 	union {
 		BYTE abyPayload[27]; ///<aby payload
 		HDMI_AVI_INFOFRAME_PAYLOAD
-		aviInfoFramePayload; ///<avi infoframe payload
+			aviInfoFramePayload; ///<avi infoframe payload
 		HDMI_AUDIO_INFOFRAME_PAYLOAD
-		audioInfoFramePayload; ///<audio infoframe payload
+			audioInfoFramePayload; ///<audio infoframe payload
 		HDMI_SPD_INFOFRAME_PAYLOAD
-		spdInfoFramePayload; ///<spd infoframe payload
+			spdInfoFramePayload; ///<spd infoframe payload
 		HDMI_VS_INFOFRAME_PAYLOAD
-		vsInfoFramePayload; ///<vs infoframe payload
+			vsInfoFramePayload; ///<vs infoframe payload
 		HDMI_HDR_INFOFRAME_PAYLOAD
-		hdrInfoFramePayload; ///<hdr infoframe payload
+			hdrInfoFramePayload; ///<hdr infoframe payload
 	};
 
 public:

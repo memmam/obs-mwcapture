@@ -239,7 +239,7 @@ typedef enum XAPO_BUFFER_FLAGS {
 typedef struct XAPO_PROCESS_BUFFER_PARAMETERS {
 	void *pBuffer; // audio data buffer, must be non-NULL
 	XAPO_BUFFER_FLAGS
-	BufferFlags; // describes assumed content of pBuffer, does not affect ValidFrameCount
+		BufferFlags; // describes assumed content of pBuffer, does not affect ValidFrameCount
 	UINT32 ValidFrameCount; // number of frames of valid data, must be within respective [0, XAPO_LOCKFORPROCESS_BUFFER_PARAMETERS.MaxFrameCount], always XAPO_LOCKFORPROCESS_BUFFER_PARAMETERS.MaxFrameCount for CBR/user-defined XAPOs, does not affect BufferFlags
 } XAPO_PROCESS_BUFFER_PARAMETERS;
 

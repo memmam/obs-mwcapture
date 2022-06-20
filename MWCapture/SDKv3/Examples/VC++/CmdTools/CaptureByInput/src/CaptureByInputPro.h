@@ -166,7 +166,7 @@ void CapturePFramePro(HCHANNEL t_h_channel)
 										    [0]));
 
 						MWCAP_VIDEO_CAPTURE_STATUS
-						t_status;
+							t_status;
 						MWGetVideoCaptureStatus(
 							t_h_channel, &t_status);
 					}

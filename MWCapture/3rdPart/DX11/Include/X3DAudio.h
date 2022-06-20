@@ -226,14 +226,14 @@ static const X3DAUDIO_CONE X3DAudioDefault_DirectionalCone = {
 // The cone is directed by the listener's front orientation.
 typedef struct X3DAUDIO_LISTENER {
 	X3DAUDIO_VECTOR
-	OrientFront; // orientation of front direction, used only for matrix and delay calculations or listeners with cones for matrix, LPF (both direct and reverb paths), and reverb calculations, must be normalized when used
+		OrientFront; // orientation of front direction, used only for matrix and delay calculations or listeners with cones for matrix, LPF (both direct and reverb paths), and reverb calculations, must be normalized when used
 	X3DAUDIO_VECTOR
-	OrientTop; // orientation of top direction, used only for matrix and delay calculations, must be orthonormal with OrientFront when used
+		OrientTop; // orientation of top direction, used only for matrix and delay calculations, must be orthonormal with OrientFront when used
 
 	X3DAUDIO_VECTOR
-	Position; // position in user-defined world units, does not affect Velocity
+		Position; // position in user-defined world units, does not affect Velocity
 	X3DAUDIO_VECTOR
-	Velocity; // velocity vector in user-defined world units/second, used only for doppler calculations, does not affect Position
+		Velocity; // velocity vector in user-defined world units/second, used only for doppler calculations, does not affect Position
 
 	X3DAUDIO_CONE *
 		pCone; // sound cone, used only for matrix, LPF (both direct and reverb paths), and reverb calculations, NULL specifies omnidirectionality
@@ -273,14 +273,14 @@ typedef struct X3DAUDIO_EMITTER {
 	X3DAUDIO_CONE *
 		pCone; // sound cone, used only with single-channel emitters for matrix, LPF (both direct and reverb paths), and reverb calculations, NULL specifies omnidirectionality
 	X3DAUDIO_VECTOR
-	OrientFront; // orientation of front direction, used only for emitter angle calculations or with multi-channel emitters for matrix calculations or single-channel emitters with cones for matrix, LPF (both direct and reverb paths), and reverb calculations, must be normalized when used
+		OrientFront; // orientation of front direction, used only for emitter angle calculations or with multi-channel emitters for matrix calculations or single-channel emitters with cones for matrix, LPF (both direct and reverb paths), and reverb calculations, must be normalized when used
 	X3DAUDIO_VECTOR
-	OrientTop; // orientation of top direction, used only with multi-channel emitters for matrix calculations, must be orthonormal with OrientFront when used
+		OrientTop; // orientation of top direction, used only with multi-channel emitters for matrix calculations, must be orthonormal with OrientFront when used
 
 	X3DAUDIO_VECTOR
-	Position; // position in user-defined world units, does not affect Velocity
+		Position; // position in user-defined world units, does not affect Velocity
 	X3DAUDIO_VECTOR
-	Velocity; // velocity vector in user-defined world units/second, used only for doppler calculations, does not affect Position
+		Velocity; // velocity vector in user-defined world units/second, used only for doppler calculations, does not affect Position
 
 	FLOAT32 InnerRadius; // inner radius, must be within [0.0f, FLT_MAX]
 	FLOAT32 InnerRadiusAngle; // inner radius angle, must be within [0.0f, X3DAUDIO_PI/4.0)

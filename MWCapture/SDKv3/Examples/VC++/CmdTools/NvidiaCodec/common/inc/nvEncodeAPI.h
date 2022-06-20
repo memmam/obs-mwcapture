@@ -1033,7 +1033,7 @@ typedef enum _NV_ENC_HEVC_CUSIZE {
 typedef struct _NV_ENC_CAPS_PARAM {
 	uint32_t version; /**< [in]: Struct version. Must be set to ::NV_ENC_CAPS_PARAM_VER */
 	NV_ENC_CAPS
-	capsToQuery; /**< [in]: Specifies the encode capability to be queried. Client should pass a member for ::NV_ENC_CAPS enum. */
+		capsToQuery; /**< [in]: Specifies the encode capability to be queried. Client should pass a member for ::NV_ENC_CAPS enum. */
 	uint32_t reserved[62]; /**< [in]: Reserved and must be set to 0 */
 } NV_ENC_CAPS_PARAM;
 
@@ -1048,7 +1048,7 @@ typedef struct _NV_ENC_CREATE_INPUT_BUFFER {
 	uint32_t width;  /**< [in]: Input buffer width */
 	uint32_t height; /**< [in]: Input buffer width */
 	NV_ENC_MEMORY_HEAP
-	memoryHeap; /**< [in]: Deprecated. Will be removed in sdk 8.0 */
+		memoryHeap; /**< [in]: Deprecated. Will be removed in sdk 8.0 */
 	NV_ENC_BUFFER_FORMAT bufferFmt; /**< [in]: Input buffer format */
 	uint32_t reserved; /**< [in]: Reserved and must be set to 0 */
 	NV_ENC_INPUT_PTR inputBuffer; /**< [out]: Pointer to input buffer */
@@ -1067,10 +1067,10 @@ typedef struct _NV_ENC_CREATE_BITSTREAM_BUFFER {
 	uint32_t version; /**< [in]: Struct version. Must be set to ::NV_ENC_CREATE_BITSTREAM_BUFFER_VER */
 	uint32_t size; /**< [in]: Size of the bitstream buffer to be created */
 	NV_ENC_MEMORY_HEAP
-	memoryHeap;        /**< [in]: Deprecated. Will be removed in sdk 8.0 */
-	uint32_t reserved; /**< [in]: Reserved and must be set to 0 */
+		memoryHeap; /**< [in]: Deprecated. Will be removed in sdk 8.0 */
+	uint32_t reserved;  /**< [in]: Reserved and must be set to 0 */
 	NV_ENC_OUTPUT_PTR
-	bitstreamBuffer; /**< [out]: Pointer to the output bitstream buffer */
+		bitstreamBuffer; /**< [out]: Pointer to the output bitstream buffer */
 	void *bitstreamBufferPtr; /**< [out]: Reserved and should not be used */
 	uint32_t reserved1[58];   /**< [in]: Reserved and should be set to 0 */
 	void *reserved2[64]; /**< [in]: Reserved and should be set to NULL */
@@ -1117,7 +1117,7 @@ typedef struct _NV_ENC_HEVC_MV_DATA {
 typedef struct _NV_ENC_CREATE_MV_BUFFER {
 	uint32_t version; /**< [in]: Struct version. Must be set to NV_ENC_CREATE_MV_BUFFER_VER */
 	NV_ENC_OUTPUT_PTR
-	mvBuffer; /**< [out]: Pointer to the output motion vector buffer */
+		mvBuffer; /**< [out]: Pointer to the output motion vector buffer */
 	uint32_t reserved1[255]; /**< [in]: Reserved and should be set to 0 */
 	void *reserved2[63]; /**< [in]: Reserved and should be set to NULL */
 } NV_ENC_CREATE_MV_BUFFER;
@@ -1140,7 +1140,7 @@ typedef struct _NV_ENC_QP {
 typedef struct _NV_ENC_RC_PARAMS {
 	uint32_t version;
 	NV_ENC_PARAMS_RC_MODE
-	rateControlMode; /**< [in]: Specifies the rate control mode. Check support for various rate control modes using ::NV_ENC_CAPS_SUPPORTED_RATECONTROL_MODES caps. */
+		rateControlMode; /**< [in]: Specifies the rate control mode. Check support for various rate control modes using ::NV_ENC_CAPS_SUPPORTED_RATECONTROL_MODES caps. */
 	NV_ENC_QP constQP; /**< [in]: Specifies the initial QP to be used for encoding, these values would be used for all frames if in Constant QP mode. */
 	uint32_t averageBitRate; /**< [in]: Specifies the average bitrate(in bits/sec) used for encoding. */
 	uint32_t maxBitRate; /**< [in]: Specifies the maximum bitrate for the encoded output. This is used for VBR and ignored for CBR mode. */
@@ -1258,15 +1258,15 @@ typedef struct _NV_ENC_CONFIG_H264 {
 	uint32_t spsId; /**< [in]: Specifies the SPS id of the sequence header. Currently reserved and must be set to 0. */
 	uint32_t ppsId; /**< [in]: Specifies the PPS id of the picture header. Currently reserved and must be set to 0. */
 	NV_ENC_H264_ADAPTIVE_TRANSFORM_MODE
-	adaptiveTransformMode; /**< [in]: Specifies the AdaptiveTransform Mode. Check support for AdaptiveTransform mode using ::NV_ENC_CAPS_SUPPORT_ADAPTIVE_TRANSFORM caps. */
+		adaptiveTransformMode; /**< [in]: Specifies the AdaptiveTransform Mode. Check support for AdaptiveTransform mode using ::NV_ENC_CAPS_SUPPORT_ADAPTIVE_TRANSFORM caps. */
 	NV_ENC_H264_FMO_MODE
-	fmoMode; /**< [in]: Specified the FMO Mode. Check support for FMO using ::NV_ENC_CAPS_SUPPORT_FMO caps. */
+		fmoMode; /**< [in]: Specified the FMO Mode. Check support for FMO using ::NV_ENC_CAPS_SUPPORT_FMO caps. */
 	NV_ENC_H264_BDIRECT_MODE
-	bdirectMode; /**< [in]: Specifies the BDirect mode. Check support for BDirect mode using ::NV_ENC_CAPS_SUPPORT_BDIRECT_MODE caps.*/
+		bdirectMode; /**< [in]: Specifies the BDirect mode. Check support for BDirect mode using ::NV_ENC_CAPS_SUPPORT_BDIRECT_MODE caps.*/
 	NV_ENC_H264_ENTROPY_CODING_MODE
-	entropyCodingMode; /**< [in]: Specifies the entropy coding mode. Check support for CABAC mode using ::NV_ENC_CAPS_SUPPORT_CABAC caps. */
+		entropyCodingMode; /**< [in]: Specifies the entropy coding mode. Check support for CABAC mode using ::NV_ENC_CAPS_SUPPORT_CABAC caps. */
 	NV_ENC_STEREO_PACKING_MODE
-	stereoMode; /**< [in]: Specifies the stereo frame packing mode which is to be signalled in frame packing arrangement SEI */
+		stereoMode; /**< [in]: Specifies the stereo frame packing mode which is to be signalled in frame packing arrangement SEI */
 	uint32_t intraRefreshPeriod; /**< [in]: Specifies the interval between successive intra refresh if enableIntrarefresh is set. Requires enableIntraRefresh to be set.
                                                                                Will be disabled if NV_ENC_CONFIG::gopLength is not set to NVENC_INFINITE_GOPLENGTH. */
 	uint32_t intraRefreshCnt; /**< [in]: Specifies the length of intra refresh in number of frames for periodic intra refresh. This value should be smaller than intraRefreshPeriod */
@@ -1284,7 +1284,7 @@ typedef struct _NV_ENC_CONFIG_H264 {
                                                                                sliceMode = 2, sliceModeData specifies # of MB rows in each slice (except last slice)
                                                                                sliceMode = 3, sliceModeData specifies number of slices in the picture. Driver will divide picture into slices optimally */
 	NV_ENC_CONFIG_H264_VUI_PARAMETERS
-	h264VUIParameters; /**< [in]: Specifies the H264 video usability info pamameters */
+		h264VUIParameters; /**< [in]: Specifies the H264 video usability info pamameters */
 	uint32_t ltrNumFrames; /**< [in]: Specifies the number of LTR frames used. 
                                                                                If ltrTrustMode=1, encoder will mark first numLTRFrames base layer reference frames within each IDR interval as LTR.
                                                                                If ltrMarkFrame=1, ltrNumFrames specifies maximum number of ltr frames in DPB.
@@ -1307,9 +1307,9 @@ typedef struct _NV_ENC_CONFIG_HEVC {
 	uint32_t level; /**< [in]: Specifies the level of the encoded bitstream.*/
 	uint32_t tier; /**< [in]: Specifies the level tier of the encoded bitstream.*/
 	NV_ENC_HEVC_CUSIZE
-	minCUSize; /**< [in]: Specifies the minimum size of luma coding unit.*/
+		minCUSize; /**< [in]: Specifies the minimum size of luma coding unit.*/
 	NV_ENC_HEVC_CUSIZE
-	maxCUSize; /**< [in]: Specifies the maximum size of luma coding unit. Currently NVENC SDK only supports maxCUSize equal to NV_ENC_HEVC_CUSIZE_32x32.*/
+		maxCUSize; /**< [in]: Specifies the maximum size of luma coding unit. Currently NVENC SDK only supports maxCUSize equal to NV_ENC_HEVC_CUSIZE_32x32.*/
 	uint32_t useConstrainedIntraPred : 1; /**< [in]: Set 1 to enable constrained intra prediction. */
 	uint32_t disableDeblockAcrossSliceBoundary : 1; /**< [in]: Set 1 to disable in loop filtering across slice boundary.*/
 	uint32_t outputBufferingPeriodSEI : 1; /**< [in]: Set 1 to write SEI buffering period syntax in the bitstream */
@@ -1344,7 +1344,7 @@ typedef struct _NV_ENC_CONFIG_HEVC {
                                                                                 sliceMode = 3, sliceModeData specifies number of slices in the picture. Driver will divide picture into slices optimally */
 	uint32_t maxTemporalLayersMinus1; /**< [in]: Specifies the max temporal layer used for hierarchical coding. */
 	NV_ENC_CONFIG_HEVC_VUI_PARAMETERS
-	hevcVUIParameters; /**< [in]: Specifies the HEVC video usability info pamameters */
+		hevcVUIParameters; /**< [in]: Specifies the HEVC video usability info pamameters */
 	uint32_t ltrTrustMode;   /**< [in]: Specifies the LTR operating mode.
                                                                                Set to 0 to disallow encoding using LTR frames until later specified.
                                                                                Set to 1 to allow encoding using LTR frames unless later invalidated.*/
@@ -1358,9 +1358,9 @@ typedef struct _NV_ENC_CONFIG_HEVC {
  */
 typedef union _NV_ENC_CODEC_CONFIG {
 	NV_ENC_CONFIG_H264
-	h264Config; /**< [in]: Specifies the H.264-specific encoder configuration. */
+		h264Config; /**< [in]: Specifies the H.264-specific encoder configuration. */
 	NV_ENC_CONFIG_HEVC
-	hevcConfig; /**< [in]: Specifies the HEVC-specific encoder configuration. */
+		hevcConfig; /**< [in]: Specifies the HEVC-specific encoder configuration. */
 	uint32_t reserved[256]; /**< [in]: Reserved and must be set to 0 */
 } NV_ENC_CODEC_CONFIG;
 
@@ -1375,15 +1375,15 @@ typedef struct _NV_ENC_CONFIG {
 	int32_t frameIntervalP; /**< [in]: Specifies the GOP pattern as follows: \p frameIntervalP = 0: I, 1: IPP, 2: IBP, 3: IBBP  If goplength is set to NVENC_INFINITE_GOPLENGTH \p frameIntervalP should be set to 1. */
 	uint32_t monoChromeEncoding; /**< [in]: Set this to 1 to enable monochrome encoding for this session. */
 	NV_ENC_PARAMS_FRAME_FIELD_MODE
-	frameFieldMode; /**< [in]: Specifies the frame/field mode.
+		frameFieldMode; /**< [in]: Specifies the frame/field mode.
                                                                                             Check support for field encoding using ::NV_ENC_CAPS_SUPPORT_FIELD_ENCODING caps.
                                                                                             Using a frameFieldMode other than NV_ENC_PARAMS_FRAME_FIELD_MODE_FRAME for RGB input is not supported. */
 	NV_ENC_MV_PRECISION
-	mvPrecision; /**< [in]: Specifies the desired motion vector prediction precision. */
+		mvPrecision; /**< [in]: Specifies the desired motion vector prediction precision. */
 	NV_ENC_RC_PARAMS
-	rcParams; /**< [in]: Specifies the rate control parameters for the current encoding session. */
+		rcParams; /**< [in]: Specifies the rate control parameters for the current encoding session. */
 	NV_ENC_CODEC_CONFIG
-	encodeCodecConfig; /**< [in]: Specifies the codec specific config parameters through this union. */
+		encodeCodecConfig; /**< [in]: Specifies the codec specific config parameters through this union. */
 	uint32_t reserved[278]; /**< [in]: Reserved and must be set to 0 */
 	void *reserved2[64];    /**< [in]: Reserved and must be set to NULL */
 } NV_ENC_CONFIG;
@@ -1441,7 +1441,7 @@ typedef struct _NV_ENC_INITIALIZE_PARAMS {
 typedef struct _NV_ENC_RECONFIGURE_PARAMS {
 	uint32_t version; /**< [in]: Struct version. Must be set to ::NV_ENC_RECONFIGURE_PARAMS_VER. */
 	NV_ENC_INITIALIZE_PARAMS
-	reInitEncodeParams; /**< [in]: Encoder session re-initialization parameters. */
+		reInitEncodeParams; /**< [in]: Encoder session re-initialization parameters. */
 	uint32_t resetEncoder : 1; /**< [in]: This resets the rate control states and other internal encoder states. This should be used only with an IDR frame.
                                                                                            If NV_ENC_INITIALIZE_PARAMS::enablePTD is set to 1, encoder will force the frame type to IDR */
 	uint32_t forceIDR : 1; /**< [in]: Encode the current picture as an IDR picture. This flag is only valid when Picture type decision is taken by the Encoder
@@ -1460,7 +1460,7 @@ typedef struct _NV_ENC_RECONFIGURE_PARAMS {
 typedef struct _NV_ENC_PRESET_CONFIG {
 	uint32_t version; /**< [in]:  Struct version. Must be set to ::NV_ENC_PRESET_CONFIG_VER. */
 	NV_ENC_CONFIG
-	presetCfg; /**< [out]: preset config returned by the Nvidia Video Encoder interface. */
+		presetCfg; /**< [out]: preset config returned by the Nvidia Video Encoder interface. */
 	uint32_t reserved1[255]; /**< [in]: Reserved and must be set to 0 */
 	void *reserved2[64];     /**< [in]: Reserved and must be set to NULL */
 } NV_ENC_PRESET_CONFIG;
@@ -1568,9 +1568,9 @@ typedef struct _NV_ENC_PIC_PARAMS_HEVC {
  */
 typedef union _NV_ENC_CODEC_PIC_PARAMS {
 	NV_ENC_PIC_PARAMS_H264
-	h264PicParams; /**< [in]: H264 encode picture params. */
+		h264PicParams; /**< [in]: H264 encode picture params. */
 	NV_ENC_PIC_PARAMS_HEVC
-	hevcPicParams; /**< [in]: HEVC encode picture params. Currently unsupported and must not to be used.  */
+		hevcPicParams; /**< [in]: HEVC encode picture params. Currently unsupported and must not to be used.  */
 	uint32_t reserved[256]; /**< [in]: Reserved and must be set to 0. */
 } NV_ENC_CODEC_PIC_PARAMS;
 
@@ -1588,18 +1588,18 @@ typedef struct _NV_ENC_PIC_PARAMS {
 	uint64_t inputTimeStamp; /**< [in]: Specifies presentation timestamp associated with the input picture. */
 	uint64_t inputDuration; /**< [in]: Specifies duration of the input picture */
 	NV_ENC_INPUT_PTR
-	inputBuffer; /**< [in]: Specifies the input buffer pointer. Client must use a pointer obtained from ::NvEncCreateInputBuffer() or ::NvEncMapInputResource() APIs.*/
+		inputBuffer; /**< [in]: Specifies the input buffer pointer. Client must use a pointer obtained from ::NvEncCreateInputBuffer() or ::NvEncMapInputResource() APIs.*/
 	NV_ENC_OUTPUT_PTR
-	outputBitstream; /**< [in]: Specifies the pointer to output buffer. Client should use a pointer obtained from ::NvEncCreateBitstreamBuffer() API. */
+		outputBitstream; /**< [in]: Specifies the pointer to output buffer. Client should use a pointer obtained from ::NvEncCreateBitstreamBuffer() API. */
 	void *completionEvent; /**< [in]: Specifies an event to be signalled on completion of encoding of this Frame [only if operating in Asynchronous mode]. Each output buffer should be associated with a distinct event pointer. */
 	NV_ENC_BUFFER_FORMAT
-	bufferFmt; /**< [in]: Specifies the input buffer format. */
+		bufferFmt; /**< [in]: Specifies the input buffer format. */
 	NV_ENC_PIC_STRUCT
-	pictureStruct; /**< [in]: Specifies structure of the input picture. */
+		pictureStruct; /**< [in]: Specifies structure of the input picture. */
 	NV_ENC_PIC_TYPE
-	pictureType; /**< [in]: Specifies input picture type. Client required to be set explicitly by the client if the client has not set NV_ENC_INITALIZE_PARAMS::enablePTD to 1 while calling NvInitializeEncoder. */
+		pictureType; /**< [in]: Specifies input picture type. Client required to be set explicitly by the client if the client has not set NV_ENC_INITALIZE_PARAMS::enablePTD to 1 while calling NvInitializeEncoder. */
 	NV_ENC_CODEC_PIC_PARAMS
-	codecPicParams; /**< [in]: Specifies the codec specific per-picture encoding parameters. */
+		codecPicParams; /**< [in]: Specifies the codec specific per-picture encoding parameters. */
 	NVENC_EXTERNAL_ME_HINT_COUNTS_PER_BLOCKTYPE meHintCountsPerBlock
 		[2]; /**< [in]: Specifies the number of hint candidates per block per direction for the current frame. meHintCountsPerBlock[0] is for L0 predictors and meHintCountsPerBlock[1] is for L1 predictors.
                                                                                            The candidate count in NV_ENC_PIC_PARAMS::meHintCountsPerBlock[lx] must never exceed NV_ENC_INITIALIZE_PARAMS::maxMEHintCountsPerBlock[lx] provided during encoder intialization. */
@@ -1631,13 +1631,13 @@ typedef struct _NV_ENC_MEONLY_PARAMS {
 	uint32_t inputWidth;  /**< [in]: Specifies the input buffer width */
 	uint32_t inputHeight; /**< [in]: Specifies the input buffer height */
 	NV_ENC_INPUT_PTR
-	inputBuffer; /**< [in]: Specifies the input buffer pointer. Client must use a pointer obtained from NvEncCreateInputBuffer() or NvEncMapInputResource() APIs. */
+		inputBuffer; /**< [in]: Specifies the input buffer pointer. Client must use a pointer obtained from NvEncCreateInputBuffer() or NvEncMapInputResource() APIs. */
 	NV_ENC_INPUT_PTR
-	referenceFrame; /**< [in]: Specifies the reference frame pointer */
+		referenceFrame; /**< [in]: Specifies the reference frame pointer */
 	NV_ENC_OUTPUT_PTR
-	mvBuffer; /**< [in]: Specifies the pointer to motion vector data buffer allocated by NvEncCreateMVBuffer. Client must lock mvBuffer using ::NvEncLockBitstream() API to get the motion vector data. */
+		mvBuffer; /**< [in]: Specifies the pointer to motion vector data buffer allocated by NvEncCreateMVBuffer. Client must lock mvBuffer using ::NvEncLockBitstream() API to get the motion vector data. */
 	NV_ENC_BUFFER_FORMAT
-	bufferFmt;             /**< [in]: Specifies the input buffer format. */
+		bufferFmt;     /**< [in]: Specifies the input buffer format. */
 	void *completionEvent; /**< [in]: Specifies an event to be signalled on completion of motion estimation 
                                                                            of this Frame [only if operating in Asynchronous mode]. 
                                                                            Each output buffer should be associated with a distinct event pointer. */
@@ -1669,9 +1669,9 @@ typedef struct _NV_ENC_LOCK_BITSTREAM {
                                                                      For MEOnly mode _NV_ENC_LOCK_BITSTREAM::bitstreamBufferPtr should be typecast to
                                                                      NV_ENC_H264_MV_DATA/NV_ENC_HEVC_MV_DATA pointer respectively for H264/HEVC  */
 	NV_ENC_PIC_TYPE
-	pictureType; /**< [out]: Picture type of the encoded picture. */
+		pictureType; /**< [out]: Picture type of the encoded picture. */
 	NV_ENC_PIC_STRUCT
-	pictureStruct; /**< [out]: Structure of the generated output picture. */
+		pictureStruct; /**< [out]: Structure of the generated output picture. */
 	uint32_t frameAvgQP; /**< [out]: Average QP of the frame. */
 	uint32_t frameSatd;  /**< [out]: Total SATD cost for whole frame. */
 	uint32_t ltrFrameIdx; /**< [out]: Frame index associated with this LTR frame. */
@@ -1692,7 +1692,7 @@ typedef struct _NV_ENC_LOCK_INPUT_BUFFER {
 	uint32_t doNotWait : 1; /**< [in]:  Set to 1 to make ::NvEncLockInputBuffer() a unblocking call. If the encoding is not completed, driver will return ::NV_ENC_ERR_ENCODER_BUSY error code. */
 	uint32_t reservedBitFields : 31; /**< [in]:  Reserved bitfields and must be set to 0 */
 	NV_ENC_INPUT_PTR
-	inputBuffer; /**< [in]:  Pointer to the input buffer to be locked, client should pass the pointer obtained from ::NvEncCreateInputBuffer() or ::NvEncMapInputResource API. */
+		inputBuffer; /**< [in]:  Pointer to the input buffer to be locked, client should pass the pointer obtained from ::NvEncCreateInputBuffer() or ::NvEncMapInputResource API. */
 	void *bufferDataPtr; /**< [out]: Pointed to the locked input buffer data. Client can only access input buffer using the \p bufferDataPtr. */
 	uint32_t pitch;      /**< [out]: Pitch of the locked input buffer. */
 	uint32_t reserved1[251]; /**< [in]:  Reserved and must be set to 0  */
@@ -1711,11 +1711,11 @@ typedef struct _NV_ENC_MAP_INPUT_RESOURCE {
 	uint32_t subResourceIndex; /**< [in]:  Deprecated. Do not use. */
 	void *inputResource;       /**< [in]:  Deprecated. Do not use. */
 	NV_ENC_REGISTERED_PTR
-	registeredResource; /**< [in]:  The Registered resource handle obtained by calling NvEncRegisterInputResource. */
+		registeredResource; /**< [in]:  The Registered resource handle obtained by calling NvEncRegisterInputResource. */
 	NV_ENC_INPUT_PTR
-	mappedResource; /**< [out]: Mapped pointer corresponding to the registeredResource. This pointer must be used in NV_ENC_PIC_PARAMS::inputBuffer parameter in ::NvEncEncodePicture() API. */
+		mappedResource; /**< [out]: Mapped pointer corresponding to the registeredResource. This pointer must be used in NV_ENC_PIC_PARAMS::inputBuffer parameter in ::NvEncEncodePicture() API. */
 	NV_ENC_BUFFER_FORMAT
-	mappedBufferFmt; /**< [out]: Buffer format of the outputResource. This buffer format must be used in NV_ENC_PIC_PARAMS::bufferFmt if client using the above mapped resource pointer. */
+		mappedBufferFmt; /**< [out]: Buffer format of the outputResource. This buffer format must be used in NV_ENC_PIC_PARAMS::bufferFmt if client using the above mapped resource pointer. */
 	uint32_t reserved1[251]; /**< [in]:  Reserved and must be set to 0. */
 	void *reserved2[63];     /**< [in]:  Reserved and must be set to NULL */
 } NV_ENC_MAP_INPUT_RESOURCE;
@@ -1730,16 +1730,16 @@ typedef struct _NV_ENC_MAP_INPUT_RESOURCE {
 typedef struct _NV_ENC_REGISTER_RESOURCE {
 	uint32_t version; /**< [in]: Struct version. Must be set to ::NV_ENC_REGISTER_RESOURCE_VER. */
 	NV_ENC_INPUT_RESOURCE_TYPE
-	resourceType; /**< [in]: Specifies the type of resource to be registered. Supported values are ::NV_ENC_INPUT_RESOURCE_TYPE_DIRECTX, ::NV_ENC_INPUT_RESOURCE_TYPE_CUDADEVICEPTR. */
-	uint32_t width;            /**< [in]: Input buffer Width. */
-	uint32_t height;           /**< [in]: Input buffer Height. */
-	uint32_t pitch;            /**< [in]: Input buffer Pitch.  */
+		resourceType; /**< [in]: Specifies the type of resource to be registered. Supported values are ::NV_ENC_INPUT_RESOURCE_TYPE_DIRECTX, ::NV_ENC_INPUT_RESOURCE_TYPE_CUDADEVICEPTR. */
+	uint32_t width;       /**< [in]: Input buffer Width. */
+	uint32_t height;      /**< [in]: Input buffer Height. */
+	uint32_t pitch;       /**< [in]: Input buffer Pitch.  */
 	uint32_t subResourceIndex; /**< [in]: Subresource Index of the DirectX resource to be registered. Should be set to 0 for other interfaces. */
 	void *resourceToRegister; /**< [in]: Handle to the resource that is being registered. */
 	NV_ENC_REGISTERED_PTR
-	registeredResource; /**< [out]: Registered resource handle. This should be used in future interactions with the Nvidia Video Encoder Interface. */
+		registeredResource; /**< [out]: Registered resource handle. This should be used in future interactions with the Nvidia Video Encoder Interface. */
 	NV_ENC_BUFFER_FORMAT
-	bufferFormat; /**< [in]: Buffer format of resource to be registered. */
+		bufferFormat; /**< [in]: Buffer format of resource to be registered. */
 	uint32_t reserved1[248]; /**< [in]: Reserved and must be set to 0. */
 	void *reserved2[62];     /**< [in]: Reserved and must be set to NULL. */
 } NV_ENC_REGISTER_RESOURCE;
@@ -1755,7 +1755,7 @@ typedef struct _NV_ENC_STAT {
 	uint32_t version; /**< [in]:  Struct version. Must be set to ::NV_ENC_STAT_VER. */
 	uint32_t reserved; /**< [in]:  Reserved and must be set to 0 */
 	NV_ENC_OUTPUT_PTR
-	outputBitStream; /**< [out]: Specifies the pointer to output bitstream. */
+		outputBitStream; /**< [out]: Specifies the pointer to output bitstream. */
 	uint32_t bitStreamSize; /**< [out]: Size of generated bitstream in bytes. */
 	uint32_t picType; /**< [out]: Picture type of encoded picture. See ::NV_ENC_PIC_TYPE. */
 	uint32_t lastValidByteOffset; /**< [out]: Offset of last valid bytes of completed bitstream */
@@ -3304,78 +3304,78 @@ typedef struct _NV_ENCODE_API_FUNCTION_LIST {
 	uint32_t version; /**< [in]: Client should pass NV_ENCODE_API_FUNCTION_LIST_VER.                               */
 	uint32_t reserved; /**< [in]: Reserved and should be set to 0.                                                  */
 	PNVENCOPENENCODESESSION
-	nvEncOpenEncodeSession; /**< [out]: Client should access ::NvEncOpenEncodeSession() API through this pointer.        */
+		nvEncOpenEncodeSession; /**< [out]: Client should access ::NvEncOpenEncodeSession() API through this pointer.        */
 	PNVENCGETENCODEGUIDCOUNT
-	nvEncGetEncodeGUIDCount; /**< [out]: Client should access ::NvEncGetEncodeGUIDCount() API through this pointer.       */
+		nvEncGetEncodeGUIDCount; /**< [out]: Client should access ::NvEncGetEncodeGUIDCount() API through this pointer.       */
 	PNVENCGETENCODEPRESETCOUNT
-	nvEncGetEncodeProfileGUIDCount; /**< [out]: Client should access ::NvEncGetEncodeProfileGUIDCount() API through this pointer.*/
+		nvEncGetEncodeProfileGUIDCount; /**< [out]: Client should access ::NvEncGetEncodeProfileGUIDCount() API through this pointer.*/
 	PNVENCGETENCODEPRESETGUIDS
-	nvEncGetEncodeProfileGUIDs; /**< [out]: Client should access ::NvEncGetEncodeProfileGUIDs() API through this pointer.    */
+		nvEncGetEncodeProfileGUIDs; /**< [out]: Client should access ::NvEncGetEncodeProfileGUIDs() API through this pointer.    */
 	PNVENCGETENCODEGUIDS
-	nvEncGetEncodeGUIDs; /**< [out]: Client should access ::NvEncGetEncodeGUIDs() API through this pointer.           */
+		nvEncGetEncodeGUIDs; /**< [out]: Client should access ::NvEncGetEncodeGUIDs() API through this pointer.           */
 	PNVENCGETINPUTFORMATCOUNT
-	nvEncGetInputFormatCount; /**< [out]: Client should access ::NvEncGetInputFormatCount() API through this pointer.      */
+		nvEncGetInputFormatCount; /**< [out]: Client should access ::NvEncGetInputFormatCount() API through this pointer.      */
 	PNVENCGETINPUTFORMATS
-	nvEncGetInputFormats; /**< [out]: Client should access ::NvEncGetInputFormats() API through this pointer.          */
+		nvEncGetInputFormats; /**< [out]: Client should access ::NvEncGetInputFormats() API through this pointer.          */
 	PNVENCGETENCODECAPS
-	nvEncGetEncodeCaps; /**< [out]: Client should access ::NvEncGetEncodeCaps() API through this pointer.            */
+		nvEncGetEncodeCaps; /**< [out]: Client should access ::NvEncGetEncodeCaps() API through this pointer.            */
 	PNVENCGETENCODEPRESETCOUNT
-	nvEncGetEncodePresetCount; /**< [out]: Client should access ::NvEncGetEncodePresetCount() API through this pointer.     */
+		nvEncGetEncodePresetCount; /**< [out]: Client should access ::NvEncGetEncodePresetCount() API through this pointer.     */
 	PNVENCGETENCODEPRESETGUIDS
-	nvEncGetEncodePresetGUIDs; /**< [out]: Client should access ::NvEncGetEncodePresetGUIDs() API through this pointer.     */
+		nvEncGetEncodePresetGUIDs; /**< [out]: Client should access ::NvEncGetEncodePresetGUIDs() API through this pointer.     */
 	PNVENCGETENCODEPRESETCONFIG
-	nvEncGetEncodePresetConfig; /**< [out]: Client should access ::NvEncGetEncodePresetConfig() API through this pointer.    */
+		nvEncGetEncodePresetConfig; /**< [out]: Client should access ::NvEncGetEncodePresetConfig() API through this pointer.    */
 	PNVENCINITIALIZEENCODER
-	nvEncInitializeEncoder; /**< [out]: Client should access ::NvEncInitializeEncoder() API through this pointer.        */
+		nvEncInitializeEncoder; /**< [out]: Client should access ::NvEncInitializeEncoder() API through this pointer.        */
 	PNVENCCREATEINPUTBUFFER
-	nvEncCreateInputBuffer; /**< [out]: Client should access ::NvEncCreateInputBuffer() API through this pointer.        */
+		nvEncCreateInputBuffer; /**< [out]: Client should access ::NvEncCreateInputBuffer() API through this pointer.        */
 	PNVENCDESTROYINPUTBUFFER
-	nvEncDestroyInputBuffer; /**< [out]: Client should access ::NvEncDestroyInputBuffer() API through this pointer.       */
+		nvEncDestroyInputBuffer; /**< [out]: Client should access ::NvEncDestroyInputBuffer() API through this pointer.       */
 	PNVENCCREATEBITSTREAMBUFFER
-	nvEncCreateBitstreamBuffer; /**< [out]: Client should access ::NvEncCreateBitstreamBuffer() API through this pointer.    */
+		nvEncCreateBitstreamBuffer; /**< [out]: Client should access ::NvEncCreateBitstreamBuffer() API through this pointer.    */
 	PNVENCDESTROYBITSTREAMBUFFER
-	nvEncDestroyBitstreamBuffer; /**< [out]: Client should access ::NvEncDestroyBitstreamBuffer() API through this pointer.   */
+		nvEncDestroyBitstreamBuffer; /**< [out]: Client should access ::NvEncDestroyBitstreamBuffer() API through this pointer.   */
 	PNVENCENCODEPICTURE
-	nvEncEncodePicture; /**< [out]: Client should access ::NvEncEncodePicture() API through this pointer.            */
+		nvEncEncodePicture; /**< [out]: Client should access ::NvEncEncodePicture() API through this pointer.            */
 	PNVENCLOCKBITSTREAM
-	nvEncLockBitstream; /**< [out]: Client should access ::NvEncLockBitstream() API through this pointer.            */
+		nvEncLockBitstream; /**< [out]: Client should access ::NvEncLockBitstream() API through this pointer.            */
 	PNVENCUNLOCKBITSTREAM
-	nvEncUnlockBitstream; /**< [out]: Client should access ::NvEncUnlockBitstream() API through this pointer.          */
+		nvEncUnlockBitstream; /**< [out]: Client should access ::NvEncUnlockBitstream() API through this pointer.          */
 	PNVENCLOCKINPUTBUFFER
-	nvEncLockInputBuffer; /**< [out]: Client should access ::NvEncLockInputBuffer() API through this pointer.          */
+		nvEncLockInputBuffer; /**< [out]: Client should access ::NvEncLockInputBuffer() API through this pointer.          */
 	PNVENCUNLOCKINPUTBUFFER
-	nvEncUnlockInputBuffer; /**< [out]: Client should access ::NvEncUnlockInputBuffer() API through this pointer.        */
+		nvEncUnlockInputBuffer; /**< [out]: Client should access ::NvEncUnlockInputBuffer() API through this pointer.        */
 	PNVENCGETENCODESTATS
-	nvEncGetEncodeStats; /**< [out]: Client should access ::NvEncGetEncodeStats() API through this pointer.           */
+		nvEncGetEncodeStats; /**< [out]: Client should access ::NvEncGetEncodeStats() API through this pointer.           */
 	PNVENCGETSEQUENCEPARAMS
-	nvEncGetSequenceParams; /**< [out]: Client should access ::NvEncGetSequenceParams() API through this pointer.        */
+		nvEncGetSequenceParams; /**< [out]: Client should access ::NvEncGetSequenceParams() API through this pointer.        */
 	PNVENCREGISTERASYNCEVENT
-	nvEncRegisterAsyncEvent; /**< [out]: Client should access ::NvEncRegisterAsyncEvent() API through this pointer.       */
+		nvEncRegisterAsyncEvent; /**< [out]: Client should access ::NvEncRegisterAsyncEvent() API through this pointer.       */
 	PNVENCUNREGISTERASYNCEVENT
-	nvEncUnregisterAsyncEvent; /**< [out]: Client should access ::NvEncUnregisterAsyncEvent() API through this pointer.     */
+		nvEncUnregisterAsyncEvent; /**< [out]: Client should access ::NvEncUnregisterAsyncEvent() API through this pointer.     */
 	PNVENCMAPINPUTRESOURCE
-	nvEncMapInputResource; /**< [out]: Client should access ::NvEncMapInputResource() API through this pointer.         */
+		nvEncMapInputResource; /**< [out]: Client should access ::NvEncMapInputResource() API through this pointer.         */
 	PNVENCUNMAPINPUTRESOURCE
-	nvEncUnmapInputResource; /**< [out]: Client should access ::NvEncUnmapInputResource() API through this pointer.       */
+		nvEncUnmapInputResource; /**< [out]: Client should access ::NvEncUnmapInputResource() API through this pointer.       */
 	PNVENCDESTROYENCODER
-	nvEncDestroyEncoder; /**< [out]: Client should access ::NvEncDestroyEncoder() API through this pointer.           */
+		nvEncDestroyEncoder; /**< [out]: Client should access ::NvEncDestroyEncoder() API through this pointer.           */
 	PNVENCINVALIDATEREFFRAMES
-	nvEncInvalidateRefFrames; /**< [out]: Client should access ::NvEncInvalidateRefFrames() API through this pointer.      */
+		nvEncInvalidateRefFrames; /**< [out]: Client should access ::NvEncInvalidateRefFrames() API through this pointer.      */
 	PNVENCOPENENCODESESSIONEX
-	nvEncOpenEncodeSessionEx; /**< [out]: Client should access ::NvEncOpenEncodeSession() API through this pointer.        */
+		nvEncOpenEncodeSessionEx; /**< [out]: Client should access ::NvEncOpenEncodeSession() API through this pointer.        */
 	PNVENCREGISTERRESOURCE
-	nvEncRegisterResource; /**< [out]: Client should access ::NvEncRegisterResource() API through this pointer.         */
+		nvEncRegisterResource; /**< [out]: Client should access ::NvEncRegisterResource() API through this pointer.         */
 	PNVENCUNREGISTERRESOURCE
-	nvEncUnregisterResource; /**< [out]: Client should access ::NvEncUnregisterResource() API through this pointer.       */
+		nvEncUnregisterResource; /**< [out]: Client should access ::NvEncUnregisterResource() API through this pointer.       */
 	PNVENCRECONFIGUREENCODER
-	nvEncReconfigureEncoder; /**< [out]: Client should access ::NvEncReconfigureEncoder() API through this pointer.       */
+		nvEncReconfigureEncoder; /**< [out]: Client should access ::NvEncReconfigureEncoder() API through this pointer.       */
 	void *reserved1;
 	PNVENCCREATEMVBUFFER
-	nvEncCreateMVBuffer; /**< [out]: Client should access ::NvEncCreateMVBuffer API through this pointer.             */
+		nvEncCreateMVBuffer; /**< [out]: Client should access ::NvEncCreateMVBuffer API through this pointer.             */
 	PNVENCDESTROYMVBUFFER
-	nvEncDestroyMVBuffer; /**< [out]: Client should access ::NvEncDestroyMVBuffer API through this pointer.            */
+		nvEncDestroyMVBuffer; /**< [out]: Client should access ::NvEncDestroyMVBuffer API through this pointer.            */
 	PNVENCRUNMOTIONESTIMATIONONLY
-	nvEncRunMotionEstimationOnly; /**< [out]: Client should access ::NvEncRunMotionEstimationOnly API through this pointer.    */
+		nvEncRunMotionEstimationOnly; /**< [out]: Client should access ::NvEncRunMotionEstimationOnly API through this pointer.    */
 	void *reserved2
 		[281]; /**< [in]:  Reserved and must be set to NULL                                                 */
 } NV_ENCODE_API_FUNCTION_LIST;

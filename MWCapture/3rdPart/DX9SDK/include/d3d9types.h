@@ -1015,7 +1015,7 @@ typedef enum _D3DSAMPLER_TEXTURE_TYPE {
 #define D3DSPDM_SATURATE (1 << D3DSP_DSTMOD_SHIFT) // clamp to 0. to 1. range
 #define D3DSPDM_PARTIALPRECISION \
 	(2 << D3DSP_DSTMOD_SHIFT) // Partial precision hint
-#define D3DSPDM_MSAMPCENTROID \
+#define D3DSPDM_MSAMPCENTROID                                          \
 	(4 << D3DSP_DSTMOD_SHIFT) // Relevant to multisampling only:   \
 		//      When the pixel center is not covered, sample   \
 		//      attribute or compute gradients/LOD             \
@@ -1414,7 +1414,7 @@ typedef enum _D3DFORMAT {
 	D3DFMT_D32_LOCKABLE = 84,
 	D3DFMT_S8_LOCKABLE = 85,
 
-#endif // !D3D_DISABLE_9EX
+#endif  // !D3D_DISABLE_9EX
 	/* -- D3D9Ex only */
 
 	D3DFMT_L16 = 81,
@@ -1453,7 +1453,7 @@ typedef enum _D3DFORMAT {
 	// Binary format indicating that the data has no inherent type
 	D3DFMT_BINARYBUFFER = 199,
 
-#endif // !D3D_DISABLE_9EX
+#endif  // !D3D_DISABLE_9EX
 	/* -- D3D9Ex only */
 
 	D3DFMT_FORCE_DWORD = 0x7fffffff
@@ -1485,7 +1485,7 @@ typedef enum _D3DSWAPEFFECT {
 #if !defined(D3D_DISABLE_9EX)
 	D3DSWAPEFFECT_OVERLAY = 4,
 	D3DSWAPEFFECT_FLIPEX = 5,
-#endif // !D3D_DISABLE_9EX
+#endif  // !D3D_DISABLE_9EX
 	/* -- D3D9Ex only */
 
 	D3DSWAPEFFECT_FORCE_DWORD = 0x7fffffff

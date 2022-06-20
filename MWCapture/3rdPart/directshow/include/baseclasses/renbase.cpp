@@ -1866,7 +1866,7 @@ void CBaseVideoRenderer::OnWaitEnd()
 	// even if this means that we have to look at the clock again.
 
 	REFERENCE_TIME
-	trRealStream; // the real time now expressed as stream time.
+		trRealStream; // the real time now expressed as stream time.
 #if 0
     m_pClock->GetTime(&trRealStream); // Calling clock here causes W95 deadlock!
 #else
@@ -2275,7 +2275,7 @@ CBaseVideoRenderer::ShouldDrawSampleNow(IMediaSample *pMediaSample,
 
 	// Get reference times (current and late)
 	REFERENCE_TIME
-	trRealStream; // the real time now expressed as stream time.
+		trRealStream; // the real time now expressed as stream time.
 	m_pClock->GetTime(&trRealStream);
 #ifdef PERF
 	// While the reference clock is expensive:
