@@ -284,8 +284,8 @@ typedef DDRGBA FAR *LPDDRGBA;
  * DDCOLORKEY
  */
 typedef struct _DDCOLORKEY {
-	DWORD dwColorSpaceLowValue; // low boundary of color space that is to
-		// be treated as Color Key, inclusive
+	DWORD dwColorSpaceLowValue;  // low boundary of color space that is to
+				     // be treated as Color Key, inclusive
 	DWORD dwColorSpaceHighValue; // high boundary of color space that is
 				     // to be treated as Color Key, inclusive
 } DDCOLORKEY;

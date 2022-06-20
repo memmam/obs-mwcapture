@@ -15,9 +15,8 @@
 
 enum _MWCAP_HID_EXTENSION {
 	// Product informations (General)
-	MWCAP_HID_CHANNEL_INFO =
-		1,             // G, 	Data: uint8_t, MWCAP_CHANNEL_INFO
-	MWCAP_HID_FAMILY_INFO, // G, 	Data: uint8_t, MWCAP_USB_CAPTURE_INFO
+	MWCAP_HID_CHANNEL_INFO = 1, // G, 	Data: uint8_t, MWCAP_CHANNEL_INFO
+	MWCAP_HID_FAMILY_INFO,      // G, 	Data: uint8_t, MWCAP_USB_CAPTURE_INFO
 
 	MWCAP_HID_VIDEO_CAPS, // G, 	Data: uint8_t, MWCAP_VIDEO_CAPS
 	MWCAP_HID_AUDIO_CAPS, // G,	Data: uint8_t, MWCAP_AUDIO_CAPS
