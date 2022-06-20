@@ -189,9 +189,9 @@ typedef struct XMA2WAVEFORMATEX {
 	//    wBitsPerSample;    // Bits per decoded mono sample; always 16 for XMA
 	//    cbSize;            // Size in bytes of the rest of this structure (34)
 
-	WORD NumStreams;      // Number of audio streams (1 or 2 channels each)
-	DWORD ChannelMask;    // Spatial positions of the channels in this file,
-			      // stored as SPEAKER_xxx values (see audiodefs.h)
+	WORD NumStreams;   // Number of audio streams (1 or 2 channels each)
+	DWORD ChannelMask; // Spatial positions of the channels in this file,
+		// stored as SPEAKER_xxx values (see audiodefs.h)
 	DWORD SamplesEncoded; // Total number of PCM samples the file decodes to
 	DWORD BytesPerBlock; // XMA block size (but the last one may be shorter)
 	DWORD PlayBegin;     // First valid sample in the decoded audio
